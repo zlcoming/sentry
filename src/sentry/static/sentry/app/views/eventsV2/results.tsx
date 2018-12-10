@@ -16,7 +16,7 @@ import GlobalSelectionHeader from 'app/components/organizations/globalSelectionH
 import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
 import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
 import space from 'app/styles/space';
-import SearchBar from 'app/views/events/searchBar';
+import SearchBar from 'app/views/events/searchBarV2';
 import {trackAnalyticsEvent} from 'app/utils/analytics';
 import withApi from 'app/utils/withApi';
 import withOrganization from 'app/utils/withOrganization';

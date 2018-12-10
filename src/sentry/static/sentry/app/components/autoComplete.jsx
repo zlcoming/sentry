@@ -99,6 +99,16 @@ class AutoComplete extends React.Component {
     return this.isControlled() ? isOpen : this.state.isOpen;
   };
 
+  cancelCloseMenu = () => {
+    if (this.blurTimer) {
+      clearTimeout(this.blurTimer);
+    }
+
+    if (this.blurCallbackTimer) {
+      clearTimeout(this.blurCallbackTimer);
+    }
+  };
+
   /**
    * Resets `this.items` and `this.state.highlightedIndex`.
    * Should be called whenever `inputValue` changes.
@@ -142,6 +152,8 @@ class AutoComplete extends React.Component {
   handleInputBlur = ({onBlur} = {}, e) => {
     this.blurTimer = setTimeout(() => {
       this.closeMenu();
+    }, 200);
+    this.blurCallbackTimer = setTimeout(() => {
       callIfFunction(onBlur, e);
     }, 200);
   };
@@ -151,6 +163,8 @@ class AutoComplete extends React.Component {
     // Otherwise, it's possible that this gets fired multiple times
     // e.g. click outside triggers closeMenu and at the same time input gets blurred, so
     // a timer is set to close the menu
+    //
+    // Don't cancel "blur callback"
     if (this.blurTimer) {
       clearTimeout(this.blurTimer);
     }
@@ -193,9 +207,7 @@ class AutoComplete extends React.Component {
   };
 
   handleItemClick = ({onClick, item, index} = {}, e) => {
-    if (this.blurTimer) {
-      clearTimeout(this.blurTimer);
-    }
+    this.cancelCloseMenu();
     this.setState({highlightedIndex: index});
     this.handleSelect(item, e);
     callIfFunction(onClick, item, e);
@@ -203,7 +215,7 @@ class AutoComplete extends React.Component {
 
   handleMenuMouseDown = () => {
     // Cancel close menu from input blur (mouseDown event can occur before input blur :()
-    setTimeout(() => this.blurTimer && clearTimeout(this.blurTimer));
+    setTimeout(this.cancelCloseMenu);
   };
 
   /**
@@ -339,15 +351,14 @@ class AutoComplete extends React.Component {
               return dropdownMenuProps.getActorProps(inputProps);
             },
             getItemProps: this.getItemProps,
-            inputValue: this.state.inputValue,
+            inputValue: this.props.value || this.state.inputValue,
             selectedItem: this.state.selectedItem,
             highlightedIndex: this.state.highlightedIndex,
             actions: {
               open: this.openMenu,
               close: this.closeMenu,
             },
-          })
-        }
+          })}
       </DropdownMenu>
     );
   }

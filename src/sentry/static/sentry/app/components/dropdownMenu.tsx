@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/browser';
 import {MENU_CLOSE_DELAY} from 'app/constants';
 
 type GetActorArgs = {
+  onActorMount?: (ref: Element | null) => void;
   onClick?: (e: React.MouseEvent<Element>) => void;
   onMouseEnter?: (e: React.MouseEvent<Element>) => void;
   onMouseLeave?: (e: React.MouseEvent<Element>) => void;
@@ -284,11 +285,18 @@ class DropdownMenu extends React.Component<Props, State> {
     }
   };
 
-  handleActorMount = (ref: Element | null) => {
+  handleActorMount = (
+    onActorMount: (ref: Element | null) => void,
+    ref: Element | null
+  ) => {
     if (ref && !(ref instanceof Element)) {
       return;
     }
     this.dropdownActor = ref;
+
+    if (onActorMount) {
+      onActorMount(ref);
+    }
   };
 
   handleToggle = (e: React.MouseEvent<Element>) => {
@@ -314,6 +322,7 @@ class DropdownMenu extends React.Component<Props, State> {
 
   // Actor is the component that will open the dropdown menu
   getActorProps: GetActorPropsFn = ({
+    onActorMount,
     onClick,
     onMouseEnter,
     onMouseLeave,
@@ -323,7 +332,7 @@ class DropdownMenu extends React.Component<Props, State> {
   } = {}) => {
     const {isNestedDropdown, closeOnEscape} = this.props;
 
-    const refProps = {ref: this.handleActorMount};
+    const refProps = {ref: this.handleActorMount.bind(this, onActorMount)};
 
     // Props that the actor needs to have <DropdownMenu> work
     return {
