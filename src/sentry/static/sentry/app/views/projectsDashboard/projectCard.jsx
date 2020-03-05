@@ -9,7 +9,7 @@ import BookmarkStar from 'app/components/projects/bookmarkStar';
 import {Client} from 'app/api';
 import {loadStatsForProject} from 'app/actionCreators/projects';
 import IdBadge from 'app/components/idBadge';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import ProjectsStatsStore from 'app/stores/projectsStatsStore';
 import SentryTypes from 'app/sentryTypes';
 import space from 'app/styles/space';

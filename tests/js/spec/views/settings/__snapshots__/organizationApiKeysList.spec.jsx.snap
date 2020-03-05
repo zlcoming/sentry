@@ -274,7 +274,7 @@ exports[`OrganizationApiKeysList renders 1`] = `
         >
           psst. Until Sentry supports OAuth, you might want to switch to using 
         </span>
-        <Link
+        <ForwardRef
           key="2"
           to="/settings/account/api/auth-tokens/"
         >
@@ -294,7 +294,7 @@ exports[`OrganizationApiKeysList renders 1`] = `
               </span>
             </a>
           </Link>
-        </Link>
+        </ForwardRef>
         <span
           key="3"
         >
@@ -390,7 +390,7 @@ exports[`OrganizationApiKeysList renders 1`] = `
                           <div
                             className="css-1izfy6z"
                           >
-                            <Link
+                            <ForwardRef
                               to="/organizations/org-slug/api-keys/1/"
                             >
                               <Link
@@ -405,7 +405,7 @@ exports[`OrganizationApiKeysList renders 1`] = `
                                   Default
                                 </a>
                               </Link>
-                            </Link>
+                            </ForwardRef>
                           </div>
                         </Styled(div)>
                         <Styled(div)

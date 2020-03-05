@@ -631,7 +631,7 @@ exports[`OrganizationProjects should render the projects in the store 1`] = `
                                           </BookmarkStar>
                                         </withApi(BookmarkStar)>
                                       </BookmarkLink>
-                                      <Link
+                                      <ForwardRef
                                         to="/settings/org-slug/projects/project-slug/"
                                       >
                                         <Link
@@ -669,7 +669,7 @@ exports[`OrganizationProjects should render the projects in the store 1`] = `
                                             </ProjectLabel>
                                           </a>
                                         </Link>
-                                      </Link>
+                                      </ForwardRef>
                                     </div>
                                   </Container>
                                 </ProjectItem>

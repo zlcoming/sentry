@@ -10,7 +10,7 @@ import DropdownMenu from 'app/components/dropdownMenu';
 import Hook from 'app/components/hook';
 import IdBadge from 'app/components/idBadge';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import SentryTypes from 'app/sentryTypes';
 import SidebarDropdownMenu from 'app/components/sidebar/sidebarDropdownMenu.styled';
 import SidebarMenuItem, {menuItemStyles} from 'app/components/sidebar/sidebarMenuItem';

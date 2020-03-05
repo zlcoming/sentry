@@ -10,7 +10,7 @@ import Alert from 'app/components/alert';
 import AsyncView from 'app/views/asyncView';
 import Button from 'app/components/button';
 import ConfigStore from 'app/stores/configStore';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import NarrowLayout from 'app/components/narrowLayout';
 import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
 import space from 'app/styles/space';
@@ -76,7 +76,7 @@ class AcceptOrganizationInvite extends AsyncView<Props, State> {
           'Your account ([email]) is already a member of this organization. [switchLink:Switch accounts]?',
           {
             email: user.email,
-            switchLink: <Link href="#" onClick={this.handleLogout} />,
+            switchLink: <Link onClick={this.handleLogout} />,
           }
         )}
       </Alert>

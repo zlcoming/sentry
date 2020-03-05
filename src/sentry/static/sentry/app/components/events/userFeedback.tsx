@@ -10,7 +10,7 @@ import ActivityAuthor from 'app/components/activity/author';
 import ActivityItem from 'app/components/activity/item';
 import Clipboard from 'app/components/clipboard';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import space from 'app/styles/space';
 
 type Props = {

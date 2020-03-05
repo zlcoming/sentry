@@ -12,7 +12,7 @@ import CircleIndicator from 'app/components/circleIndicator';
 import InstalledIntegration, {
   Props as InstalledIntegrationProps,
 } from 'app/views/organizationIntegrations/installedIntegration';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import PluginIcon from 'app/plugins/components/pluginIcon';
 import SentryTypes from 'app/sentryTypes';
 import space from 'app/styles/space';
@@ -131,7 +131,7 @@ export default class ProviderRow extends React.Component<Props> {
             <ProviderName>{this.props.provider.name}</ProviderName>
             <ProviderDetails>
               <Status enabled={this.isEnabled} />
-              <StyledLink onClick={this.openModal}>Learn More</StyledLink>
+              <StyledLink onClick={this.openModal}>{t('Learn More')}</StyledLink>
             </ProviderDetails>
           </Box>
           <Box>

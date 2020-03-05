@@ -8,7 +8,7 @@ import UserAvatar from 'app/components/avatar/userAvatar';
 import Button from 'app/components/button';
 import Confirm from 'app/components/confirm';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import LoadingIndicator from 'app/components/loadingIndicator';
 import SentryTypes from 'app/sentryTypes';
 import space from 'app/styles/space';

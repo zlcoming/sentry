@@ -11,7 +11,7 @@ import ConfigStore from 'app/stores/configStore';
 import ExternalLink from 'app/components/links/externalLink';
 import {fetchOrganizationDetails} from 'app/actionCreators/organizations';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import LoadingIndicator from 'app/components/loadingIndicator';
 import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
 import overflowEllipsis from 'app/styles/overflowEllipsis';

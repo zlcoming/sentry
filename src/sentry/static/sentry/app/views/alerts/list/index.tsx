@@ -16,7 +16,7 @@ import Count from 'app/components/count';
 import Duration from 'app/components/duration';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
 import ExternalLink from 'app/components/links/externalLink';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import LoadingIndicator from 'app/components/loadingIndicator';
 import PageHeading from 'app/components/pageHeading';
 import Pagination from 'app/components/pagination';

@@ -8,7 +8,7 @@ import GridEditable, {COL_WIDTH_UNDEFINED} from 'app/components/gridEditable';
 import {IconEvent, IconStack} from 'app/icons';
 import {t} from 'app/locale';
 import {assert} from 'app/types/utils';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import Tooltip from 'app/components/tooltip';
 
 import {

@@ -98,7 +98,9 @@ class FeatureDisabled extends React.Component<Props, State> {
               details.`,
                 {
                   configFile: <code />,
-                  configLink: <ExternalLink href={CONFIG_DOCS_URL} />,
+                  configLink: (
+                    <ExternalLink href={CONFIG_DOCS_URL}>{CONFIG_DOCS_URL}</ExternalLink>
+                  ),
                 }
               )}
             </p>

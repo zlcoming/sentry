@@ -542,7 +542,7 @@ exports[`OrganizationTeamProjects Should render 1`] = `
                             </BookmarkStar>
                           </withApi(BookmarkStar)>
                         </BookmarkLink>
-                        <Link
+                        <ForwardRef
                           to="/settings/org-slug/projects/project-slug/"
                         >
                           <Link
@@ -582,7 +582,7 @@ exports[`OrganizationTeamProjects Should render 1`] = `
                               </ProjectLabel>
                             </a>
                           </Link>
-                        </Link>
+                        </ForwardRef>
                       </div>
                     </Container>
                   </ProjectItem>
@@ -906,7 +906,7 @@ exports[`OrganizationTeamProjects Should render 1`] = `
                             </BookmarkStar>
                           </withApi(BookmarkStar)>
                         </BookmarkLink>
-                        <Link
+                        <ForwardRef
                           to="/settings/org-slug/projects/project-slug-2/"
                         >
                           <Link
@@ -944,7 +944,7 @@ exports[`OrganizationTeamProjects Should render 1`] = `
                               </ProjectLabel>
                             </a>
                           </Link>
-                        </Link>
+                        </ForwardRef>
                       </div>
                     </Container>
                   </ProjectItem>

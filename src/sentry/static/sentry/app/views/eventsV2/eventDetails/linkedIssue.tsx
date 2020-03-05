@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {t} from 'app/locale';
 import AsyncComponent from 'app/components/asyncComponent';
 import GroupChart from 'app/components/stream/groupChart';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import Placeholder from 'app/components/placeholder';
 import ProjectBadge from 'app/components/idBadge/projectBadge';
 import SeenByList from 'app/components/seenByList';

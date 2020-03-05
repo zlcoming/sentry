@@ -2,7 +2,7 @@ import React from 'react';
 
 import InlineSvg from 'app/components/inlineSvg';
 import {t} from 'app/locale';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 
 import ConditionRow from './condition';
 import {PlaceholderText, SelectListItem, AddText, SidebarLabel} from '../styles';

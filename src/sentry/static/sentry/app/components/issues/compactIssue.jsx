@@ -11,7 +11,7 @@ import DropdownLink from 'app/components/dropdownLink';
 import ErrorLevel from 'app/components/events/errorLevel';
 import GroupChart from 'app/components/stream/groupChart';
 import GroupStore from 'app/stores/groupStore';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import SentryTypes from 'app/sentryTypes';
 import SnoozeAction from 'app/components/issues/snoozeAction';
 import space from 'app/styles/space';

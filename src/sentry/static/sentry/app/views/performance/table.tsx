@@ -13,7 +13,7 @@ import {Panel, PanelHeader, PanelItem} from 'app/components/panels';
 import LoadingIndicator from 'app/components/loadingIndicator';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
 import Pagination from 'app/components/pagination';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import EventView, {isAPIPayloadSimilar} from 'app/views/eventsV2/eventView';
 import SortLink from 'app/views/eventsV2/sortLink';
 import {TableData, TableDataRow, TableColumn} from 'app/views/eventsV2/table/types';

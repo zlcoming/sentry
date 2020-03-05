@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import {t} from 'app/locale';
 import IdBadge from 'app/components/idBadge';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import ProjectSelector from 'app/components/projectSelector';
 import space from 'app/styles/space';
 
@@ -51,30 +51,39 @@ const ProjectHeaderProjectSelector = withRouter(
       }
     };
 
+    renderDropDownLabelContent = (getActorProps, activeProject) => {
+      if (activeProject) {
+        const {to, href} = this.getProjectUrlProps(activeProject);
+        return (
+          <IdBadge
+            project={activeProject}
+            avatarSize={20}
+            displayName={
+              <ProjectNameLink to={to || href}>
+                {this.getProjectLabel(activeProject)}
+              </ProjectNameLink>
+            }
+          />
+        );
+      }
+
+      return (
+        <SelectProject
+          {...getActorProps({
+            role: 'button',
+          })}
+        >
+          {t('Select a project')}
+        </SelectProject>
+      );
+    };
+
     render() {
       return (
         <ProjectSelector {...this.props} onSelect={this.handleSelect}>
-          {({getActorProps, selectedItem, activeProject}) => (
+          {({getActorProps, activeProject}) => (
             <DropdownLabel>
-              {activeProject ? (
-                <IdBadge
-                  project={activeProject}
-                  avatarSize={20}
-                  displayName={
-                    <ProjectNameLink {...this.getProjectUrlProps(activeProject)}>
-                      {this.getProjectLabel(activeProject)}
-                    </ProjectNameLink>
-                  }
-                />
-              ) : (
-                <SelectProject
-                  {...getActorProps({
-                    role: 'button',
-                  })}
-                >
-                  {t('Select a project')}
-                </SelectProject>
-              )}
+              {this.renderDropDownLabelContent(getActorProps, activeProject)}
               <DropdownIcon />
             </DropdownLabel>
           )}

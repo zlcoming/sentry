@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import {ProjectKey} from 'app/views/settings/project/projectKeys/types';
 import {t, tct} from 'app/locale';
 import ExternalLink from 'app/components/links/externalLink';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import Field from 'app/views/settings/components/forms/field';
 import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
 import getDynamicText from 'app/utils/getDynamicText';

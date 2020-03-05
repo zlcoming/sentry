@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import {t} from 'app/locale';
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import RepoLabel from 'app/components/repoLabel';
 import TimeSince from 'app/components/timeSince';
 

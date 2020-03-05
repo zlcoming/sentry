@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import BookmarkStar from 'app/components/projects/bookmarkStar';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import ProjectLabel from 'app/components/projectLabel';
 import SentryTypes from 'app/sentryTypes';
 import space from 'app/styles/space';

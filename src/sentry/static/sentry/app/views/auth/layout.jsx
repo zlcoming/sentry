@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import InlineSvg from 'app/components/inlineSvg';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import Panel from 'app/components/panels/panel';
 import space from 'app/styles/space';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 
 import {t} from 'app/locale';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import ResultGrid from 'app/components/resultGrid';
 
 export const prettyDate = function(x) {

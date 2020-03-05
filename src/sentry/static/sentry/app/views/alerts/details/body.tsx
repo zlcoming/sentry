@@ -17,7 +17,7 @@ import {t} from 'app/locale';
 import Duration from 'app/components/duration';
 import EventView from 'app/views/eventsV2/eventView';
 import Feature from 'app/components/acl/feature';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import NavTabs from 'app/components/navTabs';
 import Placeholder from 'app/components/placeholder';
 import SeenByList from 'app/components/seenByList';
@@ -218,9 +218,8 @@ export default class DetailsBody extends React.Component<Props> {
                         slugs={incident && incident.projects}
                         orgId={params.orgId}
                       >
-                        {({initiallyLoaded, projects, fetching}) => (
+                        {({initiallyLoaded, projects}) => (
                           <SideHeaderLink
-                            disabled={!incident || fetching || !initiallyLoaded}
                             to={this.getDiscoverUrl(
                               ((initiallyLoaded && projects) as Project[]) || []
                             )}

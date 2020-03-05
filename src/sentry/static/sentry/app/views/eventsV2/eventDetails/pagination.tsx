@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 
 import {t} from 'app/locale';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import InlineSvg from 'app/components/inlineSvg';
 import space from 'app/styles/space';
 import {Event, Organization} from 'app/types';
@@ -84,7 +84,7 @@ const Pagination = (props: Props) => {
         {t('Newer')}
       </StyledTextLink>
       <StyledIconLink
-        to={links.latest}
+        to={links.latest || undefined}
         disabled={links.next === null || links.latest === null}
         isLast
       >
@@ -95,9 +95,8 @@ const Pagination = (props: Props) => {
 };
 
 const StyledTextLink = styled(Link, {shouldForwardProp: isPropValid})<{
-  theme: any;
-  disabled: boolean;
-  isLast: boolean;
+  disabled?: boolean;
+  isLast?: boolean;
 }>`
   color: ${p => (p.disabled ? p.theme.disabled : 'inherit')};
   font-size: ${p => p.theme.fontSizeSmall};

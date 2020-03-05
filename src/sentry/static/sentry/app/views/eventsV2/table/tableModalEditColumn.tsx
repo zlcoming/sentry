@@ -6,7 +6,7 @@ import {trackAnalyticsEvent} from 'app/utils/analytics';
 import {t} from 'app/locale';
 import {DISCOVER2_DOCS_URL} from 'app/constants';
 import {Form, SelectField} from 'app/components/forms';
-import Link from 'app/components/links/link';
+import ExternalLink from 'app/components/links/externalLink';
 import {IconChevron, IconDocs} from 'app/icons';
 import {Organization} from 'app/types';
 import space from 'app/styles/space';
@@ -193,7 +193,7 @@ class TableModalEditColumnBodyForm extends React.Component<
 }
 
 const TableModalEditColumnFooter = () => (
-  <FooterContent href={`${DISCOVER2_DOCS_URL}query-builder/`} target="_blank">
+  <FooterContent href={`${DISCOVER2_DOCS_URL}query-builder/`}>
     <StyledIconDocs /> {t('Read the docs')}
     <StyledIconChevron direction="right" size="xs" />
   </FooterContent>
@@ -286,7 +286,7 @@ const FormRow = styled('div')`
   grid-column-gap: ${space(2)};
 `;
 
-const FooterContent = styled(Link)`
+const FooterContent = styled(ExternalLink)`
   display: flex;
   align-items: center;
   flex-grow: 1;

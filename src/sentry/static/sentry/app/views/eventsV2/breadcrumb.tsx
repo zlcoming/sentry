@@ -4,7 +4,7 @@ import {Location} from 'history';
 
 import {t} from 'app/locale';
 import {Event, Organization} from 'app/types';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import InlineSvg from 'app/components/inlineSvg';
 import space from 'app/styles/space';
 
@@ -42,7 +42,7 @@ class DiscoverBreadcrumb extends React.Component<Props> {
       : null;
 
     crumbs.push(
-      <BreadcrumbItem to={discoverTarget} key="eventview-home">
+      <BreadcrumbItem to={discoverTarget || undefined} key="eventview-home">
         {t('Discover')}
       </BreadcrumbItem>
     );

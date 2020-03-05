@@ -7,7 +7,7 @@ import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader
 import LineChart from 'app/components/charts/lineChart';
 import {Panel, PanelBody, PanelHeader, PanelFooter} from 'app/components/panels';
 import BarChart from 'app/components/charts/barChart';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import DateTime from 'app/components/dateTime';
 import space from 'app/styles/space';
 import {t} from 'app/locale';

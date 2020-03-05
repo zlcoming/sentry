@@ -7,7 +7,7 @@ import {t} from 'app/locale';
 import Button from 'app/components/button';
 import Confirm from 'app/components/confirm';
 import SentryTypes from 'app/sentryTypes';
-import Link from 'app/components/links/link';
+import Link from 'app/components/links/linkV2';
 import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
 import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
 import DropdownButton from 'app/components/dropdownButton';
@@ -153,7 +153,7 @@ const TeamRow = props => {
   const {orgId, team, onRemove, disabled, confirmMessage} = props;
   return (
     <TeamPanelItem>
-      <StyledLink to={`/settings/${orgId}/teams/${team}/`}>#{team}</StyledLink>
+      <StyledLink to={`/settings/${orgId}/teams/${team}/`}>{`#${team}`}</StyledLink>
       <Confirm
         message={confirmMessage}
         bypass={!confirmMessage}

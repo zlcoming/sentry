@@ -130,7 +130,7 @@ exports[`Version renders 1`] = `
           </ForwardRef(render)>
         }
       >
-        <Link
+        <ForwardRef
           to={
             Object {
               "pathname": "/organizations/org-slug/releases/foo.bar.Baz%401.0.0%2B20200101/",
@@ -161,7 +161,7 @@ exports[`Version renders 1`] = `
               </VersionText>
             </a>
           </Link>
-        </Link>
+        </ForwardRef>
       </Tooltip>
     </Version>
   </withRouter(Version)>
