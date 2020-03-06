@@ -46,25 +46,27 @@ class FieldControl extends React.Component<Props> {
     } = this.props;
 
     return (
-      <FieldControlErrorWrapper inline={inline}>
-        <FieldControlWrapper>
-          <FieldControlStyled alignRight={alignRight}>{children}</FieldControlStyled>
+      <div>
+        <FieldControlErrorWrapper inline={inline}>
+          <FieldControlWrapper>
+            <FieldControlStyled alignRight={alignRight}>{children}</FieldControlStyled>
 
-          {disabled && disabledReason && (
-            <DisabledIndicator className="disabled-indicator">
-              <Tooltip title={disabledReason}>
-                <StyledInlineSvg src="icon-circle-question" size="18px" />
-              </Tooltip>
-            </DisabledIndicator>
-          )}
+            {disabled && disabledReason && (
+              <DisabledIndicator className="disabled-indicator">
+                <Tooltip title={disabledReason}>
+                  <StyledInlineSvg src="icon-circle-question" size="18px" />
+                </Tooltip>
+              </DisabledIndicator>
+            )}
 
-          <FieldControlState flexibleControlStateSize={!!flexibleControlStateSize}>
-            {controlState}
-          </FieldControlState>
-        </FieldControlWrapper>
+            <FieldControlState flexibleControlStateSize={!!flexibleControlStateSize}>
+              {controlState}
+            </FieldControlState>
+          </FieldControlWrapper>
 
-        {errorState}
-      </FieldControlErrorWrapper>
+          {errorState}
+        </FieldControlErrorWrapper>
+      </div>
     );
   }
 }

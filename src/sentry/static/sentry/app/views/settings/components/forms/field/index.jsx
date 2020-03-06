@@ -173,7 +173,7 @@ class Field extends React.Component {
     return (
       <FieldWrapper
         className={className}
-        inline={inline}
+        inline
         stacked={stacked}
         highlighted={highlighted}
         hasControlState={!flexibleControlStateSize}

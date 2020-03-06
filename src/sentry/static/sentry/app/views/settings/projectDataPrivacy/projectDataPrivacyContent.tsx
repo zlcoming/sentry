@@ -9,6 +9,9 @@ import {fields} from 'app/data/forms/projectGeneralSettings';
 import AsyncView from 'app/views/asyncView';
 import ProjectActions from 'app/actions/projectActions';
 import {Organization} from 'app/types';
+import SentryTypes from 'app/sentryTypes';
+
+import ProjectDataPrivacyRulesForm from './projectDataPrivacyRulesForm';
 
 type Props = {
   organization: Organization;
@@ -20,6 +23,7 @@ type Props = {
 
 class ProjectDataPrivacyContent extends AsyncView<Props> {
   static contextTypes = {
+    organization: SentryTypes.Oragnization,
     // left the router contextType to satisfy the compiler
     router: PropTypes.object,
   };
@@ -52,22 +56,15 @@ class ProjectDataPrivacyContent extends AsyncView<Props> {
           }}
         >
           <JsonForm
-            title={t('Data Privacy')}
+            title={t('Local Data Privacy')}
             additionalFieldProps={{
               organization,
             }}
             features={features}
             disabled={!access.has('project:write')}
-            fields={[
-              fields.dataScrubber,
-              fields.dataScrubberDefaults,
-              fields.scrubIPAddresses,
-              fields.sensitiveFields,
-              fields.safeFields,
-              fields.storeCrashReports,
-              fields.relayPiiConfig,
-            ]}
+            fields={[fields.dataScrubber]}
           />
+          <ProjectDataPrivacyRulesForm />
         </Form>
       </React.Fragment>
     );
