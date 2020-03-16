@@ -53,7 +53,10 @@ type Props = {
    */
   organization: string;
 
-  projects: Project[];
+  /**
+   * List of projects or undefined
+   */
+  projects?: Project[];
   loading: boolean;
 
   /**
@@ -75,7 +78,7 @@ type Props = {
 
 class ContextPickerModal extends React.Component<Props> {
   componentDidMount() {
-    const {organization, projects, organizations} = this.props;
+    const {organization, organizations} = this.props;
 
     // Don't make any assumptions if there are multiple organizations
     if (organizations.length !== 1) {
@@ -86,7 +89,7 @@ class ContextPickerModal extends React.Component<Props> {
     // attempt to see if we need more info from user and redirect otherwise
     if (organization) {
       // This will handle if we can intelligently move the user forward
-      this.navigateIfFinish([{slug: organization}], projects);
+      this.navigateIfFinish([{slug: organization}], this.projects);
       return;
     }
   }
@@ -95,12 +98,21 @@ class ContextPickerModal extends React.Component<Props> {
     // Component may be mounted before projects is fetched, check if we can finish when
     // component is updated with projects
     if (prevProps.projects !== this.props.projects) {
-      this.navigateIfFinish(this.props.organizations, this.props.projects);
+      this.navigateIfFinish(this.props.organizations, this.projects);
     }
   }
 
   orgSelect: ReactSelect | null = null;
   projectSelect: ReactSelect | null = null;
+
+  //Return projects or an emtpy array
+  get projects() {
+    return this.props.projects || [];
+  }
+
+  get projectsLoaded() {
+    return !!this.props.projects && !this.props.loading;
+  }
 
   // Performs checks to see if we need to prompt user
   // i.e. When there is only 1 org and no project is needed or
@@ -209,7 +221,6 @@ class ContextPickerModal extends React.Component<Props> {
       needProject,
       organization,
       organizations,
-      projects,
       loading,
       Header,
       Body,
@@ -222,7 +233,8 @@ class ContextPickerModal extends React.Component<Props> {
       return null;
     }
 
-    const shouldShowProjectSelector = organization && needProject && projects.length;
+    const projects = this.projects;
+    const shouldShowProjectSelector = organization && needProject && this.projectsLoaded;
 
     const orgChoices = organizations
       .filter(({status}) => status.id !== 'pending_deletion')
@@ -324,7 +336,7 @@ const ContextPickerModalContainer = createReactClass<ContainerProps, ContainerSt
     return (
       <ContextPickerModal
         {...this.props}
-        projects={projects || []}
+        projects={projects}
         loading={fetching}
         organizations={this.state.organizations}
         organization={this.state.selectedOrganization}
