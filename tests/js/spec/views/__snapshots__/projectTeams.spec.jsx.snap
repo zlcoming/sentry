@@ -24,7 +24,6 @@ exports[`ProjectTeams renders 1`] = `
             <ForwardRef(render)
               disabled={false}
               onClick={[Function]}
-              to=""
             >
               Create Team
             </ForwardRef(render)>

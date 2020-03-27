@@ -122,11 +122,7 @@ class ProjectTeams extends AsyncView {
           title={t('You must be a project admin to create teams')}
           position="top"
         >
-          <StyledCreateTeamLink
-            to=""
-            disabled={!canCreateTeam}
-            onClick={this.handleCreateTeam}
-          >
+          <StyledCreateTeamLink disabled={!canCreateTeam} onClick={this.handleCreateTeam}>
             {t('Create Team')}
           </StyledCreateTeamLink>
         </Tooltip>

@@ -35,8 +35,7 @@ describe('Aggregations', function() {
   it('addRow()', function() {
     wrapper
       .find('AddText')
-      .find("[data-test-id='aggregation-add-text-link']")
-      .hostNodes()
+      .find('Link')
       .simulate('click');
     expect(onChangeMock).toHaveBeenCalledWith([[null, null, null]]);
   });

@@ -110,10 +110,7 @@ describe('AcceptOrganizationInvite', function() {
     const {replace} = window.location;
     window.location.replace = jest.fn();
 
-    existingMember
-      .find('[data-test-id="existing-member-link"]')
-      .hostNodes()
-      .simulate('click');
+    existingMember.find('Link').simulate('click');
     expect(logout).toHaveBeenCalled();
     await tick();
     expect(window.location.replace).toHaveBeenCalled();

@@ -4,14 +4,14 @@ import {css} from '@emotion/core';
 
 import {Theme} from 'app/utils/theme';
 
-import SidebarMenuItemLink from './sidebarMenuItemLink';
+import SidebarMenuItemLink, {SidebarMenuItemLinkProps} from './sidebarMenuItemLink';
 import {OrgSummary} from './sidebarOrgSummary';
 
 type Props = {
   children: React.ReactNode;
-} & React.ComponentProps<typeof SidebarMenuItemLink>;
+} & SidebarMenuItemLinkProps;
 
-const SidebarMenuItem = ({to, children, href, ...props}: Props) => {
+const SidebarMenuItem = ({to, href, children, ...props}: Props) => {
   const hasMenu = !to && !href;
   return (
     <StyledSidebarMenuItemLink to={to} href={href} {...props}>
@@ -20,9 +20,7 @@ const SidebarMenuItem = ({to, children, href, ...props}: Props) => {
   );
 };
 
-const menuItemStyles = (
-  p: React.ComponentProps<typeof SidebarMenuItemLink> & {theme: Theme}
-) => css`
+const menuItemStyles = (p: SidebarMenuItemLinkProps & {theme: Theme}) => css`
   color: ${p.theme.gray5};
   cursor: pointer;
   display: flex;

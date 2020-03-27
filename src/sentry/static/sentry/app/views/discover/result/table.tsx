@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import {Organization} from 'app/types';
 import {t} from 'app/locale';
-import ExternalLink from 'app/components/links/externalLink';
+import Link from 'app/components/links/link';
 import Tooltip from 'app/components/tooltip';
 import Panel from 'app/components/panels/panel';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
@@ -109,7 +109,9 @@ class ResultTable extends React.Component<Props> {
 
     return (
       <Tooltip title={t('Open event')}>
-        <ExternalLink href={`${basePath}events/${event.id}/`}>{event.id}</ExternalLink>
+        <Link href={`${basePath}events/${event.id}/`} target="_blank">
+          {event.id}
+        </Link>
       </Tooltip>
     );
   };
@@ -120,9 +122,9 @@ class ResultTable extends React.Component<Props> {
 
     return (
       <Tooltip title={t('Open issue')}>
-        <ExternalLink href={`${basePath}issues/${event['issue.id']}`}>
+        <Link to={`${basePath}issues/${event['issue.id']}`} target="_blank">
           {event['issue.id']}
-        </ExternalLink>
+        </Link>
       </Tooltip>
     );
   };

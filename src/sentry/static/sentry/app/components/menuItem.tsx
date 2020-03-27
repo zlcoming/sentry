@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {Link} from 'react-router';
 import classNames from 'classnames';
-import omit from 'lodash/omit';
-
-import Link from 'app/components/links/link';
 
 type MenuItemProps = {
   header?: boolean;
@@ -14,9 +12,11 @@ type MenuItemProps = {
   isActive?: boolean;
   noAnchor?: boolean;
   href?: string;
+  to?: string;
+  query?: object;
   className?: string;
   onClick?: (evt: React.MouseEvent) => void;
-} & Partial<Pick<Link['props'], 'to'>>;
+};
 
 type Props = MenuItemProps & Omit<React.HTMLProps<HTMLLIElement>, keyof MenuItemProps>;
 
@@ -49,7 +49,7 @@ class MenuItem extends React.Component<Props> {
     if (this.props.to) {
       return (
         <Link
-          to={this.props.to}
+          to={{pathname: this.props.to, query: this.props.query}}
           title={this.props.title}
           onClick={this.handleClick}
           tabIndex={-1}
@@ -88,8 +88,14 @@ class MenuItem extends React.Component<Props> {
     const {
       header,
       divider,
+      title,
+      onSelect,
+      eventKey,
       isActive,
       noAnchor,
+      href,
+      to,
+      query,
       className,
       onClick,
       children,
@@ -116,7 +122,7 @@ class MenuItem extends React.Component<Props> {
         role="presentation"
         className={classNames(className, classes)}
         onClick={onClick}
-        {...omit(props, ['title', 'onSelect', 'eventKey', 'to'])}
+        {...props}
       >
         {renderChildren}
       </li>

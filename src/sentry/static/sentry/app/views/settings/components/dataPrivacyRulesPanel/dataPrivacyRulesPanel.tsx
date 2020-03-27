@@ -14,7 +14,7 @@ import {
   addLoadingMessage,
   addSuccessMessage,
 } from 'app/actionCreators/indicator';
-import ExternalLink from 'app/components/links/externalLink';
+import Link from 'app/components/links/link';
 
 import DataPrivacyRulesPanelForm from './dataPrivacyRulesPanelForm';
 import {RULE_TYPE, METHOD_TYPE} from './utils';
@@ -248,9 +248,12 @@ class DataPrivacyRulesPanel extends React.Component<Props, State> {
             {additionalContext}{' '}
             {tct('For more details, see [linkToDocs].', {
               linkToDocs: (
-                <ExternalLink href="https://docs.sentry.io/data-management/advanced-datascrubbing/">
+                <Link
+                  href="https://docs.sentry.io/data-management/advanced-datascrubbing/"
+                  target="_blank"
+                >
                   {t('full documentation on data scrubbing')}
-                </ExternalLink>
+                </Link>
               ),
             })}
           </PanelAlert>

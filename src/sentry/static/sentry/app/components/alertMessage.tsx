@@ -2,14 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import space from 'app/styles/space';
-import ExternalLink from 'app/components/links/externalLink';
+import Link from 'app/components/links/link';
 import Alert from 'app/components/alert';
 import AlertActions from 'app/actions/alertActions';
 import Button from 'app/components/button';
 import {IconCheckmark, IconClose, IconWarning} from 'app/icons';
 import {t} from 'app/locale';
 
-type AlertType = {
+type Alert = {
   id: string;
   message: React.ReactNode;
   type: 'success' | 'error' | 'warning' | 'info';
@@ -17,7 +17,7 @@ type AlertType = {
 };
 
 type Props = {
-  alert: AlertType;
+  alert: Alert;
   system: boolean;
 };
 
@@ -32,9 +32,7 @@ const AlertMessage = ({alert, system}: Props) => {
 
   return (
     <StyledAlert type={type} icon={icon} system={system}>
-      <StyledMessage>
-        {url ? <ExternalLink href={url}>{message}</ExternalLink> : message}
-      </StyledMessage>
+      <StyledMessage>{url ? <Link href={url}>{message}</Link> : message}</StyledMessage>
       <StyledCloseButton
         icon={<IconClose size="md" circle />}
         aria-label={t('Close')}

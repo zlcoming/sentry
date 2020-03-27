@@ -8,9 +8,8 @@ import HookOrDefault from 'app/components/hookOrDefault';
 import Tooltip from 'app/components/tooltip';
 import {t} from 'app/locale';
 import space from 'app/styles/space';
-import TextOverflow from 'app/components/textOverflow';
-import {Theme} from 'app/utils/theme';
 import Link from 'app/components/links/link';
+import TextOverflow from 'app/components/textOverflow';
 
 import {SidebarOrientation} from './types';
 
@@ -22,6 +21,8 @@ const LabelHook = HookOrDefault({
 type Props = ReactRouter.WithRouterProps & {
   onClick?: (id: string, e: React.MouseEvent<HTMLAnchorElement>) => void;
   className?: string;
+
+  // TODO(ts): Replace with React.ComponentProps<typeof Link> when possible
   index?: boolean;
   href?: string;
   to?: string;
@@ -97,11 +98,12 @@ const SidebarItem = ({
       <StyledSidebarItem
         data-test-id={props['data-test-id']}
         active={isActive ? 'true' : undefined}
-        to={(to ? to : href) || ''}
+        href={href}
+        to={to}
         className={className}
-        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-          typeof onClick === 'function' && onClick(id, event);
-        }}
+        onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+          typeof onClick === 'function' && onClick(id, e)
+        }
       >
         <SidebarItemWrapper>
           <SidebarItemIcon>{icon}</SidebarItemIcon>
@@ -128,21 +130,21 @@ const SidebarItem = ({
 
 export default ReactRouter.withRouter(SidebarItem);
 
-const getActiveStyle = ({active, theme}: {active?: string; theme?: Theme}) => {
+const getActiveStyle = ({active, theme}) => {
   if (!active) {
     return '';
   }
   return css`
-    color: ${theme?.white};
+    color: ${theme.white};
 
     &:active,
     &:focus,
     &:hover {
-      color: ${theme?.white};
+      color: ${theme.white};
     }
 
     &:before {
-      background-color: ${theme?.purple};
+      background-color: ${theme.purple};
     }
   `;
 };

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import {LocationDescriptor} from 'history';
 import omit from 'lodash/omit';
 
 import Link from 'app/components/links/link';
-import ExternalLink from 'app/components/links/externalLink';
 import InlineSvg from 'app/components/inlineSvg';
 import {IconChevron} from 'app/icons';
 import space from 'app/styles/space';
@@ -11,28 +11,30 @@ import space from 'app/styles/space';
 type Size = 'small' | 'normal';
 type Priority = 'info' | 'warning' | 'success' | 'error' | 'muted';
 
-type LinkProps = React.ComponentPropsWithoutRef<typeof Link>;
-
+type PropsWithHref = {href: string};
+type PropsWithTo = {to: LocationDescriptor};
 type OtherProps = {
   icon?: string | React.ReactNode;
   onClick?: (e: React.MouseEvent) => void;
 };
-
 type DefaultProps = {
   size: Size;
   priority: Priority;
   withoutMarginBottom: boolean;
   openInNewTab: boolean;
-  href?: string;
 };
 
-type Props = OtherProps & DefaultProps & Partial<Pick<LinkProps, 'to'>>;
+type Props = (PropsWithHref | PropsWithTo) & OtherProps & DefaultProps;
 
-type StyledLinkProps = DefaultProps &
-  Partial<Pick<LinkProps, 'to'>> &
-  Omit<LinkProps, 'to' | 'size'>;
+// TODO(Priscila): Improve it as soon as we merge this PR: https://github.com/getsentry/sentry/pull/17346
+type StyledLinkProps = PropsWithHref &
+  PropsWithTo &
+  Omit<DefaultProps, 'openInNewTab'> &
+  Pick<OtherProps, 'onClick'> & {
+    target: '_blank' | '_self';
+  };
 
-class AlertLink extends React.Component<Props> {
+export default class AlertLink extends React.Component<Props> {
   static defaultProps: DefaultProps = {
     priority: 'warning',
     size: 'normal',
@@ -49,18 +51,16 @@ class AlertLink extends React.Component<Props> {
       onClick,
       withoutMarginBottom,
       openInNewTab,
-      to,
-      href,
     } = this.props;
     return (
       <StyledLink
-        to={to}
-        href={href}
+        to={(this.props as PropsWithTo).to}
+        href={(this.props as PropsWithHref).href}
         onClick={onClick}
         size={size}
         priority={priority}
         withoutMarginBottom={withoutMarginBottom}
-        openInNewTab={openInNewTab}
+        target={openInNewTab ? '_blank' : '_self'}
       >
         {icon && (
           <IconWrapper>
@@ -76,16 +76,9 @@ class AlertLink extends React.Component<Props> {
   }
 }
 
-export default AlertLink;
-
-const StyledLink = styled(({openInNewTab, to, href, ...props}: StyledLinkProps) => {
-  const linkProps = omit(props, ['withoutMarginBottom', 'priority', 'size']);
-  if (href) {
-    return <ExternalLink {...linkProps} href={href} openInNewTab={openInNewTab} />;
-  }
-
-  return <Link {...linkProps} to={to || ''} />;
-})`
+const StyledLink = styled((props: StyledLinkProps) => (
+  <Link {...omit(props, ['withoutMarginBottom', 'priority', 'size'])} />
+))`
   display: flex;
   background-color: ${p => p.theme.alert[p.priority].backgroundLight};
   color: ${p => p.theme.gray4};

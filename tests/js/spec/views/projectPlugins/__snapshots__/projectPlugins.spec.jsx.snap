@@ -577,9 +577,6 @@ exports[`ProjectPlugins renders 1`] = `
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__={
                                                 Object {
                                                   "$$typeof": Symbol(react.forward_ref),
-                                                  "propTypes": Object {
-                                                    "openInNewTab": [Function],
-                                                  },
                                                   "render": [Function],
                                                 }
                                               }
@@ -591,7 +588,7 @@ exports[`ProjectPlugins renders 1`] = `
                                               }
                                               href="https://github.com/getsentry/sentry"
                                             >
-                                              <ForwardRef(ExternalLink)
+                                              <ForwardRef
                                                 className="css-1nx57m5-grayText"
                                                 href="https://github.com/getsentry/sentry"
                                               >
@@ -603,7 +600,7 @@ exports[`ProjectPlugins renders 1`] = `
                                                 >
                                                   Sentry Team
                                                 </a>
-                                              </ForwardRef(ExternalLink)>
+                                              </ForwardRef>
                                             </EmotionCssPropInternal>
                                             <span>
                                                
@@ -984,9 +981,6 @@ exports[`ProjectPlugins renders 1`] = `
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__={
                                                 Object {
                                                   "$$typeof": Symbol(react.forward_ref),
-                                                  "propTypes": Object {
-                                                    "openInNewTab": [Function],
-                                                  },
                                                   "render": [Function],
                                                 }
                                               }
@@ -998,7 +992,7 @@ exports[`ProjectPlugins renders 1`] = `
                                               }
                                               href="https://github.com/getsentry/sentry"
                                             >
-                                              <ForwardRef(ExternalLink)
+                                              <ForwardRef
                                                 className="css-1nx57m5-grayText"
                                                 href="https://github.com/getsentry/sentry"
                                               >
@@ -1010,7 +1004,7 @@ exports[`ProjectPlugins renders 1`] = `
                                                 >
                                                   Sentry Team
                                                 </a>
-                                              </ForwardRef(ExternalLink)>
+                                              </ForwardRef>
                                             </EmotionCssPropInternal>
                                           </div>
                                         </div>

@@ -12,7 +12,7 @@ import SentryTypes from 'app/sentryTypes';
 import SettingsBreadcrumbActions from 'app/actions/settingsBreadcrumbActions';
 import SettingsBreadcrumbStore from 'app/stores/settingsBreadcrumbStore';
 import TeamCrumb from 'app/views/settings/components/settingsBreadcrumb/teamCrumb';
-import Link from 'app/components/links/link';
+import TextLink from 'app/components/links/textLink';
 import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
 import recreateRoute from 'app/utils/recreateRoute';
 
@@ -94,17 +94,12 @@ export default createReactClass({
   },
 });
 
-const CrumbLink = styled(Link)`
+const CrumbLink = styled(TextLink)`
   display: block;
 
   &.focus-visible {
     outline: none;
     box-shadow: ${p => p.theme.blue} 0 2px 0;
-  }
-
-  color: ${p => p.theme.gray3};
-  &:hover {
-    color: ${p => p.theme.gray5};
   }
 `;
 

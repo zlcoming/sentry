@@ -46,7 +46,6 @@ class CommitRow extends React.Component<Props> {
             accountSettings: <StyledLink to="/settings/account/emails/" />,
             inviteUser: (
               <StyledLink
-                to=""
                 onClick={() =>
                   openInviteMembersModal({
                     initialData: [

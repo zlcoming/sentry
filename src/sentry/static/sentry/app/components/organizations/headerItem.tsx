@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
-import omit from 'lodash/omit';
 
 import InlineSvg from 'app/components/inlineSvg';
 import Tooltip from 'app/components/tooltip';
@@ -63,6 +62,7 @@ class HeaderItem extends React.Component<Props> {
       lockedMessage,
       settingsLink,
       hint,
+      onClear, // eslint-disable-line no-unused-vars
       loading,
       forwardRef,
       ...props
@@ -75,12 +75,7 @@ class HeaderItem extends React.Component<Props> {
     };
 
     return (
-      <StyledHeaderItem
-        ref={forwardRef}
-        loading={loading}
-        {...omit(props, 'onClear')}
-        {...textColorProps}
-      >
+      <StyledHeaderItem ref={forwardRef} loading={loading} {...props} {...textColorProps}>
         <IconContainer {...textColorProps}>{icon}</IconContainer>
         <Content>{children}</Content>
         {hint && (
@@ -171,8 +166,7 @@ const StyledClose = styled(InlineSvg, {shouldForwardProp: isPropValid})<ColorPro
   margin: -${space(1)} 0px -${space(1)} -${space(1)};
 `;
 
-type StyledChevronProps = Pick<ColorProps, 'isOpen'>;
-const StyledChevron = styled('div')<StyledChevronProps>`
+const StyledChevron = styled('div')<Pick<ColorProps, 'isOpen'>>`
   transform: rotate(${p => (p.isOpen ? '180deg' : '0deg')});
   transition: 0.1s all;
   width: ${space(2)};

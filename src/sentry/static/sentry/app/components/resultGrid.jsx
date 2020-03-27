@@ -38,7 +38,8 @@ class Filter extends React.Component {
       <MenuItem
         key=""
         isActive={this.props.value === '' || !this.props.value}
-        to={{pathname: this.props.path, query}}
+        to={this.props.path}
+        query={query}
       >
         Any
       </MenuItem>
@@ -57,7 +58,8 @@ class Filter extends React.Component {
           <MenuItem
             key={item[0]}
             isActive={this.props.value === item[0]}
-            to={{pathname: this.props.path, query}}
+            to={this.props.path}
+            query={query}
           >
             {item[1]}
           </MenuItem>
@@ -101,7 +103,8 @@ class SortBy extends React.Component {
           <MenuItem
             isActive={this.props.value === item[0]}
             key={item[0]}
-            to={{pathname: this.props.path, query}}
+            to={this.props.path}
+            query={query}
           >
             {item[1]}
           </MenuItem>

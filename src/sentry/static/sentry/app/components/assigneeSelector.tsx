@@ -279,7 +279,6 @@ const AssigneeSelectorComponent = createReactClass<Props, State>({
             }
             menuFooter={
               <InviteMemberLink
-                to=""
                 data-test-id="invite-member"
                 disabled={loading}
                 onClick={() => openInviteMembersModal({source: 'assignee_selector'})}
@@ -370,9 +369,8 @@ const IconContainer = styled('div')`
 
 const MenuItemWrapper = styled('div')<{
   py?: number;
-  disabled?: boolean;
 }>`
-  cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
+  cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 13px;
@@ -385,7 +383,7 @@ const MenuItemWrapper = styled('div')<{
 `;
 
 const InviteMemberLink = styled(Link)`
-  color: ${p => (p.disabled ? p.theme.disabled : p.theme.textColor)};
+  color: ${p => p.theme.textColor};
 `;
 
 const Label = styled(TextOverflow)`

@@ -1028,7 +1028,7 @@ exports[`ProjectCard renders 1`] = `
                               role="button"
                               size="xsmall"
                             >
-                              <ForwardRef(ExternalLink)
+                              <ForwardRef
                                 aria-disabled={false}
                                 aria-label="Track deploys"
                                 className="css-12ogwys-StyledButton edwq9my0"
@@ -1059,7 +1059,7 @@ exports[`ProjectCard renders 1`] = `
                                     </span>
                                   </ButtonLabel>
                                 </a>
-                              </ForwardRef(ExternalLink)>
+                              </ForwardRef>
                             </Component>
                           </StyledButton>
                         </Button>
