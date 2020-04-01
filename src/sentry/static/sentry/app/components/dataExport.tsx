@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {Client} from 'app/api';
 import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
 import Feature from 'app/components/acl/feature';
+import AsyncComponent from 'app/components/asyncComponent';
 import Button from 'app/components/button';
 import {t} from 'app/locale';
-import {Organization} from 'app/types';
-import withApi from 'app/utils/withApi';
+import {Config, Organization} from 'app/types';
 import withOrganization from 'app/utils/withOrganization';
+import withConfig from 'app/utils/withConfig';
 
 //! Coordinate with other ExportQueryType (src/sentry/data_export/base.py)
 export enum ExportQueryType {
@@ -20,31 +20,47 @@ type DataExportPayload = {
   queryInfo: any; // TODO(ts): Formalize different possible payloads
 };
 
-type Props = {
-  api: Client;
+// TODO(Leander): Prefetch if this payload is in progress with this user (using config)
+type Props = AsyncComponent['props'] & {
+  /**
+   * Config injected by withConfig HOC
+   */
+  config: Config;
+  /**
+   * Option prop to manually disable the button
+   */
   disabled?: boolean;
+  /**
+   * Organization injected by withOrganization HOC
+   */
   organization: Organization;
+  /**
+   * DataExportPayload to determine the type of data export
+   */
   payload: DataExportPayload;
 };
 
-type State = {
+type State = AsyncComponent['state'] & {
   inProgress: boolean;
   dataExportId?: number;
 };
 
-class DataExport extends React.Component<Props, State> {
-  state: State = {
-    inProgress: false,
-  };
+class DataExport extends AsyncComponent<Props, State> {
+  getDefaultState() {
+    const state = super.getDefaultState();
+    return {
+      ...state,
+      inProgress: false,
+    };
+  }
 
   startDataExport = async () => {
     const {
-      api,
       organization: {slug},
       payload: {queryType, queryInfo},
     } = this.props;
     try {
-      const {id: dataExportId} = await api.requestPromise(
+      const {id: dataExportId} = await this.api.requestPromise(
         `/organizations/${slug}/data-export/`,
         {
           method: 'POST',
@@ -98,4 +114,4 @@ class DataExport extends React.Component<Props, State> {
 }
 
 export {DataExport};
-export default withApi(withOrganization(DataExport));
+export default withConfig(withOrganization(DataExport));

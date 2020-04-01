@@ -76,9 +76,7 @@ describe('DataExport', function() {
       mockRouterContext(mockAuthorizedOrg)
     );
     wrapper.find('button').simulate('click');
-    expect(wrapper.find(DataExport).state()).toEqual({
-      inProgress: false,
-    });
+    expect(wrapper.find(DataExport).state('inProgress')).toEqual(false);
     expect(postDataExport).toHaveBeenCalledWith(url, {
       data: {
         query_type: mockPayload.queryType,
@@ -92,9 +90,7 @@ describe('DataExport', function() {
     wrapper.update();
     expect(wrapper.text()).toBe("We're working on it...");
     expect(wrapper.find(Button).prop('disabled')).toBe(true);
-    expect(wrapper.find(DataExport).state()).toEqual({
-      inProgress: true,
-      dataExportId: 721,
-    });
+    expect(wrapper.find(DataExport).state('inProgress')).toEqual(true);
+    expect(wrapper.find(DataExport).state('dataExportId')).toEqual(721);
   });
 });
