@@ -283,6 +283,7 @@ from .endpoints.user_subscriptions import UserSubscriptionsEndpoint
 from .endpoints.useravatar import UserAvatarEndpoint
 
 from sentry.data_export.endpoints.data_export import DataExportEndpoint
+from sentry.data_export.endpoints.data_export_list import DataExportListEndpoint
 from sentry.data_export.endpoints.data_export_details import DataExportDetailsEndpoint
 from sentry.discover.endpoints.discover_query import DiscoverQueryEndpoint
 from sentry.discover.endpoints.discover_saved_queries import DiscoverSavedQueriesEndpoint
@@ -586,6 +587,11 @@ urlpatterns = [
                     r"^(?P<organization_slug>[^\/]+)/data-export/$",
                     DataExportEndpoint.as_view(),
                     name="sentry-api-0-organization-data-export",
+                ),
+                url(
+                    r"^(?P<organization_slug>[^\/]+)/data-export/list/$",
+                    DataExportListEndpoint.as_view(),
+                    name="sentry-api-0-organization-data-export-list",
                 ),
                 url(
                     r"^(?P<organization_slug>[^\/]+)/data-export/(?P<data_export_id>[^\/]+)/$",
