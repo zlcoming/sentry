@@ -20,11 +20,15 @@ class DataExportDetailsEndpoint(OrganizationEndpoint):
         Used to populate page emailed to the user.
         """
 
+        # Ensure new data-export features are enabled
         if not features.has("organizations:data-export", organization):
             return Response(status=404)
 
         try:
             data_export = ExportedData.objects.get(id=kwargs["data_export_id"])
+            metrics.incr(
+                "dataexport.fetch_details", tags={"data_export_id": data_export.id}, sample_rate=1.0
+            )
             # Ignore the download parameter unless we have a file to stream
             if request.GET.get("download") is not None and data_export.file is not None:
                 return self.download(data_export)
