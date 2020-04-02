@@ -9,7 +9,7 @@ import {t} from 'app/locale';
 import space from 'app/styles/space';
 import AsyncView from 'app/views/asyncView';
 import BetaTag from 'app/components/betaTag';
-import {Organization, Release, ProjectRelease} from 'app/types';
+import {Organization, Release, ProjectRelease, OnboardingTaskKey} from 'app/types';
 import routeTitleGen from 'app/utils/routeTitle';
 import SearchBar from 'app/components/searchBar';
 import Pagination from 'app/components/pagination';
@@ -26,6 +26,7 @@ import {getRelativeSummary} from 'app/components/organizations/timeRangeSelector
 import {DEFAULT_STATS_PERIOD} from 'app/constants';
 
 import ReleaseListSortOptions from './releaseListSortOptions';
+import ReleaseOnboarding from './releaseOnboarding';
 
 type RouteParams = {
   orgId: string;
@@ -119,6 +120,16 @@ class ReleasesList extends AsyncView<Props, State> {
     });
   };
 
+  hasAnyRelease() {
+    const {organization} = this.props;
+
+    return (
+      organization.onboardingTasks.find(
+        item => item.task === OnboardingTaskKey.RELEASE_TRACKING
+      )?.status === 'complete'
+    );
+  }
+
   transformToProjectRelease(releases: Release[]): ProjectRelease[] {
     // native JS flatMap is not supported in our current nodejs 10.16.3 (tests)
     return flatMap(releases, release =>
@@ -171,8 +182,8 @@ class ReleasesList extends AsyncView<Props, State> {
       return <LoadingIndicator />;
     }
 
-    if (!releases.length) {
-      return this.renderEmptyMessage();
+    if (releases.length === 0) {
+      return this.hasAnyRelease() ? this.renderEmptyMessage() : <ReleaseOnboarding />;
     }
 
     const projectReleases = this.transformToProjectRelease(releases);
@@ -241,14 +252,13 @@ const StyledPageHeader = styled(PageHeader)`
 `;
 const SortAndFilterWrapper = styled('div')`
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto 1fr;
   grid-gap: ${space(2)};
   margin-bottom: ${space(2)};
-  /* TODO(releasesV2): this could use some responsive love, but not yet sure if we are keeping it */
   @media (max-width: ${p => p.theme.breakpoints[0]}) {
     width: 100%;
     grid-template-columns: none;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 `;
 

@@ -6,7 +6,10 @@ import ReleaseList from 'app/views/releasesV2/list/';
 
 describe('ReleasesV2List', function() {
   const {organization, routerContext, router} = initializeOrg({
-    organization: {features: ['releases-v2']},
+    organization: {
+      features: ['releases-v2'],
+      onboardingTasks: [{task: 'setup_release_tracking', status: 'complete'}],
+    },
   });
   const props = {
     router,
@@ -55,6 +58,23 @@ describe('ReleasesV2List', function() {
     expect(items.at(0).text()).toContain('Release adoption');
     expect(items.at(2).text()).toContain('af4f231ec9a8');
     expect(items.at(2).text()).not.toContain('Release adoption');
+  });
+
+  it('shows onboarding', function() {
+    MockApiClient.addMockResponse({
+      url: '/organizations/org-slug/releases/',
+      body: [],
+    });
+    const {organization: org2, routerContext: rc2} = initializeOrg({
+      organization: {
+        features: ['releases-v2'],
+        onboardingTasks: [{task: 'setup_release_tracking', status: 'skipped'}],
+      },
+    });
+    wrapper = mountWithTheme(<ReleaseList {...props} organization={org2} />, rc2);
+
+    const onboarding = wrapper.exists('ReleaseLandingCard');
+    expect(onboarding).toEqual(true);
   });
 
   it('displays the right empty state', function() {
