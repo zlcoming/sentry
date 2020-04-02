@@ -376,7 +376,7 @@ let appConfig = {
       cacheGroups,
     },
   },
-  devtool: IS_PRODUCTION ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: IS_PRODUCTION ? false : 'cheap-module-eval-source-map',
 };
 
 if (SENTRY_EXPERIMENTAL_SPA) {
@@ -483,6 +483,14 @@ if (IS_PRODUCTION) {
   minificationPlugins.forEach(function(plugin) {
     appConfig.plugins.push(plugin);
   });
+
+  appConfig.plugins.push(
+    new webpack.SourceMapDevToolPlugin({
+      // this is the url of our local sourcemap server
+      publicPath: 'https://sentry.io/',
+      filename: '[file].map',
+    })
+  );
 }
 
 if (env.MEASURE) {
