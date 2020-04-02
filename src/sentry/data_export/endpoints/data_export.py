@@ -36,9 +36,7 @@ class DataExportEndpoint(OrganizationEndpoint, EnvironmentMixin):
             return Response(status=404)
 
         limit = request.data.get("limit")
-        serializer = DataExportQuerySerializer(
-            data=request.data, context={"organization": organization, "user": request.user}
-        )
+        serializer = DataExportQuerySerializer(data=request.data)
         try:
             environment_id = self._get_environment_id_from_request(request, organization.id)
         except Environment.DoesNotExist as error:
