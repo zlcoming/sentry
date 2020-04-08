@@ -22,6 +22,7 @@ import {
 import ImageForBar from 'app/components/events/interfaces/imageForBar';
 import {t, tct} from 'app/locale';
 import SentryTypes from 'app/sentryTypes';
+import {IconSearch} from 'app/icons';
 
 const IMAGE_ADDR_LEN = 12;
 const MIN_FILTER_LEN = 3;
@@ -259,7 +260,11 @@ class DebugImage extends React.PureComponent {
             return (
               <ImageActions>
                 <Tooltip title={t('Search for debug files in settings')}>
-                  <Button size="xsmall" icon="icon-settings" href={settingsUrl} />
+                  <Button
+                    size="xsmall"
+                    icon={<IconSearch size="xs" />}
+                    to={settingsUrl}
+                  />
                 </Tooltip>
               </ImageActions>
             );
