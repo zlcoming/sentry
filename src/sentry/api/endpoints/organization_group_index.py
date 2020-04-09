@@ -23,9 +23,10 @@ from sentry.api.utils import get_date_range_from_params, InvalidParams
 from sentry.models import Group, GroupStatus
 from sentry.search.snuba.backend import EventsDatasetSnubaSearchBackend
 from sentry.snuba import discover
+from sentry.utils.performance.stopwatch import global_stopwatch
 from sentry.utils.validators import normalize_event_id
 from sentry.utils.compat import map
-
+import sentry.api.serializers.base
 
 ERR_INVALID_STATS_PERIOD = "Invalid stats_period. Valid choices are '', '24h', and '14d'"
 
@@ -89,6 +90,12 @@ class OrganizationGroupIndexEndpoint(OrganizationEventsEndpointBase):
                                           issues belong to.
         :auth: required
         """
+        global_stopwatch.start()
+        global_stopwatch.mark("Starting to List an Organization's Issues")
+
+        def mark(message):
+            global_stopwatch.mark(message)
+
         stats_period = request.GET.get("groupStatsPeriod")
         if stats_period not in (None, "", "24h", "14d"):
             return Response({"detail": ERR_INVALID_STATS_PERIOD}, status=400)
@@ -170,6 +177,7 @@ class OrganizationGroupIndexEndpoint(OrganizationEventsEndpointBase):
         except InvalidParams as e:
             return Response({"detail": six.text_type(e)}, status=400)
 
+        mark("Dispatching to search")
         try:
             cursor_result, query_kwargs = self._search(
                 request,
@@ -182,8 +190,17 @@ class OrganizationGroupIndexEndpoint(OrganizationEventsEndpointBase):
             return Response({"detail": six.text_type(exc)}, status=400)
 
         results = list(cursor_result)
+        mark("Unpacked results from search")
 
-        context = serialize(results, request.user, serializer())
+        sentry.api.serializers.base.log_counter = 0
+        the_serializer = serializer()
+        mark("Firing serializer (type={})".format(type(the_serializer)))
+        user = request.user
+        mark("Got user")
+        context = serialize(results, user, the_serializer)
+        sentry.api.serializers.base.log_counter = -1
+
+        mark("Serialized")
 
         # HACK: remove auto resolved entries
         # TODO: We should try to integrate this into the search backend, since
@@ -199,9 +216,11 @@ class OrganizationGroupIndexEndpoint(OrganizationEventsEndpointBase):
         response = Response(context)
 
         self.add_cursor_headers(request, response, cursor_result)
+        mark("Added cursor headers")
 
         # TODO(jess): add metrics that are similar to project endpoint here
 
+        mark("Returning from listing an Organization's Issues")
         return response
 
     def put(self, request, organization):

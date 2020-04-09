@@ -16,6 +16,7 @@ from sentry.api.paginator import DateTimePaginator, SequencePaginator, Paginator
 from sentry.constants import ALLOWED_FUTURE_DELTA
 from sentry.models import Group
 from sentry.utils import snuba, metrics
+from sentry.utils.performance.stopwatch import global_stopwatch
 
 
 def get_search_filter(search_filters, name, operator):
@@ -267,6 +268,7 @@ class PostgresSnubaQueryExecutor(AbstractQueryExecutor):
         date_to,
     ):
 
+        global_stopwatch.mark("Beginning Snuba query")
         now = timezone.now()
         end = None
         end_params = [_f for _f in [date_to, get_search_filter(search_filters, "date", "<")] if _f]
@@ -481,6 +483,7 @@ class PostgresSnubaQueryExecutor(AbstractQueryExecutor):
         groups = Group.objects.in_bulk(paginator_results.results)
         paginator_results.results = [groups[k] for k in paginator_results.results if k in groups]
 
+        global_stopwatch.mark("Returning from Snuba query")
         return paginator_results
 
     def calculate_hits(

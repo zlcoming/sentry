@@ -43,6 +43,7 @@ from sentry.models import (
 )
 from sentry.tsdb.snuba import SnubaTSDB
 from sentry.utils.db import attach_foreignkey
+from sentry.utils.performance.stopwatch import global_stopwatch
 from sentry.utils.safe import safe_execute
 from sentry.utils.compat import map, zip
 
@@ -63,6 +64,8 @@ snuba_tsdb = SnubaTSDB(**settings.SENTRY_TSDB_OPTIONS)
 
 
 logger = logging.getLogger(__name__)
+
+logging_flag = True
 
 
 def merge_list_dictionaries(dict1, dict2):
@@ -334,6 +337,13 @@ class GroupSerializerBase(Serializer):
         return result
 
     def serialize(self, obj, attrs, user):
+        # This is where the slow shit is happening
+        # only on the first iteration
+        def mark(message):
+            if logging_flag:
+                global_stopwatch.mark(message)
+
+        mark("Start serializing group")
         status = obj.status
         status_details = {}
         if attrs["ignore_until"]:
@@ -406,7 +416,9 @@ class GroupSerializerBase(Serializer):
             or (user.is_authenticated() and user.get_orgs().filter(id=obj.organization.id).exists())
             or is_valid_sentryapp
         ):
+            mark("About to get absolute URL")
             permalink = obj.get_absolute_url()
+            mark("Done getting absolute URL")
         else:
             permalink = None
 
@@ -423,7 +435,7 @@ class GroupSerializerBase(Serializer):
 
         share_id = attrs["share_id"]
 
-        return {
+        retval = {
             "id": six.text_type(obj.id),
             "shareId": share_id,
             "shortId": obj.qualified_short_id,
@@ -456,6 +468,8 @@ class GroupSerializerBase(Serializer):
             "hasSeen": attrs["has_seen"],
             "annotations": attrs["annotations"],
         }
+        mark("Returning serialized group")
+        return retval
 
 
 @register(Group)
@@ -677,9 +691,12 @@ class StreamGroupSerializerSnuba(GroupSerializerSnuba, GroupStatsMixin):
         attrs = super(StreamGroupSerializerSnuba, self).get_attrs(item_list, user)
 
         if self.stats_period:
+            # global_stopwatch.mark('Start get_stats')
             stats = self.get_stats(item_list, user)
+            # global_stopwatch.mark('Done get_stats')
             for item in item_list:
                 attrs[item].update({"stats": stats[item.id]})
+            # global_stopwatch.mark('Done with item_list')
 
         return attrs
 
