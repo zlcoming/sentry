@@ -51,7 +51,7 @@ class DataPrivacyRulesPanelSelectorField extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.selectorSuggestions !== this.props.selectorSuggestions) {
-      this.loadFieldValues(this.props.value);
+      // this.loadFieldValues(this.props.value);
     }
   }
 
@@ -401,16 +401,12 @@ const Wrapper = styled('div')`
 
 const StyledTextField = styled(TextField)<{error?: string}>`
   width: 100%;
-  height: 34px;
   font-size: ${p => p.theme.fontSizeSmall};
+  height: 34px;
   input {
     height: 34px;
   }
-  ${p =>
-    !p.error &&
-    `
-      margin-bottom: 0;
-    `}
+  margin-bottom: 0;
 `;
 
 const SuggestionsWrapper = styled('ul')`
