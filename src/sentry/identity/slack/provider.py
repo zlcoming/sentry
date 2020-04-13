@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from django.conf import settings
 
-from sentry import options
+from sentry import options, features
 from sentry.identity.oauth2 import OAuth2Provider
 
 
@@ -16,6 +16,10 @@ class SlackIdentityProvider(OAuth2Provider):
 
     oauth_scopes = ("identity.basic", "identity.email")
 
+    @property
+    def use_slack_v2(self):
+        return features.has("organizations:slack-v2", self.pipeline.organization, actor=self.pipeline.request.user)
+
     # XXX(epurkhiser): While workspace tokens _do_ support the oauth.access
     # endpoint, it will no include the authorizing_user, so we continue to use
     # the deprecated oauth.token endpoint until we are able to migrate to a bot
@@ -28,9 +32,13 @@ class SlackIdentityProvider(OAuth2Provider):
         )
 
     def get_oauth_client_id(self):
+        if self.use_slack_v2:
+            return options.get("slack-v2.client-id")
         return options.get("slack.client-id")
 
     def get_oauth_client_secret(self):
+        if self.use_slack_v2:
+            return options.get("slack-v2.client-secret")
         return options.get("slack.client-secret")
 
     def get_oauth_data(self, payload):
