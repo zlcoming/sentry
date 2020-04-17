@@ -170,7 +170,7 @@ describe('groupDetails', function() {
     expect(wrapper.find('LoadingIndicator')).toHaveLength(0);
 
     // TODO(billy): This should be 1 time, but GSH syncs the environment to store and causes re-render and thus a second request
-    expect(issueDetailsMock).toHaveBeenCalledTimes(2);
+    expect(issueDetailsMock).toHaveBeenCalledTimes(1);
     expect(issueDetailsMock).toHaveBeenLastCalledWith(
       expect.anything(),
       expect.objectContaining({

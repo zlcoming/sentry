@@ -20,6 +20,7 @@ type Options = {
    * List of parameters to remove when changing URL params
    */
   resetParams?: string[];
+  save?: boolean;
 };
 
 /**
@@ -62,6 +63,14 @@ export function resetGlobalSelection() {
   GlobalSelectionActions.reset();
 }
 
+export function initializeUrlState(
+  orgSlug: string,
+  query: ReactRouter.WithRouterProps['location']['query'],
+  options: {skipLastUsed?: boolean}
+) {
+  GlobalSelectionActions.initializeUrlState(orgSlug, query, options);
+}
+
 /**
  * Updates global project selection URL param if `router` is supplied
  * OTHERWISE fire action to update projects
@@ -82,6 +91,7 @@ export function updateProjects(
   if (!router) {
     GlobalSelectionActions.updateProjects(projects);
   }
+
   updateParams({project: projects}, router, options);
 }
 
@@ -147,6 +157,10 @@ export function updateParams(obj: UrlParams, router?: Router, options?: Options)
   // Only push new location if query params has changed because this will cause a heavy re-render
   if (qs.stringify(newQuery) === qs.stringify(router.location.query)) {
     return;
+  }
+
+  if (options?.save) {
+    GlobalSelectionActions.save(newQuery);
   }
 
   router.push({

@@ -1,12 +1,14 @@
-import * as ReactRouter from 'react-router';
 import React from 'react';
+import * as ReactRouter from 'react-router';
 
 import {GlobalSelection, Organization, Project} from 'app/types';
-import withOrganization from 'app/utils/withOrganization';
 import withGlobalSelection from 'app/utils/withGlobalSelection';
+import withOrganization from 'app/utils/withOrganization';
 import withProjectsSpecified from 'app/utils/withProjectsSpecified';
 
 import GlobalSelectionHeader from './globalSelectionHeader';
+import SyncStoreToUrl from './syncStoreToUrl';
+import SyncUrlParams from './syncUrlParams';
 
 type Props = {
   organization: Organization;
@@ -18,7 +20,19 @@ type Props = {
 
 class GlobalSelectionHeaderContainer extends React.Component<Props> {
   render() {
-    return <GlobalSelectionHeader {...this.props} />;
+    const {hasCustomRouting, location, router, selection} = this.props;
+
+    return (
+      <React.Fragment>
+        <SyncUrlParams isDisabled={hasCustomRouting} location={location} />
+        <SyncStoreToUrl
+          isDisabled={hasCustomRouting}
+          selection={selection}
+          router={router}
+        />
+        <GlobalSelectionHeader {...this.props} />
+      </React.Fragment>
+    );
   }
 }
 

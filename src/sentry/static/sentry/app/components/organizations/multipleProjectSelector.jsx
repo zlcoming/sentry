@@ -276,7 +276,7 @@ export default class MultipleProjectSelector extends React.PureComponent {
                   allowClear={multi}
                   {...getActorProps()}
                 >
-                  {title}
+                  <span data-test-id="global-header-project-name">{title}</span>
                 </StyledHeaderItem>
               );
             }}
