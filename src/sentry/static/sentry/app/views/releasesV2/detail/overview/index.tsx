@@ -21,6 +21,7 @@ import TotalCrashFreeUsers from './totalCrashFreeUsers';
 import ReleaseStatsRequest from './releaseStatsRequest';
 import {YAxis} from './chart/releaseChartControls';
 import SwitchReleasesButton from '../../utils/switchReleasesButton';
+import UpdateSdk from './updateSdk';
 
 import {ReleaseContext} from '..';
 
@@ -91,49 +92,52 @@ class ReleaseOverview extends AsyncView<Props> {
               disable={!hasHealthData && !hasDiscover}
             >
               {({crashFreeTimeBreakdown, ...releaseStatsProps}) => (
-                <ContentBox>
-                  <Main>
-                    {(hasDiscover || hasHealthData) && (
-                      <ReleaseChart
-                        {...releaseStatsProps}
-                        selection={selection}
-                        yAxis={yAxis}
-                        onYAxisChange={this.handleYAxisChange}
-                        router={router}
-                        organization={organization}
-                        hasHealthData={hasHealthData}
-                        location={location}
-                        api={api}
-                        version={version}
-                        hasDiscover={hasDiscover}
-                      />
-                    )}
+                <React.Fragment>
+                  <UpdateSdk hasHealthData={hasHealthData} platform={project.platform} />
+                  <ContentBox>
+                    <Main>
+                      {(hasDiscover || hasHealthData) && (
+                        <ReleaseChart
+                          {...releaseStatsProps}
+                          selection={selection}
+                          yAxis={yAxis}
+                          onYAxisChange={this.handleYAxisChange}
+                          router={router}
+                          organization={organization}
+                          hasHealthData={hasHealthData}
+                          location={location}
+                          api={api}
+                          version={version}
+                          hasDiscover={hasDiscover}
+                        />
+                      )}
 
-                    <Issues
-                      orgId={organization.slug}
-                      selection={selection}
-                      version={version}
-                      location={location}
-                    />
-                  </Main>
-                  <Sidebar>
-                    {commitCount > 0 && (
-                      <CommitAuthorBreakdown
-                        version={version}
+                      <Issues
                         orgId={organization.slug}
-                        projectSlug={project.slug}
+                        selection={selection}
+                        version={version}
+                        location={location}
                       />
-                    )}
-                    <ProjectReleaseDetails release={release} />
-                    {hasHealthData && (
-                      <TotalCrashFreeUsers
-                        crashFreeTimeBreakdown={crashFreeTimeBreakdown}
-                      />
-                    )}
-                  </Sidebar>
+                    </Main>
+                    <Sidebar>
+                      {commitCount > 0 && (
+                        <CommitAuthorBreakdown
+                          version={version}
+                          orgId={organization.slug}
+                          projectSlug={project.slug}
+                        />
+                      )}
+                      <ProjectReleaseDetails release={release} />
+                      {hasHealthData && (
+                        <TotalCrashFreeUsers
+                          crashFreeTimeBreakdown={crashFreeTimeBreakdown}
+                        />
+                      )}
+                    </Sidebar>
 
-                  <SwitchReleasesButton version="1" orgId={organization.id} />
-                </ContentBox>
+                    <SwitchReleasesButton version="1" orgId={organization.id} />
+                  </ContentBox>
+                </React.Fragment>
               )}
             </ReleaseStatsRequest>
           );
