@@ -327,18 +327,16 @@ class PostgresSnubaQueryExecutor(AbstractQueryExecutor):
         # clause.
         max_candidates = options.get("snuba.search.max-pre-snuba-candidates")
 
-        with sentry_sdk.start_span(op="snuba_group_query") as span:
-            group_ids = list(group_queryset.values_list("id", flat=True)[: max_candidates + 1])
-            span.set_data("Max Candidates", max_candidates)
-            span.set_data("Result Size", len(group_ids))
-        metrics.timing("snuba.search.num_candidates", len(group_ids))
+        with sentry_sdk.start_span(op="snuba_group_candidate_query") as span:
+            candidate_count = group_queryset.count()
+            span.set_data("Result", candidate_count)
+        metrics.timing("snuba.search.num_candidates", candidate_count)
 
-        too_many_candidates = False
-        if not group_ids:
+        if not candidate_count:
             # no matches could possibly be found from this point on
             metrics.incr("snuba.search.no_candidates", skip_internal=False)
             return self.empty_result
-        elif len(group_ids) > max_candidates:
+        elif candidate_count > max_candidates:
             # If the pre-filter query didn't include anything to significantly
             # filter down the number of results (from 'first_release', 'query',
             # 'status', 'bookmarked_by', 'assigned_to', 'unassigned',
@@ -351,6 +349,11 @@ class PostgresSnubaQueryExecutor(AbstractQueryExecutor):
             metrics.incr("snuba.search.too_many_candidates", skip_internal=False)
             too_many_candidates = True
             group_ids = []
+        else:
+            too_many_candidates = False
+            with sentry_sdk.start_span(op="snuba_group_query") as span:
+                group_ids = list(group_queryset.values_list("id", flat=True)[:max_candidates])
+                span.set_data("Result Size", candidate_count)
 
         sort_field = self.sort_strategies[sort_by]
         chunk_growth = options.get("snuba.search.chunk-growth-rate")
