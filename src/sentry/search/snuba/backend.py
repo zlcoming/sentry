@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from abc import ABCMeta, abstractmethod
 import functools
 import six
+import sentry_sdk
 from datetime import timedelta
 
 from django.db.models import Q
@@ -181,20 +182,35 @@ class SnubaSearchBackendBase(SearchBackend):
             date_to=date_to,
         )
 
-        return query_executor.query(
-            projects=projects,
-            retention_window_start=retention_window_start,
-            group_queryset=group_queryset,
-            environments=environments,
-            sort_by=sort_by,
-            limit=limit,
-            cursor=cursor,
-            count_hits=count_hits,
-            paginator_options=paginator_options,
-            search_filters=search_filters,
-            date_from=date_from,
-            date_to=date_to,
-        )
+        with sentry_sdk.start_span(op="snuba_query_executor") as span:
+            span.set_data(
+                "Query Parameters",
+                {
+                    "projects": [six.binary_type(p) for p in projects],
+                    "environments": [env.name for env in (environments or [])],
+                    "search_filters": [six.binary_type(sf) for sf in search_filters],
+                    "retention_window_start": retention_window_start,
+                    "date_from": date_from,
+                    "date_to": date_to,
+                    "sort_by": sort_by,
+                    "limit": limit,
+                },
+            )
+
+            return query_executor.query(
+                projects=projects,
+                retention_window_start=retention_window_start,
+                group_queryset=group_queryset,
+                environments=environments,
+                sort_by=sort_by,
+                limit=limit,
+                cursor=cursor,
+                count_hits=count_hits,
+                paginator_options=paginator_options,
+                search_filters=search_filters,
+                date_from=date_from,
+                date_to=date_to,
+            )
 
     def _build_group_queryset(
         self, projects, environments, search_filters, retention_window_start, *args, **kwargs
