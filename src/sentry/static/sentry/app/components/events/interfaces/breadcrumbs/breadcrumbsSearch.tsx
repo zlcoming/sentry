@@ -25,7 +25,6 @@ const BreadCrumbsSearch = ({
       autoComplete="off"
       value={searchTerm}
       onChange={onChangeSearchTerm}
-      height="28px"
     />
     <StyledIconSearch />
     <StyledIconClose show={!!searchTerm} onClick={onClearSearchTerm} circle />
