@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import isObject from 'lodash/isObject';
+import capitalize from 'lodash/capitalize';
 
 import AsyncComponent from 'app/components/asyncComponent';
 import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
@@ -14,6 +15,12 @@ import {t} from 'app/locale';
 import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueList';
 import space from 'app/styles/space';
 import withOrganization from 'app/utils/withOrganization';
+import {Panel, PanelBody, PanelItem} from 'app/components/panels';
+import {IconCheckmark, IconClose} from 'app/icons';
+import theme from 'app/utils/theme';
+import Badge from 'app/components/badge';
+import Button from 'app/components/button';
+import ButtonBar from 'app/components/buttonBar';
 
 export const GroupingConfigItem = styled(
   ({hidden: _hidden, active: _active, ...props}) => <code {...props} />
@@ -67,7 +74,7 @@ const GroupingComponentListItem = styled('li')`
 const GroupingComponentWrapper = styled(({contributes: _contributes, ...props}) => (
   <div {...props} />
 ))`
-  ${p => (p.contributes ? '' : 'color:' + p.theme.gray6)};
+  // ${p => (p.contributes ? '' : 'color:' + p.theme.gray6)};
 `;
 
 const GroupingValue = styled('code')`
@@ -294,7 +301,7 @@ class EventGroupingInfo extends AsyncComponent {
 
   getInitialState() {
     return {
-      isOpen: false,
+      isOpen: true,
       configOverride: null,
       ...super.getInitialState(),
     };
@@ -346,28 +353,63 @@ class EventGroupingInfo extends AsyncComponent {
     }
 
     return (
-      <GroupVariantList>
-        <div style={{float: 'right'}}>
-          {this.props.showSelector && (
-            <GroupingConfigSelect
-              name="groupingConfig"
-              eventConfigId={eventConfigId}
-              configId={configId}
-              onSelect={selection => {
-                this.setState(
-                  {
-                    configOverride: selection.value,
-                  },
-                  () => this.reloadData()
-                );
-              }}
-            />
-          )}
-        </div>
-        {variants.map(variant => (
-          <GroupVariant variant={variant} key={variant.key} />
-        ))}
-      </GroupVariantList>
+      <Panel>
+        <PanelBody>
+          {variants.map(variant => (
+            <PanelItem key={variant.key} style={{display: 'block'}}>
+              <React.Fragment>
+                <div style={{marginBottom: '8px'}}>
+                  {variant.component.contributes ? (
+                    <IconCheckmark
+                      size="sm"
+                      circle
+                      color={theme.green}
+                      style={{marginRight: '8px', transform: 'translateY(3px)'}}
+                    />
+                  ) : (
+                    <IconClose
+                      size="sm"
+                      circle
+                      color={theme.red}
+                      style={{marginRight: '8px', transform: 'translateY(3px)'}}
+                    />
+                  )}
+                  <small>by {variant.description}</small>
+                  <span style={{marginLeft: '20px'}}>
+                    <Badge text={variant.config.id} />
+                    <Badge text={variant.type} />
+                  </span>
+                  <div style={{float: 'right'}}>
+                    <ButtonBar merged active="relevant">
+                      <Button barId="relevant" size="xsmall">
+                        {t('Contributing values')}
+                      </Button>
+                      <Button barId="all" size="xsmall">
+                        {t('All values')}
+                      </Button>
+                    </ButtonBar>
+                  </div>
+                </div>
+
+                <table className="table key-value">
+                  <tbody>
+                    <tr>
+                      <td className="val">
+                        <pre className="val-string">
+                          <GroupingComponent
+                            showNonContributing={false}
+                            component={variant.component}
+                          />
+                        </pre>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </React.Fragment>
+            </PanelItem>
+          ))}
+        </PanelBody>
+      </Panel>
     );
   }
 
