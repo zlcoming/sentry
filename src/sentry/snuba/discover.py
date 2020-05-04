@@ -27,9 +27,11 @@ from sentry.tagstore.base import TOP_VALUES_DEFAULT_LIMIT
 from sentry.utils.snuba import (
     Dataset,
     SnubaTSResult,
+    SnubaQueryParams,
     DISCOVER_COLUMN_MAP,
     QUOTED_LITERAL_RE,
     raw_query,
+    bulk_raw_query,
     to_naive_timestamp,
     naiveify_datetime,
     resolve_condition,
@@ -823,19 +825,48 @@ def timeseries_query(selected_columns, query, params, rollup, reference_event=No
         )
 
     with sentry_sdk.start_span(op="discover.discover", description="timeseries.snuba_query"):
-        result = raw_query(
-            aggregations=snuba_filter.aggregations,
-            conditions=snuba_filter.conditions,
-            filter_keys=snuba_filter.filter_keys,
-            start=snuba_filter.start,
-            end=snuba_filter.end,
-            rollup=rollup,
-            orderby="time",
-            groupby=["time"],
-            dataset=Dataset.Discover,
-            limit=10000,
-            referrer=referrer,
-        )
+        total_seconds = (snuba_filter.end - snuba_filter.start).total_seconds()
+        if total_seconds > 15 * 24 * 3600:
+            first_middle = snuba_filter.start + timedelta(seconds=total_seconds / 3)
+            second_middle = snuba_filter.end - timedelta(seconds=total_seconds / 3)
+            base_query = {
+                "aggregations": snuba_filter.aggregations,
+                "conditions": snuba_filter.conditions,
+                "filter_keys": snuba_filter.filter_keys,
+                "start": snuba_filter.start,
+                "end": first_middle,
+                "rollup": rollup,
+                "orderby": "time",
+                "groupby": ["time"],
+                "dataset": Dataset.Discover,
+                "limit": 3333,
+            }
+            snuba_param1 = SnubaQueryParams(**base_query)
+            base_query["start"] = first_middle
+            base_query["end"] = second_middle
+            snuba_param2 = SnubaQueryParams(**base_query)
+            base_query["start"] = second_middle
+            base_query["end"] = snuba_filter.end
+            snuba_param3 = SnubaQueryParams(**base_query)
+            snuba_params = [snuba_param1, snuba_param2, snuba_param3]
+            response = bulk_raw_query(snuba_params, referrer=referrer)
+            result = response[0]
+            result["data"] += response[1]["data"]
+            result["data"] += response[2]["data"]
+        else:
+            result = raw_query(
+                aggregations=snuba_filter.aggregations,
+                conditions=snuba_filter.conditions,
+                filter_keys=snuba_filter.filter_keys,
+                start=snuba_filter.start,
+                end=snuba_filter.end,
+                rollup=rollup,
+                orderby="time",
+                groupby=["time"],
+                dataset=Dataset.Discover,
+                limit=10000,
+                referrer=referrer,
+            )
 
     with sentry_sdk.start_span(
         op="discover.discover", description="timeseries.transform_results"
