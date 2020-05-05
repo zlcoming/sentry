@@ -89,6 +89,10 @@ def configure(ctx, py, yaml, skip_service_validation=False):
     if __installed:
         return
 
+#    import cProfile
+#    pr = cProfile.Profile()
+#    pr.enable()
+
     # Make sure that our warnings are always displayed
     import warnings
 
@@ -159,6 +163,9 @@ def configure(ctx, py, yaml, skip_service_validation=False):
     )
 
     __installed = True
+
+#    pr.disable()
+#    pr.dump_stats("before.prof")
 
 
 __installed = False

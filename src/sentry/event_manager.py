@@ -23,7 +23,6 @@ from sentry.constants import (
     MAX_SECS_IN_FUTURE,
     MAX_SECS_IN_PAST,
 )
-from sentry.message_filters import should_filter_event
 from sentry.grouping.api import (
     get_grouping_config_dict_for_project,
     get_grouping_config_dict_for_event_data,
@@ -419,6 +418,8 @@ class EventManager(object):
             message = u": ".join([_f for _f in map(exc.get, ["type", "value"]) if _f])
             if message and not is_valid_error_message(self.project_config, message):
                 return (True, FilterStatKeys.ERROR_MESSAGE)
+
+        from sentry.message_filters import should_filter_event
 
         return should_filter_event(self.project_config, self._data)
 

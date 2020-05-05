@@ -163,4 +163,10 @@ def call_command(name, obj=None, **kwargs):
 
 
 def main():
+# doesn't seem to work?
+#    import cProfile
+#    pr = cProfile.Profile()
+#    pr.enable()
     cli(prog_name=get_prog(), obj={}, max_content_width=100)
+#    pr.disable()
+#    pr.dump_stats("before.prof")

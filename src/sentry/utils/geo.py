@@ -68,4 +68,6 @@ if geoip_path_mmdb:
     _init_geoip()
     _init_geoip_rust()
 else:
+# pytest -s and bt from here
+#    import pdb; pdb.set_trace()
     logger.warning("settings.GEOIP_PATH_MMDB not configured.")

@@ -13,6 +13,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
 
 def pytest_configure(config):
+    # this isn't where pytest fully starts.
+    print("begin local pytest_configure")
     import warnings
 
     # XXX(dramer): Kombu throws a warning due to transaction.commit_manually

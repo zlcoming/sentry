@@ -13,6 +13,17 @@ TEST_ROOT = os.path.normpath(
 
 
 def pytest_configure(config):
+    # There's a slight delay before this, that's all from pytest warming up. And the interpreter.
+    # We arrive here because of pytest_plugins = ["sentry.utils.pytest"].
+#    import pdb; pdb.set_trace()
+    print("begin global pytest_configure")
+
+    import cProfile
+    pr = cProfile.Profile()
+    pr.enable()
+        pr.disable()
+    pr.dump_stats("before.prof")
+
     # HACK: Only needed for testing!
     os.environ.setdefault("_SENTRY_SKIP_CONFIGURATION", "1")
 
@@ -148,6 +159,8 @@ def pytest_configure(config):
 
     monkeypatch_model_unpickle()
 
+    import ua_parser
+
     import django
 
     django.setup()
@@ -172,6 +185,7 @@ def pytest_configure(config):
     from sentry import http
 
     http.DISALLOWED_IPS = set()
+
 
 
 def register_extensions():
