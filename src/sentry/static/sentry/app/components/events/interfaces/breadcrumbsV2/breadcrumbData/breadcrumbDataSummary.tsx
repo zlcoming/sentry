@@ -85,7 +85,6 @@ const StyledPre = styled('pre')`
 `;
 
 const BreadcrumbDataSummaryData = styled('div')`
-  margin: ${space(1)} 0;
   font-size: ${p => p.theme.fontSizeSmall};
 `;
 

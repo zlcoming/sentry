@@ -16,7 +16,7 @@ const BreadcrumbCollapsed = ({quantity, onClick}: Props) => (
     <BreadCrumbIconWrapper>
       <IconEllipsis />
     </BreadCrumbIconWrapper>
-    {tct('Show [quantity] collapsed crumbs', {quantity})}
+    <Label>{tct('Show [quantity] collapsed crumbs', {quantity})}</Label>
   </StyledBreadCrumb>
 );
 
@@ -28,4 +28,9 @@ const StyledBreadCrumb = styled(BreadCrumb)`
   margin: 0 -1px;
   border-right: 1px solid ${p => p.theme.borderLight};
   border-left: 1px solid ${p => p.theme.borderLight};
+`;
+
+const Label = styled('div')`
+  display: flex;
+  align-items: center;
 `;

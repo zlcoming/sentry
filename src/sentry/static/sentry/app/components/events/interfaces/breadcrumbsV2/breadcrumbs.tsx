@@ -114,11 +114,15 @@ class BreadcrumbsContainer extends React.Component<Props, State> {
       };
     });
 
+    const breadcrumbsWithCollapsedTypes = this.getBreadcrumbsWithCollapsedTypes(
+      convertedBreadcrumbs
+    );
+
     this.setState({
-      breadcrumbs: convertedBreadcrumbs,
-      filteredBreadcrumbs: convertedBreadcrumbs,
-      filteredByFilter: convertedBreadcrumbs,
-      filteredByCustomSearch: convertedBreadcrumbs,
+      breadcrumbs: breadcrumbsWithCollapsedTypes,
+      filteredBreadcrumbs: breadcrumbsWithCollapsedTypes,
+      filteredByFilter: breadcrumbsWithCollapsedTypes,
+      filteredByCustomSearch: breadcrumbsWithCollapsedTypes,
       filterGroups: [
         ...breadcrumbTypes
           // in case of a breadcrumb of type BreadcrumbType.DEFAULT, moves it to the last position of the array
@@ -129,6 +133,36 @@ class BreadcrumbsContainer extends React.Component<Props, State> {
         ...breadcrumbLevels,
       ],
     });
+  };
+
+  getBreadcrumbsWithCollapsedTypes = (
+    breadcrumbs: Array<BreadcrumbWithDetails>
+  ): Array<BreadcrumbWithDetails> => {
+    const breadcrumbsWithCollapsedTypes: Array<BreadcrumbWithDetails> = [];
+
+    for (const breadcrumb of breadcrumbs) {
+      if (
+        breadcrumb.type ===
+        breadcrumbsWithCollapsedTypes[breadcrumbsWithCollapsedTypes.length - 1]?.type
+      ) {
+        if (
+          breadcrumbsWithCollapsedTypes[breadcrumbsWithCollapsedTypes.length - 1]
+            ?.breadcrumbs
+        ) {
+          breadcrumbsWithCollapsedTypes[
+            breadcrumbsWithCollapsedTypes.length - 1
+          ].breadcrumbs?.push(breadcrumb);
+          continue;
+        }
+        breadcrumbsWithCollapsedTypes[
+          breadcrumbsWithCollapsedTypes.length - 1
+        ].breadcrumbs = [breadcrumb];
+        continue;
+      }
+      breadcrumbsWithCollapsedTypes.push(breadcrumb);
+    }
+
+    return breadcrumbsWithCollapsedTypes;
   };
 
   moduleToCategory = (module: any) => {

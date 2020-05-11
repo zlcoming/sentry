@@ -32,6 +32,7 @@ type BreadcrumbTypeBase = {
   message?: string;
   level?: BreadcrumbLevelType;
   event_id?: string;
+  breadcrumbs?: Array<Breadcrumb>;
 };
 
 export type BreadcrumbTypeNavigation = {
