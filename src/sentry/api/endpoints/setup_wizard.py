@@ -4,7 +4,7 @@ import logging
 from rest_framework.response import Response
 
 from sentry import ratelimits
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.api.base import Endpoint
 from sentry.api.serializers import serialize
 from django.utils.crypto import get_random_string
@@ -23,7 +23,7 @@ class SetupWizard(Endpoint):
         """
         if wizard_hash is not None:
             key = "%s%s" % (SETUP_WIZARD_CACHE_KEY, wizard_hash)
-            default_cache.delete(key)
+            legacy_redis_blaster_cache.delete(key)
             return Response(status=200)
 
     def get(self, request, wizard_hash=None):
@@ -33,7 +33,7 @@ class SetupWizard(Endpoint):
         """
         if wizard_hash is not None:
             key = "%s%s" % (SETUP_WIZARD_CACHE_KEY, wizard_hash)
-            wizard_data = default_cache.get(key)
+            wizard_data = legacy_redis_blaster_cache.get(key)
 
             if wizard_data is None:
                 return Response(status=404)
@@ -53,5 +53,5 @@ class SetupWizard(Endpoint):
             wizard_hash = get_random_string(64, allowed_chars="abcdefghijklmnopqrstuvwxyz012345679")
 
             key = "%s%s" % (SETUP_WIZARD_CACHE_KEY, wizard_hash)
-            default_cache.set(key, "empty", SETUP_WIZARD_CACHE_TIMEOUT)
+            legacy_redis_blaster_cache.set(key, "empty", SETUP_WIZARD_CACHE_TIMEOUT)
             return Response(serialize({"hash": wizard_hash}))

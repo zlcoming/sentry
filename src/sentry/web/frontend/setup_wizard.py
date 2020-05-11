@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from django.db.models import F
 
 from sentry import roles
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.models import ApiToken
 from sentry.api.serializers import serialize
 from sentry.web.frontend.base import BaseView
@@ -28,7 +28,7 @@ class SetupWizardView(BaseView):
         context = {"hash": wizard_hash}
         key = "%s%s" % (SETUP_WIZARD_CACHE_KEY, wizard_hash)
 
-        wizard_data = default_cache.get(key)
+        wizard_data = legacy_redis_blaster_cache.get(key)
         if wizard_data is None:
             return self.redirect_to_org(request)
 
@@ -79,6 +79,6 @@ class SetupWizardView(BaseView):
         result = {"apiKeys": serialize(token), "projects": filled_projects}
 
         key = "%s%s" % (SETUP_WIZARD_CACHE_KEY, wizard_hash)
-        default_cache.set(key, result, SETUP_WIZARD_CACHE_TIMEOUT)
+        legacy_redis_blaster_cache.set(key, result, SETUP_WIZARD_CACHE_TIMEOUT)
 
         return render_to_response("sentry/setup-wizard.html", context, request)

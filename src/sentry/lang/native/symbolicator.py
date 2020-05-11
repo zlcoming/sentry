@@ -14,7 +14,7 @@ from six.moves.urllib.parse import urljoin
 
 from sentry import features, options
 from sentry.auth.system import get_system_token
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.utils import json, metrics
 from sentry.net.http import Session
 from sentry.tasks.store import RetrySymbolication
@@ -115,7 +115,7 @@ class Symbolicator(object):
         self.task_id_cache_key = _task_id_cache_key_for_event(project.id, event_id)
 
     def _process(self, create_task):
-        task_id = default_cache.get(self.task_id_cache_key)
+        task_id = legacy_redis_blaster_cache.get(self.task_id_cache_key)
         json_response = None
 
         with self.sess:
@@ -150,14 +150,14 @@ class Symbolicator(object):
             # after some timeout. Symbolicator keeps the response for the
             # first one to poll it.
             if json_response["status"] == "pending":
-                default_cache.set(
+                legacy_redis_blaster_cache.set(
                     self.task_id_cache_key, json_response["request_id"], REQUEST_CACHE_TIMEOUT
                 )
                 raise RetrySymbolication(retry_after=json_response["retry_after"])
             else:
                 # Once we arrive here, we are done processing. Clean up the
                 # task id from the cache.
-                default_cache.delete(self.task_id_cache_key)
+                legacy_redis_blaster_cache.delete(self.task_id_cache_key)
                 metrics.timing(
                     "events.symbolicator.response.completed.size", len(json.dumps(json_response))
                 )

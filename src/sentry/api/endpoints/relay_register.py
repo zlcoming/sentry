@@ -8,7 +8,7 @@ from rest_framework import serializers, status
 from django.conf import settings
 from django.utils import timezone
 
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.utils import json
 from sentry.models import Relay
 from sentry.api.base import Endpoint
@@ -112,7 +112,7 @@ class RelayRegisterChallengeEndpoint(Endpoint):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
-        default_cache.set(
+        legacy_redis_blaster_cache.set(
             "relay-auth:%s" % relay_id,
             {"token": challenge["token"], "public_key": six.text_type(challenge["public_key"])},
             60,
@@ -160,7 +160,7 @@ class RelayRegisterResponseEndpoint(Endpoint):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        params = default_cache.get("relay-auth:%s" % relay_id)
+        params = legacy_redis_blaster_cache.get("relay-auth:%s" % relay_id)
         if params is None:
             return Response({"detail": "Challenge expired"}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -184,6 +184,6 @@ class RelayRegisterResponseEndpoint(Endpoint):
             relay.last_seen = timezone.now()
             relay.is_internal = is_internal
             relay.save()
-        default_cache.delete("relay-auth:%s" % relay_id)
+        legacy_redis_blaster_cache.delete("relay-auth:%s" % relay_id)
 
         return Response(serialize({"relay_id": relay.relay_id}))

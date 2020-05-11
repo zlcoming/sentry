@@ -17,7 +17,7 @@ from six import BytesIO
 from time import time
 
 from sentry.attachments import attachment_cache
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.models import ProjectKey
 from sentry.tasks.store import preprocess_event, preprocess_event_from_reprocessing
 from sentry.utils import json
@@ -150,7 +150,7 @@ class ClientApiHelper(object):
 
         cache_timeout = 3600
         cache_key = cache_key_for_event(data)
-        default_cache.set(cache_key, data, cache_timeout)
+        legacy_redis_blaster_cache.set(cache_key, data, cache_timeout)
 
         # Attachments will be empty or None if the "event-attachments" feature
         # is turned off. For native crash reports it will still contain the

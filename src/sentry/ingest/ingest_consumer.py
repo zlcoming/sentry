@@ -11,7 +11,7 @@ import multiprocessing as _multiprocessing
 from django.core.cache import cache
 
 from sentry import eventstore, features, options
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.models import Project, File, EventAttachment
 from sentry.signals import event_accepted
 from sentry.tasks.store import preprocess_event
@@ -152,7 +152,7 @@ def process_event(message, projects):
     data = json.loads(payload)
 
     cache_key = cache_key_for_event(data)
-    default_cache.set(cache_key, data, CACHE_TIMEOUT)
+    legacy_redis_blaster_cache.set(cache_key, data, CACHE_TIMEOUT)
 
     if attachments:
         attachment_objects = [

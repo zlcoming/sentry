@@ -4,7 +4,7 @@ import functools
 
 from django.core.cache import cache
 
-default_cache = cache
+legacy_redis_blaster_cache = cache
 
 
 class memoize(object):

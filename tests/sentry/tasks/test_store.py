@@ -76,8 +76,8 @@ def mock_get_symbolication_function():
 
 
 @pytest.fixture
-def mock_default_cache():
-    with mock.patch("sentry.tasks.store.default_cache") as m:
+def mock_legacy_redis_blaster_cache():
+    with mock.patch("sentry.tasks.store.legacy_redis_blaster_cache") as m:
         yield m
 
 
@@ -130,7 +130,7 @@ def test_move_to_symbolicate_event(
 @pytest.mark.django_db
 def test_symbolicate_event_call_process_inline(
     default_project,
-    mock_default_cache,
+    mock_legacy_redis_blaster_cache,
     mock_process_event,
     mock_save_event,
     mock_get_symbolication_function,
@@ -143,7 +143,7 @@ def test_symbolicate_event_call_process_inline(
         "event_id": EVENT_ID,
         "extra": {"foo": "bar"},
     }
-    mock_default_cache.get.return_value = data
+    mock_legacy_redis_blaster_cache.get.return_value = data
 
     symbolicated_data = {"type": "error"}
 
@@ -153,7 +153,7 @@ def test_symbolicate_event_call_process_inline(
         symbolicate_event(cache_key="e:1", start_time=1)
 
     # The event mutated, so make sure we save it back
-    ((_, (key, event, duration), _),) = mock_default_cache.set.mock_calls
+    ((_, (key, event, duration), _),) = mock_legacy_redis_blaster_cache.set.mock_calls
 
     assert key == "e:1"
     assert event == symbolicated_data
@@ -194,7 +194,7 @@ def test_move_to_save_event(
 
 @pytest.mark.django_db
 def test_process_event_mutate_and_save(
-    default_project, mock_default_cache, mock_save_event, register_plugin
+    default_project, mock_legacy_redis_blaster_cache, mock_save_event, register_plugin
 ):
     register_plugin(BasicPreprocessorPlugin)
 
@@ -206,12 +206,12 @@ def test_process_event_mutate_and_save(
         "extra": {"foo": "bar"},
     }
 
-    mock_default_cache.get.return_value = data
+    mock_legacy_redis_blaster_cache.get.return_value = data
 
     process_event(cache_key="e:1", start_time=1)
 
     # The event mutated, so make sure we save it back
-    ((_, (key, event, duration), _),) = mock_default_cache.set.mock_calls
+    ((_, (key, event, duration), _),) = mock_legacy_redis_blaster_cache.set.mock_calls
 
     assert key == "e:1"
     assert "extra" not in event
@@ -224,7 +224,7 @@ def test_process_event_mutate_and_save(
 
 @pytest.mark.django_db
 def test_process_event_no_mutate_and_save(
-    default_project, mock_default_cache, mock_save_event, register_plugin
+    default_project, mock_legacy_redis_blaster_cache, mock_save_event, register_plugin
 ):
     register_plugin(BasicPreprocessorPlugin)
 
@@ -236,12 +236,12 @@ def test_process_event_no_mutate_and_save(
         "extra": {"foo": "bar"},
     }
 
-    mock_default_cache.get.return_value = data
+    mock_legacy_redis_blaster_cache.get.return_value = data
 
     process_event(cache_key="e:1", start_time=1)
 
     # The event did not mutate, so we shouldn't reset it in cache
-    assert mock_default_cache.set.call_count == 0
+    assert mock_legacy_redis_blaster_cache.set.call_count == 0
 
     mock_save_event.delay.assert_called_once_with(
         cache_key="e:1", data=None, start_time=1, event_id=EVENT_ID, project_id=default_project.id
@@ -250,7 +250,7 @@ def test_process_event_no_mutate_and_save(
 
 @pytest.mark.django_db
 def test_process_event_unprocessed(
-    default_project, mock_default_cache, mock_save_event, register_plugin
+    default_project, mock_legacy_redis_blaster_cache, mock_save_event, register_plugin
 ):
     register_plugin(BasicPreprocessorPlugin)
 
@@ -262,11 +262,11 @@ def test_process_event_unprocessed(
         "extra": {"foo": "bar"},
     }
 
-    mock_default_cache.get.return_value = data
+    mock_legacy_redis_blaster_cache.get.return_value = data
 
     process_event(cache_key="e:1", start_time=1)
 
-    ((_, (key, event, duration), _),) = mock_default_cache.set.mock_calls
+    ((_, (key, event, duration), _),) = mock_legacy_redis_blaster_cache.set.mock_calls
     assert key == "e:1"
     assert event["unprocessed"] is True
     assert duration == 3600
@@ -313,7 +313,7 @@ def test_scrubbing_after_processing(
     default_organization,
     mock_save_event,
     register_plugin,
-    mock_default_cache,
+    mock_legacy_redis_blaster_cache,
     setting_method,
     options_model,
 ):
@@ -348,14 +348,14 @@ def test_scrubbing_after_processing(
         "extra": {"aaa": "remove me"},
     }
 
-    mock_default_cache.get.return_value = data
+    mock_legacy_redis_blaster_cache.get.return_value = data
 
     with Feature({"organizations:datascrubbers-v2": True}):
         # We pass data_has_changed=True to pretend that we've added "extra" attribute
         # to "data" shortly before (e.g. during symbolication).
         process_event(cache_key="e:1", start_time=1, data_has_changed=True)
 
-    ((_, (key, event, duration), _),) = mock_default_cache.set.mock_calls
+    ((_, (key, event, duration), _),) = mock_legacy_redis_blaster_cache.set.mock_calls
     assert key == "e:1"
     assert event["extra"] == {u"aaa": u"[Filtered]", u"aaa2": u"event preprocessor"}
     assert duration == 3600

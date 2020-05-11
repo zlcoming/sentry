@@ -9,7 +9,7 @@ import six
 from django.db import IntegrityError, transaction
 
 from sentry.api.serializers import serialize
-from sentry.cache import default_cache
+from sentry.cache import legacy_redis_blaster_cache
 from sentry.tasks.base import instrumented_task
 from sentry.utils import json
 from sentry.utils.files import get_max_file_size
@@ -65,7 +65,7 @@ def get_assemble_status(task, scope, checksum):
     notice or error message.
     """
     cache_key = _get_cache_key(task, scope, checksum)
-    rv = default_cache.get(cache_key)
+    rv = legacy_redis_blaster_cache.get(cache_key)
     if rv is None:
         return None, None
     return tuple(rv)
@@ -76,7 +76,7 @@ def set_assemble_status(task, scope, checksum, state, detail=None):
     Updates the status of an assembling task. It is cached for 10 minutes.
     """
     cache_key = _get_cache_key(task, scope, checksum)
-    default_cache.set(cache_key, (state, detail), 600)
+    legacy_redis_blaster_cache.set(cache_key, (state, detail), 600)
 
 
 @instrumented_task(name="sentry.tasks.assemble.assemble_dif", queue="assemble")
