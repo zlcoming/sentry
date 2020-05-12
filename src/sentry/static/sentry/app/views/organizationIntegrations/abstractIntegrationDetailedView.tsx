@@ -238,10 +238,10 @@ class AbstractIntegrationDetailedView<
 
   renderAddInstallButton(hideButtonIfDisabled = false) {
     const {organization} = this.props;
-    const {IntegrationDirectoryFeatures} = getIntegrationFeatureGate();
+    const {IntegrationFeatures} = getIntegrationFeatureGate();
 
     return (
-      <IntegrationDirectoryFeatures {...this.featureProps}>
+      <IntegrationFeatures {...this.featureProps}>
         {({disabled, disabledReason}) => (
           <DisableWrapper>
             <Access organization={organization} access={['org:integrations']}>
@@ -263,7 +263,7 @@ class AbstractIntegrationDetailedView<
             {disabled && <DisabledNotice reason={disabledReason} />}
           </DisableWrapper>
         )}
-      </IntegrationDirectoryFeatures>
+      </IntegrationFeatures>
     );
   }
 
