@@ -18,31 +18,36 @@ def dedeupe_emails(email_model):
         AND ue.email != dupe_ue.email
         """
     )
+
     # create pairings of each email so we can figure out which one to delete
-    email_pairings = defaultdict(list)
+    email_pairings = defaultdict(set)
     for user_email in query:
         # make pairing based off user id and lowercase email
         lowercase = user_email.email.lower()
         key = "%d_%s"%(user_email.user_id, lowercase)
-        email_pairings[key].append(user_email)
-        # should never have more than 2 based on the data I've seen
-        if len(email_pairings[key]) > 2:
-            raise Exception("Unexpected email duplicate matches")
+        email_pairings[key].add(user_email)
 
     # for each email, delete 1 email
     # if one is verified but the other is not, delete the unverified one
     # otherwise, just delete the non-lowercase one
-    for email_pair in email_pairings.values():
-        [email1, email2] = email_pair
-        if email1.is_verified and not email2.is_verified:
-            email2.delete()
-        elif not email1.is_verified and email2.is_verified:
-            email1.delete()
+    for email_set in email_pairings.values():
+        email_list = list(email_set)
+
+        primary_emails = filter(lambda x: x.email == x.user.email, email_list)
+        verified_emails = filter(lambda x: x.is_verified, email_list)
+
+        email_to_keep = None
+        if primary_emails:
+            email_to_keep = primary_emails[0]
+        elif verified_emails:
+            email_to_keep = verified_emails[0]
         else:
-            if email1.email == email1.email.lower():
-                email2.delete()
-            else:
-                email1.delete()
+            email_to_keep = email_list[0]
+
+        emails_to_delete = filter(lambda x: x != email_to_keep, email_list)
+        for email in emails_to_delete:
+            print("delete", email)
+            # email.delete()
 
 
 def forwards(apps, schema_editor):
