@@ -13,7 +13,7 @@ export function transactionSummaryRouteWithEventView({
   orgSlug: string;
   transaction: string;
   projectID: string | string[] | undefined;
-  query: Query;
+  query: Query | undefined;
 }) {
   const pathname = generateTransactionSummaryRoute({
     orgSlug,
@@ -24,10 +24,10 @@ export function transactionSummaryRouteWithEventView({
     query: {
       transaction,
       project: projectID,
-      environment: query.environment,
-      statsPeriod: query.statsPeriod,
-      start: query.start,
-      end: query.end,
+      environment: query?.environment,
+      statsPeriod: query?.statsPeriod,
+      start: query?.start,
+      end: query?.end,
     },
   };
 }
