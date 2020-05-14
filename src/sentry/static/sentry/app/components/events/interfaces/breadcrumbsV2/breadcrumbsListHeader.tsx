@@ -22,7 +22,8 @@ export default BreadcrumbsListHeader;
 
 const StyledGridCell = styled(GridCell)`
   border-top: 0;
-  border-bottom: 1px solid ${p => p.theme.borderLight};
+  border-bottom: 0;
+  position: relative;
   background: ${p => p.theme.offWhite};
   color: ${p => p.theme.gray3};
   font-weight: 600;
@@ -33,6 +34,16 @@ const StyledGridCell = styled(GridCell)`
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     padding: ${space(2)} ${space(2)};
     font-size: ${p => p.theme.fontSizeSmall};
+  }
+  :after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: ${p => p.theme.borderDark};
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 `;
 
