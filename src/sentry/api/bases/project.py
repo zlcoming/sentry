@@ -11,7 +11,7 @@ from sentry.api.helpers.environments import get_environments
 from sentry.api.exceptions import ResourceDoesNotExist, ProjectMoved
 from sentry.auth.superuser import is_active_superuser
 from sentry.auth.system import is_system_auth
-from sentry.models import OrganizationMember, Project, ProjectStatus, ProjectRedirect
+from sentry.models import Organization, OrganizationMember, Project, ProjectStatus, ProjectRedirect
 from sentry.utils.sdk import configure_scope, bind_organization_context
 
 from .organization import OrganizationPermission
@@ -56,7 +56,12 @@ class ProjectPermission(OrganizationPermission):
                     .get()
                 )
             except OrganizationMember.DoesNotExist:
-                # this should probably never happen?
+                # if an internal integration token is being used, verify that
+                # the organization owns the internal integration that created the token
+                if Organization.objects.get(id=project.organization_id).owned_sentry_apps.filter(
+                    proxy_user=request.user
+                ):
+                    return True
                 return False
 
             return roles.get(role).is_global
