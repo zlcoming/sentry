@@ -2,15 +2,15 @@ import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import Feature from 'app/components/acl/feature';
-import Button from 'app/components/button';
-import {t} from 'app/locale';
-import {Organization} from 'app/types';
-import withApi from 'app/utils/withApi';
-import FeatureBadge from 'app/components/featureBadge';
-import withOrganization from 'app/utils/withOrganization';
+import {Client} from 'sentry/api';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import Feature from 'sentry/components/acl/feature';
+import Button from 'sentry/components/button';
+import {t} from 'sentry/locale';
+import {Organization} from 'sentry/types';
+import withApi from 'sentry/utils/withApi';
+import FeatureBadge from 'sentry/components/featureBadge';
+import withOrganization from 'sentry/utils/withOrganization';
 
 //! Coordinate with other ExportQueryType (src/sentry/data_export/base.py)
 export enum ExportQueryType {

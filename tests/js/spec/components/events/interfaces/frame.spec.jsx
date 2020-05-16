@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Frame from 'app/components/events/interfaces/frame/frame';
+import Frame from 'sentry/components/events/interfaces/frame/frame';
 
 describe('Frame', function() {
   let data;

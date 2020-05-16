@@ -2,18 +2,18 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {getMergedTasks} from 'app/components/onboardingWizard/taskConfig';
-import {tct, t} from 'app/locale';
-import OnboardingSidebar from 'app/components/onboardingWizard/sidebar';
-import {Organization, OnboardingTaskStatus} from 'app/types';
-import space from 'app/styles/space';
-import theme, {Theme} from 'app/utils/theme';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {getMergedTasks} from 'sentry/components/onboardingWizard/taskConfig';
+import {tct, t} from 'sentry/locale';
+import OnboardingSidebar from 'sentry/components/onboardingWizard/sidebar';
+import {Organization, OnboardingTaskStatus} from 'sentry/types';
+import space from 'sentry/styles/space';
+import theme, {Theme} from 'sentry/utils/theme';
 import ProgressRing, {
   RingBackground,
   RingBar,
   RingText,
-} from 'app/components/progressRing';
+} from 'sentry/components/progressRing';
 
 import {CommonSidebarProps} from './types';
 

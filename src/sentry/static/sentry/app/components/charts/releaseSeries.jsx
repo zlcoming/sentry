@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {getFormattedDate, getUtcDateString} from 'app/utils/dates';
-import {t} from 'app/locale';
-import MarkLine from 'app/components/charts/components/markLine';
-import SentryTypes from 'app/sentryTypes';
-import theme from 'app/utils/theme';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import {escape} from 'app/utils';
-import {formatVersion} from 'app/utils/formatters';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {getFormattedDate, getUtcDateString} from 'sentry/utils/dates';
+import {t} from 'sentry/locale';
+import MarkLine from 'sentry/components/charts/components/markLine';
+import SentryTypes from 'sentry/sentryTypes';
+import theme from 'sentry/utils/theme';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import {escape} from 'sentry/utils';
+import {formatVersion} from 'sentry/utils/formatters';
 
 // This is not an exported action/function because releases list uses AsyncComponent
 // and this is not re-used anywhere else afaict

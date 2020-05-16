@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import AdminQueue from 'app/views/admin/adminQueue';
+import {Client} from 'sentry/api';
+import AdminQueue from 'sentry/views/admin/adminQueue';
 
 // TODO(dcramer): this doesnt really test anything as we need to
 // mock the API Response/wait on it

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {AvatarUser} from 'app/types';
-import SentryTypes from 'app/sentryTypes';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import Tooltip from 'app/components/tooltip';
+import {AvatarUser} from 'sentry/types';
+import SentryTypes from 'sentry/sentryTypes';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import Tooltip from 'sentry/components/tooltip';
 
 const defaultProps = {
   avatarSize: 28,

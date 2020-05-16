@@ -3,18 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-import {selectText} from 'app/utils/selectText';
-import {t} from 'app/locale';
-import AutoSelectText from 'app/components/autoSelectText';
-import Button from 'app/components/button';
-import Clipboard from 'app/components/clipboard';
-import Confirm from 'app/components/confirm';
-import DropdownLink from 'app/components/dropdownLink';
-import FlowLayout from 'app/components/flowLayout';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SpreadLayout from 'app/components/spreadLayout';
-import Switch from 'app/components/switch';
-import {IconCopy, IconRefresh} from 'app/icons';
+import {selectText} from 'sentry/utils/selectText';
+import {t} from 'sentry/locale';
+import AutoSelectText from 'sentry/components/autoSelectText';
+import Button from 'sentry/components/button';
+import Clipboard from 'sentry/components/clipboard';
+import Confirm from 'sentry/components/confirm';
+import DropdownLink from 'sentry/components/dropdownLink';
+import FlowLayout from 'sentry/components/flowLayout';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SpreadLayout from 'sentry/components/spreadLayout';
+import Switch from 'sentry/components/switch';
+import {IconCopy, IconRefresh} from 'sentry/icons';
 
 const BORDER_COLOR = '#dad5df';
 

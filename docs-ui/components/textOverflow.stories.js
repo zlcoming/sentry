@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import TextOverflow from 'app/components/textOverflow';
+import TextOverflow from 'sentry/components/textOverflow';
 
 export default {
   title: 'Style/Text',

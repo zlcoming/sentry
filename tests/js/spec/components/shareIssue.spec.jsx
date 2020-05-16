@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import ShareIssue from 'app/components/shareIssue';
+import ShareIssue from 'sentry/components/shareIssue';
 
 describe('ShareIssue', function() {
   it('renders when not shared', function() {

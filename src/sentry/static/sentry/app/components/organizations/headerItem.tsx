@@ -5,10 +5,10 @@ import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 import omit from 'lodash/omit';
 
-import {IconClose, IconLock, IconChevron, IconInfo, IconSettings} from 'app/icons';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import {IconClose, IconLock, IconChevron, IconInfo, IconSettings} from 'sentry/icons';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 type DefaultProps = {
   allowClear: boolean;

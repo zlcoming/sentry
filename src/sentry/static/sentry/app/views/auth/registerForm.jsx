@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {formFooterClass} from 'app/views/auth/login';
-import {t, tct} from 'app/locale';
-import ConfigStore from 'app/stores/configStore';
-import ExternalLink from 'app/components/links/externalLink';
-import Form from 'app/components/forms/form';
-import PasswordField from 'app/components/forms/passwordField';
-import RadioBooleanField from 'app/components/forms/radioBooleanField';
-import SentryTypes from 'app/sentryTypes';
-import TextField from 'app/components/forms/textField';
+import {formFooterClass} from 'sentry/views/auth/login';
+import {t, tct} from 'sentry/locale';
+import ConfigStore from 'sentry/stores/configStore';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Form from 'sentry/components/forms/form';
+import PasswordField from 'sentry/components/forms/passwordField';
+import RadioBooleanField from 'sentry/components/forms/radioBooleanField';
+import SentryTypes from 'sentry/sentryTypes';
+import TextField from 'sentry/components/forms/textField';
 
 const SubscribeField = () => (
   <RadioBooleanField

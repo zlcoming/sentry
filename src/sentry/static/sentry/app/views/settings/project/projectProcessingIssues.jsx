@@ -2,26 +2,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconQuestion, IconSettings} from 'app/icons';
-import {Panel, PanelAlert, PanelTable} from 'app/components/panels';
-import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
-import {t, tn} from 'app/locale';
-import Access from 'app/components/acl/access';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import AutoSelectText from 'app/components/autoSelectText';
-import Button from 'app/components/button';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import TimeSince from 'app/components/timeSince';
-import formGroups from 'app/data/forms/processingIssues';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {IconQuestion, IconSettings} from 'sentry/icons';
+import {Panel, PanelAlert, PanelTable} from 'sentry/components/panels';
+import {addLoadingMessage, clearIndicators} from 'sentry/actionCreators/indicator';
+import {t, tn} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import AutoSelectText from 'sentry/components/autoSelectText';
+import Button from 'sentry/components/button';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import TimeSince from 'sentry/components/timeSince';
+import formGroups from 'sentry/data/forms/processingIssues';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 const MESSAGES = {
   native_no_crashed_thread: t('No crashed thread found in crash report'),

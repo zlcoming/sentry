@@ -1,12 +1,11 @@
 import React from 'react';
 
 import {mountWithTheme, shallow} from 'sentry-test/enzyme';
+import ConfigStore from 'sentry/stores/configStore';
+import SidebarContainer, {Sidebar} from 'sentry/components/sidebar';
+import * as incidentActions from 'sentry/actionCreators/serviceIncidents';
 
-import ConfigStore from 'app/stores/configStore';
-import SidebarContainer, {Sidebar} from 'app/components/sidebar';
-import * as incidentActions from 'app/actionCreators/serviceIncidents';
-
-jest.mock('app/actionCreators/serviceIncidents');
+jest.mock('sentry/actionCreators/serviceIncidents');
 
 describe('Sidebar', function() {
   let wrapper;

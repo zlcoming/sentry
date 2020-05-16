@@ -2,7 +2,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import {Config} from 'app/types';
+import {Config} from 'sentry/types';
 
 const BOOTSTRAP_URL = '/api/client-config/';
 

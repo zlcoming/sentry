@@ -1,12 +1,12 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {t} from 'app/locale';
-import {PageContent} from 'app/styles/organization';
-import Feature from 'app/components/acl/feature';
-import Alert from 'app/components/alert';
-import withOrganization from 'app/utils/withOrganization';
-import {Organization, Project} from 'app/types';
+import {t} from 'sentry/locale';
+import {PageContent} from 'sentry/styles/organization';
+import Feature from 'sentry/components/acl/feature';
+import Alert from 'sentry/components/alert';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Organization, Project} from 'sentry/types';
 
 type RouteParams = {
   orgId: string;

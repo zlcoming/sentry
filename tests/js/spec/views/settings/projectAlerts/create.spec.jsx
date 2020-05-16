@@ -4,11 +4,10 @@ import React from 'react';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {selectByValue} from 'sentry-test/select-new';
+import ProjectAlerts from 'sentry/views/settings/projectAlerts';
+import ProjectAlertsCreate from 'sentry/views/settings/projectAlerts/create';
 
-import ProjectAlerts from 'app/views/settings/projectAlerts';
-import ProjectAlertsCreate from 'app/views/settings/projectAlerts/create';
-
-jest.unmock('app/utils/recreateRoute');
+jest.unmock('sentry/utils/recreateRoute');
 
 describe('ProjectAlertsCreate', function() {
   const projectAlertRuleDetailsRoutes = [

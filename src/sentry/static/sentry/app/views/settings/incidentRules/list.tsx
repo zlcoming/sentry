@@ -4,16 +4,16 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {IconDelete, IconEdit} from 'app/icons';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {IconDelete, IconEdit} from 'sentry/icons';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
 
 import {SavedIncidentRule} from './types';
 import {deleteRule} from './actions';

@@ -8,19 +8,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import CircleIndicator from 'app/components/circleIndicator';
-import DateTime from 'app/components/dateTime';
-import RecoveryCodes from 'app/views/settings/account/accountSecurity/components/recoveryCodes';
-import RemoveConfirm from 'app/views/settings/account/accountSecurity/components/removeConfirm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import Tooltip from 'app/components/tooltip';
-import U2fEnrolledDetails from 'app/views/settings/account/accountSecurity/components/u2fEnrolledDetails';
-import space from 'app/styles/space';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import CircleIndicator from 'sentry/components/circleIndicator';
+import DateTime from 'sentry/components/dateTime';
+import RecoveryCodes from 'sentry/views/settings/account/accountSecurity/components/recoveryCodes';
+import RemoveConfirm from 'sentry/views/settings/account/accountSecurity/components/removeConfirm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import Tooltip from 'sentry/components/tooltip';
+import U2fEnrolledDetails from 'sentry/views/settings/account/accountSecurity/components/u2fEnrolledDetails';
+import space from 'sentry/styles/space';
 
 const ENDPOINT = '/users/me/authenticators/';
 

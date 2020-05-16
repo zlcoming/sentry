@@ -8,20 +8,20 @@ import {
   PanelBody,
   PanelHeader,
   PanelItem,
-} from 'app/components/panels';
-import {t} from 'app/locale';
-import Access from 'app/components/acl/access';
-import AsyncComponent from 'app/components/asyncComponent';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import FieldFromConfig from 'app/views/settings/components/forms/fieldFromConfig';
-import Form from 'app/views/settings/components/forms/form';
-import FormField from 'app/views/settings/components/forms/formField';
-import HookStore from 'app/stores/hookStore';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import SentryTypes from 'app/sentryTypes';
-import Switch from 'app/components/switch';
-import filterGroups, {customFilterFields} from 'app/data/forms/inboundFilters';
+} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import FieldFromConfig from 'sentry/views/settings/components/forms/fieldFromConfig';
+import Form from 'sentry/views/settings/components/forms/form';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import HookStore from 'sentry/stores/hookStore';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import SentryTypes from 'sentry/sentryTypes';
+import Switch from 'sentry/components/switch';
+import filterGroups, {customFilterFields} from 'sentry/data/forms/inboundFilters';
 
 const LEGACY_BROWSER_SUBFILTERS = {
   ie_pre_9: {

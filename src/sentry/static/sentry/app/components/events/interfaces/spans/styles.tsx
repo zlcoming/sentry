@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
 
 export const zIndex = {
   minimapContainer: theme.zIndex.traceView.minimapContainer,

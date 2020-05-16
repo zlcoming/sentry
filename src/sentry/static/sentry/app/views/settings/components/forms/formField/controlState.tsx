@@ -1,9 +1,9 @@
 import {Observer} from 'mobx-react';
 import React from 'react';
 
-import ControlState from 'app/views/settings/components/forms/field/controlState';
-import FormState from 'app/components/forms/state';
-import FormModel from 'app/views/settings/components/forms/model';
+import ControlState from 'sentry/views/settings/components/forms/field/controlState';
+import FormState from 'sentry/components/forms/state';
+import FormModel from 'sentry/views/settings/components/forms/model';
 
 type Props = {
   model: FormModel;

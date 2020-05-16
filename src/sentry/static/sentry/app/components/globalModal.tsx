@@ -5,9 +5,9 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import {closeModal, ModalRenderProps, ModalOptions} from 'app/actionCreators/modal';
-import Confirm from 'app/components/confirm';
-import ModalStore from 'app/stores/modalStore';
+import {closeModal, ModalRenderProps, ModalOptions} from 'sentry/actionCreators/modal';
+import Confirm from 'sentry/components/confirm';
+import ModalStore from 'sentry/stores/modalStore';
 
 type DefaultProps = {
   options: ModalOptions;

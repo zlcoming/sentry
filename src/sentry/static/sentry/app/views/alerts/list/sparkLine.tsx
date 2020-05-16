@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IncidentStats} from 'app/views/alerts/types';
-import Placeholder from 'app/components/placeholder';
-import theme from 'app/utils/theme';
+import {IncidentStats} from 'sentry/views/alerts/types';
+import Placeholder from 'sentry/components/placeholder';
+import theme from 'sentry/utils/theme';
 
 // Height of sparkline
 const SPARKLINE_HEIGHT = 38;
@@ -15,10 +15,10 @@ type Props = {
 };
 
 const Sparklines = React.lazy(() =>
-  import(/* webpackChunkName: "Sparklines" */ 'app/components/sparklines')
+  import(/* webpackChunkName: "Sparklines" */ 'sentry/components/sparklines')
 );
 const SparklinesLine = React.lazy(() =>
-  import(/* webpackChunkName: "SparklinesLine" */ 'app/components/sparklines/line')
+  import(/* webpackChunkName: "SparklinesLine" */ 'sentry/components/sparklines/line')
 );
 
 class SparkLine extends React.Component<Props> {

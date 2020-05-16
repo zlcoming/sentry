@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import AccountSecuritySessionHistory from 'app/views/settings/account/accountSecurity/accountSecuritySessionHistory';
+import {Client} from 'sentry/api';
+import AccountSecuritySessionHistory from 'sentry/views/settings/account/accountSecurity/accountSecuritySessionHistory';
 
 const ENDPOINT = '/users/me/ips/';
 const ORG_ENDPOINT = '/organizations/';

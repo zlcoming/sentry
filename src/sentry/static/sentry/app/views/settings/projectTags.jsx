@@ -1,21 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import Access from 'app/components/acl/access';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import {IconDelete} from 'app/icons';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ExternalLink from 'app/components/links/externalLink';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import Tooltip from 'app/components/tooltip';
-import routeTitleGen from 'app/utils/routeTitle';
-import space from 'app/styles/space';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import {IconDelete} from 'sentry/icons';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ExternalLink from 'sentry/components/links/externalLink';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import Tooltip from 'sentry/components/tooltip';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import space from 'sentry/styles/space';
 
 export default class ProjectTags extends AsyncView {
   getEndpoints() {

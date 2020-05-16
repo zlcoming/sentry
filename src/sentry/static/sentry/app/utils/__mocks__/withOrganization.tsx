@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SentryTypes from 'app/sentryTypes';
+import SentryTypes from 'sentry/sentryTypes';
 
 declare const TestStubs;
 

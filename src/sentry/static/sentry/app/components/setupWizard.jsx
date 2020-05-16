@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Client} from 'app/api';
-import LoadingIndicator from 'app/components/loadingIndicator';
+import {Client} from 'sentry/api';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
 
 class SetupWizard extends React.Component {
   static propTypes = {

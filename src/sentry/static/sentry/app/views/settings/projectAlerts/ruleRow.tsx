@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IssueAlertRule} from 'app/types/alerts';
+import {IssueAlertRule} from 'sentry/types/alerts';
 import {
   SavedIncidentRule,
   AlertRuleThresholdType,
-} from 'app/views/settings/incidentRules/types';
-import {getDisplayName} from 'app/utils/environment';
-import {t, tct} from 'app/locale';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
+} from 'sentry/views/settings/incidentRules/types';
+import {getDisplayName} from 'sentry/utils/environment';
+import {t, tct} from 'sentry/locale';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
 
 function isIssueAlert(data: IssueAlertRule | SavedIncidentRule): data is IssueAlertRule {
   return !data.hasOwnProperty('triggers');

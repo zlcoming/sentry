@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ActivityItem from 'app/components/activity/item';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
+import ActivityItem from 'sentry/components/activity/item';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
 
 const ActivityPlaceholder = () => (
   <ActivityItem

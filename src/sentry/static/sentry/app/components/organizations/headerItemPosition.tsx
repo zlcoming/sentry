@@ -1,9 +1,9 @@
 import {css} from '@emotion/core';
 import styled from '@emotion/styled';
 
-import {Theme} from 'app/utils/theme';
-import {AutoCompleteRoot} from 'app/components/dropdownAutoCompleteMenu';
-import {TimeRangeRoot} from 'app/components/organizations/timeRangeSelector/index';
+import {Theme} from 'sentry/utils/theme';
+import {AutoCompleteRoot} from 'sentry/components/dropdownAutoCompleteMenu';
+import {TimeRangeRoot} from 'sentry/components/organizations/timeRangeSelector/index';
 
 type Props = {
   isSpacer?: boolean;

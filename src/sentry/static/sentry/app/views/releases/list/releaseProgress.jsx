@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import {analytics} from 'app/utils/analytics';
-import AsyncComponent from 'app/components/asyncComponent';
-import Button from 'app/components/button';
-import {PanelItem} from 'app/components/panels';
-import {promptsUpdate} from 'app/actionCreators/prompts';
-import {snoozedDays} from 'app/utils/promptsActivity';
-import withOrganization from 'app/utils/withOrganization';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import {analytics} from 'sentry/utils/analytics';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Button from 'sentry/components/button';
+import {PanelItem} from 'sentry/components/panels';
+import {promptsUpdate} from 'sentry/actionCreators/prompts';
+import {snoozedDays} from 'sentry/utils/promptsActivity';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import ProgressBar from './progressBar';
 

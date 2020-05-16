@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {Color} from 'app/utils/theme';
-import space from 'app/styles/space';
+import {Color} from 'sentry/utils/theme';
+import space from 'sentry/styles/space';
 
 // TODO(style): the color #fffcfb and  #e7c0bc are not yet in theme and no similar theme's color was found.
 const BreadCrumb = styled('li')<{hasError?: boolean}>`

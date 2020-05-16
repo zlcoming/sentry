@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {HeaderTitle} from 'app/styles/organization';
+import space from 'sentry/styles/space';
+import {HeaderTitle} from 'sentry/styles/organization';
 
 type Props = {
   // The title

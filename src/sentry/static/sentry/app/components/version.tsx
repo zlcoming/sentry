@@ -4,17 +4,17 @@ import styled from '@emotion/styled';
 import {withRouter} from 'react-router';
 import {WithRouterProps} from 'react-router/lib/withRouter';
 
-import {Organization} from 'app/types';
-import SentryTypes from 'app/sentryTypes';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import Link from 'app/components/links/link';
-import Tooltip from 'app/components/tooltip';
-import {IconCopy} from 'app/icons';
-import Clipboard from 'app/components/clipboard';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import {formatVersion} from 'app/utils/formatters';
-import withOrganization from 'app/utils/withOrganization';
+import {Organization} from 'sentry/types';
+import SentryTypes from 'sentry/sentryTypes';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import Link from 'sentry/components/links/link';
+import Tooltip from 'sentry/components/tooltip';
+import {IconCopy} from 'sentry/icons';
+import Clipboard from 'sentry/components/clipboard';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import {formatVersion} from 'sentry/utils/formatters';
+import withOrganization from 'sentry/utils/withOrganization';
 
 type Props = {
   /**

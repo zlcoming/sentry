@@ -3,32 +3,32 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 
-import Access from 'app/components/acl/access';
-import Alert, {Props as AlertProps} from 'app/components/alert';
-import AsyncComponent from 'app/components/asyncComponent';
-import ExternalLink from 'app/components/links/externalLink';
-import {Panel} from 'app/components/panels';
-import Tooltip from 'app/components/tooltip';
-import {IconClose, IconDocs, IconGeneric, IconGithub, IconProject} from 'app/icons';
-import {t} from 'app/locale';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import space from 'app/styles/space';
+import Access from 'sentry/components/acl/access';
+import Alert, {Props as AlertProps} from 'sentry/components/alert';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {Panel} from 'sentry/components/panels';
+import Tooltip from 'sentry/components/tooltip';
+import {IconClose, IconDocs, IconGeneric, IconGithub, IconProject} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import space from 'sentry/styles/space';
 import {
   IntegrationFeature,
   IntegrationInstallationStatus,
   IntegrationType,
   Organization,
   SentryAppStatus,
-} from 'app/types';
+} from 'sentry/types';
 import {
   getCategories,
   getIntegrationFeatureGate,
   SingleIntegrationEvent,
   trackIntegrationEvent,
-} from 'app/utils/integrationUtil';
-import marked, {singleLineRenderer} from 'app/utils/marked';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import Tag from 'app/views/settings/components/tag';
+} from 'sentry/utils/integrationUtil';
+import marked, {singleLineRenderer} from 'sentry/utils/marked';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import Tag from 'sentry/views/settings/components/tag';
 
 import IntegrationStatus from './integrationStatus';
 import RequestIntegrationButton from './integrationRequest/RequestIntegrationButton';

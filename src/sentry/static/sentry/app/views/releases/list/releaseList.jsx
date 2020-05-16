@@ -4,14 +4,14 @@ import styled from '@emotion/styled';
 import uniq from 'lodash/uniq';
 import flatten from 'lodash/flatten';
 
-import {PanelItem} from 'app/components/panels';
-import Count from 'app/components/count';
-import ReleaseStats from 'app/components/releaseStats';
-import TimeSince from 'app/components/timeSince';
-import Version from 'app/components/version';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import Projects from 'app/utils/projects';
+import {PanelItem} from 'sentry/components/panels';
+import Count from 'sentry/components/count';
+import ReleaseStats from 'sentry/components/releaseStats';
+import TimeSince from 'sentry/components/timeSince';
+import Version from 'sentry/components/version';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import Projects from 'sentry/utils/projects';
 
 import {
   LastEventColumn,

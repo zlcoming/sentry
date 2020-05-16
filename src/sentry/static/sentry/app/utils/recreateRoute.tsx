@@ -2,7 +2,7 @@ import {Location} from 'history';
 import {PlainRoute} from 'react-router/lib/Route';
 import findLastIndex from 'lodash/findLastIndex';
 
-import replaceRouterParams from 'app/utils/replaceRouterParams';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
 
 type Options = {
   routes: PlainRoute[];

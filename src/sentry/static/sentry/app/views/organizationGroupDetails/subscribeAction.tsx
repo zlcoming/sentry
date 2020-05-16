@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import {Group} from 'app/types';
-import SentryTypes from 'app/sentryTypes';
-import {IconBell} from 'app/icons';
-import {t} from 'app/locale';
-import Tooltip from 'app/components/tooltip';
+import {Group} from 'sentry/types';
+import SentryTypes from 'sentry/sentryTypes';
+import {IconBell} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import Tooltip from 'sentry/components/tooltip';
 
 import {getSubscriptionReason} from './utils';
 

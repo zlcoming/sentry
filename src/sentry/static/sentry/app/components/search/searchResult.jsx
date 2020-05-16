@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import IdBadge from 'app/components/idBadge';
-import {IconInput, IconLink, IconSettings} from 'app/icons';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import SettingsSearch from 'app/views/settings/components/settingsSearch';
-import highlightFuseMatches from 'app/utils/highlightFuseMatches';
+import IdBadge from 'sentry/components/idBadge';
+import {IconInput, IconLink, IconSettings} from 'sentry/icons';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import SettingsSearch from 'sentry/views/settings/components/settingsSearch';
+import highlightFuseMatches from 'sentry/utils/highlightFuseMatches';
 
 class SearchResult extends React.Component {
   static propTypes = {

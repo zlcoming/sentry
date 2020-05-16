@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
-
-import CheckboxFancy from 'app/components/checkboxFancy/checkboxFancy';
+import CheckboxFancy from 'sentry/components/checkboxFancy/checkboxFancy';
 
 describe('CheckboxFancy', function() {
   it('renders', function() {

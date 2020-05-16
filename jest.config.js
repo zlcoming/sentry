@@ -12,10 +12,10 @@ module.exports = {
     '^sentry-test/(.*)': '<rootDir>/tests/js/sentry-test/$1',
     '\\.(css|less|png|jpg|mp4)$': '<rootDir>/tests/js/sentry-test/importStyleMock.js',
     '\\.(svg)$': '<rootDir>/tests/js/sentry-test/svgMock.js',
+    '^sentry/(.*)': '<rootDir>/src/sentry/static/sentry/app/$1',
     'integration-docs-platforms':
       '<rootDir>/tests/fixtures/integration-docs/_platforms.json',
   },
-  modulePaths: ['<rootDir>/src/sentry/static/sentry'],
   modulePathIgnorePatterns: ['<rootDir>/src/sentry/static/sentry/dist'],
   setupFiles: [
     '<rootDir>/src/sentry/static/sentry/app/utils/silence-react-unsafe-warnings.js',

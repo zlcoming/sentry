@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Avatar from 'app/components/avatar';
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import SentryTypes from 'app/sentryTypes';
+import Avatar from 'sentry/components/avatar';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import SentryTypes from 'sentry/sentryTypes';
 
 const BasicModelShape = PropTypes.shape({slug: PropTypes.string});
 

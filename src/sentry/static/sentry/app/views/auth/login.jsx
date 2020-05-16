@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NavTabs from 'app/components/navTabs';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+import {t} from 'sentry/locale';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NavTabs from 'sentry/components/navTabs';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';

@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {AVATAR_URL_MAP} from 'app/constants';
-import {t, tct} from 'app/locale';
-import Well from 'app/components/well';
-import {AvatarUser} from 'app/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {AVATAR_URL_MAP} from 'sentry/constants';
+import {t, tct} from 'sentry/locale';
+import Well from 'sentry/components/well';
+import {AvatarUser} from 'sentry/types';
 
 const resizerPositions = {
   nw: ['top', 'left'],

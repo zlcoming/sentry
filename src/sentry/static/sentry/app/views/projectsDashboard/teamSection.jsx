@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import PageHeading from 'app/components/pageHeading';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import PageHeading from 'sentry/components/pageHeading';
 
 import TeamMembers from './teamMembers';
 import ProjectCard from './projectCard';

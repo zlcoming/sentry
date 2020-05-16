@@ -3,31 +3,31 @@ import * as ReactRouter from 'react-router';
 import styled from '@emotion/styled';
 import {Location} from 'history';
 
-import {Client} from 'app/api';
-import {t} from 'app/locale';
-import {LightWeightOrganization} from 'app/types';
-import EventView from 'app/utils/discover/eventView';
-import ChartZoom from 'app/components/charts/chartZoom';
-import LineChart from 'app/components/charts/lineChart';
-import ErrorPanel from 'app/components/charts/errorPanel';
-import EventsRequest from 'app/components/charts/eventsRequest';
-import QuestionTooltip from 'app/components/questionTooltip';
-import {SectionHeading} from 'app/components/charts/styles';
-import TransparentLoadingMask from 'app/components/charts/transparentLoadingMask';
-import TransitionChart from 'app/components/charts/transitionChart';
-import {getInterval} from 'app/components/charts/utils';
-import {IconWarning} from 'app/icons';
-import {getTermHelp} from 'app/views/performance/data';
-import {getUtcToLocalDateObject} from 'app/utils/dates';
+import {Client} from 'sentry/api';
+import {t} from 'sentry/locale';
+import {LightWeightOrganization} from 'sentry/types';
+import EventView from 'sentry/utils/discover/eventView';
+import ChartZoom from 'sentry/components/charts/chartZoom';
+import LineChart from 'sentry/components/charts/lineChart';
+import ErrorPanel from 'sentry/components/charts/errorPanel';
+import EventsRequest from 'sentry/components/charts/eventsRequest';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import {SectionHeading} from 'sentry/components/charts/styles';
+import TransparentLoadingMask from 'sentry/components/charts/transparentLoadingMask';
+import TransitionChart from 'sentry/components/charts/transitionChart';
+import {getInterval} from 'sentry/components/charts/utils';
+import {IconWarning} from 'sentry/icons';
+import {getTermHelp} from 'sentry/views/performance/data';
+import {getUtcToLocalDateObject} from 'sentry/utils/dates';
 import {
   formatAbbreviatedNumber,
   formatFloat,
   formatPercentage,
-} from 'app/utils/formatters';
-import {decodeScalar} from 'app/utils/queryString';
-import theme from 'app/utils/theme';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+} from 'sentry/utils/formatters';
+import {decodeScalar} from 'sentry/utils/queryString';
+import theme from 'sentry/utils/theme';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 type Props = ReactRouter.WithRouterProps & {
   api: Client;

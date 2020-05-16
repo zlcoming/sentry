@@ -1,6 +1,6 @@
-import {KeyValueListData} from 'app/components/events/interfaces/keyValueList/types';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {defined} from 'app/utils';
+import {KeyValueListData} from 'sentry/components/events/interfaces/keyValueList/types';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {defined} from 'sentry/utils';
 
 import getGpuKnownDataDetails from './getGPUKnownDataDetails';
 import {GPUData, GPUKnownDataType} from './types';

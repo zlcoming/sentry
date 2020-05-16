@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten';
 import flatMap from 'lodash/flatMap';
 
-import FormSearchActions from 'app/actions/formSearchActions';
+import FormSearchActions from 'sentry/actions/formSearchActions';
 
 /**
  * Creates a list of objects to be injected by a search source

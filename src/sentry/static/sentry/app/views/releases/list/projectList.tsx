@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {tct, t} from 'app/locale';
-import ProjectBadge from 'app/components/idBadge/projectBadge';
-import {Project} from 'app/types';
-import space from 'app/styles/space';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import Hovercard, {Body as HoverCardBody} from 'app/components/hovercard';
+import {tct, t} from 'sentry/locale';
+import ProjectBadge from 'sentry/components/idBadge/projectBadge';
+import {Project} from 'sentry/types';
+import space from 'sentry/styles/space';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import Hovercard, {Body as HoverCardBody} from 'sentry/components/hovercard';
 
 const MAX_PROJECTS_IN_HOVERCARD = 5;
 

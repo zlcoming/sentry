@@ -2,17 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import flatten from 'lodash/flatten';
 
-import {defined, objectIsEmpty} from 'app/utils';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import Input from 'app/views/settings/components/forms/controls/input';
-import InputField from 'app/views/settings/components/forms/inputField';
-import space from 'app/styles/space';
-import {IconAdd, IconDelete} from 'app/icons';
-import Confirm from 'app/components/confirm';
-import Alert from 'app/components/alert';
-import {singleLineRenderer} from 'app/utils/marked';
-import {TableType} from 'app/views/settings/components/forms/type';
+import {defined, objectIsEmpty} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import InputField from 'sentry/views/settings/components/forms/inputField';
+import space from 'sentry/styles/space';
+import {IconAdd, IconDelete} from 'sentry/icons';
+import Confirm from 'sentry/components/confirm';
+import Alert from 'sentry/components/alert';
+import {singleLineRenderer} from 'sentry/utils/marked';
+import {TableType} from 'sentry/views/settings/components/forms/type';
 
 const defaultProps = {
   /**

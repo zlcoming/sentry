@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Client} from 'app/api';
-import getDisplayName from 'app/utils/getDisplayName';
+import {Client} from 'sentry/api';
+import getDisplayName from 'sentry/utils/getDisplayName';
 
 type InjectedApiProps = {
   api: Client;

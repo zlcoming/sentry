@@ -8,17 +8,17 @@ import {
   PanelBody,
   PanelHeader,
   PanelItem,
-} from 'app/components/panels';
-import {addMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {openModal} from 'app/actionCreators/modal';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import {IconFlag} from 'app/icons';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
+} from 'sentry/components/panels';
+import {addMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {openModal} from 'sentry/actionCreators/modal';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import {IconFlag} from 'sentry/icons';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
 
 const BYE_URL = '/';
 const leaveRedirect = () => (window.location.href = BYE_URL);

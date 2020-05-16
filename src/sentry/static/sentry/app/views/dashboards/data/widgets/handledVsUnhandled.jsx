@@ -1,4 +1,4 @@
-import {WIDGET_DISPLAY} from 'app/views/dashboards/constants';
+import {WIDGET_DISPLAY} from 'sentry/views/dashboards/constants';
 
 import handledVsUnhandledQuery from '../queries/handledVsUnhandled';
 

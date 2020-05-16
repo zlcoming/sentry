@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Color} from 'app/utils/theme';
-import HttpRenderer from 'app/components/events/interfaces/breadcrumbs/httpRenderer';
-import ErrorRenderer from 'app/components/events/interfaces/breadcrumbs/errorRenderer';
-import DefaultRenderer from 'app/components/events/interfaces/breadcrumbs/defaultRenderer';
+import {Color} from 'sentry/utils/theme';
+import HttpRenderer from 'sentry/components/events/interfaces/breadcrumbs/httpRenderer';
+import ErrorRenderer from 'sentry/components/events/interfaces/breadcrumbs/errorRenderer';
+import DefaultRenderer from 'sentry/components/events/interfaces/breadcrumbs/defaultRenderer';
 import {
   IconInfo,
   IconLocation,
@@ -11,7 +11,7 @@ import {
   IconTerminal,
   IconUser,
   IconWarning,
-} from 'app/icons';
+} from 'sentry/icons';
 
 import {Breadcrumb, BreadcrumbType} from './types';
 

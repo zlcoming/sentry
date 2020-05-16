@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import IssueList from 'app/components/issueList';
-import {Panel, PanelBody, PanelItem} from 'app/components/panels';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
+import IssueList from 'sentry/components/issueList';
+import {Panel, PanelBody, PanelItem} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
 
 export default class ReleaseIssues extends React.Component {
   static propTypes = {

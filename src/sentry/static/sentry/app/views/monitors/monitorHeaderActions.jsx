@@ -7,16 +7,16 @@ import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {logException} from 'app/utils/logging';
-import {t} from 'app/locale';
-import ButtonBar from 'app/components/buttonBar';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import {IconDelete, IconEdit} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import withApi from 'app/utils/withApi';
-import space from 'app/styles/space';
+} from 'sentry/actionCreators/indicator';
+import {logException} from 'sentry/utils/logging';
+import {t} from 'sentry/locale';
+import ButtonBar from 'sentry/components/buttonBar';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import {IconDelete, IconEdit} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import space from 'sentry/styles/space';
 
 class MonitorHeaderActions extends React.Component {
   static propTypes = {

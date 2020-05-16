@@ -1,5 +1,5 @@
-import {isNativePlatform} from 'app/utils/platform';
-import {Event, Group} from 'app/types';
+import {isNativePlatform} from 'sentry/utils/platform';
+import {Event, Group} from 'sentry/types';
 
 /**
  * Extract the display message from an event.

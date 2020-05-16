@@ -1,17 +1,17 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import Link from 'app/components/links/link';
-import {t, tct} from 'app/locale';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import Form from 'app/views/settings/components/forms/form';
-import {fields} from 'app/data/forms/projectGeneralSettings';
-import ProjectActions from 'app/actions/projectActions';
-import {Organization, Project} from 'app/types';
-import withProject from 'app/utils/withProject';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import Link from 'sentry/components/links/link';
+import {t, tct} from 'sentry/locale';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import Form from 'sentry/views/settings/components/forms/form';
+import {fields} from 'sentry/data/forms/projectGeneralSettings';
+import ProjectActions from 'sentry/actions/projectActions';
+import {Organization, Project} from 'sentry/types';
+import withProject from 'sentry/utils/withProject';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
 
 import DataScrubbing from '../components/dataScrubbing';
 

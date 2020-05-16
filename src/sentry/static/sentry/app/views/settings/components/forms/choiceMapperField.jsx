@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {defined, objectIsEmpty} from 'app/utils';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import DropdownButton from 'app/components/dropdownButton';
-import InputField from 'app/views/settings/components/forms/inputField';
-import SelectControl from 'app/components/forms/selectControl';
-import {IconAdd, IconDelete} from 'app/icons';
-import space from 'app/styles/space';
+import {defined, objectIsEmpty} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import DropdownButton from 'sentry/components/dropdownButton';
+import InputField from 'sentry/views/settings/components/forms/inputField';
+import SelectControl from 'sentry/components/forms/selectControl';
+import {IconAdd, IconDelete} from 'sentry/icons';
+import space from 'sentry/styles/space';
 
 const selectControlShape = PropTypes.shape(SelectControl.propTypes);
 

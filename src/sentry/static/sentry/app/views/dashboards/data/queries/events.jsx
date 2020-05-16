@@ -1,7 +1,7 @@
 /**
  * Events by day
  */
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const events = {
   name: t('Events'),

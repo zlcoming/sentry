@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {number, text, boolean, array} from '@storybook/addon-knobs';
 
-import TableChart from 'app/components/charts/tableChart';
+import TableChart from 'sentry/components/charts/tableChart';
 
 export default {
   title: 'Charts/TableChart',

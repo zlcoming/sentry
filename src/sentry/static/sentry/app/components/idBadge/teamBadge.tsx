@@ -4,12 +4,12 @@ import React from 'react';
 import Reflux from 'reflux';
 import PropTypes from 'prop-types';
 
-import BaseBadge from 'app/components/idBadge/baseBadge';
-import BadgeDisplayName from 'app/components/idBadge/badgeDisplayName';
-import TeamAvatar from 'app/components/avatar/teamAvatar';
-import SentryTypes from 'app/sentryTypes';
-import TeamStore from 'app/stores/teamStore';
-import {Team} from 'app/types';
+import BaseBadge from 'sentry/components/idBadge/baseBadge';
+import BadgeDisplayName from 'sentry/components/idBadge/badgeDisplayName';
+import TeamAvatar from 'sentry/components/avatar/teamAvatar';
+import SentryTypes from 'sentry/sentryTypes';
+import TeamStore from 'sentry/stores/teamStore';
+import {Team} from 'sentry/types';
 
 type DefaultProps = {
   avatarSize: TeamAvatar['props']['size'];

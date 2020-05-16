@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import EventMessage from 'app/components/events/eventMessage';
-import space from 'app/styles/space';
-import {Group} from 'app/types';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import EventMessage from 'sentry/components/events/eventMessage';
+import space from 'sentry/styles/space';
+import {Group} from 'sentry/types';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 type Props = {
   group: Group;

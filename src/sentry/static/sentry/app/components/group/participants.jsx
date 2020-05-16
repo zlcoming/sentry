@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import UserAvatar from 'app/components/avatar/userAvatar';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
 
 const GroupParticipants = props => {
   const participants = props.participants;

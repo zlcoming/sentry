@@ -3,12 +3,12 @@ import * as ReactRouter from 'react-router';
 import max from 'lodash/max';
 import min from 'lodash/min';
 
-import {Series} from 'app/types/echarts';
-import AreaChart from 'app/components/charts/areaChart';
-import ChartZoom from 'app/components/charts/chartZoom';
-import {aggregateOutputType} from 'app/utils/discover/fields';
-import {tooltipFormatter, axisLabelFormatter} from 'app/utils/discover/charts';
-import theme from 'app/utils/theme';
+import {Series} from 'sentry/types/echarts';
+import AreaChart from 'sentry/components/charts/areaChart';
+import ChartZoom from 'sentry/components/charts/chartZoom';
+import {aggregateOutputType} from 'sentry/utils/discover/fields';
+import {tooltipFormatter, axisLabelFormatter} from 'sentry/utils/discover/charts';
+import theme from 'sentry/utils/theme';
 
 type Props = {
   data: Series[];

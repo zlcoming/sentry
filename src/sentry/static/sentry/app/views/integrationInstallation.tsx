@@ -2,21 +2,21 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Organization, IntegrationProvider, Integration} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
+import {Organization, IntegrationProvider, Integration} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
 import {
   trackIntegrationEvent,
   getIntegrationFeatureGate,
-} from 'app/utils/integrationUtil';
-import AddIntegration from 'app/views/organizationIntegrations/addIntegration';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Field from 'app/views/settings/components/forms/field';
-import {IconFlag} from 'app/icons';
-import NarrowLayout from 'app/components/narrowLayout';
-import SelectControl from 'app/components/forms/selectControl';
+} from 'sentry/utils/integrationUtil';
+import AddIntegration from 'sentry/views/organizationIntegrations/addIntegration';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Field from 'sentry/views/settings/components/forms/field';
+import {IconFlag} from 'sentry/icons';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import SelectControl from 'sentry/components/forms/selectControl';
 
 type Props = RouteComponentProps<{providerId: string; installationId: string}, {}>;
 

@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {UserReport} from 'app/types';
-import SentryTypes from 'app/sentryTypes';
-import {nl2br, escape} from 'app/utils';
-import {t} from 'app/locale';
-import ActivityAuthor from 'app/components/activity/author';
-import ActivityItem from 'app/components/activity/item';
-import Clipboard from 'app/components/clipboard';
-import {IconCopy} from 'app/icons';
-import Link from 'app/components/links/link';
-import space from 'app/styles/space';
+import {UserReport} from 'sentry/types';
+import SentryTypes from 'sentry/sentryTypes';
+import {nl2br, escape} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import ActivityAuthor from 'sentry/components/activity/author';
+import ActivityItem from 'sentry/components/activity/item';
+import Clipboard from 'sentry/components/clipboard';
+import {IconCopy} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import space from 'sentry/styles/space';
 
 type Props = {
   report: UserReport;

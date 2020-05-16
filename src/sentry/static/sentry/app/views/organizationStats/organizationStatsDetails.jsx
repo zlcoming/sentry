@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {intcomma} from 'app/utils';
-import {t} from 'app/locale';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import ProjectTable from 'app/views/organizationStats/projectTable';
-import StackedBarChart from 'app/components/stackedBarChart';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import PageHeading from 'app/components/pageHeading';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {intcomma} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import ProjectTable from 'sentry/views/organizationStats/projectTable';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import PageHeading from 'sentry/components/pageHeading';
 import {
   ProjectTableLayout,
   ProjectTableDataElement,
-} from 'app/views/organizationStats/projectTableLayout';
-import {PageContent} from 'app/styles/organization';
-import PerformanceAlert from 'app/views/organizationStats/performanceAlert';
+} from 'sentry/views/organizationStats/projectTableLayout';
+import {PageContent} from 'sentry/styles/organization';
+import PerformanceAlert from 'sentry/views/organizationStats/performanceAlert';
 
 class OrganizationStats extends React.Component {
   static propTypes = {

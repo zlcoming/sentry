@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as Sentry from '@sentry/react';
 
-import NoteInput from 'app/components/activity/note/input';
-import localStorage from 'app/utils/localStorage';
+import NoteInput from 'sentry/components/activity/note/input';
+import localStorage from 'sentry/utils/localStorage';
 
 class NoteInputWithStorage extends React.Component {
   static propTypes = {

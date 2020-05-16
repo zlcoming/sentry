@@ -2,8 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {ReleaseProgress} from 'app/views/releases/list/releaseProgress';
+import {ReleaseProgress} from 'sentry/views/releases/list/releaseProgress';
 
 describe('ReleaseProgress', function() {
   let wrapper, organization, project, getPromptsMock, putMock, routerContext;

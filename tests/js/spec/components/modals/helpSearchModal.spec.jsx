@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {openHelpSearchModal} from 'app/actionCreators/modal';
-import App from 'app/views/app';
+import {openHelpSearchModal} from 'sentry/actionCreators/modal';
+import App from 'sentry/views/app';
 
 describe('Docs Search Modal', function() {
   beforeEach(function() {

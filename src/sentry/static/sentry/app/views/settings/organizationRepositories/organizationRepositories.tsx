@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Params} from 'react-router/lib/Router';
 
-import {Repository, RepositoryStatus} from 'app/types';
-import {Client} from 'app/api';
-import {t, tct} from 'app/locale';
-import AlertLink from 'app/components/alertLink';
-import Button from 'app/components/button';
-import RepositoryRow from 'app/components/repositoryRow';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {IconCommit} from 'app/icons';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
+import {Repository, RepositoryStatus} from 'sentry/types';
+import {Client} from 'sentry/api';
+import {t, tct} from 'sentry/locale';
+import AlertLink from 'sentry/components/alertLink';
+import Button from 'sentry/components/button';
+import RepositoryRow from 'sentry/components/repositoryRow';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {IconCommit} from 'sentry/icons';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
 
 type Props = {
   itemList: Repository[];

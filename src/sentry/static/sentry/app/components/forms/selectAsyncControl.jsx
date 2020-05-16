@@ -2,10 +2,10 @@ import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {Client} from 'app/api';
-import handleXhrErrorResponse from 'app/utils/handleXhrErrorResponse';
+import {t} from 'sentry/locale';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {Client} from 'sentry/api';
+import handleXhrErrorResponse from 'sentry/utils/handleXhrErrorResponse';
 
 import SelectControl from './selectControl';
 

@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 
-import withApi from 'app/utils/withApi';
-import LazyLoad from 'app/components/lazyLoad';
-import withOrganization from 'app/utils/withOrganization';
-import SentryTypes from 'app/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import LazyLoad from 'sentry/components/lazyLoad';
+import withOrganization from 'sentry/utils/withOrganization';
+import SentryTypes from 'sentry/sentryTypes';
 
 class OrganizationStatsContainer extends React.Component {
   static propTypes = {

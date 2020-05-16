@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import BookmarkStar from 'app/components/projects/bookmarkStar';
-import Link from 'app/components/links/link';
-import ProjectLabel from 'app/components/projectLabel';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
+import BookmarkStar from 'sentry/components/projects/bookmarkStar';
+import Link from 'sentry/components/links/link';
+import ProjectLabel from 'sentry/components/projectLabel';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
 
 class ProjectItem extends React.Component {
   static propTypes = {

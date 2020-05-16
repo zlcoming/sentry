@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import {IconOpen} from 'app/icons';
+import {t} from 'sentry/locale';
+import {IconOpen} from 'sentry/icons';
 
 const help = {
   'base-uri': t(

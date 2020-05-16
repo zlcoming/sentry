@@ -4,19 +4,19 @@ import React from 'react';
 import styled from '@emotion/styled';
 import uniq from 'lodash/uniq';
 
-import {analytics} from 'app/utils/analytics';
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
-import {ALL_ACCESS_PROJECTS} from 'app/constants/globalSelectionHeader';
-import {t} from 'app/locale';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import GlobalSelectionHeaderRow from 'app/components/globalSelectionHeaderRow';
-import HeaderItem from 'app/components/organizations/headerItem';
-import Highlight from 'app/components/highlight';
-import MultipleSelectorSubmitRow from 'app/components/organizations/multipleSelectorSubmitRow';
-import SentryTypes from 'app/sentryTypes';
-import theme from 'app/utils/theme';
-import withApi from 'app/utils/withApi';
-import {IconWindow} from 'app/icons';
+import {analytics} from 'sentry/utils/analytics';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
+import {ALL_ACCESS_PROJECTS} from 'sentry/constants/globalSelectionHeader';
+import {t} from 'sentry/locale';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import GlobalSelectionHeaderRow from 'sentry/components/globalSelectionHeaderRow';
+import HeaderItem from 'sentry/components/organizations/headerItem';
+import Highlight from 'sentry/components/highlight';
+import MultipleSelectorSubmitRow from 'sentry/components/organizations/multipleSelectorSubmitRow';
+import SentryTypes from 'sentry/sentryTypes';
+import theme from 'sentry/utils/theme';
+import withApi from 'sentry/utils/withApi';
+import {IconWindow} from 'sentry/icons';
 
 /**
  * Environment Selector

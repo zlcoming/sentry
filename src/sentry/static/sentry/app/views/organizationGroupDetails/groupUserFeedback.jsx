@@ -1,14 +1,14 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 
-import SentryTypes from 'app/sentryTypes';
-import EventUserFeedback from 'app/components/events/userFeedback';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {Panel} from 'app/components/panels';
-import Pagination from 'app/components/pagination';
-import withOrganization from 'app/utils/withOrganization';
-import UserFeedbackEmpty from 'app/views/userFeedback/userFeedbackEmpty';
+import SentryTypes from 'sentry/sentryTypes';
+import EventUserFeedback from 'sentry/components/events/userFeedback';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {Panel} from 'sentry/components/panels';
+import Pagination from 'sentry/components/pagination';
+import withOrganization from 'sentry/utils/withOrganization';
+import UserFeedbackEmpty from 'sentry/views/userFeedback/userFeedbackEmpty';
 
 import {fetchGroupUserReports} from './utils';
 

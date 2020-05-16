@@ -1,12 +1,12 @@
 import {browserHistory} from 'react-router';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import SentryTypes from 'app/sentryTypes';
-import recreateRoute from 'app/utils/recreateRoute';
+import {Client} from 'sentry/api';
+import {addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import SentryTypes from 'sentry/sentryTypes';
+import recreateRoute from 'sentry/utils/recreateRoute';
 
 import OrganizationApiKeysList from './organizationApiKeysList';
 

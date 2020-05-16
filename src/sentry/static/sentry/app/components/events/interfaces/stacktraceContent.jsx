@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Frame from 'app/components/events/interfaces/frame/frame';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import {parseAddress, getImageRange} from 'app/components/events/interfaces/utils';
+import Frame from 'sentry/components/events/interfaces/frame/frame';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import {parseAddress, getImageRange} from 'sentry/components/events/interfaces/utils';
 
 export default class StacktraceContent extends React.Component {
   static propTypes = {

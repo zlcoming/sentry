@@ -2,29 +2,29 @@ import {PlainRoute} from 'react-router/lib/Route';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Organization, Project} from 'app/types';
-import FormModel from 'app/views/settings/components/forms/model';
-import {defined} from 'app/utils';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {fetchOrganizationTags} from 'app/actionCreators/tags';
-import {t} from 'app/locale';
-import Access from 'app/components/acl/access';
-import AsyncComponent from 'app/components/asyncComponent';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import Form from 'app/views/settings/components/forms/form';
-import RuleNameForm from 'app/views/settings/incidentRules/ruleNameForm';
-import Triggers from 'app/views/settings/incidentRules/triggers';
-import TriggersChart from 'app/views/settings/incidentRules/triggers/chart';
-import hasThresholdValue from 'app/views/settings/incidentRules/utils/hasThresholdValue';
-import recreateRoute from 'app/utils/recreateRoute';
-import withProject from 'app/utils/withProject';
+import {Organization, Project} from 'sentry/types';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import {defined} from 'sentry/utils';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {fetchOrganizationTags} from 'sentry/actionCreators/tags';
+import {t} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import Form from 'sentry/views/settings/components/forms/form';
+import RuleNameForm from 'sentry/views/settings/incidentRules/ruleNameForm';
+import Triggers from 'sentry/views/settings/incidentRules/triggers';
+import TriggersChart from 'sentry/views/settings/incidentRules/triggers/chart';
+import hasThresholdValue from 'sentry/views/settings/incidentRules/utils/hasThresholdValue';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import withProject from 'sentry/utils/withProject';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
+} from 'sentry/actionCreators/indicator';
 
 import {
   AlertRuleThresholdType,

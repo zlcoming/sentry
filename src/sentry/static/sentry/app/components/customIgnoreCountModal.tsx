@@ -2,12 +2,12 @@ import Modal from 'react-bootstrap/lib/Modal';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import {ResolutionStatusDetails} from 'app/types';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import InputField from 'app/views/settings/components/forms/inputField';
-import SelectField from 'app/views/settings/components/forms/selectField';
+import {t} from 'sentry/locale';
+import {ResolutionStatusDetails} from 'sentry/types';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import InputField from 'sentry/views/settings/components/forms/inputField';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
 
 type CountNames = 'ignoreCount' | 'ignoreUserCount';
 type WindowNames = 'ignoreWindow' | 'ignoreUserWindow';

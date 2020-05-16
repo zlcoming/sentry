@@ -2,10 +2,10 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import getDisplayName from 'app/utils/getDisplayName';
-import ProjectsStore from 'app/stores/projectsStore';
-import SentryTypes from 'app/sentryTypes';
-import {Project} from 'app/types';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import SentryTypes from 'sentry/sentryTypes';
+import {Project} from 'sentry/types';
 
 type InjectedProjectsProps = {
   projects: Project[];

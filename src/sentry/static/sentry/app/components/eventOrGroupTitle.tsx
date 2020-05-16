@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Event, Group} from 'app/types';
-import {Metadata} from 'app/sentryTypes';
-import {getTitle} from 'app/utils/events';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
+import {Event, Group} from 'sentry/types';
+import {Metadata} from 'sentry/sentryTypes';
+import {getTitle} from 'sentry/utils/events';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
 
 type Props = {
   data: Event | Group;

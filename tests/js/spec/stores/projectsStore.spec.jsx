@@ -1,6 +1,6 @@
-import ProjectsStore from 'app/stores/projectsStore';
-import ProjectActions from 'app/actions/projectActions';
-import TeamActions from 'app/actions/teamActions';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import ProjectActions from 'sentry/actions/projectActions';
+import TeamActions from 'sentry/actions/teamActions';
 
 describe('ProjectsStore', function() {
   const teamFoo = TestStubs.Team({

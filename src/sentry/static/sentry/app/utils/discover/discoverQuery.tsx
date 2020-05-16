@@ -1,9 +1,9 @@
 import React from 'react';
 import {Location} from 'history';
 
-import {Client} from 'app/api';
-import withApi from 'app/utils/withApi';
-import EventView, {MetaType, isAPIPayloadSimilar} from 'app/utils/discover/eventView';
+import {Client} from 'sentry/api';
+import withApi from 'sentry/utils/withApi';
+import EventView, {MetaType, isAPIPayloadSimilar} from 'sentry/utils/discover/eventView';
 
 /**
  * An individual row in a DiscoverQuery result

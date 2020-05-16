@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import OrganizationApiKeysList from 'sentry/views/settings/organizationApiKeys/organizationApiKeysList';
 
-import OrganizationApiKeysList from 'app/views/settings/organizationApiKeys/organizationApiKeysList';
-
-jest.unmock('app/utils/recreateRoute');
+jest.unmock('sentry/utils/recreateRoute');
 
 const routes = [
   {path: '/'},

@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
 
-import SentryTypes from 'app/sentryTypes';
-import {intcomma} from 'app/utils';
-import {t, tn} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import StackedBarChart from 'app/components/stackedBarChart';
-import {formatAbbreviatedNumber} from 'app/utils/formatters';
+import SentryTypes from 'sentry/sentryTypes';
+import {intcomma} from 'sentry/utils';
+import {t, tn} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import {formatAbbreviatedNumber} from 'sentry/utils/formatters';
 
 class ProjectFiltersChart extends React.Component {
   static propTypes = {

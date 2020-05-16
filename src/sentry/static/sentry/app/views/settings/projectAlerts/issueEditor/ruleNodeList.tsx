@@ -6,10 +6,10 @@ import {
   IssueAlertRuleActionTemplate,
   IssueAlertRuleCondition,
   IssueAlertRuleConditionTemplate,
-} from 'app/types/alerts';
-import SelectControl from 'app/components/forms/selectControl';
-import space from 'app/styles/space';
-import {Organization, Project} from 'app/types';
+} from 'sentry/types/alerts';
+import SelectControl from 'sentry/components/forms/selectControl';
+import space from 'sentry/styles/space';
+import {Organization, Project} from 'sentry/types';
 
 import RuleNode from './ruleNode';
 

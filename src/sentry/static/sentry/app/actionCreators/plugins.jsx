@@ -1,11 +1,11 @@
-import {Client} from 'app/api';
+import {Client} from 'sentry/api';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import PluginActions from 'app/actions/pluginActions';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import PluginActions from 'sentry/actions/pluginActions';
 
 const activeFetch = {};
 // PluginsStore always exists, so api client should be independent of component lifecycle

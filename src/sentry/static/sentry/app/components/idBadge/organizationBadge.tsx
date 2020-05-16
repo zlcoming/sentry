@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import BaseBadge from 'app/components/idBadge/baseBadge';
-import BadgeDisplayName from 'app/components/idBadge/badgeDisplayName';
-import SentryTypes from 'app/sentryTypes';
-import {Organization} from 'app/types';
-import OrganizationAvatar from 'app/components/avatar/organizationAvatar';
+import BaseBadge from 'sentry/components/idBadge/baseBadge';
+import BadgeDisplayName from 'sentry/components/idBadge/badgeDisplayName';
+import SentryTypes from 'sentry/sentryTypes';
+import {Organization} from 'sentry/types';
+import OrganizationAvatar from 'sentry/components/avatar/organizationAvatar';
 
 type DefaultProps = {
   avatarSize: OrganizationAvatar['props']['size'];

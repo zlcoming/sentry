@@ -4,18 +4,18 @@ import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {disablePlugin, enablePlugin} from 'app/actionCreators/plugins';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import ExternalLink from 'app/components/links/externalLink';
-import PluginConfig from 'app/components/pluginConfig';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import withPlugins from 'app/utils/withPlugins';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+} from 'sentry/actionCreators/indicator';
+import {disablePlugin, enablePlugin} from 'sentry/actionCreators/plugins';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import ExternalLink from 'sentry/components/links/externalLink';
+import PluginConfig from 'sentry/components/pluginConfig';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import withPlugins from 'sentry/utils/withPlugins';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 import {DEPRECATED_PLUGINS} from './constants';
 

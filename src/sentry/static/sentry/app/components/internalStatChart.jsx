@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import BarChart from 'app/components/barChart';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import withApi from 'app/utils/withApi';
+import BarChart from 'sentry/components/barChart';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import withApi from 'sentry/utils/withApi';
 
 class InternalStatChart extends React.Component {
   static propTypes = {

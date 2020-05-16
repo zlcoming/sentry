@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {MemberRole} from 'app/types';
-import space from 'app/styles/space';
-import Checkbox from 'app/components/checkbox';
-import Switch from 'app/components/switch';
-import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
+import {t} from 'sentry/locale';
+import {MemberRole} from 'sentry/types';
+import space from 'sentry/styles/space';
+import Checkbox from 'sentry/components/checkbox';
+import Switch from 'sentry/components/switch';
+import {tokenizeSearch, stringifyQueryObject} from 'sentry/utils/tokenizeSearch';
 
 type Props = {
   className?: string;

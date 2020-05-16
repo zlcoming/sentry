@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import OnboardingPanel from 'app/components/onboardingPanel';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import {t} from 'app/locale';
+import OnboardingPanel from 'sentry/components/onboardingPanel';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import {t} from 'sentry/locale';
 
 import emptyStateImg from '../../../images/spot/performance-empty-state.svg';
 

@@ -1,21 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {extractMultilineFields, convertMultilineFieldValue} from 'app/utils';
-import {t, tct, tn} from 'app/locale';
-import HintPanelItem from 'app/components/panels/hintPanelItem';
-import PlatformIcon from 'app/components/platformIcon';
-import getDynamicText from 'app/utils/getDynamicText';
-import marked from 'app/utils/marked';
-import platforms from 'app/data/platforms';
-import slugify from 'app/utils/slugify';
+import {extractMultilineFields, convertMultilineFieldValue} from 'sentry/utils';
+import {t, tct, tn} from 'sentry/locale';
+import HintPanelItem from 'sentry/components/panels/hintPanelItem';
+import PlatformIcon from 'sentry/components/platformIcon';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import marked from 'sentry/utils/marked';
+import platforms from 'sentry/data/platforms';
+import slugify from 'sentry/utils/slugify';
 import {
   STORE_CRASH_REPORTS_VALUES,
   formatStoreCrashReports,
-} from 'app/utils/crashReports';
-import space from 'app/styles/space';
-import {GroupingConfigItem} from 'app/components/events/groupingInfo';
-import {Field} from 'app/views/settings/components/forms/type';
+} from 'sentry/utils/crashReports';
+import space from 'sentry/styles/space';
+import {GroupingConfigItem} from 'sentry/components/events/groupingInfo';
+import {Field} from 'sentry/views/settings/components/forms/type';
 
 // Export route to make these forms searchable by label/help
 export const route = '/settings/:orgId/projects/:projectId/';

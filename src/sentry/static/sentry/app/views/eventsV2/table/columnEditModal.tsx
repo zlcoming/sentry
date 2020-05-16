@@ -2,17 +2,17 @@ import React from 'react';
 import {css} from '@emotion/core';
 import styled from '@emotion/styled';
 
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import ExternalLink from 'app/components/links/externalLink';
-import {DISCOVER2_DOCS_URL} from 'app/constants';
-import {ModalRenderProps} from 'app/actionCreators/modal';
-import {t, tct} from 'app/locale';
-import {LightWeightOrganization} from 'app/types';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
-import {Column} from 'app/utils/discover/fields';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {DISCOVER2_DOCS_URL} from 'sentry/constants';
+import {ModalRenderProps} from 'sentry/actionCreators/modal';
+import {t, tct} from 'sentry/locale';
+import {LightWeightOrganization} from 'sentry/types';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
+import {Column} from 'sentry/utils/discover/fields';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 
 import ColumnEditCollection from './columnEditCollection';
 

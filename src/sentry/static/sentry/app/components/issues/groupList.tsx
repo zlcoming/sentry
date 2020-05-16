@@ -6,19 +6,19 @@ import createReactClass from 'create-react-class';
 import {browserHistory} from 'react-router';
 import * as qs from 'query-string';
 
-import {Client} from 'app/api';
-import {Panel, PanelBody} from 'app/components/panels';
-import {fetchOrgMembers, indexMembersByProject} from 'app/actionCreators/members';
-import {t} from 'app/locale';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import GroupStore from 'app/stores/groupStore';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import StreamGroup from 'app/components/stream/group';
-import StreamManager from 'app/utils/streamManager';
-import withApi from 'app/utils/withApi';
-import Pagination from 'app/components/pagination';
-import {Group} from 'app/types';
+import {Client} from 'sentry/api';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import {fetchOrgMembers, indexMembersByProject} from 'sentry/actionCreators/members';
+import {t} from 'sentry/locale';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import GroupStore from 'sentry/stores/groupStore';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import StreamGroup from 'sentry/components/stream/group';
+import StreamManager from 'sentry/utils/streamManager';
+import withApi from 'sentry/utils/withApi';
+import Pagination from 'sentry/components/pagination';
+import {Group} from 'sentry/types';
 
 import GroupListHeader from './groupListHeader';
 

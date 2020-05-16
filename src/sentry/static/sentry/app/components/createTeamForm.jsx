@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import Form from 'app/views/settings/components/forms/form';
-import SentryTypes from 'app/sentryTypes';
-import TextField from 'app/views/settings/components/forms/textField';
-import slugify from 'app/utils/slugify';
+import {t} from 'sentry/locale';
+import Form from 'sentry/views/settings/components/forms/form';
+import SentryTypes from 'sentry/sentryTypes';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import slugify from 'sentry/utils/slugify';
 
 export default class CreateTeamForm extends React.Component {
   static propTypes = {

@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {IconCheckmark} from 'app/icons';
-import CustomResolutionModal from 'app/components/customResolutionModal';
-import MenuItem from 'app/components/menuItem';
-import DropdownLink from 'app/components/dropdownLink';
-import ActionLink from 'app/components/actions/actionLink';
-import Tooltip from 'app/components/tooltip';
-import {formatVersion} from 'app/utils/formatters';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import {IconCheckmark} from 'sentry/icons';
+import CustomResolutionModal from 'sentry/components/customResolutionModal';
+import MenuItem from 'sentry/components/menuItem';
+import DropdownLink from 'sentry/components/dropdownLink';
+import ActionLink from 'sentry/components/actions/actionLink';
+import Tooltip from 'sentry/components/tooltip';
+import {formatVersion} from 'sentry/utils/formatters';
+import space from 'sentry/styles/space';
 import {
   Release,
   ResolutionStatus,
   ResolutionStatusDetails,
   UpdateResolutionStatus,
-} from 'app/types';
+} from 'sentry/types';
 
 const defaultProps = {
   isResolved: false,

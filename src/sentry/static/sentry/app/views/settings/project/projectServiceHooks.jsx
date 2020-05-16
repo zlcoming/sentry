@@ -2,21 +2,21 @@ import {Link} from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import Field from 'app/views/settings/components/forms/field';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import Switch from 'app/components/switch';
-import Truncate from 'app/components/truncate';
-import {IconAdd, IconFlag} from 'app/icons';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import Field from 'sentry/views/settings/components/forms/field';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import Switch from 'sentry/components/switch';
+import Truncate from 'sentry/components/truncate';
+import {IconAdd, IconFlag} from 'sentry/icons';
 
 class ServiceHookRow extends React.Component {
   static propTypes = {

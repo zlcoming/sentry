@@ -3,11 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 
-import {inputStyles} from 'app/styles/input';
-import {selectText} from 'app/utils/selectText';
-import Button from 'app/components/button';
-import Clipboard from 'app/components/clipboard';
-import {IconCopy} from 'app/icons';
+import {inputStyles} from 'sentry/styles/input';
+import {selectText} from 'sentry/utils/selectText';
+import Button from 'sentry/components/button';
+import Clipboard from 'sentry/components/clipboard';
+import {IconCopy} from 'sentry/icons';
 
 const Wrapper = styled('div')`
   display: flex;

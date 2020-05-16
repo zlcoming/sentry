@@ -2,7 +2,7 @@ import React from 'react';
 // import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import ContextData from 'app/components/contextData';
+import ContextData from 'sentry/components/contextData';
 
 export default {
   title: 'UI/ContextData',

@@ -5,20 +5,20 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {fetchTeamDetails, joinTeam} from 'app/actionCreators/teams';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import IdBadge from 'app/components/idBadge';
-import ListLink from 'app/components/links/listLink';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NavTabs from 'app/components/navTabs';
-import TeamStore from 'app/stores/teamStore';
-import recreateRoute from 'app/utils/recreateRoute';
-import withApi from 'app/utils/withApi';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {fetchTeamDetails, joinTeam} from 'sentry/actionCreators/teams';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import IdBadge from 'sentry/components/idBadge';
+import ListLink from 'sentry/components/links/listLink';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NavTabs from 'sentry/components/navTabs';
+import TeamStore from 'sentry/stores/teamStore';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import withApi from 'sentry/utils/withApi';
 
 const TeamDetails = createReactClass({
   displayName: 'TeamDetails',

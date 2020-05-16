@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import DropdownButton from 'app/components/dropdownButton';
-import {IconAdd, IconDelete, IconSettings} from 'app/icons';
-import InputField from 'app/views/settings/components/forms/inputField';
-import Confirm from 'app/components/confirm';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import DropdownButton from 'sentry/components/dropdownButton';
+import {IconAdd, IconDelete, IconSettings} from 'sentry/icons';
+import InputField from 'sentry/views/settings/components/forms/inputField';
+import Confirm from 'sentry/components/confirm';
 
 const RichListProps = {
   /**

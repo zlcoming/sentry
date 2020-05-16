@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import SearchBar from 'app/views/events/searchBar';
-import TagStore from 'app/stores/tagStore';
+import SearchBar from 'sentry/views/events/searchBar';
+import TagStore from 'sentry/stores/tagStore';
 
 const focusInput = el => el.find('input[name="query"]').simulate('focus');
 const selectFirstAutocompleteItem = async el => {

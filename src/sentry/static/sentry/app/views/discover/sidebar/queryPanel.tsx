@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {IconClose} from 'app/icons/iconClose';
-import PageHeading from 'app/components/pageHeading';
+import {IconClose} from 'sentry/icons/iconClose';
+import PageHeading from 'sentry/components/pageHeading';
 
 import {QueryPanelContainer, QueryPanelTitle, QueryPanelCloseLink} from '../styles';
 

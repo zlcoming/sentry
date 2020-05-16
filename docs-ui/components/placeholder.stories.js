@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text, number} from '@storybook/addon-knobs';
 
-import Placeholder from 'app/components/placeholder';
+import Placeholder from 'sentry/components/placeholder';
 
 export default {
   title: 'UI/Loaders/Placeholder',

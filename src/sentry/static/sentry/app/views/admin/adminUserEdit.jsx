@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {openModal} from 'app/actionCreators/modal';
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Form from 'app/views/settings/components/forms/form';
-import FormModel from 'app/views/settings/components/forms/model';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import RadioGroup from 'app/views/settings/components/forms/controls/radioGroup';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {openModal} from 'sentry/actionCreators/modal';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Form from 'sentry/views/settings/components/forms/form';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import RadioGroup from 'sentry/views/settings/components/forms/controls/radioGroup';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
 
 const userEditForm = {
   title: 'User details',

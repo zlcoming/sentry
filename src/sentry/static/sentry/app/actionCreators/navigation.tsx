@@ -2,9 +2,9 @@ import {InjectedRouter} from 'react-router/lib/Router';
 import {Location} from 'history';
 import React from 'react';
 
-import {openModal} from 'app/actionCreators/modal';
-import ContextPickerModal from 'app/components/contextPickerModal';
-import NavigationActions from 'app/actions/navigationActions';
+import {openModal} from 'sentry/actionCreators/modal';
+import ContextPickerModal from 'sentry/components/contextPickerModal';
+import NavigationActions from 'sentry/actions/navigationActions';
 
 // TODO(ts): figure out better typing for react-router here
 export function navigateTo(to: string, router: InjectedRouter & {location?: Location}) {

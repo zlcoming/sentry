@@ -2,13 +2,13 @@ import {browserHistory} from 'react-router';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {t} from 'app/locale';
-import ApiForm from 'app/views/settings/components/forms/apiForm';
-import BooleanField from 'app/views/settings/components/forms/booleanField';
-import FormField from 'app/views/settings/components/forms/formField';
-import TextField from 'app/views/settings/components/forms/textField';
-import MultipleCheckbox from 'app/views/settings/components/forms/controls/multipleCheckbox';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
+import {t} from 'sentry/locale';
+import ApiForm from 'sentry/views/settings/components/forms/apiForm';
+import BooleanField from 'sentry/views/settings/components/forms/booleanField';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import MultipleCheckbox from 'sentry/views/settings/components/forms/controls/multipleCheckbox';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
 
 const EVENT_CHOICES = ['event.alert', 'event.created'].map(e => [e, e]);
 

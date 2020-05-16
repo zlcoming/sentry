@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import TimeSince from 'app/components/timeSince';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
+import TimeSince from 'sentry/components/timeSince';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
 
 import MonitorHeaderActions from './monitorHeaderActions';
 import MonitorIcon from './monitorIcon';

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {analytics} from 'app/utils/analytics';
-import PageHeading from 'app/components/pageHeading';
-import ResourceCard from 'app/components/resourceCard';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
+import {analytics} from 'sentry/utils/analytics';
+import PageHeading from 'sentry/components/pageHeading';
+import ResourceCard from 'sentry/components/resourceCard';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
 
 import releasesImg from '../../../images/spot/releases.svg';
 import breadcrumbsImg from '../../../images/spot/breadcrumbs-generic.svg';

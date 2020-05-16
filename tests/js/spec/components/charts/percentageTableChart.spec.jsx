@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import PercentageTableChart from 'app/components/charts/percentageTableChart';
+import PercentageTableChart from 'sentry/components/charts/percentageTableChart';
 
 describe('PercentageTableChart', function() {
   let wrapper;

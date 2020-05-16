@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import {IconTelescope} from 'app/icons';
-import Button from 'app/components/button';
+import {IconTelescope} from 'sentry/icons';
+import Button from 'sentry/components/button';
 import {
   Panel,
   PanelAlert,
@@ -10,8 +10,8 @@ import {
   PanelBody,
   PanelItem,
   PanelTable,
-} from 'app/components/panels';
-import Field from 'app/views/settings/components/forms/field';
+} from 'sentry/components/panels';
+import Field from 'sentry/views/settings/components/forms/field';
 
 export default {
   title: 'UI/Panels',

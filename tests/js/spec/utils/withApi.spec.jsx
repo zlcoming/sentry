@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import withApi from 'app/utils/withApi';
+import withApi from 'sentry/utils/withApi';
 
 describe('withApi', function() {
   let apiInstance;

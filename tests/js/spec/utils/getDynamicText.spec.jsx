@@ -4,10 +4,10 @@ describe('getDynamicText', function() {
   });
 
   it('renders actual value', function() {
-    jest.doMock('app/constants', () => ({
+    jest.doMock('sentry/constants', () => ({
       IS_CI: false,
     }));
-    const getDynamicText = require('app/utils/getDynamicText').default;
+    const getDynamicText = require('sentry/utils/getDynamicText').default;
 
     expect(
       getDynamicText({
@@ -17,11 +17,11 @@ describe('getDynamicText', function() {
     ).toEqual('Dynamic Content');
   });
 
-  it('renders fixed content when `app/constants/IS_CI` is true', function() {
-    jest.doMock('app/constants', () => ({
+  it('renders fixed content when `sentry/constants/IS_CI` is true', function() {
+    jest.doMock('sentry/constants', () => ({
       IS_CI: true,
     }));
-    const getDynamicText = require('app/utils/getDynamicText').default;
+    const getDynamicText = require('sentry/utils/getDynamicText').default;
 
     expect(
       getDynamicText({

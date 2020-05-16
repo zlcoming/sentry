@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import Text from 'app/components/text';
+import Text from 'sentry/components/text';
 
 export default {
   title: 'Style/Text',

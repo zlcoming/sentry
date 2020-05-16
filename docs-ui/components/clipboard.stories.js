@@ -2,7 +2,7 @@ import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import Clipboard from 'app/components/clipboard';
+import Clipboard from 'sentry/components/clipboard';
 
 export default {
   title: 'UI/Clipboard',

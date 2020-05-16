@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import Highlight from 'app/components/highlight';
+import Highlight from 'sentry/components/highlight';
 
 export default {
   title: 'Utility/Highlight',

@@ -2,10 +2,10 @@ import React from 'react';
 import sortBy from 'lodash/sortBy';
 import styled from '@emotion/styled';
 
-import {defined} from 'app/utils';
-import ContextData from 'app/components/contextData';
-import AnnotatedText from 'app/components/events/meta/annotatedText';
-import theme from 'app/utils/theme';
+import {defined} from 'sentry/utils';
+import ContextData from 'sentry/components/contextData';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
+import theme from 'sentry/utils/theme';
 
 import {KeyValueListData} from './types';
 

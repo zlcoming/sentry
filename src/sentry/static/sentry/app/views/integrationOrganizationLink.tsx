@@ -4,23 +4,23 @@ import styled from '@emotion/styled';
 import {urlEncode} from '@sentry/utils';
 import {components} from 'react-select';
 
-import {Organization, IntegrationProvider} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
+import {Organization, IntegrationProvider} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
 import {
   trackIntegrationEvent,
   getIntegrationFeatureGate,
   SingleIntegrationEvent,
-} from 'app/utils/integrationUtil';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Field from 'app/views/settings/components/forms/field';
-import NarrowLayout from 'app/components/narrowLayout';
-import SelectControl from 'app/components/forms/selectControl';
-import IdBadge from 'app/components/idBadge';
-import {IconFlag} from 'app/icons';
-import LoadingIndicator from 'app/components/loadingIndicator';
+} from 'sentry/utils/integrationUtil';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Field from 'sentry/views/settings/components/forms/field';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import SelectControl from 'sentry/components/forms/selectControl';
+import IdBadge from 'sentry/components/idBadge';
+import {IconFlag} from 'sentry/icons';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
 
 //installationId present for Github flow
 type Props = RouteComponentProps<{integrationSlug: string; installationId?: string}, {}>;

@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Access from 'app/components/acl/access';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import DropdownButton from 'app/components/dropdownButton';
-import DropdownControl from 'app/components/dropdownControl';
-import Tooltip from 'app/components/tooltip';
-import {IconDelete} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import {t} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import DropdownButton from 'sentry/components/dropdownButton';
+import DropdownControl from 'sentry/components/dropdownControl';
+import Tooltip from 'sentry/components/tooltip';
+import {IconDelete} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 export default class SavedSearchSelector extends React.Component {
   static propTypes = {

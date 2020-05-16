@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {tct} from 'app/locale';
-import {IconEllipsis} from 'app/icons';
+import {tct} from 'sentry/locale';
+import {IconEllipsis} from 'sentry/icons';
 
 import {BreadCrumb, BreadCrumbIconWrapper} from './styles';
 

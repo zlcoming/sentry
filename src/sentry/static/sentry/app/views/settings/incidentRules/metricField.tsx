@@ -2,22 +2,22 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import FormField from 'app/views/settings/components/forms/formField';
-import {t, tct} from 'app/locale';
-import {QueryField} from 'app/views/eventsV2/table/queryField';
-import {generateFieldOptions} from 'app/views/eventsV2/utils';
-import {FieldValueKind} from 'app/views/eventsV2/table/types';
-import {Organization} from 'app/types';
-import space from 'app/styles/space';
-import FormModel from 'app/views/settings/components/forms/model';
-import Button from 'app/components/button';
-import Tooltip from 'app/components/tooltip';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import {t, tct} from 'sentry/locale';
+import {QueryField} from 'sentry/views/eventsV2/table/queryField';
+import {generateFieldOptions} from 'sentry/views/eventsV2/utils';
+import {FieldValueKind} from 'sentry/views/eventsV2/table/types';
+import {Organization} from 'sentry/types';
+import space from 'sentry/styles/space';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import Button from 'sentry/components/button';
+import Tooltip from 'sentry/components/tooltip';
 import {
   explodeFieldString,
   generateFieldAsString,
   AGGREGATIONS,
   FIELDS,
-} from 'app/utils/discover/fields';
+} from 'sentry/utils/discover/fields';
 
 import {errorFieldConfig, transactionFieldConfig} from './constants';
 import {Dataset} from './types';

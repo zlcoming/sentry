@@ -2,7 +2,7 @@ import {withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {callIfFunction} from 'app/utils/callIfFunction';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
 
 class ScrollToTop extends React.Component {
   static propTypes = {

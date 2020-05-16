@@ -23,19 +23,19 @@ import {
   IconStats,
   IconSupport,
   IconTelescope,
-} from 'app/icons';
-import {extractSelectionParameters} from 'app/components/organizations/globalSelectionHeader/utils';
-import {hideSidebar, showSidebar} from 'app/actionCreators/preferences';
-import {t} from 'app/locale';
-import ConfigStore from 'app/stores/configStore';
-import Feature from 'app/components/acl/feature';
-import HookStore from 'app/stores/hookStore';
-import PreferencesStore from 'app/stores/preferencesStore';
-import {getDiscoverLandingUrl} from 'app/utils/discover/urls';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
-import withOrganization from 'app/utils/withOrganization';
-import {Organization} from 'app/types';
+} from 'sentry/icons';
+import {extractSelectionParameters} from 'sentry/components/organizations/globalSelectionHeader/utils';
+import {hideSidebar, showSidebar} from 'sentry/actionCreators/preferences';
+import {t} from 'sentry/locale';
+import ConfigStore from 'sentry/stores/configStore';
+import Feature from 'sentry/components/acl/feature';
+import HookStore from 'sentry/stores/hookStore';
+import PreferencesStore from 'sentry/stores/preferencesStore';
+import {getDiscoverLandingUrl} from 'sentry/utils/discover/urls';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Organization} from 'sentry/types';
 
 import {getSidebarPanelContainer} from './sidebarPanel';
 import Broadcasts from './broadcasts';

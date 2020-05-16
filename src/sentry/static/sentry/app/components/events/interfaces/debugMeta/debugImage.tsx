@@ -2,16 +2,16 @@ import isNil from 'lodash/isNil';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import Access from 'app/components/acl/access';
-import Button from 'app/components/button';
-import DebugFileFeature from 'app/components/debugFileFeature';
-import {PanelItem} from 'app/components/panels';
-import Tooltip from 'app/components/tooltip';
-import {formatAddress, getImageRange} from 'app/components/events/interfaces/utils';
-import {t} from 'app/locale';
-import {IconSearch, IconCircle, IconCheckmark, IconFlag} from 'app/icons';
-import {Organization, Project} from 'app/types';
+import space from 'sentry/styles/space';
+import Access from 'sentry/components/acl/access';
+import Button from 'sentry/components/button';
+import DebugFileFeature from 'sentry/components/debugFileFeature';
+import {PanelItem} from 'sentry/components/panels';
+import Tooltip from 'sentry/components/tooltip';
+import {formatAddress, getImageRange} from 'sentry/components/events/interfaces/utils';
+import {t} from 'sentry/locale';
+import {IconSearch, IconCircle, IconCheckmark, IconFlag} from 'sentry/icons';
+import {Organization, Project} from 'sentry/types';
 
 import {getFileName, combineStatus} from './utils';
 

@@ -3,17 +3,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {t} from 'app/locale';
-import Access from 'app/components/acl/access';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import space from 'app/styles/space';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import formGroups from 'app/data/forms/userFeedback';
-import routeTitleGen from 'app/utils/routeTitle';
+import {t} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import space from 'sentry/styles/space';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import formGroups from 'sentry/data/forms/userFeedback';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 type RouteParams = {
   orgId: string;

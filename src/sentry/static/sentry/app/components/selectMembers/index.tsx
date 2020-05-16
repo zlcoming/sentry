@@ -3,21 +3,21 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import {IconAdd} from 'app/icons';
-import {Member, Organization, Project, Team, User} from 'app/types';
-import {addTeamToProject} from 'app/actionCreators/projects';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import IdBadge from 'app/components/idBadge';
-import MemberListStore from 'app/stores/memberListStore';
-import ProjectsStore from 'app/stores/projectsStore';
-import SelectControl from 'app/components/forms/selectControl';
-import SentryTypes from 'app/sentryTypes';
-import TeamStore from 'app/stores/teamStore';
-import Tooltip from 'app/components/tooltip';
-import withApi from 'app/utils/withApi';
+import {Client} from 'sentry/api';
+import {IconAdd} from 'sentry/icons';
+import {Member, Organization, Project, Team, User} from 'sentry/types';
+import {addTeamToProject} from 'sentry/actionCreators/projects';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import IdBadge from 'sentry/components/idBadge';
+import MemberListStore from 'sentry/stores/memberListStore';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import SelectControl from 'sentry/components/forms/selectControl';
+import SentryTypes from 'sentry/sentryTypes';
+import TeamStore from 'sentry/stores/teamStore';
+import Tooltip from 'sentry/components/tooltip';
+import withApi from 'sentry/utils/withApi';
 
 const getSearchKeyForUser = (user: User) =>
   `${user.email && user.email.toLowerCase()} ${user.name && user.name.toLowerCase()}`;

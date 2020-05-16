@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Form, FormState} from 'app/components/forms';
-import GroupActions from 'app/actions/groupActions';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import PluginComponentBase from 'app/components/bases/pluginComponentBase';
-import {t} from 'app/locale';
+import {Form, FormState} from 'sentry/components/forms';
+import GroupActions from 'sentry/actions/groupActions';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import PluginComponentBase from 'sentry/components/bases/pluginComponentBase';
+import {t} from 'sentry/locale';
 
 class IssueActions extends PluginComponentBase {
   constructor(props) {

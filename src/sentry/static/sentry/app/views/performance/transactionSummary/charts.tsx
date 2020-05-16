@@ -2,18 +2,18 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {Location} from 'history';
 
-import {OrganizationSummary, SelectValue} from 'app/types';
-import {t} from 'app/locale';
-import {Panel} from 'app/components/panels';
-import EventView from 'app/utils/discover/eventView';
+import {OrganizationSummary, SelectValue} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {Panel} from 'sentry/components/panels';
+import EventView from 'sentry/utils/discover/eventView';
 import {
   ChartControls,
   InlineContainer,
   SectionHeading,
   SectionValue,
-} from 'app/components/charts/styles';
-import {decodeScalar} from 'app/utils/queryString';
-import OptionSelector from 'app/components/charts/optionSelector';
+} from 'sentry/components/charts/styles';
+import {decodeScalar} from 'sentry/utils/queryString';
+import OptionSelector from 'sentry/components/charts/optionSelector';
 
 import {ChartContainer} from '../styles';
 import DurationChart from './durationChart';

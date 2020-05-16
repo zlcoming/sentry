@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {createFuzzySearch} from 'app/utils/createFuzzySearch';
-import {openSudo, openHelpSearchModal} from 'app/actionCreators/modal';
-import {toggleLocaleDebug} from 'app/locale';
-import Access from 'app/components/acl/access';
+import {createFuzzySearch} from 'sentry/utils/createFuzzySearch';
+import {openSudo, openHelpSearchModal} from 'sentry/actionCreators/modal';
+import {toggleLocaleDebug} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
 
 const ACTIONS = [
   {

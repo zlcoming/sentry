@@ -3,13 +3,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import FeatureBadge from 'app/components/featureBadge';
-import HookOrDefault from 'app/components/hookOrDefault';
-import Tooltip from 'app/components/tooltip';
-import TextOverflow from 'app/components/textOverflow';
-import {Theme} from 'app/utils/theme';
-import Link from 'app/components/links/link';
-import localStorage from 'app/utils/localStorage';
+import FeatureBadge from 'sentry/components/featureBadge';
+import HookOrDefault from 'sentry/components/hookOrDefault';
+import Tooltip from 'sentry/components/tooltip';
+import TextOverflow from 'sentry/components/textOverflow';
+import {Theme} from 'sentry/utils/theme';
+import Link from 'sentry/components/links/link';
+import localStorage from 'sentry/utils/localStorage';
 
 import {SidebarOrientation} from './types';
 

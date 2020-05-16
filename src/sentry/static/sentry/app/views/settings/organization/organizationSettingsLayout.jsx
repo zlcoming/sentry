@@ -1,7 +1,7 @@
 import React from 'react';
 
-import OrganizationSettingsNavigation from 'app/views/settings/organization/organizationSettingsNavigation';
-import SettingsLayout from 'app/views/settings/components/settingsLayout';
+import OrganizationSettingsNavigation from 'sentry/views/settings/organization/organizationSettingsNavigation';
+import SettingsLayout from 'sentry/views/settings/components/settingsLayout';
 
 export default class OrganizationSettingsLayout extends React.Component {
   render() {

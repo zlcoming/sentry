@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import PropTypes from 'prop-types';
 
-import {Client} from 'app/api';
-import {switchOrganization} from 'app/actionCreators/organizations';
-import {t, tct} from 'app/locale';
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
-import AlertActions from 'app/actions/alertActions';
-import Button from 'app/components/button';
-import ErrorBoundary from 'app/components/errorBoundary';
-import Footer from 'app/components/footer';
-import NarrowLayout from 'app/components/narrowLayout';
-import OrganizationContext from 'app/views/organizationContext';
-import SentryTypes from 'app/sentryTypes';
+import {Client} from 'sentry/api';
+import {switchOrganization} from 'sentry/actionCreators/organizations';
+import {t, tct} from 'sentry/locale';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
+import AlertActions from 'sentry/actions/alertActions';
+import Button from 'sentry/components/button';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import Footer from 'sentry/components/footer';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import OrganizationContext from 'sentry/views/organizationContext';
+import SentryTypes from 'sentry/sentryTypes';
 
 class DeletionInProgress extends Component {
   static propTypes = {

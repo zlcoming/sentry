@@ -1,10 +1,10 @@
 import * as Sentry from '@sentry/react';
 
-import {Client} from 'app/api';
-import {buildUserId, buildTeamId} from 'app/utils';
-import {uniqueId} from 'app/utils/guid';
-import GroupActions from 'app/actions/groupActions';
-import GroupStore from 'app/stores/groupStore';
+import {Client} from 'sentry/api';
+import {buildUserId, buildTeamId} from 'sentry/utils';
+import {uniqueId} from 'sentry/utils/guid';
+import GroupActions from 'sentry/actions/groupActions';
+import GroupStore from 'sentry/stores/groupStore';
 
 export function assignToUser(params) {
   const api = new Client();

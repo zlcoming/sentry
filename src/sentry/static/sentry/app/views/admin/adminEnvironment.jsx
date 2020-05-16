@@ -2,12 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import styled from '@emotion/styled';
 
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import {IconQuestion} from 'app/icons';
-import space from 'app/styles/space';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import {IconQuestion} from 'sentry/icons';
+import space from 'sentry/styles/space';
 
 export default class AdminEnvironment extends AsyncView {
   getEndpoints() {

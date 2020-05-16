@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as Sentry from '@sentry/react';
 
-import {Client} from 'app/api';
-import {Organization, Project} from 'app/types';
+import {Client} from 'sentry/api';
+import {Organization, Project} from 'sentry/types';
 import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import {trackAdhocEvent} from 'app/utils/analytics';
-import Button from 'app/components/button';
-import SentryTypes from 'app/sentryTypes';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import {trackAdhocEvent} from 'sentry/utils/analytics';
+import Button from 'sentry/components/button';
+import SentryTypes from 'sentry/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 type Props = React.ComponentProps<typeof Button> & {
   api: Client;

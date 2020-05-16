@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import ServiceHookSettingsForm from 'app/views/settings/project/serviceHookSettingsForm';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import ServiceHookSettingsForm from 'sentry/views/settings/project/serviceHookSettingsForm';
 
 export default class ProjectCreateServiceHook extends AsyncView {
   renderBody() {

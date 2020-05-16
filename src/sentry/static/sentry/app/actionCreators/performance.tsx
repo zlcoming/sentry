@@ -1,6 +1,6 @@
-import {Client} from 'app/api';
-import {t} from 'app/locale';
-import {addErrorMessage} from 'app/actionCreators/indicator';
+import {Client} from 'sentry/api';
+import {t} from 'sentry/locale';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
 
 export function saveKeyTransaction(
   api: Client,

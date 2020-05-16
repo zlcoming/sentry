@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import {tct} from 'app/locale';
+import {tct} from 'sentry/locale';
 
 describe('locale.gettextComponentTemplate', () => {
   it('should render two component templates inside the same parent', async () => {

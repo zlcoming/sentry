@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ReleasesV2Container from 'app/views/releasesV2';
+import ReleasesV2Container from 'sentry/views/releasesV2';
 
 describe('ReleasesV2Container', function() {
   it('it displays no access message', function() {

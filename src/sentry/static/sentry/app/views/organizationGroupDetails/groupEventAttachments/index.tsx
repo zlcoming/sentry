@@ -1,10 +1,10 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {Organization, Group} from 'app/types';
-import Feature from 'app/components/acl/feature';
-import withOrganization from 'app/utils/withOrganization';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
+import {Organization, Group} from 'sentry/types';
+import Feature from 'sentry/components/acl/feature';
+import withOrganization from 'sentry/utils/withOrganization';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
 
 import GroupEventAttachments from './groupEventAttachments';
 

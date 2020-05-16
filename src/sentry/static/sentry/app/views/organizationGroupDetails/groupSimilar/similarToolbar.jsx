@@ -3,13 +3,13 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import Reflux from 'reflux';
 
-import {t} from 'app/locale';
-import GroupingStore from 'app/stores/groupingStore';
-import SpreadLayout from 'app/components/spreadLayout';
-import FlowLayout from 'app/components/flowLayout';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import Toolbar from 'app/components/toolbar';
-import ToolbarHeader from 'app/components/toolbarHeader';
+import {t} from 'sentry/locale';
+import GroupingStore from 'sentry/stores/groupingStore';
+import SpreadLayout from 'sentry/components/spreadLayout';
+import FlowLayout from 'sentry/components/flowLayout';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import Toolbar from 'sentry/components/toolbar';
+import ToolbarHeader from 'sentry/components/toolbarHeader';
 
 const SimilarToolbar = createReactClass({
   displayName: 'SimilarToolbar',

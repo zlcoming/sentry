@@ -1,10 +1,10 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 
-import {Organization} from 'app/types';
-import Button from 'app/components/button';
-import {t, tct} from 'app/locale';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
+import {Organization} from 'sentry/types';
+import Button from 'sentry/components/button';
+import {t, tct} from 'sentry/locale';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
 
 import QueryFields from './queryFields';
 import {createSavedQuery, generateQueryName} from '../utils';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import AutoComplete from 'app/components/autoComplete';
+import AutoComplete from 'sentry/components/autoComplete';
 
 const items = [
   {

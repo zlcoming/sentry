@@ -1,6 +1,6 @@
-import SentryAppInstallationStore from 'app/stores/sentryAppInstallationsStore';
-import {Client} from 'app/api';
-import {SentryAppInstallation} from 'app/types';
+import SentryAppInstallationStore from 'sentry/stores/sentryAppInstallationsStore';
+import {Client} from 'sentry/api';
+import {SentryAppInstallation} from 'sentry/types';
 
 const fetchSentryAppInstallations = async (api: Client, orgSlug: string) => {
   const installsUri = `/organizations/${orgSlug}/sentry-app-installations/`;

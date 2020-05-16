@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import IssueListSavedSearchSelector from 'app/views/issueList/savedSearchSelector';
+import IssueListSavedSearchSelector from 'sentry/views/issueList/savedSearchSelector';
 
 describe('IssueListSavedSearchSelector', function() {
   let wrapper, onCreate, onSelect, onDelete, organization, savedSearchList;

@@ -2,18 +2,18 @@ import React from 'react';
 import styled from '@emotion/styled';
 import omit from 'lodash/omit';
 
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import Button from 'app/components/button';
-import DropdownMenu from 'app/components/dropdownMenu';
-import {IconChevron, IconStack, IconTelescope} from 'app/icons';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import Button from 'sentry/components/button';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import {IconChevron, IconStack, IconTelescope} from 'sentry/icons';
 import {
   getDiscoverUrlPathFromDiscoverQuery,
   getDiscover2UrlPathFromDiscoverQuery,
-} from 'app/views/dashboards/utils/getDiscoverUrlPathFromDiscoverQuery';
-import {getEventsUrlPathFromDiscoverQuery} from 'app/views/dashboards/utils/getEventsUrlPathFromDiscoverQuery';
+} from 'sentry/views/dashboards/utils/getDiscoverUrlPathFromDiscoverQuery';
+import {getEventsUrlPathFromDiscoverQuery} from 'sentry/views/dashboards/utils/getEventsUrlPathFromDiscoverQuery';
 
 class ExploreWidget extends React.Component {
   static propTypes = {

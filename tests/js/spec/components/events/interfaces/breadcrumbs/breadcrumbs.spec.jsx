@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import BreadcrumbsInterface from 'app/components/events/interfaces/breadcrumbs/breadcrumbs';
+import BreadcrumbsInterface from 'sentry/components/events/interfaces/breadcrumbs/breadcrumbs';
 
 describe('BreadcrumbsInterface', function() {
   let PROPS;

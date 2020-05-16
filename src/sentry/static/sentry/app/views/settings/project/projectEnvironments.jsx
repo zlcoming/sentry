@@ -2,24 +2,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {ALL_ENVIRONMENTS_KEY} from 'app/constants';
-import {Panel, PanelHeader, PanelBody, PanelItem} from 'app/components/panels';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
-import Access from 'app/components/acl/access';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import withApi from 'app/utils/withApi';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ListLink from 'app/components/links/listLink';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NavTabs from 'app/components/navTabs';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
-import {getUrlRoutingName, getDisplayName} from 'app/utils/environment';
+import {ALL_ENVIRONMENTS_KEY} from 'sentry/constants';
+import {Panel, PanelHeader, PanelBody, PanelItem} from 'sentry/components/panels';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import withApi from 'sentry/utils/withApi';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ListLink from 'sentry/components/links/listLink';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NavTabs from 'sentry/components/navTabs';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
+import {getUrlRoutingName, getDisplayName} from 'sentry/utils/environment';
 
 class ProjectEnvironments extends React.Component {
   static propTypes = {

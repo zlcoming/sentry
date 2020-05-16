@@ -2,11 +2,11 @@ import React from 'react';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {Client} from 'app/api';
-import {t} from 'app/locale';
-import {ModalRenderProps} from 'app/actionCreators/modal';
-import {Organization, Project} from 'app/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {Client} from 'sentry/api';
+import {t} from 'sentry/locale';
+import {ModalRenderProps} from 'sentry/actionCreators/modal';
+import {Organization, Project} from 'sentry/types';
 
 import {
   RuleType,

@@ -1,6 +1,6 @@
 import {LocationDescriptor, Query} from 'history';
 
-import {OrganizationSummary} from 'app/types';
+import {OrganizationSummary} from 'sentry/types';
 
 export function getPerformanceLandingUrl(organization: OrganizationSummary): string {
   return `/organizations/${organization.slug}/performance/`;

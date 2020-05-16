@@ -2,20 +2,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AlertLink from 'app/components/alertLink';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import {IconDelete, IconStack} from 'app/icons';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import Tag from 'app/views/settings/components/tag';
-import accountEmailsFields from 'app/data/forms/accountEmails';
-import space from 'app/styles/space';
-import ButtonBar from 'app/components/buttonBar';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AlertLink from 'sentry/components/alertLink';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import {IconDelete, IconStack} from 'sentry/icons';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import Tag from 'sentry/views/settings/components/tag';
+import accountEmailsFields from 'sentry/data/forms/accountEmails';
+import space from 'sentry/styles/space';
+import ButtonBar from 'sentry/components/buttonBar';
 
 const ENDPOINT = '/users/me/emails/';
 

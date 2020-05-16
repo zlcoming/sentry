@@ -1,13 +1,13 @@
 import Reflux from 'reflux';
 import pick from 'lodash/pick';
 
-import {Client} from 'app/api';
+import {Client} from 'sentry/api';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import GroupingActions from 'app/actions/groupingActions';
+} from 'sentry/actionCreators/indicator';
+import GroupingActions from 'sentry/actions/groupingActions';
 
 const api = new Client();
 

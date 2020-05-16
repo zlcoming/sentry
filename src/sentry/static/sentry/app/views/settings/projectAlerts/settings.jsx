@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {IconAdd, IconMail} from 'app/icons';
-import {PanelAlert} from 'app/components/panels';
-import {fields} from 'app/data/forms/projectAlerts';
-import {t} from 'app/locale';
-import AlertLink from 'app/components/alertLink';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import PluginList from 'app/components/pluginList';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import routeTitleGen from 'app/utils/routeTitle';
+import {IconAdd, IconMail} from 'sentry/icons';
+import {PanelAlert} from 'sentry/components/panels';
+import {fields} from 'sentry/data/forms/projectAlerts';
+import {t} from 'sentry/locale';
+import AlertLink from 'sentry/components/alertLink';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import PluginList from 'sentry/components/pluginList';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 class ProjectAlertSettings extends AsyncView {
   static propTypes = {

@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import styled from '@emotion/styled';
 
-import SentryTypes from 'app/sentryTypes';
-import Count from 'app/components/count';
-import DeviceName from 'app/components/deviceName';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {percent} from 'app/utils';
-import {t, tct} from 'app/locale';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import Alert from 'app/components/alert';
-import withApi from 'app/utils/withApi';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import Version from 'app/components/version';
+import SentryTypes from 'sentry/sentryTypes';
+import Count from 'sentry/components/count';
+import DeviceName from 'sentry/components/deviceName';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {percent} from 'sentry/utils';
+import {t, tct} from 'sentry/locale';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import Alert from 'sentry/components/alert';
+import withApi from 'sentry/utils/withApi';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import Version from 'sentry/components/version';
 
 class GroupTags extends React.Component {
   static propTypes = {

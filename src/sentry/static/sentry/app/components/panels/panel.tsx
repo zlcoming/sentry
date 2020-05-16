@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import PanelBody from 'app/components/panels/panelBody';
-import PanelHeader from 'app/components/panels/panelHeader';
-import space from 'app/styles/space';
+import PanelBody from 'sentry/components/panels/panelBody';
+import PanelHeader from 'sentry/components/panels/panelHeader';
+import space from 'sentry/styles/space';
 
 type Props = {
   title?: React.ReactNode;

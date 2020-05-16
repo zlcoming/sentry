@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import PageHeading from 'app/components/pageHeading';
+import PageHeading from 'sentry/components/pageHeading';
 
 export default {
   title: 'UI/PageHeading',

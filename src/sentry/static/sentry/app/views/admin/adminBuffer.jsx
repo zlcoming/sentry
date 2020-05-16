@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import InternalStatChart from 'app/components/internalStatChart';
+import InternalStatChart from 'sentry/components/internalStatChart';
 
 export default class AdminBuffer extends React.Component {
   static propTypes = {

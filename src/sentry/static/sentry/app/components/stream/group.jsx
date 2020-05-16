@@ -7,18 +7,18 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {valueIsEqual} from 'app/utils';
-import AssigneeSelector from 'app/components/assigneeSelector';
-import Count from 'app/components/count';
-import EventOrGroupExtraDetails from 'app/components/eventOrGroupExtraDetails';
-import EventOrGroupHeader from 'app/components/eventOrGroupHeader';
-import GroupChart from 'app/components/stream/groupChart';
-import GroupCheckBox from 'app/components/stream/groupCheckBox';
-import GroupStore from 'app/stores/groupStore';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import SelectedGroupStore from 'app/stores/selectedGroupStore';
-import space from 'app/styles/space';
+import {PanelItem} from 'sentry/components/panels';
+import {valueIsEqual} from 'sentry/utils';
+import AssigneeSelector from 'sentry/components/assigneeSelector';
+import Count from 'sentry/components/count';
+import EventOrGroupExtraDetails from 'sentry/components/eventOrGroupExtraDetails';
+import EventOrGroupHeader from 'sentry/components/eventOrGroupHeader';
+import GroupChart from 'sentry/components/stream/groupChart';
+import GroupCheckBox from 'sentry/components/stream/groupCheckBox';
+import GroupStore from 'sentry/stores/groupStore';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import SelectedGroupStore from 'sentry/stores/selectedGroupStore';
+import space from 'sentry/styles/space';
 
 const StreamGroup = createReactClass({
   displayName: 'StreamGroup',

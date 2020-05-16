@@ -1,9 +1,9 @@
 import moment from 'moment';
 
-import {use24Hours} from 'app/utils/dates';
-import {defined} from 'app/utils';
-import {t} from 'app/locale';
-import {getDuration} from 'app/utils/formatters';
+import {use24Hours} from 'sentry/utils/dates';
+import {defined} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import {getDuration} from 'sentry/utils/formatters';
 
 const timeFormat = 'HH:mm:ss';
 const timeDateFormat = `ll ${timeFormat}`;

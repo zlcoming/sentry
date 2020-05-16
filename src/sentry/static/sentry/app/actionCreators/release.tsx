@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/react';
 
-import ReleaseActions from 'app/actions/releaseActions';
-import {Client} from 'app/api';
-import ReleaseStore, {getReleaseStoreKey} from 'app/stores/releaseStore';
-import {Deploy, Release} from 'app/types';
+import ReleaseActions from 'sentry/actions/releaseActions';
+import {Client} from 'sentry/api';
+import ReleaseStore, {getReleaseStoreKey} from 'sentry/stores/releaseStore';
+import {Deploy, Release} from 'sentry/types';
 
 type ParamsGet = {
   orgSlug: string;

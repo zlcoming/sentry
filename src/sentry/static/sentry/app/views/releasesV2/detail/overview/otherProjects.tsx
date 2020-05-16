@@ -2,13 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Location} from 'history';
 
-import {t, tn} from 'app/locale';
-import space from 'app/styles/space';
-import Link from 'app/components/links/link';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import {ReleaseProject} from 'app/types';
-import Button from 'app/components/button';
-import ProjectBadge from 'app/components/idBadge/projectBadge';
+import {t, tn} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Link from 'sentry/components/links/link';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import {ReleaseProject} from 'sentry/types';
+import Button from 'sentry/components/button';
+import ProjectBadge from 'sentry/components/idBadge/projectBadge';
 
 import {SectionHeading, Wrapper} from './styles';
 

@@ -1,16 +1,16 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Organization, Project} from 'app/types';
-import {t} from 'app/locale';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import IncidentRulesCreate from 'app/views/settings/incidentRules/create';
-import IssueEditor from 'app/views/settings/projectAlerts/issueEditor';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import withProject from 'app/utils/withProject';
-import EventView from 'app/utils/discover/eventView';
-import {uniqueId} from 'app/utils/guid';
+import {Organization, Project} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import IncidentRulesCreate from 'sentry/views/settings/incidentRules/create';
+import IssueEditor from 'sentry/views/settings/projectAlerts/issueEditor';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import withProject from 'sentry/utils/withProject';
+import EventView from 'sentry/utils/discover/eventView';
+import {uniqueId} from 'sentry/utils/guid';
 
 import AlertTypeChooser from './alertTypeChooser';
 

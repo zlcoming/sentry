@@ -1,4 +1,4 @@
-import {t, tct} from 'app/locale';
+import {t, tct} from 'sentry/locale';
 
 type formatConfig = {
   inProjectSettings?: boolean;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BasePlugin from 'app/plugins/basePlugin';
+import BasePlugin from 'sentry/plugins/basePlugin';
 
 import Settings from './components/settings';
 

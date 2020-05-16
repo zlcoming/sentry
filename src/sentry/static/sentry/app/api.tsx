@@ -7,13 +7,13 @@ import {
   PROJECT_MOVED,
   SUDO_REQUIRED,
   SUPERUSER_REQUIRED,
-} from 'app/constants/apiErrorCodes';
-import {run} from 'app/utils/apiSentryClient';
-import {metric} from 'app/utils/analytics';
-import {openSudo, redirectToProject} from 'app/actionCreators/modal';
-import {uniqueId} from 'app/utils/guid';
-import GroupActions from 'app/actions/groupActions';
-import createRequestError from 'app/utils/requestError/createRequestError';
+} from 'sentry/constants/apiErrorCodes';
+import {run} from 'sentry/utils/apiSentryClient';
+import {metric} from 'sentry/utils/analytics';
+import {openSudo, redirectToProject} from 'sentry/actionCreators/modal';
+import {uniqueId} from 'sentry/utils/guid';
+import GroupActions from 'sentry/actions/groupActions';
+import createRequestError from 'sentry/utils/requestError/createRequestError';
 
 export class Request {
   alive: boolean;

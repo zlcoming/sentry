@@ -9,22 +9,22 @@ import {
   DATE_TIME,
   LOCAL_STORAGE_KEY,
   URL_PARAM,
-} from 'app/constants/globalSelectionHeader';
+} from 'sentry/constants/globalSelectionHeader';
 import {
   Environment,
   GlobalSelection,
   MinimalProject,
   Organization,
   Project,
-} from 'app/types';
-import {defined} from 'app/utils';
+} from 'sentry/types';
+import {defined} from 'sentry/utils';
 import {
   getDefaultSelection,
   getStateFromQuery,
-} from 'app/components/organizations/globalSelectionHeader/utils';
-import {getUtcDateString} from 'app/utils/dates';
-import GlobalSelectionActions from 'app/actions/globalSelectionActions';
-import localStorage from 'app/utils/localStorage';
+} from 'sentry/components/organizations/globalSelectionHeader/utils';
+import {getUtcDateString} from 'sentry/utils/dates';
+import GlobalSelectionActions from 'sentry/actions/globalSelectionActions';
+import localStorage from 'sentry/utils/localStorage';
 
 /**
  * Note this is the internal project.id, NOT the slug, but it is the stringified version of it

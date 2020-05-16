@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Event, Organization} from 'app/types';
-import withOrganization from 'app/utils/withOrganization';
-import ErrorBoundary from 'app/components/errorBoundary';
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueListV2';
+import {Event, Organization} from 'sentry/types';
+import withOrganization from 'sentry/utils/withOrganization';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueListV2';
 
 import {TraceKnownData, TraceKnownDataType} from './types';
 import getTraceKnownData from './getTraceKnownData';

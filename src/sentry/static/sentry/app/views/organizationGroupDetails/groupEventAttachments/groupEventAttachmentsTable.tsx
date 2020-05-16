@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {EventAttachment} from 'app/types';
-import {t} from 'app/locale';
-import GroupEventAttachmentsTableRow from 'app/views/organizationGroupDetails/groupEventAttachments/groupEventAttachmentsTableRow';
+import {EventAttachment} from 'sentry/types';
+import {t} from 'sentry/locale';
+import GroupEventAttachmentsTableRow from 'sentry/views/organizationGroupDetails/groupEventAttachments/groupEventAttachmentsTableRow';
 
 type Props = {
   attachments: EventAttachment[];

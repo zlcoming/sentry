@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as queryString from 'query-string';
 
-import {IntegrationProvider, Integration, Organization} from 'app/types';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {IntegrationProvider, Integration, Organization} from 'sentry/types';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 type Props = {
   children: (

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {select, number} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 
-import NumberDragControl from 'app/components/numberDragControl';
+import NumberDragControl from 'sentry/components/numberDragControl';
 
 const onChange = action('onChange');
 

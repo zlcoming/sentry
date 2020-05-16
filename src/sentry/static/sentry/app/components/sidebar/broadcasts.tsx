@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {getAllBroadcasts, markBroadcastsAsSeen} from 'app/actionCreators/broadcasts';
-import {t} from 'app/locale';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SidebarItem from 'app/components/sidebar/sidebarItem';
-import SidebarPanel from 'app/components/sidebar/sidebarPanel';
-import SidebarPanelEmpty from 'app/components/sidebar/sidebarPanelEmpty';
-import SidebarPanelItem from 'app/components/sidebar/sidebarPanelItem';
-import {IconBroadcast} from 'app/icons';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import {Organization, Broadcast} from 'app/types';
+import {getAllBroadcasts, markBroadcastsAsSeen} from 'sentry/actionCreators/broadcasts';
+import {t} from 'sentry/locale';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SidebarItem from 'sentry/components/sidebar/sidebarItem';
+import SidebarPanel from 'sentry/components/sidebar/sidebarPanel';
+import SidebarPanelEmpty from 'sentry/components/sidebar/sidebarPanelEmpty';
+import SidebarPanelItem from 'sentry/components/sidebar/sidebarPanelItem';
+import {IconBroadcast} from 'sentry/icons';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import {Organization, Broadcast} from 'sentry/types';
 
 import {CommonSidebarProps} from './types';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ControlState from 'app/views/settings/components/forms/field/controlState';
-import {t} from 'app/locale';
-import Tooltip from 'app/components/tooltip';
-import {IconClose, IconCheckmark} from 'app/icons';
+import ControlState from 'sentry/views/settings/components/forms/field/controlState';
+import {t} from 'sentry/locale';
+import Tooltip from 'sentry/components/tooltip';
+import {IconClose, IconCheckmark} from 'sentry/icons';
 
 import {EventIdStatus} from '../../types';
 

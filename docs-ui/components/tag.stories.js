@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import Tooltip from 'app/components/tooltip';
-import Tag from 'app/views/settings/components/tag';
+import Tooltip from 'sentry/components/tooltip';
+import Tag from 'sentry/views/settings/components/tag';
 
 export default {
   title: 'UI/Tags',

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import ToolbarHeader from 'app/components/toolbarHeader';
+import ToolbarHeader from 'sentry/components/toolbarHeader';
 
 describe('ToolbarHeader', function() {
   beforeEach(function() {});

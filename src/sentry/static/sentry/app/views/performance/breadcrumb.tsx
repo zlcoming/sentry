@@ -1,10 +1,10 @@
 import React from 'react';
 import {Location, LocationDescriptor} from 'history';
 
-import {t} from 'app/locale';
-import {Organization} from 'app/types';
-import Breadcrumbs, {Crumb} from 'app/components/breadcrumbs';
-import {decodeScalar} from 'app/utils/queryString';
+import {t} from 'sentry/locale';
+import {Organization} from 'sentry/types';
+import Breadcrumbs, {Crumb} from 'sentry/components/breadcrumbs';
+import {decodeScalar} from 'sentry/utils/queryString';
 
 import {getPerformanceLandingUrl} from './utils';
 import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';

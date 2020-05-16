@@ -2,13 +2,13 @@ import flattenDepth from 'lodash/flattenDepth';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {createFuzzySearch} from 'app/utils/createFuzzySearch';
-import SentryTypes from 'app/sentryTypes';
-import accountSettingsNavigation from 'app/views/settings/account/navigationConfiguration';
-import organizationSettingsNavigation from 'app/views/settings/organization/navigationConfiguration';
-import projectSettingsNavigation from 'app/views/settings/project/navigationConfiguration';
-import replaceRouterParams from 'app/utils/replaceRouterParams';
-import withLatestContext from 'app/utils/withLatestContext';
+import {createFuzzySearch} from 'sentry/utils/createFuzzySearch';
+import SentryTypes from 'sentry/sentryTypes';
+import accountSettingsNavigation from 'sentry/views/settings/account/navigationConfiguration';
+import organizationSettingsNavigation from 'sentry/views/settings/organization/navigationConfiguration';
+import projectSettingsNavigation from 'sentry/views/settings/project/navigationConfiguration';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
+import withLatestContext from 'sentry/utils/withLatestContext';
 
 // navigation configuration can currently be either:
 // * an array of {name: string, items: Array<{NavItem}>} OR

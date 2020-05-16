@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import {SmartSearchBar} from 'app/components/smartSearchBar';
-import {addSpace, removeSpace} from 'app/components/smartSearchBar/utils';
-import TagStore from 'app/stores/tagStore';
+import {Client} from 'sentry/api';
+import {SmartSearchBar} from 'sentry/components/smartSearchBar';
+import {addSpace, removeSpace} from 'sentry/components/smartSearchBar/utils';
+import TagStore from 'sentry/stores/tagStore';
 
 describe('addSpace()', function() {
   it('should add a space when there is no trailing space', function() {

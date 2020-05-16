@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-import DropdownMenu from 'app/components/dropdownMenu';
-import {IconChevron} from 'app/icons';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import {IconChevron} from 'sentry/icons';
 
 // .dropdown-actor-title = flexbox to fix vertical alignment on firefox Need
 // the extra container because dropdown-menu alignment is off if

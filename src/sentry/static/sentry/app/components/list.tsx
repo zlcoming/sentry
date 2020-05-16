@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import theme from 'app/utils/theme';
-import space from 'app/styles/space';
+import theme from 'sentry/utils/theme';
+import space from 'sentry/styles/space';
 
 export const List = styled('ul')`
   list-style: none;

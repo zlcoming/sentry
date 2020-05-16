@@ -2,15 +2,15 @@ import isNil from 'lodash/isNil';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
-import {isStacktraceNewestFirst} from 'app/components/events/interfaces/stacktrace';
-import CrashHeader from 'app/components/events/interfaces/crashHeader';
-import CrashContent from 'app/components/events/interfaces/crashContent';
-import Pills from 'app/components/pills';
-import Pill from 'app/components/pill';
-import {defined} from 'app/utils';
+import {t} from 'sentry/locale';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import {isStacktraceNewestFirst} from 'sentry/components/events/interfaces/stacktrace';
+import CrashHeader from 'sentry/components/events/interfaces/crashHeader';
+import CrashContent from 'sentry/components/events/interfaces/crashContent';
+import Pills from 'sentry/components/pills';
+import Pill from 'sentry/components/pill';
+import {defined} from 'sentry/utils';
 
 import ThreadSelector from './threadSelector';
 import getThreadStacktrace from './threadSelector/getThreadStacktrace';

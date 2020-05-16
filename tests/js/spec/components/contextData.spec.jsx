@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import ContextData from 'app/components/contextData';
+import ContextData from 'sentry/components/contextData';
 
 describe('ContextData', function() {
   describe('render()', function() {

@@ -2,14 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {LocationDescriptor} from 'history';
 
-import {SectionHeading} from 'app/components/charts/styles';
-import Link from 'app/components/links/link';
-import Tooltip from 'app/components/tooltip';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import {Event, EventTag} from 'app/types';
-import Version from 'app/components/version';
+import {SectionHeading} from 'sentry/components/charts/styles';
+import Link from 'sentry/components/links/link';
+import Tooltip from 'sentry/components/tooltip';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import {Event, EventTag} from 'sentry/types';
+import Version from 'sentry/components/version';
 
 type Props = {
   event: Event;

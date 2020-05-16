@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {tct, t} from 'app/locale';
-import ExternalLink from 'app/components/links/externalLink';
-import Button from 'app/components/button';
-import {Panel} from 'app/components/panels';
-import space from 'app/styles/space';
+import {tct, t} from 'sentry/locale';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Button from 'sentry/components/button';
+import {Panel} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
 
 type IntroProps = {
   updateQuery: (query: any) => void;

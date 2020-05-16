@@ -1,9 +1,9 @@
 import React from 'react';
 
-import SettingsNavigation from 'app/views/settings/components/settingsNavigation';
-import getConfiguration from 'app/views/settings/project/navigationConfiguration';
-import withProject from 'app/utils/withProject';
-import {Organization, Project} from 'app/types';
+import SettingsNavigation from 'sentry/views/settings/components/settingsNavigation';
+import getConfiguration from 'sentry/views/settings/project/navigationConfiguration';
+import withProject from 'sentry/utils/withProject';
+import {Organization, Project} from 'sentry/types';
 
 type Props = {
   organization: Organization;

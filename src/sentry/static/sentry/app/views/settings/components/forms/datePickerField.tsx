@@ -6,10 +6,10 @@ import React from 'react';
 import moment from 'moment';
 import styled from '@emotion/styled';
 
-import {inputStyles} from 'app/styles/input';
-import DropdownMenu from 'app/components/dropdownMenu';
-import {IconCalendar} from 'app/icons';
-import space from 'app/styles/space';
+import {inputStyles} from 'sentry/styles/input';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import {IconCalendar} from 'sentry/icons';
+import space from 'sentry/styles/space';
 
 import InputField, {onEvent} from './inputField';
 

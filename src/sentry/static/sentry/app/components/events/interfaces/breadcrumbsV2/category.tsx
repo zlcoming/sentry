@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Highlight from 'app/components/highlight';
-import TextOverflow from 'app/components/textOverflow';
-import Tooltip from 'app/components/tooltip';
-import {defined} from 'app/utils';
-import {t} from 'app/locale';
+import Highlight from 'sentry/components/highlight';
+import TextOverflow from 'sentry/components/textOverflow';
+import Tooltip from 'sentry/components/tooltip';
+import {defined} from 'sentry/utils';
+import {t} from 'sentry/locale';
 
 type Props = {
   searchTerm: string;

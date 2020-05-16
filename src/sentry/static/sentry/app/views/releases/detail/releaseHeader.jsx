@@ -2,19 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconClock} from 'app/icons';
-import {t} from 'app/locale';
-import Count from 'app/components/count';
-import ExternalLink from 'app/components/links/externalLink';
-import ListLink from 'app/components/links/listLink';
-import NavTabs from 'app/components/navTabs';
-import PageHeading from 'app/components/pageHeading';
-import ReleaseStats from 'app/components/releaseStats';
-import TextOverflow from 'app/components/textOverflow';
-import TimeSince from 'app/components/timeSince';
-import Version from 'app/components/version';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import SentryTypes from 'app/sentryTypes';
+import {IconClock} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import Count from 'sentry/components/count';
+import ExternalLink from 'sentry/components/links/externalLink';
+import ListLink from 'sentry/components/links/listLink';
+import NavTabs from 'sentry/components/navTabs';
+import PageHeading from 'sentry/components/pageHeading';
+import ReleaseStats from 'sentry/components/releaseStats';
+import TextOverflow from 'sentry/components/textOverflow';
+import TimeSince from 'sentry/components/timeSince';
+import Version from 'sentry/components/version';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import SentryTypes from 'sentry/sentryTypes';
 
 import ReleaseDetailsActions from './releaseDetailActions';
 

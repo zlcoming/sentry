@@ -1,17 +1,17 @@
 import React from 'react';
 import {Location} from 'history';
 
-import {Organization, SavedQuery} from 'app/types';
-import {fetchSavedQuery} from 'app/actionCreators/discoverSavedQueries';
-import {Client} from 'app/api';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import Hovercard from 'app/components/hovercard';
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import EventView from 'app/utils/discover/eventView';
-import * as Layout from 'app/components/layouts/thirds';
-import CreateAlertButton from 'app/components/createAlertButton';
+import {Organization, SavedQuery} from 'sentry/types';
+import {fetchSavedQuery} from 'sentry/actionCreators/discoverSavedQueries';
+import {Client} from 'sentry/api';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import Hovercard from 'sentry/components/hovercard';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import EventView from 'sentry/utils/discover/eventView';
+import * as Layout from 'sentry/components/layouts/thirds';
+import CreateAlertButton from 'sentry/components/createAlertButton';
 
 import DiscoverBreadcrumb from './breadcrumb';
 import EventInputName from './eventInputName';

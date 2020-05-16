@@ -1,25 +1,25 @@
 import {browserHistory} from 'react-router';
 import React from 'react';
 
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ErrorBoundary from 'app/components/errorBoundary';
-import Field from 'app/views/settings/components/forms/field';
-import {IconFlag} from 'app/icons';
-import ServiceHookSettingsForm from 'app/views/settings/project/serviceHookSettingsForm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import StackedBarChart from 'app/components/stackedBarChart';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import getDynamicText from 'app/utils/getDynamicText';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import Field from 'sentry/views/settings/components/forms/field';
+import {IconFlag} from 'sentry/icons';
+import ServiceHookSettingsForm from 'sentry/views/settings/project/serviceHookSettingsForm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import getDynamicText from 'sentry/utils/getDynamicText';
 
 class HookStats extends AsyncComponent {
   getEndpoints() {

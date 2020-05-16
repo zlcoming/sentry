@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CrumbTable from 'app/components/events/interfaces/breadcrumbs/crumbTable';
-import SummaryLine from 'app/components/events/interfaces/breadcrumbs/summaryLine';
-import {getMeta} from 'app/components/events/meta/metaProxy';
+import CrumbTable from 'sentry/components/events/interfaces/breadcrumbs/crumbTable';
+import SummaryLine from 'sentry/components/events/interfaces/breadcrumbs/summaryLine';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
 
 import getBreadcrumbCustomRendererValue from './getBreadcrumbCustomRendererValue';
 import {BreadcrumbTypeDefault, BreadcrumbTypeNavigation} from './types';

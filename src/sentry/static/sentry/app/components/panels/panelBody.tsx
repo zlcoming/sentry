@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import textStyles from 'app/styles/text';
+import space from 'sentry/styles/space';
+import textStyles from 'sentry/styles/text';
 
 type FlexComponentProps = Omit<React.ComponentPropsWithoutRef<typeof Flex>, 'theme'>;
 

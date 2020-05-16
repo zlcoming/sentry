@@ -2,12 +2,12 @@ import React from 'react';
 import pick from 'lodash/pick';
 import * as ReactRouter from 'react-router';
 
-import {Panel, PanelBody} from 'app/components/panels';
-import {t} from 'app/locale';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import AsyncComponent from 'app/components/asyncComponent';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import AsyncComponent from 'sentry/components/asyncComponent';
 
 import GroupEventAttachmentsTable from './groupEventAttachmentsTable';
 import GroupEventAttachmentsFilter from './groupEventAttachmentsFilter';

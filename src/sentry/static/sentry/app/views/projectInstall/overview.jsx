@@ -2,19 +2,19 @@ import {browserHistory} from 'react-router';
 import styled from '@emotion/styled';
 import React from 'react';
 
-import {t, tct} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import AutoSelectText from 'app/components/autoSelectText';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import Button from 'app/components/button';
-import ExternalLink from 'app/components/links/externalLink';
-import PlatformPicker from 'app/components/platformPicker';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+import {t, tct} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import AutoSelectText from 'sentry/components/autoSelectText';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import Button from 'sentry/components/button';
+import ExternalLink from 'sentry/components/links/externalLink';
+import PlatformPicker from 'sentry/components/platformPicker';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class ProjectInstallOverview extends AsyncComponent {
   static propTypes = {

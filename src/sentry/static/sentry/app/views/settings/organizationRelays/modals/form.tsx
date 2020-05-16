@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import QuestionTooltip from 'app/components/questionTooltip';
-import Input from 'app/views/settings/components/forms/controls/input';
-import Textarea from 'app/views/settings/components/forms/controls/textarea';
-import Field from 'app/views/settings/components/forms/field';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import space from 'app/styles/space';
-import {Relay} from 'app/types';
+import {t} from 'sentry/locale';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import Textarea from 'sentry/views/settings/components/forms/controls/textarea';
+import Field from 'sentry/views/settings/components/forms/field';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import space from 'sentry/styles/space';
+import {Relay} from 'sentry/types';
 
 type FormField = keyof Pick<Relay, 'name' | 'publicKey' | 'description'>;
 type Values = Record<FormField, string>;

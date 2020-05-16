@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Commit} from 'app/types';
-import {openInviteMembersModal} from 'app/actionCreators/modal';
-import {PanelItem} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import CommitLink from 'app/components/commitLink';
-import Hovercard from 'app/components/hovercard';
-import {IconFlag} from 'app/icons';
-import Link from 'app/components/links/link';
-import TextOverflow from 'app/components/textOverflow';
-import TimeSince from 'app/components/timeSince';
-import space from 'app/styles/space';
+import {Commit} from 'sentry/types';
+import {openInviteMembersModal} from 'sentry/actionCreators/modal';
+import {PanelItem} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import CommitLink from 'sentry/components/commitLink';
+import Hovercard from 'sentry/components/hovercard';
+import {IconFlag} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import TextOverflow from 'sentry/components/textOverflow';
+import TimeSince from 'sentry/components/timeSince';
+import space from 'sentry/styles/space';
 
 type Props = {
   commit: Commit;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import ProjectLabel from 'app/components/projectLabel';
+import ProjectLabel from 'sentry/components/projectLabel';
 
 export default {
   title: 'Deprecated/ProjectLabel',

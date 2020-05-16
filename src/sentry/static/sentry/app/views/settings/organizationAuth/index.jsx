@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import SentryTypes from 'app/sentryTypes';
-import routeTitleGen from 'app/utils/routeTitle';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import SentryTypes from 'sentry/sentryTypes';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 import OrganizationAuthList from './organizationAuthList';
 

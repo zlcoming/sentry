@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Tooltip from 'app/components/tooltip';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import overflowEllipsisLeft from 'app/styles/overflowEllipsisLeft';
-import {PlatformContext} from 'app/components/events/interfaces/breadcrumbs/platformContext';
+import Tooltip from 'sentry/components/tooltip';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import overflowEllipsisLeft from 'sentry/styles/overflowEllipsisLeft';
+import {PlatformContext} from 'sentry/components/events/interfaces/breadcrumbs/platformContext';
 
 class Category extends React.Component {
   static propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import echarts from 'echarts';
 
-import theme from 'app/utils/theme';
+import theme from 'sentry/utils/theme';
 
 import BaseChart from './baseChart';
 import MapSeries from './series/mapSeries';
@@ -25,11 +25,11 @@ export default class WorldMapChart extends React.Component {
 
   async componentDidMount() {
     const [countryToCodeMap, worldMap] = await Promise.all([
-      import(/* webpackChunkName: "countryCodesMap" */ 'app/data/countryCodesMap'),
-      import(/* webpackChunkName: "worldMapGeoJson" */ 'app/data/world.json'),
+      import(/* webpackChunkName: "countryCodesMap" */ 'sentry/data/countryCodesMap'),
+      import(/* webpackChunkName: "worldMapGeoJson" */ 'sentry/data/world.json'),
     ]);
 
-    echarts.registerMap('sentryWorld', worldMap.default);
+    echarts.registerMap('sentryWorl8', worldMap.default);
 
     // eslint-disable-next-line
     this.setState({

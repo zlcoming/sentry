@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {defined} from 'app/utils';
-import {sanitizeQuerySelector} from 'app/utils/sanitizeQuerySelector';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import Field from 'app/views/settings/components/forms/field';
-import FieldControl from 'app/views/settings/components/forms/field/fieldControl';
-import FieldErrorReason from 'app/views/settings/components/forms/field/fieldErrorReason';
-import FormFieldControlState from 'app/views/settings/components/forms/formField/controlState';
-import PanelAlert from 'app/components/panels/panelAlert';
-import ReturnButton from 'app/views/settings/components/forms/returnButton';
-import space from 'app/styles/space';
-import Alert from 'app/components/alert';
-import FormModel from 'app/views/settings/components/forms/model';
+import {defined} from 'sentry/utils';
+import {sanitizeQuerySelector} from 'sentry/utils/sanitizeQuerySelector';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import Field from 'sentry/views/settings/components/forms/field';
+import FieldControl from 'sentry/views/settings/components/forms/field/fieldControl';
+import FieldErrorReason from 'sentry/views/settings/components/forms/field/fieldErrorReason';
+import FormFieldControlState from 'sentry/views/settings/components/forms/formField/controlState';
+import PanelAlert from 'sentry/components/panels/panelAlert';
+import ReturnButton from 'sentry/views/settings/components/forms/returnButton';
+import space from 'sentry/styles/space';
+import Alert from 'sentry/components/alert';
+import FormModel from 'sentry/views/settings/components/forms/model';
 
 /**
  * Some fields don't need to implement their own onChange handlers, in

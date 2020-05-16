@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {boolean} from '@storybook/addon-knobs';
 
-import Well from 'app/components/well';
+import Well from 'sentry/components/well';
 
 export default {
   title: 'UI/Well',

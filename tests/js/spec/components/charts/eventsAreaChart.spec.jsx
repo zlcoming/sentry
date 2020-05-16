@@ -3,8 +3,7 @@ import React from 'react';
 import {mockZoomRange} from 'sentry-test/charts';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import EventsChart from 'app/components/charts/eventsChart';
+import EventsChart from 'sentry/components/charts/eventsChart';
 
 describe('EventsChart with legend', function() {
   const {router, routerContext, org} = initializeOrg();

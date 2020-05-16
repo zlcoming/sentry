@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ConfigStore from 'app/stores/configStore';
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import CrashHeader from 'app/components/events/interfaces/crashHeader';
-import CrashContent from 'app/components/events/interfaces/crashContent';
+import ConfigStore from 'sentry/stores/configStore';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import CrashHeader from 'sentry/components/events/interfaces/crashHeader';
+import CrashContent from 'sentry/components/events/interfaces/crashContent';
 
 export function isStacktraceNewestFirst() {
   const user = ConfigStore.get('user');

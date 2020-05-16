@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount, shallow} from 'sentry-test/enzyme';
-
-import RadioGroup from 'app/views/settings/components/forms/controls/radioGroup';
+import RadioGroup from 'sentry/views/settings/components/forms/controls/radioGroup';
 
 describe('RadioGroup', function() {
   it('renders', function() {

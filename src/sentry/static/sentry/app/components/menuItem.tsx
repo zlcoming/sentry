@@ -3,10 +3,10 @@ import React from 'react';
 import omit from 'lodash/omit';
 import styled from '@emotion/styled';
 
-import Link from 'app/components/links/link';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import space from 'app/styles/space';
-import {Theme} from 'app/utils/theme';
+import Link from 'sentry/components/links/link';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import space from 'sentry/styles/space';
+import {Theme} from 'sentry/utils/theme';
 
 type MenuItemProps = {
   /**

@@ -2,11 +2,11 @@ import React from 'react';
 import * as ReactRouter from 'react-router';
 import {Location} from 'history';
 
-import {GlobalSelection, Organization} from 'app/types';
-import {Panel} from 'app/components/panels';
-import {Client} from 'app/api';
-import EventsChart from 'app/components/charts/eventsChart';
-import {t} from 'app/locale';
+import {GlobalSelection, Organization} from 'sentry/types';
+import {Panel} from 'sentry/components/panels';
+import {Client} from 'sentry/api';
+import EventsChart from 'sentry/components/charts/eventsChart';
+import {t} from 'sentry/locale';
 
 import ReleaseChartControls, {YAxis} from './releaseChartControls';
 import {ReleaseStatsRequestRenderProps} from '../releaseStatsRequest';

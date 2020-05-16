@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
+import {PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
 
 import {
   LastEventColumn,

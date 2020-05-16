@@ -2,8 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ResolveActions from 'app/components/actions/resolve';
+import ResolveActions from 'sentry/components/actions/resolve';
 
 describe('ResolveActions', function() {
   describe('disabled', function() {

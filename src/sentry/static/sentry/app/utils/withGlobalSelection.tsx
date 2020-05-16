@@ -2,9 +2,9 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import GlobalSelectionStore from 'app/stores/globalSelectionStore';
-import getDisplayName from 'app/utils/getDisplayName';
-import {GlobalSelection} from 'app/types';
+import GlobalSelectionStore from 'sentry/stores/globalSelectionStore';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import {GlobalSelection} from 'sentry/types';
 
 type InjectedGlobalSelectionProps = {
   selection?: GlobalSelection;

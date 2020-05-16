@@ -1,15 +1,15 @@
 import React from 'react';
 
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import ExternalLink from 'app/components/links/externalLink';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import PreviewFeature from 'app/components/previewFeature';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import PreviewFeature from 'sentry/components/previewFeature';
 import ReportUri, {
   getSecurityDsn,
-} from 'app/views/settings/projectSecurityHeaders/reportUri';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import routeTitleGen from 'app/utils/routeTitle';
+} from 'sentry/views/settings/projectSecurityHeaders/reportUri';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 export default class ProjectExpectCtReports extends AsyncView {
   getEndpoints() {

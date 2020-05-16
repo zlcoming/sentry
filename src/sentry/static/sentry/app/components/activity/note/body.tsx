@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import marked from 'app/utils/marked';
+import marked from 'sentry/utils/marked';
 
 type Props = {
   text: string;

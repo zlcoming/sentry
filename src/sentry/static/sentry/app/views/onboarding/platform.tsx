@@ -1,18 +1,18 @@
 import {ClassNames} from '@emotion/core';
 import React from 'react';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {createProject} from 'app/actionCreators/projects';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import PlatformPicker from 'app/components/platformPicker';
-import ProjectActions from 'app/actions/projectActions';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withTeams from 'app/utils/withTeams';
-import {Client} from 'app/api';
-import {Team} from 'app/types';
-import {PlatformKey} from 'app/data/platformCategories';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {createProject} from 'sentry/actionCreators/projects';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import PlatformPicker from 'sentry/components/platformPicker';
+import ProjectActions from 'sentry/actions/projectActions';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withTeams from 'sentry/utils/withTeams';
+import {Client} from 'sentry/api';
+import {Team} from 'sentry/types';
+import {PlatformKey} from 'sentry/data/platformCategories';
 
 import {StepProps} from './types';
 

@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import Access from 'app/components/acl/access';
-import Button from 'app/components/button';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import Hovercard from 'app/components/hovercard';
-import SentryTypes from 'app/sentryTypes';
-import {IconLock} from 'app/icons';
-import Tag from 'app/views/settings/components/tag';
-import {descopeFeatureName} from 'app/utils';
+import {PanelItem} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Access from 'sentry/components/acl/access';
+import Button from 'sentry/components/button';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import Hovercard from 'sentry/components/hovercard';
+import SentryTypes from 'sentry/sentryTypes';
+import {IconLock} from 'sentry/icons';
+import Tag from 'sentry/views/settings/components/tag';
+import {descopeFeatureName} from 'sentry/utils';
 
 export default class ProviderItem extends React.PureComponent {
   static propTypes = {

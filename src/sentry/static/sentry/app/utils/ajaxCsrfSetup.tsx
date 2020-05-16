@@ -1,5 +1,5 @@
-import getCookie from 'app/utils/getCookie';
-import {CSRF_COOKIE_NAME} from 'app/constants';
+import getCookie from 'sentry/utils/getCookie';
+import {CSRF_COOKIE_NAME} from 'sentry/constants';
 
 function csrfSafeMethod(method?: string) {
   // these HTTP methods do not require CSRF protection

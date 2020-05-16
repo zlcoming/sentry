@@ -1,16 +1,16 @@
 import {LocationDescriptor} from 'history';
 import pick from 'lodash/pick';
 
-import {Client} from 'app/api';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
-import {canIncludePreviousPeriod} from 'app/components/charts/utils';
-import {getPeriod} from 'app/utils/getPeriod';
+import {Client} from 'sentry/api';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
+import {canIncludePreviousPeriod} from 'sentry/components/charts/utils';
+import {getPeriod} from 'sentry/utils/getPeriod';
 import {
   EventsStats,
   DateString,
   OrganizationSummary,
   MultiSeriesEventsStats,
-} from 'app/types';
+} from 'sentry/types';
 
 function getBaseUrl(org: OrganizationSummary, keyTransactions: boolean | undefined) {
   if (keyTransactions) {

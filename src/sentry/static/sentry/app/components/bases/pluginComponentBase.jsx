@@ -1,15 +1,15 @@
 import React from 'react';
 import isFunction from 'lodash/isFunction';
 
-import {Client} from 'app/api';
-import {FormState, GenericField} from 'app/components/forms';
+import {Client} from 'sentry/api';
+import {FormState, GenericField} from 'sentry/components/forms';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
 
 const callbackWithArgs = function(callback, ...args) {
   if (isFunction(callback)) {

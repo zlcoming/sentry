@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import ResolutionBox from 'app/components/resolutionBox';
-import MutedBox from 'app/components/mutedBox';
+import ResolutionBox from 'sentry/components/resolutionBox';
+import MutedBox from 'sentry/components/mutedBox';
 
 const actor = {
   email: 'uhoh@example.com',

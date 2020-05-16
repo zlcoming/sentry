@@ -1,12 +1,12 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Organization} from 'app/types';
-import {t} from 'app/locale';
-import IncidentRulesDetails from 'app/views/settings/incidentRules/details';
-import IssueEditor from 'app/views/settings/projectAlerts/issueEditor';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
+import {Organization} from 'sentry/types';
+import {t} from 'sentry/locale';
+import IncidentRulesDetails from 'sentry/views/settings/incidentRules/details';
+import IssueEditor from 'sentry/views/settings/projectAlerts/issueEditor';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
 
 type RouteParams = {
   orgId: string;

@@ -33,7 +33,7 @@
     "baseUrl": "../",
     "outDir": "../src/sentry/static/sentry/dist",
     "paths": {
-      "app/*": ["src/sentry/static/sentry/app/*"],
+      "sentry/*": ["src/sentry/static/sentry/app/*"],
       "sentry-test/*": ["tests/js/sentry-test/*"],
       "@emotion/styled": ["src/sentry/static/sentry/app/styled.tsx"],
       "@original-emotion/*": ["node_modules/@emotion/*"],

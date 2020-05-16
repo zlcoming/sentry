@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import ProjectOwnership from 'app/views/settings/project/projectOwnership';
+import {Client} from 'sentry/api';
+import ProjectOwnership from 'sentry/views/settings/project/projectOwnership';
 
 describe('ProjectTeamsSettings', function() {
   let org;

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount, shallow} from 'sentry-test/enzyme';
-
-import MemberBadge from 'app/components/idBadge/memberBadge';
+import MemberBadge from 'sentry/components/idBadge/memberBadge';
 
 describe('MemberBadge', function() {
   let member;

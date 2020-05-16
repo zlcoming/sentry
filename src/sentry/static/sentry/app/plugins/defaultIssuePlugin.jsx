@@ -1,7 +1,7 @@
 import React from 'react';
 
-import BasePlugin from 'app/plugins/basePlugin';
-import IssueActions from 'app/plugins/components/issueActions';
+import BasePlugin from 'sentry/plugins/basePlugin';
+import IssueActions from 'sentry/plugins/components/issueActions';
 
 export class DefaultIssuePlugin extends BasePlugin {
   renderGroupActions(props) {

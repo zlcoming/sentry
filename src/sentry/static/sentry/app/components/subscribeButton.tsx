@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from 'app/components/button';
-import {t} from 'app/locale';
-import {IconBell} from 'app/icons';
+import Button from 'sentry/components/button';
+import {t} from 'sentry/locale';
+import {IconBell} from 'sentry/icons';
 
 type Props = {
   onClick: (e: React.MouseEvent) => void;

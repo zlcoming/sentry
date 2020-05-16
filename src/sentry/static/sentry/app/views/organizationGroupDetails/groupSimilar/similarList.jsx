@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Group} from 'app/sentryTypes';
-import {t} from 'app/locale';
-import Pagination from 'app/components/pagination';
-import QueryCount from 'app/components/queryCount';
-import SimilarSpectrum from 'app/components/similarSpectrum';
-import SpreadLayout from 'app/components/spreadLayout';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import {Panel} from 'app/components/panels';
+import {Group} from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import Pagination from 'sentry/components/pagination';
+import QueryCount from 'sentry/components/queryCount';
+import SimilarSpectrum from 'sentry/components/similarSpectrum';
+import SpreadLayout from 'sentry/components/spreadLayout';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import {Panel} from 'sentry/components/panels';
 
 import SimilarItem from './similarItem';
 import SimilarToolbar from './similarToolbar';

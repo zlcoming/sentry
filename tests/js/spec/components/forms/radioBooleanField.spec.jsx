@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {shallow, mount} from 'sentry-test/enzyme';
-
-import {RadioBooleanField} from 'app/components/forms';
-import NewRadioBooleanField from 'app/views/settings/components/forms/radioBooleanField';
+import {RadioBooleanField} from 'sentry/components/forms';
+import NewRadioBooleanField from 'sentry/views/settings/components/forms/radioBooleanField';
 
 describe('RadioBooleanField', function() {
   describe('render()', function() {

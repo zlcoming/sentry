@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Observer} from 'mobx-react';
 
-import Access from 'app/components/acl/access';
-import Field from 'app/views/settings/components/forms/field';
-import Form from 'app/views/settings/components/forms/form';
-import NumberField from 'app/views/settings/components/forms/numberField';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import TextField from 'app/views/settings/components/forms/textField';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import SentryTypes from 'app/sentryTypes';
-import {t, tct} from 'app/locale';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import withOrganization from 'app/utils/withOrganization';
+import Access from 'sentry/components/acl/access';
+import Field from 'sentry/views/settings/components/forms/field';
+import Form from 'sentry/views/settings/components/forms/form';
+import NumberField from 'sentry/views/settings/components/forms/numberField';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import SentryTypes from 'sentry/sentryTypes';
+import {t, tct} from 'sentry/locale';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import MonitorModel from './monitorModel';
 

@@ -1,4 +1,4 @@
-import PlatformExternalIssueActions from 'app/actions/platformExternalIssueActions';
+import PlatformExternalIssueActions from 'sentry/actions/platformExternalIssueActions';
 
 export function deleteExternalIssue(api, groupId, externalIssueId) {
   PlatformExternalIssueActions.delete(groupId, externalIssueId);

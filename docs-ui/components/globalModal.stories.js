@@ -1,9 +1,9 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import GlobalModal from 'app/components/globalModal';
-import Button from 'app/components/button';
-import {openModal} from 'app/actionCreators/modal';
+import GlobalModal from 'sentry/components/globalModal';
+import Button from 'sentry/components/button';
+import {openModal} from 'sentry/actionCreators/modal';
 
 export default {
   title: 'UI/Modals',

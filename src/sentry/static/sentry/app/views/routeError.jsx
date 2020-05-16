@@ -4,9 +4,9 @@ import React from 'react';
 import * as Sentry from '@sentry/react';
 import styled from '@emotion/styled';
 
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
-import {IconWarning} from 'app/icons';
-import space from 'app/styles/space';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
+import {IconWarning} from 'sentry/icons';
+import space from 'sentry/styles/space';
 
 class RouteError extends React.Component {
   static propTypes = {

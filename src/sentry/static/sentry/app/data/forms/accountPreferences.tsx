@@ -1,7 +1,7 @@
-import timezones from 'app/data/timezones';
-import languages from 'app/data/languages';
-import {JsonFormObject} from 'app/views/settings/components/forms/type';
-import {t} from 'app/locale';
+import timezones from 'sentry/data/timezones';
+import languages from 'sentry/data/languages';
+import {JsonFormObject} from 'sentry/views/settings/components/forms/type';
+import {t} from 'sentry/locale';
 
 // Export route to make these forms searchable by label/help
 export const route = '/settings/account/details/';

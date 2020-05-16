@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import Avatar from 'sentry/components/avatar';
 
-import Avatar from 'app/components/avatar';
-
-jest.mock('app/stores/configStore', () => ({
+jest.mock('sentry/stores/configStore', () => ({
   getConfig: () => ({
     gravatarBaseUrl: 'gravatarBaseUrl',
   }),

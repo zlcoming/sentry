@@ -2,8 +2,8 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text, boolean, select} from '@storybook/addon-knobs';
 
-import Tooltip from 'app/components/tooltip';
-import Button from 'app/components/button';
+import Tooltip from 'sentry/components/tooltip';
+import Button from 'sentry/components/button';
 
 class CustomThing extends React.Component {
   render() {

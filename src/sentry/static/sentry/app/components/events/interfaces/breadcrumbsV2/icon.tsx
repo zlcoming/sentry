@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SvgIcon from 'app/icons/svgIcon';
+import SvgIcon from 'sentry/icons/svgIcon';
 
 type SvgIconProps = React.ComponentProps<typeof SvgIcon>;
 

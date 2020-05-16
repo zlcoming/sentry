@@ -3,8 +3,8 @@ import {
   getExternal,
   isValidCondition,
   ignoreCase,
-} from 'app/views/discover/conditions/utils';
-import {COLUMNS} from 'app/views/discover/data';
+} from 'sentry/views/discover/conditions/utils';
+import {COLUMNS} from 'sentry/views/discover/data';
 
 const conditionList = [
   {

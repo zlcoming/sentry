@@ -2,8 +2,8 @@ import {
   getInternal,
   getExternal,
   isValidAggregation,
-} from 'app/views/discover/aggregations/utils';
-import {COLUMNS} from 'app/views/discover/data';
+} from 'sentry/views/discover/aggregations/utils';
+import {COLUMNS} from 'sentry/views/discover/data';
 
 const aggregationList = [
   {

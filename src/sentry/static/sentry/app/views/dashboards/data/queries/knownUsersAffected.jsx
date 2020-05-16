@@ -1,8 +1,8 @@
 /**
  * Known affected users
  */
-import {OPERATOR} from 'app/views/discover/data';
-import {t} from 'app/locale';
+import {OPERATOR} from 'sentry/views/discover/data';
+import {t} from 'sentry/locale';
 
 const knownUsersAffectedQuery = {
   name: t('Known Users'),

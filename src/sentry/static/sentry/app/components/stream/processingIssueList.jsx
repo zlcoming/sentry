@@ -2,10 +2,10 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import PropTypes from 'prop-types';
 
-import {Client} from 'app/api';
-import {fetchProcessingIssues} from 'app/actionCreators/processingIssues';
-import ProcessingIssueHint from 'app/components/stream/processingIssueHint';
-import SentryTypes from 'app/sentryTypes';
+import {Client} from 'sentry/api';
+import {fetchProcessingIssues} from 'sentry/actionCreators/processingIssues';
+import ProcessingIssueHint from 'sentry/components/stream/processingIssueHint';
+import SentryTypes from 'sentry/sentryTypes';
 
 class ProcessingIssueList extends React.Component {
   static propTypes = {

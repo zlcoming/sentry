@@ -2,23 +2,23 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import {Organization, Project, SourceMapsArchive} from 'app/types';
-import routeTitleGen from 'app/utils/routeTitle';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import SearchBar from 'app/components/searchBar';
-import Pagination from 'app/components/pagination';
-import {PanelTable} from 'app/components/panels';
-import {decodeScalar} from 'app/utils/queryString';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import {Organization, Project, SourceMapsArchive} from 'sentry/types';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import SearchBar from 'sentry/components/searchBar';
+import Pagination from 'sentry/components/pagination';
+import {PanelTable} from 'sentry/components/panels';
+import {decodeScalar} from 'sentry/utils/queryString';
 import {
   addLoadingMessage,
   addSuccessMessage,
   addErrorMessage,
-} from 'app/actionCreators/indicator';
-import ExternalLink from 'app/components/links/externalLink';
-import space from 'app/styles/space';
+} from 'sentry/actionCreators/indicator';
+import ExternalLink from 'sentry/components/links/externalLink';
+import space from 'sentry/styles/space';
 
 import SourceMapsArchiveRow from './sourceMapsArchiveRow';
 

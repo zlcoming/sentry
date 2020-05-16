@@ -1,12 +1,12 @@
 import Reflux from 'reflux';
 import isEqual from 'lodash/isEqual';
 
-import {LOCAL_STORAGE_KEY} from 'app/constants/globalSelectionHeader';
-import {getDefaultSelection} from 'app/components/organizations/globalSelectionHeader/utils';
-import {isEqualWithDates} from 'app/utils/isEqualWithDates';
-import GlobalSelectionActions from 'app/actions/globalSelectionActions';
-import OrganizationsStore from 'app/stores/organizationsStore';
-import localStorage from 'app/utils/localStorage';
+import {LOCAL_STORAGE_KEY} from 'sentry/constants/globalSelectionHeader';
+import {getDefaultSelection} from 'sentry/components/organizations/globalSelectionHeader/utils';
+import {isEqualWithDates} from 'sentry/utils/isEqualWithDates';
+import GlobalSelectionActions from 'sentry/actions/globalSelectionActions';
+import OrganizationsStore from 'sentry/stores/organizationsStore';
+import localStorage from 'sentry/utils/localStorage';
 
 const GlobalSelectionStore = Reflux.createStore({
   init() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import MutedBox from 'app/components/mutedBox';
+import MutedBox from 'sentry/components/mutedBox';
 
 export default {
   title: 'UI/Muted Box',

@@ -7,27 +7,27 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import keydown from 'react-keydown';
 
-import {Client} from 'app/api';
-import {Config} from 'app/types';
-import {DEPLOY_PREVIEW_CONFIG, EXPERIMENTAL_SPA} from 'app/constants';
+import {Client} from 'sentry/api';
+import {Config} from 'sentry/types';
+import {DEPLOY_PREVIEW_CONFIG, EXPERIMENTAL_SPA} from 'sentry/constants';
 import {
   displayDeployPreviewAlert,
   displayExperimentalSpaAlert,
-} from 'app/actionCreators/deployPreview';
-import {fetchGuides} from 'app/actionCreators/guides';
-import {openCommandPalette} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import AlertActions from 'app/actions/alertActions';
-import ConfigStore from 'app/stores/configStore';
-import ErrorBoundary from 'app/components/errorBoundary';
-import GlobalModal from 'app/components/globalModal';
-import HookStore from 'app/stores/hookStore';
-import Indicators from 'app/components/indicators';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NewsletterConsent from 'app/views/newsletterConsent';
-import OrganizationsStore from 'app/stores/organizationsStore';
-import withApi from 'app/utils/withApi';
-import withConfig from 'app/utils/withConfig';
+} from 'sentry/actionCreators/deployPreview';
+import {fetchGuides} from 'sentry/actionCreators/guides';
+import {openCommandPalette} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import AlertActions from 'sentry/actions/alertActions';
+import ConfigStore from 'sentry/stores/configStore';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import GlobalModal from 'sentry/components/globalModal';
+import HookStore from 'sentry/stores/hookStore';
+import Indicators from 'sentry/components/indicators';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NewsletterConsent from 'sentry/views/newsletterConsent';
+import OrganizationsStore from 'sentry/stores/organizationsStore';
+import withApi from 'sentry/utils/withApi';
+import withConfig from 'sentry/utils/withConfig';
 
 import SystemAlerts from './systemAlerts';
 
@@ -224,7 +224,7 @@ class App extends React.Component<Props, State> {
 
     if (needsUpgrade) {
       const InstallWizard = React.lazy(() =>
-        import(/* webpackChunkName: "InstallWizard" */ 'app/views/admin/installWizard')
+        import(/* webpackChunkName: "InstallWizard" */ 'sentry/views/admin/installWizard')
       );
 
       return (

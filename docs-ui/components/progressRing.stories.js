@@ -4,7 +4,7 @@ import {number, text, boolean, color} from '@storybook/addon-knobs';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import ProgressRing from 'app/components/progressRing';
+import ProgressRing from 'sentry/components/progressRing';
 
 class Ticker extends React.Component {
   state = {

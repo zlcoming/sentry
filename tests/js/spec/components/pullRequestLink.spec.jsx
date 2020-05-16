@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import PullRequestLink from 'app/components/pullRequestLink';
+import PullRequestLink from 'sentry/components/pullRequestLink';
 
 describe('PullRequestLink', function() {
   it('renders no url on missing externalUrl', function() {

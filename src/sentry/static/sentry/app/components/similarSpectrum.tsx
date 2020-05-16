@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 type Props = {
   className?: string;

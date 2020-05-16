@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import DropdownBubble from 'app/components/dropdownBubble';
-import DropdownButton from 'app/components/dropdownButton';
-import DropdownMenu, {GetActorPropsFn} from 'app/components/dropdownMenu';
-import MenuItem from 'app/components/menuItem';
-import theme from 'app/utils/theme';
+import DropdownBubble from 'sentry/components/dropdownBubble';
+import DropdownButton from 'sentry/components/dropdownButton';
+import DropdownMenu, {GetActorPropsFn} from 'sentry/components/dropdownMenu';
+import MenuItem from 'sentry/components/menuItem';
+import theme from 'sentry/utils/theme';
 
 type DefaultProps = {
   /**

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router';
 
-import EventStore from 'app/stores/eventStore';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import TimeSince from 'app/components/timeSince';
+import EventStore from 'sentry/stores/eventStore';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import TimeSince from 'sentry/components/timeSince';
 
 class EventRow extends React.Component {
   static propTypes = {

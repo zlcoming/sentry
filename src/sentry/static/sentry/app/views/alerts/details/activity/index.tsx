@@ -1,18 +1,18 @@
 import {Params} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Client} from 'app/api';
+import {Client} from 'sentry/api';
 import {
   createIncidentNote,
   deleteIncidentNote,
   fetchIncidentActivities,
   updateIncidentNote,
-} from 'app/actionCreators/incident';
-import {replaceAtArrayIndex} from 'app/utils/replaceAtArrayIndex';
-import {t} from 'app/locale';
-import {uniqueId} from 'app/utils/guid';
-import ConfigStore from 'app/stores/configStore';
-import withApi from 'app/utils/withApi';
+} from 'sentry/actionCreators/incident';
+import {replaceAtArrayIndex} from 'sentry/utils/replaceAtArrayIndex';
+import {t} from 'sentry/locale';
+import {uniqueId} from 'sentry/utils/guid';
+import ConfigStore from 'sentry/stores/configStore';
+import withApi from 'sentry/utils/withApi';
 
 import {
   ActivityType,

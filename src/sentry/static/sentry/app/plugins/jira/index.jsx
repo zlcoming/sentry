@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DefaultIssuePlugin from 'app/plugins/defaultIssuePlugin';
+import DefaultIssuePlugin from 'sentry/plugins/defaultIssuePlugin';
 
 import Settings from './components/settings';
 import IssueActions from './components/issueActions';

@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import omit from 'lodash/omit';
 
-import FormField from 'app/views/settings/components/forms/formField';
-import Input from 'app/views/settings/components/forms/controls/input';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import Input from 'sentry/views/settings/components/forms/controls/input';
 
 type Props = {
   field?: (props) => React.ReactNode;

@@ -3,14 +3,13 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
+import GlobalSelectionStore from 'sentry/stores/globalSelectionStore';
+import GroupDetails from 'sentry/views/organizationGroupDetails';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import GroupStore from 'sentry/stores/groupStore';
 
-import GlobalSelectionStore from 'app/stores/globalSelectionStore';
-import GroupDetails from 'app/views/organizationGroupDetails';
-import ProjectsStore from 'app/stores/projectsStore';
-import GroupStore from 'app/stores/groupStore';
-
-jest.mock('app/views/organizationGroupDetails/header', () => jest.fn(() => null));
-jest.unmock('app/utils/recreateRoute');
+jest.mock('sentry/views/organizationGroupDetails/header', () => jest.fn(() => null));
+jest.unmock('sentry/utils/recreateRoute');
 
 describe('groupDetails', function() {
   let wrapper;

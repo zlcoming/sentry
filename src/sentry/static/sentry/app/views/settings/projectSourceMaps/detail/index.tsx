@@ -2,28 +2,28 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import {Organization, Project, Artifact} from 'app/types';
-import routeTitleGen from 'app/utils/routeTitle';
-import SearchBar from 'app/components/searchBar';
-import Pagination from 'app/components/pagination';
-import {PanelTable} from 'app/components/panels';
-import {formatVersion} from 'app/utils/formatters';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import {IconDelete} from 'app/icons';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import {Organization, Project, Artifact} from 'sentry/types';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import SearchBar from 'sentry/components/searchBar';
+import Pagination from 'sentry/components/pagination';
+import {PanelTable} from 'sentry/components/panels';
+import {formatVersion} from 'sentry/utils/formatters';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import {IconDelete} from 'sentry/icons';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {decodeScalar} from 'app/utils/queryString';
-import Confirm from 'app/components/confirm';
-import Version from 'app/components/version';
-import TextOverflow from 'app/components/textOverflow';
-import space from 'app/styles/space';
+} from 'sentry/actionCreators/indicator';
+import {decodeScalar} from 'sentry/utils/queryString';
+import Confirm from 'sentry/components/confirm';
+import Version from 'sentry/components/version';
+import TextOverflow from 'sentry/components/textOverflow';
+import space from 'sentry/styles/space';
 
 import SourceMapsArtifactRow from './sourceMapsArtifactRow';
 

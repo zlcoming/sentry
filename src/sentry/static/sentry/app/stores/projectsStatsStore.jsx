@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-import ProjectActions from 'app/actions/projectActions';
+import ProjectActions from 'sentry/actions/projectActions';
 
 /**
  * This is a store specifically used by the dashboard, so that we can

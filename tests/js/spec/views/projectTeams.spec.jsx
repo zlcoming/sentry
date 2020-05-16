@@ -1,12 +1,11 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
+import App from 'sentry/views/app';
+import ProjectTeams from 'sentry/views/settings/project/projectTeams';
+import * as modals from 'sentry/actionCreators/modal';
 
-import App from 'app/views/app';
-import ProjectTeams from 'app/views/settings/project/projectTeams';
-import * as modals from 'app/actionCreators/modal';
-
-jest.unmock('app/actionCreators/modal');
+jest.unmock('sentry/actionCreators/modal');
 
 describe('ProjectTeams', function() {
   let org;

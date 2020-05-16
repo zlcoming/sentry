@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import {IconClose, IconCheckmark, IconFlag, IconMail, IconSubtract} from 'app/icons';
-import Link from 'app/components/links/link';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import recreateRoute from 'app/utils/recreateRoute';
+import {PanelItem} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import {IconClose, IconCheckmark, IconFlag, IconMail, IconSubtract} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import recreateRoute from 'sentry/utils/recreateRoute';
 
 export default class OrganizationMemberRow extends React.PureComponent {
   static propTypes = {

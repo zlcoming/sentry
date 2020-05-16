@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {assignToUser, assignToActor} from 'app/actionCreators/group';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import Access from 'app/components/acl/access';
-import {Organization, Group, Event, Actor, Commit, Project, User} from 'app/types';
-import {Client} from 'app/api';
+import {assignToUser, assignToActor} from 'sentry/actionCreators/group';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import Access from 'sentry/components/acl/access';
+import {Organization, Group, Event, Actor, Commit, Project, User} from 'sentry/types';
+import {Client} from 'sentry/api';
 
 import {findMatchedRules, Rules} from './findMatchedRules';
 import {SuggestedAssignees} from './suggestedAssignees';

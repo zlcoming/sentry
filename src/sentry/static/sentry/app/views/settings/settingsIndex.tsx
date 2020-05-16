@@ -6,21 +6,21 @@ import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 import omit from 'lodash/omit';
 
-import {t} from 'app/locale';
-import OrganizationAvatar from 'app/components/avatar/organizationAvatar';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import ConfigStore from 'app/stores/configStore';
-import ExternalLink from 'app/components/links/externalLink';
-import {fetchOrganizationDetails} from 'app/actionCreators/organizations';
-import Link from 'app/components/links/link';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {IconDocs, IconLock, IconStack, IconSupport} from 'app/icons';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import SentryTypes from 'app/sentryTypes';
-import SettingsLayout from 'app/views/settings/components/settingsLayout';
-import withLatestContext from 'app/utils/withLatestContext';
-import {Organization} from 'app/types';
+import {t} from 'sentry/locale';
+import OrganizationAvatar from 'sentry/components/avatar/organizationAvatar';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import ConfigStore from 'sentry/stores/configStore';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {fetchOrganizationDetails} from 'sentry/actionCreators/organizations';
+import Link from 'sentry/components/links/link';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {IconDocs, IconLock, IconStack, IconSupport} from 'sentry/icons';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsLayout from 'sentry/views/settings/components/settingsLayout';
+import withLatestContext from 'sentry/utils/withLatestContext';
+import {Organization} from 'sentry/types';
 
 const LINKS = {
   DOCUMENTATION: 'https://docs.sentry.io/',

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import textStyles from 'app/styles/text';
-import Panel from 'app/components/panels/panel';
+import space from 'sentry/styles/space';
+import textStyles from 'sentry/styles/text';
+import Panel from 'sentry/components/panels/panel';
 
 const Text = styled('div')`
   ${textStyles};

@@ -2,7 +2,7 @@ import 'echarts/lib/component/legend';
 import 'echarts/lib/component/legendScroll';
 import {EChartOption} from 'echarts';
 
-import BaseChart from 'app/components/charts/baseChart';
+import BaseChart from 'sentry/components/charts/baseChart';
 
 import {truncationFormatter} from '../utils';
 

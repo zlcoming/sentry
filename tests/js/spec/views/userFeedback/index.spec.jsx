@@ -2,9 +2,8 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ProjectsStore from 'app/stores/projectsStore';
-import UserFeedback from 'app/views/userFeedback';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import UserFeedback from 'sentry/views/userFeedback';
 
 describe('UserFeedback', function() {
   const {organization, routerContext} = initializeOrg();

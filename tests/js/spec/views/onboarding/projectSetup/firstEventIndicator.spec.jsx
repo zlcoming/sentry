@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {Indicator} from 'app/views/onboarding/projectSetup/firstEventIndicator';
+import {Indicator} from 'sentry/views/onboarding/projectSetup/firstEventIndicator';
 
 describe('FirstEventIndicator', function() {
   it('renders waiting status', async function() {

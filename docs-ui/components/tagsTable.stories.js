@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text} from '@storybook/addon-knobs';
 
-import TagsTable from 'app/components/tagsTable';
+import TagsTable from 'sentry/components/tagsTable';
 
 const event = {
   id: 'deadbeef',

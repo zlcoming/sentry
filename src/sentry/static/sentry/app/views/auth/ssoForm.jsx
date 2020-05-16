@@ -2,10 +2,10 @@ import {browserHistory} from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t, tct} from 'app/locale';
-import Form from 'app/components/forms/form';
-import SentryTypes from 'app/sentryTypes';
-import TextField from 'app/components/forms/textField';
+import {t, tct} from 'sentry/locale';
+import Form from 'sentry/components/forms/form';
+import SentryTypes from 'sentry/sentryTypes';
+import TextField from 'sentry/components/forms/textField';
 
 const SlugExample = p => (
   <code>

@@ -1,16 +1,16 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import withOrganization from 'app/utils/withOrganization';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import {Organization, GlobalSelection} from 'app/types';
-import {Client} from 'app/api';
-import withApi from 'app/utils/withApi';
-import {formatVersion} from 'app/utils/formatters';
-import routeTitleGen from 'app/utils/routeTitle';
-import {Main, Side} from 'app/components/layouts/thirds';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import withOrganization from 'sentry/utils/withOrganization';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import {Organization, GlobalSelection} from 'sentry/types';
+import {Client} from 'sentry/api';
+import withApi from 'sentry/utils/withApi';
+import {formatVersion} from 'sentry/utils/formatters';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import {Main, Side} from 'sentry/components/layouts/thirds';
 
 import ReleaseChart from './chart/';
 import Issues from './issues';

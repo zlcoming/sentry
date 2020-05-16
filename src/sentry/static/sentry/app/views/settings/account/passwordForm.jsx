@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import Form from 'app/views/settings/components/forms/form';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import {PanelAlert, PanelItem} from 'app/components/panels';
-import accountPasswordFields from 'app/data/forms/accountPassword';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import Form from 'sentry/views/settings/components/forms/form';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import {PanelAlert, PanelItem} from 'sentry/components/panels';
+import accountPasswordFields from 'sentry/data/forms/accountPassword';
 
 const ENDPOINT = '/users/me/password/';
 

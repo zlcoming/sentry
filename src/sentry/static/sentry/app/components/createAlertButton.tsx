@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Project, Organization} from 'app/types';
-import {t, tct} from 'app/locale';
-import {IconInfo, IconClose, IconSiren} from 'app/icons';
-import Button from 'app/components/button';
-import EventView from 'app/utils/discover/eventView';
-import Alert from 'app/components/alert';
-import Access from 'app/components/acl/access';
-import {explodeFieldString, AGGREGATIONS, Aggregation} from 'app/utils/discover/fields';
+import {Project, Organization} from 'sentry/types';
+import {t, tct} from 'sentry/locale';
+import {IconInfo, IconClose, IconSiren} from 'sentry/icons';
+import Button from 'sentry/components/button';
+import EventView from 'sentry/utils/discover/eventView';
+import Alert from 'sentry/components/alert';
+import Access from 'sentry/components/acl/access';
+import {
+  explodeFieldString,
+  AGGREGATIONS,
+  Aggregation,
+} from 'sentry/utils/discover/fields';
 import {
   errorFieldConfig,
   transactionFieldConfig,
-} from 'app/views/settings/incidentRules/constants';
+} from 'sentry/views/settings/incidentRules/constants';
 
 /**
  * Discover query supports more features than alert rules

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {LightWeightOrganization, Organization, Project} from 'app/types';
-import NoProjectMessage from 'app/components/noProjectMessage';
-import withProjects from 'app/utils/withProjects';
+import {LightWeightOrganization, Organization, Project} from 'sentry/types';
+import NoProjectMessage from 'sentry/components/noProjectMessage';
+import withProjects from 'sentry/utils/withProjects';
 
 type Props = {
   organization: LightWeightOrganization | Organization;

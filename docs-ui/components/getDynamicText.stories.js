@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import getDynamicText from 'app/utils/getDynamicText';
+import getDynamicText from 'sentry/utils/getDynamicText';
 
 export default {
   title: 'Utility/getDynamicText',

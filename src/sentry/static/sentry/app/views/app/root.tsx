@@ -2,10 +2,10 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import {browserHistory} from 'react-router';
 import React from 'react';
 
-import {Config} from 'app/types';
-import {DEFAULT_APP_ROUTE} from 'app/constants';
-import replaceRouterParams from 'app/utils/replaceRouterParams';
-import withConfig from 'app/utils/withConfig';
+import {Config} from 'sentry/types';
+import {DEFAULT_APP_ROUTE} from 'sentry/constants';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
+import withConfig from 'sentry/utils/withConfig';
 
 type Props = {
   config: Config;

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import SelectMembers from 'app/components/selectMembers';
-import SelectControl from 'app/components/forms/selectControl';
-import {Organization, Project} from 'app/types';
-import {IssueAlertRuleAction, MailActionTargetType} from 'app/types/alerts';
-import {PanelItem} from 'app/components/panels';
-import space from 'app/styles/space';
+import SelectMembers from 'sentry/components/selectMembers';
+import SelectControl from 'sentry/components/forms/selectControl';
+import {Organization, Project} from 'sentry/types';
+import {IssueAlertRuleAction, MailActionTargetType} from 'sentry/types/alerts';
+import {PanelItem} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
 
 type Props = {
   project: Project;

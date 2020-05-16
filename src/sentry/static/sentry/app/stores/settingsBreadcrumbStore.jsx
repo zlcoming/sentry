@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
-import SettingsBreadcrumbActions from 'app/actions/settingsBreadcrumbActions';
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
+import SettingsBreadcrumbActions from 'sentry/actions/settingsBreadcrumbActions';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
 
 const SettingsBreadcrumbStore = Reflux.createStore({
   init() {

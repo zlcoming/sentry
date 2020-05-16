@@ -2,9 +2,9 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import SavedSearchesStore from 'app/stores/savedSearchesStore';
-import getDisplayName from 'app/utils/getDisplayName';
-import {SavedSearch} from 'app/types';
+import SavedSearchesStore from 'sentry/stores/savedSearchesStore';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import {SavedSearch} from 'sentry/types';
 
 type InjectedSavedSearchesProps = {
   savedSearches: SavedSearch[];

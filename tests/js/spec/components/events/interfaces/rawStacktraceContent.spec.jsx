@@ -1,7 +1,7 @@
 import render, {
   getJavaFrame,
   getJavaPreamble,
-} from 'app/components/events/interfaces/rawStacktraceContent';
+} from 'sentry/components/events/interfaces/rawStacktraceContent';
 
 describe('RawStacktraceContent', function() {
   describe('getJavaFrame()', function() {

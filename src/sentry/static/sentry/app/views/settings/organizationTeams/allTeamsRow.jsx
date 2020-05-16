@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {joinTeam, leaveTeam} from 'app/actionCreators/teams';
-import {t, tct, tn} from 'app/locale';
-import Button from 'app/components/button';
-import IdBadge from 'app/components/idBadge';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+import {PanelItem} from 'sentry/components/panels';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {joinTeam, leaveTeam} from 'sentry/actionCreators/teams';
+import {t, tct, tn} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import IdBadge from 'sentry/components/idBadge';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 class AllTeamsRow extends React.Component {
   static propTypes = {

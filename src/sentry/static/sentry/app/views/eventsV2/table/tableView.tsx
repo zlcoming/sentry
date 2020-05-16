@@ -3,30 +3,33 @@ import styled from '@emotion/styled';
 import {browserHistory} from 'react-router';
 import {Location, LocationDescriptorObject} from 'history';
 
-import {Organization, Project} from 'app/types';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import {Organization, Project} from 'sentry/types';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 import GridEditable, {
   COL_WIDTH_UNDEFINED,
   COL_WIDTH_MINIMUM,
-} from 'app/components/gridEditable';
-import SortLink from 'app/components/gridEditable/sortLink';
-import {IconStack} from 'app/icons';
-import {t} from 'app/locale';
-import {openModal} from 'app/actionCreators/modal';
-import Link from 'app/components/links/link';
-import Tooltip from 'app/components/tooltip';
+} from 'sentry/components/gridEditable';
+import SortLink from 'sentry/components/gridEditable/sortLink';
+import {IconStack} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import {openModal} from 'sentry/actionCreators/modal';
+import Link from 'sentry/components/links/link';
+import Tooltip from 'sentry/components/tooltip';
 import EventView, {
   isFieldSortable,
   pickRelevantLocationQueryStrings,
-} from 'app/utils/discover/eventView';
-import {Column} from 'app/utils/discover/fields';
-import {getFieldRenderer} from 'app/utils/discover/fieldRenderers';
-import {TableData, TableDataRow} from 'app/utils/discover/discoverQuery';
-import {generateEventSlug, eventDetailsRouteWithEventView} from 'app/utils/discover/urls';
-import {TOP_N, DisplayModes} from 'app/utils/discover/types';
-import withProjects from 'app/utils/withProjects';
-import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
-import {transactionSummaryRouteWithQuery} from 'app/views/performance/transactionSummary/utils';
+} from 'sentry/utils/discover/eventView';
+import {Column} from 'sentry/utils/discover/fields';
+import {getFieldRenderer} from 'sentry/utils/discover/fieldRenderers';
+import {TableData, TableDataRow} from 'sentry/utils/discover/discoverQuery';
+import {
+  generateEventSlug,
+  eventDetailsRouteWithEventView,
+} from 'sentry/utils/discover/urls';
+import {TOP_N, DisplayModes} from 'sentry/utils/discover/types';
+import withProjects from 'sentry/utils/withProjects';
+import {tokenizeSearch, stringifyQueryObject} from 'sentry/utils/tokenizeSearch';
+import {transactionSummaryRouteWithQuery} from 'sentry/views/performance/transactionSummary/utils';
 
 import {getExpandedResults, pushEventViewToLocation} from '../utils';
 import ColumnEditModal, {modalCss} from './columnEditModal';

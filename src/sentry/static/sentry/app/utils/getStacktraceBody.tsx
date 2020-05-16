@@ -1,5 +1,5 @@
-import rawStacktraceContent from 'app/components/events/interfaces/rawStacktraceContent';
-import {Event} from 'app/types';
+import rawStacktraceContent from 'sentry/components/events/interfaces/rawStacktraceContent';
+import {Event} from 'sentry/types';
 
 export default function getStacktraceBody(event: Event) {
   if (!event || !event.entries) {

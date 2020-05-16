@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import EventOrGroupTitle from 'app/components/eventOrGroupTitle';
+import EventOrGroupTitle from 'sentry/components/eventOrGroupTitle';
 
 describe('EventOrGroupTitle', function() {
   const data = {

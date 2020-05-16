@@ -5,12 +5,12 @@ import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 import capitalize from 'lodash/capitalize';
 
-import {IconMute, IconStar} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import EventOrGroupTitle from 'app/components/eventOrGroupTitle';
-import Tooltip from 'app/components/tooltip';
-import {getMessage, getLocation} from 'app/utils/events';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
+import {IconMute, IconStar} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import EventOrGroupTitle from 'sentry/components/eventOrGroupTitle';
+import Tooltip from 'sentry/components/tooltip';
+import {getMessage, getLocation} from 'sentry/utils/events';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
 
 /**
  * Displays an event or group/issue title (i.e. in Stream)

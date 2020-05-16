@@ -1,8 +1,8 @@
 import React from 'react';
 import {Global, css} from '@emotion/core';
 
-import {IS_CI} from 'app/constants';
-import {Theme} from 'app/utils/theme';
+import {IS_CI} from 'sentry/constants';
+import {Theme} from 'sentry/utils/theme';
 
 const styles = (theme: Theme) => css`
   body {

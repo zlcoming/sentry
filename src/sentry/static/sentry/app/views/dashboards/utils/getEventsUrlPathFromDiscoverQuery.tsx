@@ -1,9 +1,9 @@
 import pickBy from 'lodash/pickBy';
 import * as qs from 'query-string';
 
-import {getUtcDateString} from 'app/utils/dates';
-import {Organization, GlobalSelection} from 'app/types';
-import {Query} from 'app/views/discover/types';
+import {getUtcDateString} from 'sentry/utils/dates';
+import {Organization, GlobalSelection} from 'sentry/types';
+import {Query} from 'sentry/views/discover/types';
 
 import {getDiscoverConditionsToSearchString} from './getDiscoverConditionsToSearchString';
 

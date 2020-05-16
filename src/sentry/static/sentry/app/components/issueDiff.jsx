@@ -4,11 +4,11 @@ import React from 'react';
 import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import getStacktraceBody from 'app/utils/getStacktraceBody';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import getStacktraceBody from 'sentry/utils/getStacktraceBody';
 
 class IssueDiff extends React.Component {
   static propTypes = {

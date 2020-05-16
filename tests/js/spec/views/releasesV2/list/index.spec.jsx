@@ -2,9 +2,8 @@ import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import ProjectsStore from 'app/stores/projectsStore';
-import ReleaseList from 'app/views/releasesV2/list/';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import ReleaseList from 'sentry/views/releasesV2/list/';
 
 describe('ReleasesV2List', function() {
   const {organization, routerContext, router} = initializeOrg({

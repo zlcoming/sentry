@@ -1,7 +1,7 @@
 import marked from 'marked'; // eslint-disable-line no-restricted-imports
 import dompurify from 'dompurify';
 
-import {IS_CI, NODE_ENV} from 'app/constants';
+import {IS_CI, NODE_ENV} from 'sentry/constants';
 
 // Only https and mailto, (e.g. no javascript, vbscript, data protocols)
 const safeLinkPattern = /^(https?:|mailto:)/i;

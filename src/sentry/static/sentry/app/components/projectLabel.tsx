@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Project} from 'app/types';
-import {Project as ProjectPropType} from 'app/sentryTypes';
+import {Project} from 'sentry/types';
+import {Project as ProjectPropType} from 'sentry/sentryTypes';
 
 type Props = React.HTMLProps<HTMLSpanElement> & {
   project: Project;

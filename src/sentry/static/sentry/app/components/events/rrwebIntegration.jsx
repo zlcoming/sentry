@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import EventDataSection from 'app/components/events/eventDataSection';
-import {Panel} from 'app/components/panels';
-import AsyncComponent from 'app/components/asyncComponent';
-import LazyLoad from 'app/components/lazyLoad';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import {Panel} from 'sentry/components/panels';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import LazyLoad from 'sentry/components/lazyLoad';
 
 export default class RRWebIntegration extends AsyncComponent {
   static propTypes = {

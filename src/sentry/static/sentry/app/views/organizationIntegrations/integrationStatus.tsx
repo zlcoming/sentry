@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import CircleIndicator from 'app/components/circleIndicator';
-import theme from 'app/utils/theme';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import {IntegrationInstallationStatus} from 'app/types';
+import CircleIndicator from 'sentry/components/circleIndicator';
+import theme from 'sentry/utils/theme';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {IntegrationInstallationStatus} from 'sentry/types';
 
 import {COLORS} from './constants';
 

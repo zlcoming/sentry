@@ -2,12 +2,12 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import throttle from 'lodash/throttle';
 
-import {t} from 'app/locale';
-import getDynamicText from 'app/utils/getDynamicText';
-import BarChart from 'app/components/charts/barChart';
-import LineChart from 'app/components/charts/lineChart';
-import PageHeading from 'app/components/pageHeading';
-import {IconEdit} from 'app/icons';
+import {t} from 'sentry/locale';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import BarChart from 'sentry/components/charts/barChart';
+import LineChart from 'sentry/components/charts/lineChart';
+import PageHeading from 'sentry/components/pageHeading';
+import {IconEdit} from 'sentry/icons';
 
 import {
   getChartData,

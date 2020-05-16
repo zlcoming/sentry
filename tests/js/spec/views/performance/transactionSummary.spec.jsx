@@ -3,9 +3,8 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ProjectsStore from 'app/stores/projectsStore';
-import TransactionSummary from 'app/views/performance/transactionSummary';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import TransactionSummary from 'sentry/views/performance/transactionSummary';
 
 function initializeData() {
   const features = ['discover-basic', 'performance-view'];

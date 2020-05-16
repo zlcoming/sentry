@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {IconFile} from 'app/icons';
-import theme from 'app/utils/theme';
+import {IconFile} from 'sentry/icons';
+import theme from 'sentry/utils/theme';
 
 const FILE_EXTENSION_TO_ICON = {
   jsx: 'react',

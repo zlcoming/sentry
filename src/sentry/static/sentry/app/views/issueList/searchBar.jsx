@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {fetchRecentSearches} from 'app/actionCreators/savedSearches';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import SmartSearchBar, {SearchType} from 'app/components/smartSearchBar';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {fetchRecentSearches} from 'sentry/actionCreators/savedSearches';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import SmartSearchBar, {SearchType} from 'sentry/components/smartSearchBar';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 const SEARCH_ITEMS = [
   {

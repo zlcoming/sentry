@@ -1,4 +1,4 @@
-import {userDisplayName, getExactDuration} from 'app/utils/formatters';
+import {userDisplayName, getExactDuration} from 'sentry/utils/formatters';
 
 describe('formatters', function() {
   describe('userDisplayName', function() {

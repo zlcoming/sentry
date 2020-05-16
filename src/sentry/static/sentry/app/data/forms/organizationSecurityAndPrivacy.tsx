@@ -1,10 +1,10 @@
-import {extractMultilineFields, convertMultilineFieldValue} from 'app/utils';
-import {t} from 'app/locale';
+import {extractMultilineFields, convertMultilineFieldValue} from 'sentry/utils';
+import {t} from 'sentry/locale';
 import {
   STORE_CRASH_REPORTS_VALUES,
   formatStoreCrashReports,
-} from 'app/utils/crashReports';
-import {JsonFormObject} from 'app/views/settings/components/forms/type';
+} from 'sentry/utils/crashReports';
+import {JsonFormObject} from 'sentry/views/settings/components/forms/type';
 
 const organizationSecurityAndPrivacy: JsonFormObject[] = [
   {

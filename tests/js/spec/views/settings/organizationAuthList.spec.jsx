@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
-
-import OrganizationAuthList from 'app/views/settings/organizationAuth/organizationAuthList';
+import OrganizationAuthList from 'sentry/views/settings/organizationAuth/organizationAuthList';
 
 jest.mock('jquery');
 

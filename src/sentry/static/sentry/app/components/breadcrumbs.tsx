@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {IconChevron} from 'app/icons';
-import Link from 'app/components/links/link';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import {Theme} from 'app/utils/theme';
+import space from 'sentry/styles/space';
+import {IconChevron} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import {Theme} from 'sentry/utils/theme';
 
 export type Crumb = {
   /**

@@ -5,20 +5,20 @@ import ReactDOM from 'react-dom';
 import Reflux from 'reflux';
 import styled from '@emotion/styled';
 
-import {addTeamToProject} from 'app/actionCreators/projects';
-import {t} from 'app/locale';
-import {buildUserId, buildTeamId} from 'app/utils';
-import {Client} from 'app/api';
-import MemberListStore from 'app/stores/memberListStore';
-import ProjectsStore from 'app/stores/projectsStore';
-import TeamStore from 'app/stores/teamStore';
-import IdBadge from 'app/components/idBadge';
-import MultiSelectControl from 'app/components/forms/multiSelectControl';
-import ActorAvatar from 'app/components/avatar/actorAvatar';
-import SentryTypes from 'app/sentryTypes';
-import Button from 'app/components/button';
-import {IconAdd} from 'app/icons';
-import Tooltip from 'app/components/tooltip';
+import {addTeamToProject} from 'sentry/actionCreators/projects';
+import {t} from 'sentry/locale';
+import {buildUserId, buildTeamId} from 'sentry/utils';
+import {Client} from 'sentry/api';
+import MemberListStore from 'sentry/stores/memberListStore';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import TeamStore from 'sentry/stores/teamStore';
+import IdBadge from 'sentry/components/idBadge';
+import MultiSelectControl from 'sentry/components/forms/multiSelectControl';
+import ActorAvatar from 'sentry/components/avatar/actorAvatar';
+import SentryTypes from 'sentry/sentryTypes';
+import Button from 'sentry/components/button';
+import {IconAdd} from 'sentry/icons';
+import Tooltip from 'sentry/components/tooltip';
 
 class ValueComponent extends React.Component {
   static propTypes = {

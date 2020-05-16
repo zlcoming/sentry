@@ -5,10 +5,10 @@ import {withRouter} from 'react-router';
 import {WithRouterProps} from 'react-router/lib/withRouter';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import ButtonBar from 'app/components/buttonBar';
-import Button from 'app/components/button';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import ButtonBar from 'sentry/components/buttonBar';
+import Button from 'sentry/components/button';
 
 const GroupEventAttachmentsFilter = (props: WithRouterProps) => {
   const {query, pathname} = props.location;

@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import {updateMember} from 'sentry/actionCreators/members';
+import OrganizationMemberDetail from 'sentry/views/settings/organizationMembers/organizationMemberDetail';
 
-import {updateMember} from 'app/actionCreators/members';
-import OrganizationMemberDetail from 'app/views/settings/organizationMembers/organizationMemberDetail';
-
-jest.mock('app/actionCreators/members', () => ({
+jest.mock('sentry/actionCreators/members', () => ({
   updateMember: jest.fn().mockReturnValue(new Promise(() => {})),
 }));
 

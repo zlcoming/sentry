@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {t, tct} from 'app/locale';
-import {Client} from 'app/api';
+import {t, tct} from 'sentry/locale';
+import {Client} from 'sentry/api';
 
 /**
  * Fetches group data and mark as seen

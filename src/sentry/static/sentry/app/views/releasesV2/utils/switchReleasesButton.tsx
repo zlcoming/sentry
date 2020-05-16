@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import {IconReleases} from 'app/icons';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import {IconReleases} from 'sentry/icons';
 
 import {switchReleasesVersion} from './index';
 

@@ -1,9 +1,9 @@
-import {MAX_AUTOCOMPLETE_RECENT_SEARCHES} from 'app/constants';
-import {SearchType} from 'app/components/smartSearchBar';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import SavedSearchesActions from 'app/actions/savedSearchesActions';
-import handleXhrErrorResponse from 'app/utils/handleXhrErrorResponse';
+import {MAX_AUTOCOMPLETE_RECENT_SEARCHES} from 'sentry/constants';
+import {SearchType} from 'sentry/components/smartSearchBar';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import SavedSearchesActions from 'sentry/actions/savedSearchesActions';
+import handleXhrErrorResponse from 'sentry/utils/handleXhrErrorResponse';
 
 export function resetSavedSearches() {
   SavedSearchesActions.resetSavedSearches();

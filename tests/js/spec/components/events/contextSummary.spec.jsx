@@ -1,12 +1,11 @@
 import React from 'react';
 
 import {shallow, mount} from 'sentry-test/enzyme';
-
-import ContextSummary from 'app/components/events/contextSummary/contextSummary';
-import {FILTER_MASK} from 'app/constants';
-import ContextSummaryUser from 'app/components/events/contextSummary/contextSummaryUser';
-import ContextSummaryGPU from 'app/components/events/contextSummary/contextSummaryGPU';
-import ContextSummaryOS from 'app/components/events/contextSummary/contextSummaryOS';
+import ContextSummary from 'sentry/components/events/contextSummary/contextSummary';
+import {FILTER_MASK} from 'sentry/constants';
+import ContextSummaryUser from 'sentry/components/events/contextSummary/contextSummaryUser';
+import ContextSummaryGPU from 'sentry/components/events/contextSummary/contextSummaryGPU';
+import ContextSummaryOS from 'sentry/components/events/contextSummary/contextSummaryOS';
 
 const CONTEXT_USER = {
   email: 'mail@example.org',

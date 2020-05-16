@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {formatBytes} from 'app/utils';
-import getDynamicText from 'app/utils/getDynamicText';
+import {formatBytes} from 'sentry/utils';
+import getDynamicText from 'sentry/utils/getDynamicText';
 
 type Props = {
   className?: string;

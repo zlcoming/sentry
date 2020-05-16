@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment';
 
-import getDynamicText from 'app/utils/getDynamicText';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {t, tct} from 'app/locale';
-import {Organization} from 'app/types';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {t, tct} from 'sentry/locale';
+import {Organization} from 'sentry/types';
 
 import {fetchSavedQueries} from '../utils';
 import {

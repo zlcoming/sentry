@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 import {
   ThresholdControlValue,
   AlertRuleThresholdType,
-} from 'app/views/settings/incidentRules/types';
-import {t, tct} from 'app/locale';
-import Input from 'app/views/settings/components/forms/controls/input';
-import SelectControl from 'app/components/forms/selectControl';
-import space from 'app/styles/space';
-import NumberDragControl from 'app/components/numberDragControl';
-import Tooltip from 'app/components/tooltip';
+} from 'sentry/views/settings/incidentRules/types';
+import {t, tct} from 'sentry/locale';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import SelectControl from 'sentry/components/forms/selectControl';
+import space from 'sentry/styles/space';
+import NumberDragControl from 'sentry/components/numberDragControl';
+import Tooltip from 'sentry/components/tooltip';
 
 type Props = ThresholdControlValue & {
   type: string;

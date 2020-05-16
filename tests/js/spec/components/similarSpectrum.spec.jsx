@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import SimilarSpectrum from 'app/components/similarSpectrum';
+import SimilarSpectrum from 'sentry/components/similarSpectrum';
 
 describe('SimilarSpectrum', function() {
   beforeEach(function() {});

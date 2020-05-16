@@ -2,16 +2,15 @@ import React from 'react';
 import sortBy from 'lodash/sortBy';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import GlobalModal from 'app/components/globalModal';
-import {openModal} from 'app/actionCreators/modal';
-import Add from 'app/views/settings/components/dataScrubbing/modals/add';
-import convertRelayPiiConfig from 'app/views/settings/components/dataScrubbing/convertRelayPiiConfig';
-import {MethodType, RuleType} from 'app/views/settings/components/dataScrubbing/types';
+import GlobalModal from 'sentry/components/globalModal';
+import {openModal} from 'sentry/actionCreators/modal';
+import Add from 'sentry/views/settings/components/dataScrubbing/modals/add';
+import convertRelayPiiConfig from 'sentry/views/settings/components/dataScrubbing/convertRelayPiiConfig';
+import {MethodType, RuleType} from 'sentry/views/settings/components/dataScrubbing/types';
 import {
   getMethodLabel,
   getRuleLabel,
-} from 'app/views/settings/components/dataScrubbing/utils';
+} from 'sentry/views/settings/components/dataScrubbing/utils';
 
 // @ts-ignore
 const relayPiiConfig = TestStubs.DataScrubbingRelayPiiConfig();

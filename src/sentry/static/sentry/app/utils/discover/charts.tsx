@@ -1,5 +1,5 @@
-import {getDuration, formatPercentage} from 'app/utils/formatters';
-import {aggregateOutputType} from 'app/utils/discover/fields';
+import {getDuration, formatPercentage} from 'sentry/utils/formatters';
+import {aggregateOutputType} from 'sentry/utils/discover/fields';
 
 /**
  * Formatter for chart tooltips that handle a variety of discover result values

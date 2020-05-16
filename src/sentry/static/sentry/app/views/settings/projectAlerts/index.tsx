@@ -1,9 +1,9 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Organization} from 'app/types';
-import Access from 'app/components/acl/access';
-import Feature from 'app/components/acl/feature';
+import {Organization} from 'sentry/types';
+import Access from 'sentry/components/acl/access';
+import Feature from 'sentry/components/acl/feature';
 
 type Props = {
   organization: Organization;

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import FormSource from 'app/components/search/sources/formSource';
-import FormSearchActions from 'app/actions/formSearchActions';
-import * as ActionCreators from 'app/actionCreators/formSearch';
+import FormSource from 'sentry/components/search/sources/formSource';
+import FormSearchActions from 'sentry/actions/formSearchActions';
+import * as ActionCreators from 'sentry/actionCreators/formSearch';
 
 describe('FormSource', function() {
   let wrapper;

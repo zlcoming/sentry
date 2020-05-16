@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {css} from '@emotion/core';
 
-import IssueDiff from 'app/components/issueDiff';
+import IssueDiff from 'sentry/components/issueDiff';
 
 class DiffModal extends React.Component {
   static propTypes = {

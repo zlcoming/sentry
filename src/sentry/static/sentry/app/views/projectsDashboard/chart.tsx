@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import {Project} from 'app/types';
-import BarChart from 'app/components/barChart';
+import {Project} from 'sentry/types';
+import BarChart from 'sentry/components/barChart';
 
 type Props = {
   stats: Required<Project>['stats'];

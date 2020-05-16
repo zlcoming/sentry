@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as Sentry from '@sentry/react';
 
-import SentryTypes from 'app/sentryTypes';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import TeamAvatar from 'app/components/avatar/teamAvatar';
-import MemberListStore from 'app/stores/memberListStore';
-import TeamStore from 'app/stores/teamStore';
-import {Actor} from 'app/types';
+import SentryTypes from 'sentry/sentryTypes';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import TeamAvatar from 'sentry/components/avatar/teamAvatar';
+import MemberListStore from 'sentry/stores/memberListStore';
+import TeamStore from 'sentry/stores/teamStore';
+import {Actor} from 'sentry/types';
 
 type DefaultProps = {
   hasTooltip: boolean;

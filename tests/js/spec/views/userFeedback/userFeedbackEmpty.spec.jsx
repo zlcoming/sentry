@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {UserFeedbackEmpty} from 'app/views/userFeedback/userFeedbackEmpty';
+import {UserFeedbackEmpty} from 'sentry/views/userFeedback/userFeedbackEmpty';
 
 describe('UserFeedbackEmpty', function() {
   const routerContext = TestStubs.routerContext();

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import OrganizationStats from 'app/views/organizationStats/organizationStatsDetails';
+import OrganizationStats from 'sentry/views/organizationStats/organizationStatsDetails';
 
 describe('OrganizationStats', function() {
   it('renders', function() {

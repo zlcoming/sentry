@@ -3,22 +3,22 @@ import debounce from 'lodash/debounce';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {migrateRepository, addRepository} from 'app/actionCreators/integrations';
-import RepositoryActions from 'app/actions/repositoryActions';
-import Alert from 'app/components/alert';
-import AsyncComponent from 'app/components/asyncComponent';
-import Button from 'app/components/button';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import DropdownButton from 'app/components/dropdownButton';
-import {IconCommit, IconFlag} from 'app/icons';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import Pagination from 'app/components/pagination';
-import RepositoryRow from 'app/components/repositoryRow';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import {Integration, Repository} from 'app/types';
+import {migrateRepository, addRepository} from 'sentry/actionCreators/integrations';
+import RepositoryActions from 'sentry/actions/repositoryActions';
+import Alert from 'sentry/components/alert';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Button from 'sentry/components/button';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import DropdownButton from 'sentry/components/dropdownButton';
+import {IconCommit, IconFlag} from 'sentry/icons';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import Pagination from 'sentry/components/pagination';
+import RepositoryRow from 'sentry/components/repositoryRow';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import {Integration, Repository} from 'sentry/types';
 
 type Props = AsyncComponent['props'] & {
   integration: Integration;

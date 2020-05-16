@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import AsyncComponent from 'app/components/asyncComponent';
-import {Panel, PanelBody} from 'app/components/panels';
-import {t} from 'app/locale';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import StackedBarChart from 'app/components/stackedBarChart';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import StackedBarChart from 'sentry/components/stackedBarChart';
 
 export default class MonitorStats extends AsyncComponent {
   static propTypes = {

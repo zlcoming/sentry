@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import {IconClock, IconStar, IconTag, IconToggle, IconUser} from 'app/icons';
+import {t} from 'sentry/locale';
+import {IconClock, IconStar, IconTag, IconToggle, IconUser} from 'sentry/icons';
 
 import {ItemType, SearchGroup, SearchItem} from './types';
 

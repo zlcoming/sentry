@@ -2,7 +2,7 @@ import {
   canIncludePreviousPeriod,
   getInterval,
   getDiffInMinutes,
-} from 'app/components/charts/utils';
+} from 'sentry/components/charts/utils';
 
 describe('Chart Utils', function() {
   describe('getInterval()', function() {

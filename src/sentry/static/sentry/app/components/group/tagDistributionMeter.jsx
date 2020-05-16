@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {deviceNameMapper, loadDeviceListModule} from 'app/components/deviceName';
-import SentryTypes from 'app/sentryTypes';
-import TagDistributionMeter from 'app/components/tagDistributionMeter';
+import {deviceNameMapper, loadDeviceListModule} from 'sentry/components/deviceName';
+import SentryTypes from 'sentry/sentryTypes';
+import TagDistributionMeter from 'sentry/components/tagDistributionMeter';
 
 class GroupTagDistributionMeter extends React.Component {
   static propTypes = {

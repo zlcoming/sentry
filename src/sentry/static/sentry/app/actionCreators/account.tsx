@@ -1,7 +1,7 @@
-import {Client} from 'app/api';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import ConfigStore from 'app/stores/configStore';
-import {User} from 'app/types';
+import {Client} from 'sentry/api';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import ConfigStore from 'sentry/stores/configStore';
+import {User} from 'sentry/types';
 
 type Identity = {
   id: string;

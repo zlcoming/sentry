@@ -2,16 +2,16 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import AsyncView from 'app/views/asyncView';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import LineChart from 'app/components/charts/lineChart';
-import {Panel, PanelBody, PanelHeader, PanelFooter} from 'app/components/panels';
-import BarChart from 'app/components/charts/barChart';
-import Link from 'app/components/links/link';
-import DateTime from 'app/components/dateTime';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import {SentryApp} from 'app/types';
+import AsyncView from 'sentry/views/asyncView';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import LineChart from 'sentry/components/charts/lineChart';
+import {Panel, PanelBody, PanelHeader, PanelFooter} from 'sentry/components/panels';
+import BarChart from 'sentry/components/charts/barChart';
+import Link from 'sentry/components/links/link';
+import DateTime from 'sentry/components/dateTime';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import {SentryApp} from 'sentry/types';
 
 import RequestLog from './requestLog';
 

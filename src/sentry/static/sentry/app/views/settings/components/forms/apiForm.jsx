@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import Form from 'app/views/settings/components/forms/form';
+import {Client} from 'sentry/api';
+import {addLoadingMessage, clearIndicators} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import Form from 'sentry/views/settings/components/forms/form';
 
 export default class ApiForm extends React.Component {
   static propTypes = {

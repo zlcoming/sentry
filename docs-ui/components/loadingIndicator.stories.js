@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import LoadingIndicator from 'app/components/loadingIndicator';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
 
 export default {
   title: 'UI/Loaders/LoadingIndicator',

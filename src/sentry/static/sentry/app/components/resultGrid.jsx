@@ -4,11 +4,11 @@ import createReactClass from 'create-react-class';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 
-import withApi from 'app/utils/withApi';
-import DropdownLink from 'app/components/dropdownLink';
-import MenuItem from 'app/components/menuItem';
-import Pagination from 'app/components/pagination';
-import {IconSearch} from 'app/icons';
+import withApi from 'sentry/utils/withApi';
+import DropdownLink from 'sentry/components/dropdownLink';
+import MenuItem from 'sentry/components/menuItem';
+import Pagination from 'sentry/components/pagination';
+import {IconSearch} from 'sentry/icons';
 
 class Filter extends React.Component {
   static propTypes = {

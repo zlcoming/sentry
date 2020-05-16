@@ -1,12 +1,11 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import Button from 'sentry/components/button';
+import WrappedDataExport from 'sentry/components/dataExport';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import Button from 'app/components/button';
-import WrappedDataExport from 'app/components/dataExport';
-
-jest.mock('app/actionCreators/indicator');
+jest.mock('sentry/actionCreators/indicator');
 
 describe('DataExport', function() {
   const mockUnauthorizedOrg = TestStubs.Organization({

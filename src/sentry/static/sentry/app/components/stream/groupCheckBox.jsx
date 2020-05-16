@@ -3,9 +3,9 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import {t} from 'app/locale';
-import Checkbox from 'app/components/checkbox';
-import SelectedGroupStore from 'app/stores/selectedGroupStore';
+import {t} from 'sentry/locale';
+import Checkbox from 'sentry/components/checkbox';
+import SelectedGroupStore from 'sentry/stores/selectedGroupStore';
 
 const GroupCheckBox = createReactClass({
   displayName: 'GroupCheckBox',

@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Member, Organization, Team, MemberRole} from 'app/types';
-import {PanelItem} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import HookOrDefault from 'app/components/hookOrDefault';
-import Tag from 'app/views/settings/components/tag';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import SelectControl from 'app/components/forms/selectControl';
-import RoleSelectControl from 'app/components/roleSelectControl';
+import {Member, Organization, Team, MemberRole} from 'sentry/types';
+import {PanelItem} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import HookOrDefault from 'sentry/components/hookOrDefault';
+import Tag from 'sentry/views/settings/components/tag';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import SelectControl from 'sentry/components/forms/selectControl';
+import RoleSelectControl from 'sentry/components/roleSelectControl';
 
 type Props = {
   inviteRequest: Member;

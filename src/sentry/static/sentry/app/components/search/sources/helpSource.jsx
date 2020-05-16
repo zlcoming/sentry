@@ -10,9 +10,9 @@ import {
   ALGOLIA_READ_ONLY,
   ALGOLIA_DOCS_INDEX,
   ALGOLIA_ZENDESK_INDEX,
-} from 'app/constants';
-import parseHtmlMarks from 'app/utils/parseHtmlMarks';
-import withLatestContext from 'app/utils/withLatestContext';
+} from 'sentry/constants';
+import parseHtmlMarks from 'sentry/utils/parseHtmlMarks';
+import withLatestContext from 'sentry/utils/withLatestContext';
 
 /**
  * Use unique markers for highlighting so we can parse these into fuse-style

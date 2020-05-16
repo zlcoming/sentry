@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/lib/Modal';
 import styled from '@emotion/styled';
 
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import AsyncComponent from 'app/components/asyncComponent';
-import IssueSyncListElement from 'app/components/issueSyncListElement';
-import ExternalIssueForm from 'app/components/group/externalIssueForm';
-import IntegrationItem from 'app/views/organizationIntegrations/integrationItem';
-import NavTabs from 'app/components/navTabs';
-import {t} from 'app/locale';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import {Group, GroupIntegration, IntegrationExternalIssue} from 'app/types';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import IssueSyncListElement from 'sentry/components/issueSyncListElement';
+import ExternalIssueForm from 'sentry/components/group/externalIssueForm';
+import IntegrationItem from 'sentry/views/organizationIntegrations/integrationItem';
+import NavTabs from 'sentry/components/navTabs';
+import {t} from 'sentry/locale';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import {Group, GroupIntegration, IntegrationExternalIssue} from 'sentry/types';
 
 type Props = AsyncComponent['props'] & {
   integration: GroupIntegration;

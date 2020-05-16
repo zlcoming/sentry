@@ -1,8 +1,8 @@
 import Reflux from 'reflux';
 
-import ReleaseActions from 'app/actions/releaseActions';
-import OrganizationActions from 'app/actions/organizationActions';
-import {Deploy, Organization, Release} from 'app/types';
+import ReleaseActions from 'sentry/actions/releaseActions';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import {Deploy, Organization, Release} from 'sentry/types';
 
 type StoreRelease = Map<string, Release>;
 type StoreDeploys = Map<string, Array<Deploy>>;

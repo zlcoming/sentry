@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import StackedBarChart from 'app/components/stackedBarChart';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import {intcomma} from 'app/utils';
-import theme from 'app/utils/theme';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import {intcomma} from 'sentry/utils';
+import theme from 'sentry/utils/theme';
 
 class GroupReleaseChart extends React.Component {
   static propTypes = {

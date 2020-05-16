@@ -3,9 +3,9 @@ import React from 'react';
 import classNames from 'classnames';
 import * as Sentry from '@sentry/react';
 
-import {t} from 'app/locale';
-import {IconFlag} from 'app/icons';
-import Button from 'app/components/button';
+import {t} from 'sentry/locale';
+import {IconFlag} from 'sentry/icons';
+import Button from 'sentry/components/button';
 
 type DefaultProps = {
   /**

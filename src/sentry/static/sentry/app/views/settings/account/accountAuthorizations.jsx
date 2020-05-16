@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import {IconDelete} from 'app/icons';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import space from 'app/styles/space';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import {IconDelete} from 'sentry/icons';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import space from 'sentry/styles/space';
 
 class AuthorizationRow extends React.Component {
   static propTypes = {

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
-
-import HttpRenderer from 'app/components/events/interfaces/breadcrumbs/httpRenderer';
+import HttpRenderer from 'sentry/components/events/interfaces/breadcrumbs/httpRenderer';
 
 describe('HttpRenderer', function() {
   describe('render()', function() {

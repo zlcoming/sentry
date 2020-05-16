@@ -2,8 +2,8 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text, select} from '@storybook/addon-knobs';
 
-import QuestionTooltip from 'app/components/questionTooltip';
-import theme from 'app/utils/theme';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import theme from 'sentry/utils/theme';
 
 export default {
   title: 'UI/QuestionTooltip',

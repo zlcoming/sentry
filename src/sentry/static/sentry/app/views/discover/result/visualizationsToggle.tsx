@@ -1,9 +1,9 @@
 import React from 'react';
 
-import DropdownLink from 'app/components/dropdownLink';
-import MenuItem from 'app/components/menuItem';
-import {IconDownload} from 'app/icons';
-import {t} from 'app/locale';
+import DropdownLink from 'sentry/components/dropdownLink';
+import MenuItem from 'sentry/components/menuItem';
+import {IconDownload} from 'sentry/icons';
+import {t} from 'sentry/locale';
 
 import {
   ResultViewActions,

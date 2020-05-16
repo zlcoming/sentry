@@ -1,7 +1,7 @@
 /**
  * Top Errors by Device and Browsers
  */
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const topDevicesAndBrowsers = {
   name: t('Top Devices and Browsers'),

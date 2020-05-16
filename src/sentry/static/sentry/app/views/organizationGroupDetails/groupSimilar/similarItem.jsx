@@ -4,19 +4,19 @@ import Reflux from 'reflux';
 import classNames from 'classnames';
 import createReactClass from 'create-react-class';
 
-import SentryTypes from 'app/sentryTypes';
-import {openDiffModal} from 'app/actionCreators/modal';
-import Checkbox from 'app/components/checkbox';
-import Count from 'app/components/count';
-import EventOrGroupExtraDetails from 'app/components/eventOrGroupExtraDetails';
-import EventOrGroupHeader from 'app/components/eventOrGroupHeader';
-import FlowLayout from 'app/components/flowLayout';
-import GroupingActions from 'app/actions/groupingActions';
-import GroupingStore from 'app/stores/groupingStore';
-import Hovercard from 'app/components/hovercard';
-import ScoreBar from 'app/components/scoreBar';
-import SimilarScoreCard from 'app/components/similarScoreCard';
-import SpreadLayout from 'app/components/spreadLayout';
+import SentryTypes from 'sentry/sentryTypes';
+import {openDiffModal} from 'sentry/actionCreators/modal';
+import Checkbox from 'sentry/components/checkbox';
+import Count from 'sentry/components/count';
+import EventOrGroupExtraDetails from 'sentry/components/eventOrGroupExtraDetails';
+import EventOrGroupHeader from 'sentry/components/eventOrGroupHeader';
+import FlowLayout from 'sentry/components/flowLayout';
+import GroupingActions from 'sentry/actions/groupingActions';
+import GroupingStore from 'sentry/stores/groupingStore';
+import Hovercard from 'sentry/components/hovercard';
+import ScoreBar from 'sentry/components/scoreBar';
+import SimilarScoreCard from 'sentry/components/similarScoreCard';
+import SpreadLayout from 'sentry/components/spreadLayout';
 
 const similarInterfaces = ['exception', 'message'];
 

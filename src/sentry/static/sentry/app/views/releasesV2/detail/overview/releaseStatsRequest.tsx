@@ -6,17 +6,17 @@ import meanBy from 'lodash/meanBy';
 import mean from 'lodash/mean';
 import {Location} from 'history';
 
-import {Client} from 'app/api';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
-import {GlobalSelection, CrashFreeTimeBreakdown} from 'app/types';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
-import {percent, defined} from 'app/utils';
-import {Series} from 'app/types/echarts';
-import {getParams} from 'app/components/organizations/globalSelectionHeader/getParams';
-import {getExactDuration} from 'app/utils/formatters';
-import {fetchTotalCount} from 'app/actionCreators/events';
-import CHART_PALETTE from 'app/constants/chartPalette';
+import {Client} from 'sentry/api';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
+import {GlobalSelection, CrashFreeTimeBreakdown} from 'sentry/types';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
+import {percent, defined} from 'sentry/utils';
+import {Series} from 'sentry/types/echarts';
+import {getParams} from 'sentry/components/organizations/globalSelectionHeader/getParams';
+import {getExactDuration} from 'sentry/utils/formatters';
+import {fetchTotalCount} from 'sentry/actionCreators/events';
+import CHART_PALETTE from 'sentry/constants/chartPalette';
 
 import {YAxis} from './chart/releaseChartControls';
 import {getInterval, getReleaseEventView} from './chart/utils';

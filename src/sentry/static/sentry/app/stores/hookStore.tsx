@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import isUndefined from 'lodash/isUndefined';
 import * as Sentry from '@sentry/react';
 
-import {Hooks, HookName} from 'app/types/hooks';
+import {Hooks, HookName} from 'sentry/types/hooks';
 
 /**
  * See types/hooks for hook usage reference.

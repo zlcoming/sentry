@@ -1,13 +1,13 @@
 import EventView, {
   isAPIPayloadSimilar,
   pickRelevantLocationQueryStrings,
-} from 'app/utils/discover/eventView';
-import {COL_WIDTH_UNDEFINED} from 'app/components/gridEditable/utils';
+} from 'sentry/utils/discover/eventView';
+import {COL_WIDTH_UNDEFINED} from 'sentry/components/gridEditable/utils';
 import {
   CHART_AXIS_OPTIONS,
   DisplayModes,
   DISPLAY_MODE_OPTIONS,
-} from 'app/utils/discover/types';
+} from 'sentry/utils/discover/types';
 
 const generateFields = fields =>
   fields.map(field => ({

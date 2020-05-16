@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {IconClock} from 'app/icons';
-import RepoLabel from 'app/components/repoLabel';
-import TimeSince from 'app/components/timeSince';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import {IconClock} from 'sentry/icons';
+import RepoLabel from 'sentry/components/repoLabel';
+import TimeSince from 'sentry/components/timeSince';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
 
 const LatestDeployOrReleaseTime = ({release}) => {
   const earlierDeploysNum = release.totalDeploys - 1;

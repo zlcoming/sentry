@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
+import space from 'sentry/styles/space';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
 
 type DefaultProps = {
   maxVisibleItems: number;

@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {addQueryParamsToExistingUrl} from 'app/utils/queryString';
-import FieldFromConfig from 'app/views/settings/components/forms/fieldFromConfig';
-import Form from 'app/views/settings/components/forms/form';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import ExternalIssueStore from 'app/stores/externalIssueStore';
-import getStacktraceBody from 'app/utils/getStacktraceBody';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import {Group, PlatformExternalIssue, Event, SentryAppInstallation} from 'app/types';
-import {Field, FieldValue} from 'app/views/settings/components/forms/type';
-import FormModel from 'app/views/settings/components/forms/model';
-import {replaceAtArrayIndex} from 'app/utils/replaceAtArrayIndex';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {addQueryParamsToExistingUrl} from 'sentry/utils/queryString';
+import FieldFromConfig from 'sentry/views/settings/components/forms/fieldFromConfig';
+import Form from 'sentry/views/settings/components/forms/form';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import ExternalIssueStore from 'sentry/stores/externalIssueStore';
+import getStacktraceBody from 'sentry/utils/getStacktraceBody';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import {Group, PlatformExternalIssue, Event, SentryAppInstallation} from 'sentry/types';
+import {Field, FieldValue} from 'sentry/views/settings/components/forms/type';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import {replaceAtArrayIndex} from 'sentry/utils/replaceAtArrayIndex';
 
 //0 is a valid choice but empty string, undefined, and null are not
 const hasValue = value => !!value || value === 0;

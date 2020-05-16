@@ -3,7 +3,7 @@ import {
   formatAbbreviatedNumber,
   formatPercentage,
   getDuration,
-} from 'app/utils/formatters';
+} from 'sentry/utils/formatters';
 
 describe('getDuration()', function() {
   it('should format durations', function() {

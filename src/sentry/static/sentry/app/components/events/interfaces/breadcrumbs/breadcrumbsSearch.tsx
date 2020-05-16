@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import TextField from 'app/components/forms/textField';
-import {IconSearch, IconClose} from 'app/icons';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
+import TextField from 'sentry/components/forms/textField';
+import {IconSearch, IconClose} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 type Props = {
   searchTerm: string;

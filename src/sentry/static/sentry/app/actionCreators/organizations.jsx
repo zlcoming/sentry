@@ -1,13 +1,13 @@
 import {browserHistory} from 'react-router';
 
-import {Client} from 'app/api';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {resetGlobalSelection} from 'app/actionCreators/globalSelection';
-import OrganizationActions from 'app/actions/organizationActions';
-import OrganizationsActions from 'app/actions/organizationsActions';
-import OrganizationsStore from 'app/stores/organizationsStore';
-import ProjectsStore from 'app/stores/projectsStore';
-import TeamStore from 'app/stores/teamStore';
+import {Client} from 'sentry/api';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {resetGlobalSelection} from 'sentry/actionCreators/globalSelection';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import OrganizationsActions from 'sentry/actions/organizationsActions';
+import OrganizationsStore from 'sentry/stores/organizationsStore';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import TeamStore from 'sentry/stores/teamStore';
 
 export function redirectToRemainingOrganization({orgId, removeOrg}) {
   // Remove queued, should redirect

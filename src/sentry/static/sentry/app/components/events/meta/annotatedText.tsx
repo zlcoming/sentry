@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconWarning} from 'app/icons';
-import Tooltip from 'app/components/tooltip';
-import {t, tn} from 'app/locale';
-import {Chunks, Meta, MetaError} from 'app/types';
+import {IconWarning} from 'sentry/icons';
+import Tooltip from 'sentry/components/tooltip';
+import {t, tn} from 'sentry/locale';
+import {Chunks, Meta, MetaError} from 'sentry/types';
 
 const REMARKS = {
   a: 'Annotated',

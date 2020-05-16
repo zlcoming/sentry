@@ -4,34 +4,34 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import Alert from 'app/components/alert';
-import {Panel, PanelAlert, PanelHeader} from 'app/components/panels';
+import Alert from 'sentry/components/alert';
+import {Panel, PanelAlert, PanelHeader} from 'sentry/components/panels';
 import {
   changeProjectSlug,
   removeProject,
   transferProject,
-} from 'app/actionCreators/projects';
-import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
-import {fields} from 'app/data/forms/projectGeneralSettings';
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import Field from 'app/views/settings/components/forms/field';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import ProjectActions from 'app/actions/projectActions';
-import ProjectsStore from 'app/stores/projectsStore';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import TextField from 'app/views/settings/components/forms/textField';
-import handleXhrErrorResponse from 'app/utils/handleXhrErrorResponse';
-import marked from 'app/utils/marked';
-import recreateRoute from 'app/utils/recreateRoute';
-import routeTitleGen from 'app/utils/routeTitle';
-import Link from 'app/components/links/link';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
+} from 'sentry/actionCreators/projects';
+import {addLoadingMessage, clearIndicators} from 'sentry/actionCreators/indicator';
+import {fields} from 'sentry/data/forms/projectGeneralSettings';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import Field from 'sentry/views/settings/components/forms/field';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import ProjectActions from 'sentry/actions/projectActions';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import handleXhrErrorResponse from 'sentry/utils/handleXhrErrorResponse';
+import marked from 'sentry/utils/marked';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import Link from 'sentry/components/links/link';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
 
 class ProjectGeneralSettings extends AsyncView {
   static propTypes = {

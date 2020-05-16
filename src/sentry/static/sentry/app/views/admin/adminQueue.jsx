@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AsyncView from 'app/views/asyncView';
-import InternalStatChart from 'app/components/internalStatChart';
-import {SelectField} from 'app/components/forms';
+import AsyncView from 'sentry/views/asyncView';
+import InternalStatChart from 'sentry/components/internalStatChart';
+import {SelectField} from 'sentry/components/forms';
 
 export default class AdminQueue extends AsyncView {
   getDefaultState() {

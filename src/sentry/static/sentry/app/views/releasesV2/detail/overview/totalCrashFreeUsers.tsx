@@ -2,12 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 
-import {t, tn} from 'app/locale';
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import {CrashFreeTimeBreakdown} from 'app/types';
-import {defined} from 'app/utils';
-import Count from 'app/components/count';
+import {t, tn} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import {CrashFreeTimeBreakdown} from 'sentry/types';
+import {defined} from 'sentry/utils';
+import Count from 'sentry/components/count';
 
 import {SectionHeading, Wrapper} from './styles';
 import {displayCrashFreePercent} from '../../utils';

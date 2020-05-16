@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import PieChart from 'app/components/charts/pieChart';
+import PieChart from 'sentry/components/charts/pieChart';
 
 export default {
   title: 'Charts/PieChart',

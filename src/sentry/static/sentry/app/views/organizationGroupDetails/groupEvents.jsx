@@ -3,17 +3,17 @@ import {browserHistory} from 'react-router';
 import React from 'react';
 import pick from 'lodash/pick';
 
-import SentryTypes from 'app/sentryTypes';
-import {Panel, PanelBody} from 'app/components/panels';
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import EventsTable from 'app/components/eventsTable/eventsTable';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import SearchBar from 'app/components/searchBar';
-import parseApiError from 'app/utils/parseApiError';
+import SentryTypes from 'sentry/sentryTypes';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import EventsTable from 'sentry/components/eventsTable/eventsTable';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import SearchBar from 'sentry/components/searchBar';
+import parseApiError from 'sentry/utils/parseApiError';
 
 class GroupEvents extends React.Component {
   static propTypes = {

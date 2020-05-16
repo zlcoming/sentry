@@ -3,11 +3,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {isWebpackChunkLoadingError} from 'app/utils';
-import {t} from 'app/locale';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import retryableImport from 'app/utils/retryableImport';
+import {isWebpackChunkLoadingError} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import retryableImport from 'sentry/utils/retryableImport';
 
 class LazyLoad extends React.Component {
   static propTypes = {

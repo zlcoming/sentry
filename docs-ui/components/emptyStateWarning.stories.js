@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import EmptyStateWarning from 'app/components/emptyStateWarning';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
 
 export default {
   title: 'UI/EmptyStateWarning',

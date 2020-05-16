@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import UserAvatar from 'app/components/avatar/userAvatar';
-import {BannerContainer, BannerSummary} from 'app/components/events/styles';
-import CommitLink from 'app/components/commitLink';
-import TimeSince from 'app/components/timeSince';
-import Version from 'app/components/version';
-import {IconCheckmark} from 'app/icons';
-import {t, tct} from 'app/locale';
-import space from 'app/styles/space';
-import {ResolutionStatusDetails} from 'app/types';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import {BannerContainer, BannerSummary} from 'sentry/components/events/styles';
+import CommitLink from 'sentry/components/commitLink';
+import TimeSince from 'sentry/components/timeSince';
+import Version from 'sentry/components/version';
+import {IconCheckmark} from 'sentry/icons';
+import {t, tct} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {ResolutionStatusDetails} from 'sentry/types';
 
 type Props = {
   statusDetails: ResolutionStatusDetails;

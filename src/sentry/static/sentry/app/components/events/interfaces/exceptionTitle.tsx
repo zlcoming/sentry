@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import Tooltip from 'app/components/tooltip';
-import {tct} from 'app/locale';
-import {defined} from 'app/utils';
+import space from 'sentry/styles/space';
+import Tooltip from 'sentry/components/tooltip';
+import {tct} from 'sentry/locale';
+import {defined} from 'sentry/utils';
 
 type Props = {
   type: string;

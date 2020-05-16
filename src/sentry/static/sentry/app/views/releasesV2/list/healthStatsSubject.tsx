@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Location} from 'history';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import Link from 'app/components/links/link';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Link from 'sentry/components/links/link';
 
 export type StatsSubject = 'sessions' | 'users';
 

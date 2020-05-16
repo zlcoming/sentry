@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 const Grid = styled('div')`
   font-size: ${p => p.theme.fontSizeSmall};

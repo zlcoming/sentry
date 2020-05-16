@@ -5,13 +5,12 @@ import {chart, doZoom} from 'sentry-test/charts';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mockRouterPush} from 'sentry-test/mockRouterPush';
 import {mountWithTheme} from 'sentry-test/enzyme';
+import {getUtcToLocalDateObject} from 'sentry/utils/dates';
+import Events, {parseRowFromLinks} from 'sentry/views/events/events';
+import EventsContainer from 'sentry/views/events';
+import ProjectsStore from 'sentry/stores/projectsStore';
 
-import {getUtcToLocalDateObject} from 'app/utils/dates';
-import Events, {parseRowFromLinks} from 'app/views/events/events';
-import EventsContainer from 'app/views/events';
-import ProjectsStore from 'app/stores/projectsStore';
-
-jest.mock('app/utils/withLatestContext');
+jest.mock('sentry/utils/withLatestContext');
 
 const generatePageLinks = (current, windowSize) => {
   const previous = current - windowSize;

@@ -1,4 +1,4 @@
-import {Query} from 'app/views/discover/types';
+import {Query} from 'sentry/views/discover/types';
 
 // Consider a query a time series if
 export function isTimeSeries(query: Query) {

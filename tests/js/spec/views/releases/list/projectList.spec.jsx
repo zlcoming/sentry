@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ProjectList from 'app/views/releases/list/projectList.tsx';
+import ProjectList from 'sentry/views/releases/list/projectList.tsx';
 
 const projects = [
   {slug: 'test1'},

@@ -2,14 +2,14 @@ import React from 'react';
 import {motion, AnimatePresence, Variants} from 'framer-motion';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import EventWaiter from 'app/utils/eventWaiter';
-import space from 'app/styles/space';
-import pulsingIndicatorStyles from 'app/styles/pulsingIndicator';
-import {Group, Organization} from 'app/types';
-import {IconCheckmark} from 'app/icons';
-import testableTransition from 'app/utils/testableTransition';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import EventWaiter from 'sentry/utils/eventWaiter';
+import space from 'sentry/styles/space';
+import pulsingIndicatorStyles from 'sentry/styles/pulsingIndicator';
+import {Group, Organization} from 'sentry/types';
+import {IconCheckmark} from 'sentry/icons';
+import testableTransition from 'sentry/utils/testableTransition';
 
 type EventWaiterProps = Omit<React.ComponentProps<typeof EventWaiter>, 'children'>;
 type FirstIssue = null | true | Group;

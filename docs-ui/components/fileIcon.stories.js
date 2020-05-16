@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text} from '@storybook/addon-knobs';
 
-import FileIcon from 'app/components/fileIcon';
+import FileIcon from 'sentry/components/fileIcon';
 
 export default {
   title: 'Style/Icons',

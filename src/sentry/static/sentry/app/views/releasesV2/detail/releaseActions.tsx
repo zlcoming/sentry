@@ -2,17 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {browserHistory} from 'react-router';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import Button from 'app/components/button';
-import {IconDelete} from 'app/icons';
-import Confirm from 'app/components/confirm';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Button from 'sentry/components/button';
+import {IconDelete} from 'sentry/icons';
+import Confirm from 'sentry/components/confirm';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import Tooltip from 'app/components/tooltip';
+} from 'sentry/actionCreators/indicator';
+import Tooltip from 'sentry/components/tooltip';
 
 import {deleteRelease} from './utils';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavTabs from 'app/components/navTabs';
+import NavTabs from 'sentry/components/navTabs';
 
 import {SetupDescriptor} from '.';
 

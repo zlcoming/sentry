@@ -1,6 +1,6 @@
-import {Client} from 'app/api';
-import {CommitFile, Commit} from 'app/types';
-import {t} from 'app/locale';
+import {Client} from 'sentry/api';
+import {CommitFile, Commit} from 'sentry/types';
+import {t} from 'sentry/locale';
 
 export type CommitsByRepository = {
   [key: string]: Commit[];

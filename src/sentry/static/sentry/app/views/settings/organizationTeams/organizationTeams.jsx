@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {openCreateTeamModal} from 'app/actionCreators/modal';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import recreateRoute from 'app/utils/recreateRoute';
-import {IconAdd} from 'app/icons';
+import {openCreateTeamModal} from 'sentry/actionCreators/modal';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import {IconAdd} from 'sentry/icons';
 
 import AllTeamsList from './allTeamsList';
 

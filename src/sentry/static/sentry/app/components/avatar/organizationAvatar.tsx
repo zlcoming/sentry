@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {OrganizationSummary} from 'app/types';
-import {explodeSlug} from 'app/utils';
-import BaseAvatar from 'app/components/avatar/baseAvatar';
-import SentryTypes from 'app/sentryTypes';
+import {OrganizationSummary} from 'sentry/types';
+import {explodeSlug} from 'sentry/utils';
+import BaseAvatar from 'sentry/components/avatar/baseAvatar';
+import SentryTypes from 'sentry/sentryTypes';
 
 type Props = {
   organization?: OrganizationSummary;

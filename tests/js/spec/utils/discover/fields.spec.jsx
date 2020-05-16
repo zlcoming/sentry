@@ -4,7 +4,7 @@ import {
   explodeField,
   aggregateOutputType,
   aggregateMultiPlotType,
-} from 'app/utils/discover/fields';
+} from 'sentry/utils/discover/fields';
 
 describe('getAggregateAlias', function() {
   it('no-ops simple fields', function() {

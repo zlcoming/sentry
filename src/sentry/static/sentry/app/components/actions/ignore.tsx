@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import {IconNot} from 'app/icons';
-import {ResolutionStatusDetails} from 'app/types';
-import {t, tn} from 'app/locale';
-import MenuItem from 'app/components/menuItem';
-import DropdownLink from 'app/components/dropdownLink';
-import Duration from 'app/components/duration';
-import CustomIgnoreCountModal from 'app/components/customIgnoreCountModal';
-import CustomIgnoreDurationModal from 'app/components/customIgnoreDurationModal';
-import ActionLink from 'app/components/actions/actionLink';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
+import {IconNot} from 'sentry/icons';
+import {ResolutionStatusDetails} from 'sentry/types';
+import {t, tn} from 'sentry/locale';
+import MenuItem from 'sentry/components/menuItem';
+import DropdownLink from 'sentry/components/dropdownLink';
+import Duration from 'sentry/components/duration';
+import CustomIgnoreCountModal from 'sentry/components/customIgnoreCountModal';
+import CustomIgnoreDurationModal from 'sentry/components/customIgnoreDurationModal';
+import ActionLink from 'sentry/components/actions/actionLink';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
 
 enum ModalStates {
   COUNT,

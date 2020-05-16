@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 
-import withApi from 'app/utils/withApi';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import NavTabs from 'app/components/navTabs';
-import plugins from 'app/plugins';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import IssueSyncListElement from 'app/components/issueSyncListElement';
-import withOrganization from 'app/utils/withOrganization';
+import withApi from 'sentry/utils/withApi';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import NavTabs from 'sentry/components/navTabs';
+import plugins from 'sentry/plugins';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import IssueSyncListElement from 'sentry/components/issueSyncListElement';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class PluginActions extends React.Component {
   static propTypes = {

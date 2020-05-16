@@ -2,8 +2,8 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 
-import {t} from 'app/locale';
-import BarChart from 'app/components/barChart';
+import {t} from 'sentry/locale';
+import BarChart from 'sentry/components/barChart';
 
 import {StatsSubject} from './healthStatsSubject';
 import {StatsPeriod} from './healthStatsPeriod';

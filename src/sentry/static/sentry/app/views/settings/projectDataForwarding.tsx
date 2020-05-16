@@ -1,24 +1,24 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncComponent from 'app/components/asyncComponent';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ExternalLink from 'app/components/links/externalLink';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import {IconInfo} from 'app/icons';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import PluginList from 'app/components/pluginList';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import StackedBarChart from 'app/components/stackedBarChart';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import {Organization, Plugin, Project} from 'app/types';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import {IconInfo} from 'sentry/icons';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import PluginList from 'sentry/components/pluginList';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import {Organization, Plugin, Project} from 'sentry/types';
 
 type RouteParams = {projectId: string; orgId: string};
 

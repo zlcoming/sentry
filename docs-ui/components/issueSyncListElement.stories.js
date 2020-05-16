@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {withInfo} from '@storybook/addon-info';
 
-import space from 'app/styles/space';
-import IssueSyncListElement from 'app/components/issueSyncListElement';
+import space from 'sentry/styles/space';
+import IssueSyncListElement from 'sentry/components/issueSyncListElement';
 
 export default {
   title: 'Issues/IssueSyncListElement',

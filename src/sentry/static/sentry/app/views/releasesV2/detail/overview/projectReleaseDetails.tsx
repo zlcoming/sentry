@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t, tn} from 'app/locale';
-import space from 'app/styles/space';
-import {ReleaseWithHealth, ReleaseMeta} from 'app/types';
-import Version from 'app/components/version';
-import TimeSince from 'app/components/timeSince';
-import DateTime from 'app/components/dateTime';
-import Link from 'app/components/links/link';
-import Count from 'app/components/count';
-import Feature from 'app/components/acl/feature';
+import {t, tn} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {ReleaseWithHealth, ReleaseMeta} from 'sentry/types';
+import Version from 'sentry/components/version';
+import TimeSince from 'sentry/components/timeSince';
+import DateTime from 'sentry/components/dateTime';
+import Link from 'sentry/components/links/link';
+import Count from 'sentry/components/count';
+import Feature from 'sentry/components/acl/feature';
 
 import {SectionHeading, Wrapper} from './styles';
 

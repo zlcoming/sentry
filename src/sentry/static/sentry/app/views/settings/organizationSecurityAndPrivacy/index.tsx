@@ -1,17 +1,17 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {t} from 'app/locale';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import Form from 'app/views/settings/components/forms/form';
-import AsyncView from 'app/views/asyncView';
-import {Organization} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {updateOrganization} from 'app/actionCreators/organizations';
-import organizationSecurityAndPrivacy from 'app/data/forms/organizationSecurityAndPrivacy';
-import withOrganization from 'app/utils/withOrganization';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
+import {t} from 'sentry/locale';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import Form from 'sentry/views/settings/components/forms/form';
+import AsyncView from 'sentry/views/asyncView';
+import {Organization} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {updateOrganization} from 'sentry/actionCreators/organizations';
+import organizationSecurityAndPrivacy from 'sentry/data/forms/organizationSecurityAndPrivacy';
+import withOrganization from 'sentry/utils/withOrganization';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
 
 import DataScrubbing from '../components/dataScrubbing';
 

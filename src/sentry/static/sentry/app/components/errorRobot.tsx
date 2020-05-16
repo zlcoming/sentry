@@ -2,13 +2,13 @@ import {Link} from 'react-router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import CreateSampleEventButton from 'app/views/onboarding/createSampleEventButton';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import {LightWeightOrganization, Project} from 'app/types';
-import {defined} from 'app/utils';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import CreateSampleEventButton from 'sentry/views/onboarding/createSampleEventButton';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import {LightWeightOrganization, Project} from 'sentry/types';
+import {defined} from 'sentry/utils';
 
 type Props = {
   api: Client;

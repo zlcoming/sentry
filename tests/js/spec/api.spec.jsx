@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import * as Sentry from '@sentry/react';
 
-import {Client, Request, paramsToQueryArgs} from 'app/api';
-import GroupActions from 'app/actions/groupActions';
-import {PROJECT_MOVED} from 'app/constants/apiErrorCodes';
+import {Client, Request, paramsToQueryArgs} from 'sentry/api';
+import GroupActions from 'sentry/actions/groupActions';
+import {PROJECT_MOVED} from 'sentry/constants/apiErrorCodes';
 
-jest.unmock('app/api');
+jest.unmock('sentry/api');
 
 describe('api', function() {
   let api;

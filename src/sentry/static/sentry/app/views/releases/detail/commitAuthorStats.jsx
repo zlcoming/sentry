@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import LoadingIndicator from 'app/components/loadingIndicator';
-import LoadingError from 'app/components/loadingError';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import withApi from 'app/utils/withApi';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import {Panel, PanelItem, PanelBody} from 'app/components/panels';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import LoadingError from 'sentry/components/loadingError';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import withApi from 'sentry/utils/withApi';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import {Panel, PanelItem, PanelBody} from 'sentry/components/panels';
 
 class CommitBar extends React.Component {
   static propTypes = {

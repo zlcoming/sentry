@@ -4,12 +4,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Query} from 'history';
 
-import {IconChevron} from 'app/icons';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import parseLinkHeader from 'app/utils/parseLinkHeader';
-import {callIfFunction} from 'app/utils/callIfFunction';
+import {IconChevron} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import parseLinkHeader from 'sentry/utils/parseLinkHeader';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
 
 const defaultProps = {
   onCursor: (cursor: string, path: string, query: Query, _direction: number) => {

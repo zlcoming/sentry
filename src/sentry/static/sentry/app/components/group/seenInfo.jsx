@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import DateTime from 'app/components/dateTime';
-import TimeSince from 'app/components/timeSince';
-import Version from 'app/components/version';
-import VersionHoverCard from 'app/components/versionHoverCard';
-import Tooltip from 'app/components/tooltip';
-import {defined, toTitleCase} from 'app/utils';
-import {t} from 'app/locale';
+import DateTime from 'sentry/components/dateTime';
+import TimeSince from 'sentry/components/timeSince';
+import Version from 'sentry/components/version';
+import VersionHoverCard from 'sentry/components/versionHoverCard';
+import Tooltip from 'sentry/components/tooltip';
+import {defined, toTitleCase} from 'sentry/utils';
+import {t} from 'sentry/locale';
 
 class SeenInfo extends React.Component {
   static propTypes = {

@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import {Deploy} from 'app/types';
-import Tag from 'app/views/settings/components/tag';
-import Link from 'app/components/links/link';
-import {IconOpen} from 'app/icons';
-import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {Deploy} from 'sentry/types';
+import Tag from 'sentry/views/settings/components/tag';
+import Link from 'sentry/components/links/link';
+import {IconOpen} from 'sentry/icons';
+import {stringifyQueryObject, QueryResults} from 'sentry/utils/tokenizeSearch';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 type Props = {
   deploy: Deploy;

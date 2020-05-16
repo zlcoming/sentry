@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import ExternalLink from 'app/components/links/externalLink';
-import Access from 'app/components/acl/access';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import SentryTypes from 'app/sentryTypes';
-import Switch from 'app/components/switch';
-import getDynamicText from 'app/utils/getDynamicText';
-import recreateRoute from 'app/utils/recreateRoute';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {t} from 'sentry/locale';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Access from 'sentry/components/acl/access';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import SentryTypes from 'sentry/sentryTypes';
+import Switch from 'sentry/components/switch';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 const grayText = css`
   color: #979ba0;

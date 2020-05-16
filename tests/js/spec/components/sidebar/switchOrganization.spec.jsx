@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {SwitchOrganization} from 'app/components/sidebar/sidebarDropdown/switchOrganization';
+import {SwitchOrganization} from 'sentry/components/sidebar/sidebarDropdown/switchOrganization';
 
 describe('SwitchOrganization', function() {
   const routerContext = TestStubs.routerContext();

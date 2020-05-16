@@ -2,8 +2,8 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import HookStore from 'app/stores/hookStore';
-import {Hooks, HookName} from 'app/types/hooks';
+import HookStore from 'sentry/stores/hookStore';
+import {Hooks, HookName} from 'sentry/types/hooks';
 
 type Params<H extends HookName> = {
   /**

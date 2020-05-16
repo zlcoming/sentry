@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import LazyLoad from 'app/components/lazyLoad';
+import LazyLoad from 'sentry/components/lazyLoad';
 
 export default {
   title: 'Utility/LazyLoad',

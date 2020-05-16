@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {ListGroupItem} from 'app/components/listGroup';
-import space from 'app/styles/space';
-import {AvatarUser} from 'app/types';
-import AvatarList from 'app/components/avatar/avatarList';
-import FileIcon from 'app/components/fileIcon';
-import TextOverflow from 'app/components/textOverflow';
+import {ListGroupItem} from 'sentry/components/listGroup';
+import space from 'sentry/styles/space';
+import {AvatarUser} from 'sentry/types';
+import AvatarList from 'sentry/components/avatar/avatarList';
+import FileIcon from 'sentry/components/fileIcon';
+import TextOverflow from 'sentry/components/textOverflow';
 
 type Props = {
   filename: string;

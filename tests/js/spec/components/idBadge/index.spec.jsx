@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme, shallow} from 'sentry-test/enzyme';
-
-import IdBadge from 'app/components/idBadge';
+import IdBadge from 'sentry/components/idBadge';
 
 describe('IdBadge', function() {
   const routerContext = TestStubs.routerContext();

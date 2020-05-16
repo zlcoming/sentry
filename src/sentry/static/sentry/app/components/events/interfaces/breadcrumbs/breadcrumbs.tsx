@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import EventDataSection from 'app/components/events/eventDataSection';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import {t} from 'app/locale';
-import {Event} from 'app/types';
-import space from 'app/styles/space';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import {t} from 'sentry/locale';
+import {Event} from 'sentry/types';
+import space from 'sentry/styles/space';
 
 import {PlatformContextProvider} from './platformContext';
 import BreadCrumbsSearch from './breadcrumbsSearch';

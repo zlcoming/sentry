@@ -2,8 +2,8 @@ import React from 'react';
 import styled, {SerializedStyles} from '@emotion/styled';
 import {motion, AnimatePresence} from 'framer-motion';
 
-import theme, {Theme} from 'app/utils/theme';
-import testableTransition from 'app/utils/testableTransition';
+import theme, {Theme} from 'sentry/utils/theme';
+import testableTransition from 'sentry/utils/testableTransition';
 
 type TextProps = {
   textCss?: Props['textCss'];

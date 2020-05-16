@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {defined} from 'app/utils';
-import InputField from 'app/components/forms/inputField';
+import {defined} from 'sentry/utils';
+import InputField from 'sentry/components/forms/inputField';
 
 export default class RadioBooleanField extends InputField {
   static propTypes = {

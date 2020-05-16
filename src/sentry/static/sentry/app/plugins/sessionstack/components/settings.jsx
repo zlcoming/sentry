@@ -1,9 +1,9 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 
-import {Form, FormState} from 'app/components/forms';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import BasePlugin from 'app/plugins/basePlugin';
+import {Form, FormState} from 'sentry/components/forms';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import BasePlugin from 'sentry/plugins/basePlugin';
 
 class Settings extends BasePlugin.DefaultSettings {
   constructor(props) {

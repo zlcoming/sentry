@@ -6,8 +6,8 @@ import zxcvbn from 'zxcvbn';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {tct} from 'app/locale';
-import theme from 'app/utils/theme';
+import {tct} from 'sentry/locale';
+import theme from 'sentry/utils/theme';
 
 /**
  * NOTE: Do not import this component synchronously. The zxcvbn library is

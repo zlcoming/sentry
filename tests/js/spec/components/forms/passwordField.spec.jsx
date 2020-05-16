@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {PasswordField} from 'app/components/forms';
+import {PasswordField} from 'sentry/components/forms';
 
 describe('PasswordField', function() {
   describe('render()', function() {

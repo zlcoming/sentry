@@ -3,10 +3,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {tn} from 'app/locale';
-import {Project, AvatarProject} from 'app/types';
-import Tooltip from 'app/components/tooltip';
-import ProjectAvatar from 'app/components/avatar/projectAvatar';
+import {tn} from 'sentry/locale';
+import {Project, AvatarProject} from 'sentry/types';
+import Tooltip from 'sentry/components/tooltip';
+import ProjectAvatar from 'sentry/components/avatar/projectAvatar';
 
 type Props = {
   projects: Project[] | AvatarProject[];

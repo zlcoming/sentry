@@ -4,20 +4,20 @@ import React from 'react';
 import classNames from 'classnames';
 import * as Sentry from '@sentry/react';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {MEMBER_ROLES} from 'app/constants';
-import {t, tct} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import SentryTypes from 'app/sentryTypes';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import TextField from 'app/components/forms/textField';
-import TeamSelect from 'app/views/settings/components/teamSelect';
-import replaceRouterParams from 'app/utils/replaceRouterParams';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {MEMBER_ROLES} from 'sentry/constants';
+import {t, tct} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import SentryTypes from 'sentry/sentryTypes';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import TextField from 'sentry/components/forms/textField';
+import TeamSelect from 'sentry/views/settings/components/teamSelect';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
 
 import RoleSelect from './roleSelect';
 

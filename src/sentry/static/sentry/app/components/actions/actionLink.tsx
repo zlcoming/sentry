@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Confirm from 'app/components/confirm';
+import Confirm from 'sentry/components/confirm';
 
 type DefaultProps = {
   disabled: boolean;

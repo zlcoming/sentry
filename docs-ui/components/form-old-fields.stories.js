@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import {Form as LegacyForm, PasswordField, BooleanField} from 'app/components/forms';
+import {Form as LegacyForm, PasswordField, BooleanField} from 'sentry/components/forms';
 
 export default {
   title: 'Forms/Old/Fields',

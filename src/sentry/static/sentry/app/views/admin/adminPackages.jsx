@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AsyncView from 'app/views/asyncView';
-import {t} from 'app/locale';
+import AsyncView from 'sentry/views/asyncView';
+import {t} from 'sentry/locale';
 
 export default class AdminPackages extends AsyncView {
   getEndpoints() {

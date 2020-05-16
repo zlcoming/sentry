@@ -3,12 +3,12 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import styled from '@emotion/styled';
 
-import {Form, FormState} from 'app/components/forms';
-import {parseRepo} from 'app/utils';
-import {t, tct} from 'app/locale';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import PluginComponentBase from 'app/components/bases/pluginComponentBase';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {Form, FormState} from 'sentry/components/forms';
+import {parseRepo} from 'sentry/utils';
+import {t, tct} from 'sentry/locale';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import PluginComponentBase from 'sentry/components/bases/pluginComponentBase';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 class PluginSettings extends PluginComponentBase {
   constructor(props, context) {

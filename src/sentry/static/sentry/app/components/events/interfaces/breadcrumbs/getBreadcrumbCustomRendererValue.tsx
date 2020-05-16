@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Meta} from 'app/types';
-import AnnotatedText from 'app/components/events/meta/annotatedText';
+import {Meta} from 'sentry/types';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
 
 type Props = {
   value: React.ReactNode;

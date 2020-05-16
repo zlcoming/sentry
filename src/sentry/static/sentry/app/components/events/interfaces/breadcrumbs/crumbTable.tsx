@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Category from 'app/components/events/interfaces/breadcrumbs/category';
-import {getMeta} from 'app/components/events/meta/metaProxy';
+import Category from 'sentry/components/events/interfaces/breadcrumbs/category';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
 
 import {Breadcrumb} from './types';
 import getBreadcrumbCustomRendererValue from './getBreadcrumbCustomRendererValue';

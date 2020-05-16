@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {t} from 'app/locale';
-import {Config, Organization, Scope} from 'app/types';
-import Alert from 'app/components/alert';
-import {IconInfo} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import withConfig from 'app/utils/withConfig';
-import withOrganization from 'app/utils/withOrganization';
-import {isRenderFunc} from 'app/utils/isRenderFunc';
+import {t} from 'sentry/locale';
+import {Config, Organization, Scope} from 'sentry/types';
+import Alert from 'sentry/components/alert';
+import {IconInfo} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import withConfig from 'sentry/utils/withConfig';
+import withOrganization from 'sentry/utils/withOrganization';
+import {isRenderFunc} from 'sentry/utils/isRenderFunc';
 
 const DEFAULT_NO_ACCESS_MESSAGE = (
   <Alert type="error" icon={<IconInfo size="md" />}>

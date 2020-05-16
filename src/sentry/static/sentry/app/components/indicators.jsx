@@ -6,10 +6,10 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {removeIndicator} from 'app/actionCreators/indicator';
-import IndicatorStore from 'app/stores/indicatorStore';
-import ToastIndicator from 'app/components/alerts/toastIndicator';
-import theme from 'app/utils/theme';
+import {removeIndicator} from 'sentry/actionCreators/indicator';
+import IndicatorStore from 'sentry/stores/indicatorStore';
+import ToastIndicator from 'sentry/components/alerts/toastIndicator';
+import theme from 'sentry/utils/theme';
 
 const Toasts = styled('div')`
   position: fixed;

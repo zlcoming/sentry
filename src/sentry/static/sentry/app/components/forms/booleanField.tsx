@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {defined} from 'app/utils';
-import InputField from 'app/components/forms/inputField';
-import Tooltip from 'app/components/tooltip';
-import {IconQuestion} from 'app/icons';
+import {defined} from 'sentry/utils';
+import InputField from 'sentry/components/forms/inputField';
+import Tooltip from 'sentry/components/tooltip';
+import {IconQuestion} from 'sentry/icons';
 
 type Props = InputField['props'];
 

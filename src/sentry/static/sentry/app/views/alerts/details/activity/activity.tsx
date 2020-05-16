@@ -3,16 +3,16 @@ import groupBy from 'lodash/groupBy';
 import moment from 'moment';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import {User} from 'app/types';
-import {t} from 'app/locale';
-import ActivityItem from 'app/components/activity/item';
-import ErrorBoundary from 'app/components/errorBoundary';
-import LoadingError from 'app/components/loadingError';
-import Note from 'app/components/activity/note';
-import NoteInputWithStorage from 'app/components/activity/note/inputWithStorage';
-import TimeSince from 'app/components/timeSince';
-import space from 'app/styles/space';
+import {Client} from 'sentry/api';
+import {User} from 'sentry/types';
+import {t} from 'sentry/locale';
+import ActivityItem from 'sentry/components/activity/item';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import LoadingError from 'sentry/components/loadingError';
+import Note from 'sentry/components/activity/note';
+import NoteInputWithStorage from 'sentry/components/activity/note/inputWithStorage';
+import TimeSince from 'sentry/components/timeSince';
+import space from 'sentry/styles/space';
 
 import {Incident, IncidentActivityType, ActivityType, NoteType} from '../../types';
 import ActivityPlaceholder from './activityPlaceholder';

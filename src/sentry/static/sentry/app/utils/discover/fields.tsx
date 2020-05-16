@@ -1,5 +1,5 @@
-import {LightWeightOrganization} from 'app/types';
-import {assert} from 'app/types/utils';
+import {LightWeightOrganization} from 'sentry/types';
+import {assert} from 'sentry/types/utils';
 
 export type Sort = {
   kind: 'asc' | 'desc';

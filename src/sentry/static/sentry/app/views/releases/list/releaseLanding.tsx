@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import {Project, Organization} from 'app/types';
-import {analytics} from 'app/utils/analytics';
-import Placeholder from 'app/components/placeholder';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
+import {t} from 'sentry/locale';
+import {Project, Organization} from 'sentry/types';
+import {analytics} from 'sentry/utils/analytics';
+import Placeholder from 'sentry/components/placeholder';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
 
 import ReleaseLandingCard from './releaseLandingCard';
 

@@ -4,10 +4,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {t} from 'app/locale';
-import Alert from 'app/components/alert';
-import DetailedError from 'app/components/errors/detailedError';
-import {IconFlag} from 'app/icons';
+import {t} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import DetailedError from 'sentry/components/errors/detailedError';
+import {IconFlag} from 'sentry/icons';
 
 type DefaultProps = {
   mini: boolean;

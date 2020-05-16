@@ -4,18 +4,18 @@ import {browserHistory} from 'react-router';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 
-import {IconWarning} from 'app/icons';
-import {t} from 'app/locale';
-import BarChart from 'app/components/charts/barChart';
-import ErrorPanel from 'app/components/charts/errorPanel';
-import LoadingPanel from 'app/components/charts/loadingPanel';
-import QuestionTooltip from 'app/components/questionTooltip';
-import AsyncComponent from 'app/components/asyncComponent';
-import {OrganizationSummary} from 'app/types';
-import EventView from 'app/utils/discover/eventView';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import theme from 'app/utils/theme';
-import {getDuration} from 'app/utils/formatters';
+import {IconWarning} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import BarChart from 'sentry/components/charts/barChart';
+import ErrorPanel from 'sentry/components/charts/errorPanel';
+import LoadingPanel from 'sentry/components/charts/loadingPanel';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import {OrganizationSummary} from 'sentry/types';
+import EventView from 'sentry/utils/discover/eventView';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import theme from 'sentry/utils/theme';
+import {getDuration} from 'sentry/utils/formatters';
 
 import {HeaderTitleLegend} from '../styles';
 

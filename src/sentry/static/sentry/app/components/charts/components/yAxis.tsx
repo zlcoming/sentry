@@ -1,6 +1,6 @@
 import {EChartOption} from 'echarts';
 
-import theme from 'app/utils/theme';
+import theme from 'sentry/utils/theme';
 
 export default function YAxis(props: EChartOption.YAxis = {}): EChartOption.YAxis {
   return {

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {IconFire, IconWarning, IconCheckmark} from 'app/icons';
+import space from 'sentry/styles/space';
+import {IconFire, IconWarning, IconCheckmark} from 'sentry/icons';
 
 import {displayCrashFreePercent} from '../utils';
 

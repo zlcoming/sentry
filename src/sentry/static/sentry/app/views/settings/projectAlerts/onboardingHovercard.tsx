@@ -2,14 +2,14 @@ import React from 'react';
 import {Location} from 'history';
 import styled from '@emotion/styled';
 
-import Button from 'app/components/button';
-import Hovercard from 'app/components/hovercard';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import {Organization, OnboardingTaskKey} from 'app/types';
-import {updateOnboardingTask} from 'app/actionCreators/onboardingTasks';
+import Button from 'sentry/components/button';
+import Hovercard from 'sentry/components/hovercard';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import {Organization, OnboardingTaskKey} from 'sentry/types';
+import {updateOnboardingTask} from 'sentry/actionCreators/onboardingTasks';
 
 type Props = {
   api: Client;

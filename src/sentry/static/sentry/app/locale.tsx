@@ -6,7 +6,7 @@ import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import {css} from '@emotion/core';
 
-import {getTranslations} from 'app/translations';
+import {getTranslations} from 'sentry/translations';
 
 const markerCss = css`
   background: #ff801790;

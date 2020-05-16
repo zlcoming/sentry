@@ -6,24 +6,24 @@ import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {ORGANIZATION_FETCH_ERROR_TYPES} from 'app/constants';
-import {fetchOrganizationDetails} from 'app/actionCreators/organization';
-import {metric} from 'app/utils/analytics';
-import {openSudo} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import Alert from 'app/components/alert';
-import ConfigStore from 'app/stores/configStore';
-import HookStore from 'app/stores/hookStore';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import OrganizationStore from 'app/stores/organizationStore';
-import ProjectActions from 'app/actions/projectActions';
-import SentryTypes from 'app/sentryTypes';
-import Sidebar from 'app/components/sidebar';
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganizations from 'app/utils/withOrganizations';
+import {ORGANIZATION_FETCH_ERROR_TYPES} from 'sentry/constants';
+import {fetchOrganizationDetails} from 'sentry/actionCreators/organization';
+import {metric} from 'sentry/utils/analytics';
+import {openSudo} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import ConfigStore from 'sentry/stores/configStore';
+import HookStore from 'sentry/stores/hookStore';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import OrganizationStore from 'sentry/stores/organizationStore';
+import ProjectActions from 'sentry/actions/projectActions';
+import SentryTypes from 'sentry/sentryTypes';
+import Sidebar from 'sentry/components/sidebar';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganizations from 'sentry/utils/withOrganizations';
 
 const OrganizationContext = createReactClass({
   displayName: 'OrganizationContext',

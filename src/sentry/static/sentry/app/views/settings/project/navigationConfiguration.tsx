@@ -1,6 +1,6 @@
-import {t} from 'app/locale';
-import {NavigationSection} from 'app/views/settings/types';
-import {Organization, Project} from 'app/types';
+import {t} from 'sentry/locale';
+import {NavigationSection} from 'sentry/views/settings/types';
+import {Organization, Project} from 'sentry/types';
 
 type ConfigParams = {
   organization: Organization;

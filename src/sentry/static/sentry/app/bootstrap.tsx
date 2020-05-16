@@ -3,7 +3,7 @@ import 'bootstrap/js/tab';
 import 'bootstrap/js/dropdown';
 import 'focus-visible';
 
-import 'app/utils/statics-setup';
+import 'sentry/utils/statics-setup';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,20 +18,20 @@ import {Integrations} from '@sentry/tracing';
 import {ExtraErrorData} from '@sentry/integrations';
 import * as Sentry from '@sentry/react';
 
-import {NODE_ENV, DISABLE_RR_WEB, SPA_DSN} from 'app/constants';
-import {metric} from 'app/utils/analytics';
-import {init as initApiSentryClient} from 'app/utils/apiSentryClient';
-import ConfigStore from 'app/stores/configStore';
-import Main from 'app/main';
-import ajaxCsrfSetup from 'app/utils/ajaxCsrfSetup';
-import plugins from 'app/plugins';
-import routes from 'app/routes';
+import {NODE_ENV, DISABLE_RR_WEB, SPA_DSN} from 'sentry/constants';
+import {metric} from 'sentry/utils/analytics';
+import {init as initApiSentryClient} from 'sentry/utils/apiSentryClient';
+import ConfigStore from 'sentry/stores/configStore';
+import Main from 'sentry/main';
+import ajaxCsrfSetup from 'sentry/utils/ajaxCsrfSetup';
+import plugins from 'sentry/plugins';
+import routes from 'sentry/routes';
 
 import {setupFavicon} from './favicon';
 
 if (NODE_ENV === 'development') {
   import(
-    /* webpackChunkName: "SilenceReactUnsafeWarnings" */ /* webpackMode: "eager" */ 'app/utils/silence-react-unsafe-warnings'
+    /* webpackChunkName: "SilenceReactUnsafeWarnings" */ /* webpackMode: "eager" */ 'sentry/utils/silence-react-unsafe-warnings'
   );
 }
 
@@ -142,7 +142,7 @@ if (NODE_ENV === 'production') {
 async function loadPasswordStrength(callback: Function) {
   try {
     const module = await import(
-      /* webpackChunkName: "passwordStrength" */ 'app/components/passwordStrength'
+      /* webpackChunkName: "passwordStrength" */ 'sentry/components/passwordStrength'
     );
     callback(module);
   } catch (err) {
@@ -181,9 +181,9 @@ const globals = {
 // modules that are not compiled with the sentry bundle.
 globals.SentryApp = {
   // The following components are used in sentry-plugins.
-  Form: require('app/components/forms/form').default,
-  FormState: require('app/components/forms/index').FormState,
-  LoadingIndicator: require('app/components/loadingIndicator').default,
+  Form: require('sentry/components/forms/form').default,
+  FormState: require('sentry/components/forms/index').FormState,
+  LoadingIndicator: require('sentry/components/loadingIndicator').default,
   plugins: {
     add: plugins.add,
     addContext: plugins.addContext,
@@ -193,11 +193,11 @@ globals.SentryApp = {
 
   // The following components are used in legacy django HTML views
   passwordStrength: {load: loadPasswordStrength},
-  U2fSign: require('app/components/u2f/u2fsign').default,
-  ConfigStore: require('app/stores/configStore').default,
-  SystemAlerts: require('app/views/app/systemAlerts').default,
-  Indicators: require('app/components/indicators').default,
-  SetupWizard: require('app/components/setupWizard').default,
+  U2fSign: require('sentry/components/u2f/u2fsign').default,
+  ConfigStore: require('sentry/stores/configStore').default,
+  SystemAlerts: require('sentry/views/app/systemAlerts').default,
+  Indicators: require('sentry/components/indicators').default,
+  SetupWizard: require('sentry/components/setupWizard').default,
 };
 
 // Make globals available on the window object

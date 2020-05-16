@@ -2,8 +2,7 @@ import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import ProjectDebugFiles from 'app/views/settings/projectDebugFiles';
+import ProjectDebugFiles from 'sentry/views/settings/projectDebugFiles';
 
 describe('ProjectDebugFiles', function() {
   const {organization, project, routerContext} = initializeOrg({});

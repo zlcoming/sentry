@@ -3,14 +3,13 @@ import React from 'react';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mockRouterPush} from 'sentry-test/mockRouterPush';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ConfigStore from 'app/stores/configStore';
-import GlobalSelectionHeader from 'app/components/organizations/globalSelectionHeader';
-import GlobalSelectionStore from 'app/stores/globalSelectionStore';
-import OrganizationActions from 'app/actions/organizationActions';
-import ProjectsStore from 'app/stores/projectsStore';
-import * as globalActions from 'app/actionCreators/globalSelection';
-import {getItem} from 'app/utils/localStorage';
+import ConfigStore from 'sentry/stores/configStore';
+import GlobalSelectionHeader from 'sentry/components/organizations/globalSelectionHeader';
+import GlobalSelectionStore from 'sentry/stores/globalSelectionStore';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import * as globalActions from 'sentry/actionCreators/globalSelection';
+import {getItem} from 'sentry/utils/localStorage';
 
 const changeQuery = (routerContext, query) => ({
   ...routerContext,
@@ -25,7 +24,7 @@ const changeQuery = (routerContext, query) => ({
   },
 });
 
-jest.mock('app/utils/localStorage', () => ({
+jest.mock('sentry/utils/localStorage', () => ({
   getItem: jest.fn(),
   setItem: jest.fn(),
 }));

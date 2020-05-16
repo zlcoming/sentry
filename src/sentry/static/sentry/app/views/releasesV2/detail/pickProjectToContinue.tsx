@@ -2,9 +2,9 @@ import React from 'react';
 import * as ReactRouter from 'react-router';
 import styled from '@emotion/styled';
 
-import {openModal} from 'app/actionCreators/modal';
-import ContextPickerModalContainer from 'app/components/contextPickerModal';
-import {ReleaseProject} from 'app/types';
+import {openModal} from 'sentry/actionCreators/modal';
+import ContextPickerModalContainer from 'sentry/components/contextPickerModal';
+import {ReleaseProject} from 'sentry/types';
 
 type Props = {
   orgSlug: string;

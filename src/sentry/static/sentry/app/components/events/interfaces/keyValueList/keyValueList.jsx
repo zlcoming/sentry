@@ -3,8 +3,8 @@ import React from 'react';
 import sortBy from 'lodash/sortBy';
 import styled from '@emotion/styled';
 
-import ContextData from 'app/components/contextData';
-import theme from 'app/utils/theme';
+import ContextData from 'sentry/components/contextData';
+import theme from 'sentry/utils/theme';
 
 class KeyValueList extends React.Component {
   static propTypes = {

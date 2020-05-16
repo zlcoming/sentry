@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncComponent from 'app/components/asyncComponent';
-import Button from 'app/components/button';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Button from 'sentry/components/button';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import space from 'sentry/styles/space';
 
 class RecoveryOptionsModal extends AsyncComponent {
   static propTypes = {

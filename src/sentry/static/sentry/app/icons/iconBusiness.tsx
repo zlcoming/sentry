@@ -3,7 +3,7 @@ import {keyframes} from '@emotion/core';
 import {withTheme} from 'emotion-theming';
 import React from 'react';
 
-import {Theme} from 'app/utils/theme';
+import {Theme} from 'sentry/utils/theme';
 
 import SvgIcon from './svgIcon';
 

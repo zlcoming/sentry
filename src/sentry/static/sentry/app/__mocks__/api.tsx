@@ -1,6 +1,6 @@
-import * as ImportedClient from 'app/api';
+import * as ImportedClient from 'sentry/api';
 
-const RealClient: typeof ImportedClient = jest.requireActual('app/api');
+const RealClient: typeof ImportedClient = jest.requireActual('sentry/api');
 
 export class Request {}
 

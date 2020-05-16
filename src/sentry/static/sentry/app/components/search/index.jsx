@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {navigateTo} from 'app/actionCreators/navigation';
-import {t} from 'app/locale';
-import ApiSource from 'app/components/search/sources/apiSource';
-import AutoComplete from 'app/components/autoComplete';
-import CommandSource from 'app/components/search/sources/commandSource';
-import FormSource from 'app/components/search/sources/formSource';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import RouteSource from 'app/components/search/sources/routeSource';
-import SearchResult from 'app/components/search/searchResult';
-import SearchResultWrapper from 'app/components/search/searchResultWrapper';
-import SearchSources from 'app/components/search/sources';
-import replaceRouterParams from 'app/utils/replaceRouterParams';
-import space from 'app/styles/space';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {navigateTo} from 'sentry/actionCreators/navigation';
+import {t} from 'sentry/locale';
+import ApiSource from 'sentry/components/search/sources/apiSource';
+import AutoComplete from 'sentry/components/autoComplete';
+import CommandSource from 'sentry/components/search/sources/commandSource';
+import FormSource from 'sentry/components/search/sources/formSource';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import RouteSource from 'sentry/components/search/sources/routeSource';
+import SearchResult from 'sentry/components/search/searchResult';
+import SearchResultWrapper from 'sentry/components/search/searchResultWrapper';
+import SearchSources from 'sentry/components/search/sources';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
+import space from 'sentry/styles/space';
 
 // "Omni" search
 class Search extends React.Component {

@@ -8,29 +8,29 @@ import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {analytics} from 'app/utils/analytics';
-import {openModal} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import {uniqueId} from 'app/utils/guid';
-import Button from 'app/components/button';
-import DropdownLink from 'app/components/dropdownLink';
-import EventView from 'app/utils/discover/eventView';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import GroupActions from 'app/actions/groupActions';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import IgnoreActions from 'app/components/actions/ignore';
-import {IconDelete, IconStar} from 'app/icons';
-import Link from 'app/components/links/link';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import MenuItem from 'app/components/menuItem';
-import ResolveActions from 'app/components/actions/resolve';
-import SentryTypes from 'app/sentryTypes';
-import ShareIssue from 'app/components/shareIssue';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/indicator';
+import {analytics} from 'sentry/utils/analytics';
+import {openModal} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import {uniqueId} from 'sentry/utils/guid';
+import Button from 'sentry/components/button';
+import DropdownLink from 'sentry/components/dropdownLink';
+import EventView from 'sentry/utils/discover/eventView';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import GroupActions from 'sentry/actions/groupActions';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import IgnoreActions from 'sentry/components/actions/ignore';
+import {IconDelete, IconStar} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import MenuItem from 'sentry/components/menuItem';
+import ResolveActions from 'sentry/components/actions/resolve';
+import SentryTypes from 'sentry/sentryTypes';
+import ShareIssue from 'sentry/components/shareIssue';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import SubscribeAction from './subscribeAction';
 

@@ -2,14 +2,14 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {select} from '@storybook/addon-knobs';
 
-import IndicatorContainer, {Indicators} from 'app/components/indicators';
-import IndicatorStore from 'app/stores/indicatorStore';
+import IndicatorContainer, {Indicators} from 'sentry/components/indicators';
+import IndicatorStore from 'sentry/stores/indicatorStore';
 import {
   addSuccessMessage,
   addErrorMessage,
   addMessage,
-} from 'app/actionCreators/indicator';
-import Button from 'app/components/button';
+} from 'sentry/actionCreators/indicator';
+import Button from 'sentry/components/button';
 
 export default {
   title: 'UI/Toast Indicators',

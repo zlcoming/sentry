@@ -2,8 +2,8 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import getDisplayName from 'app/utils/getDisplayName';
-import SentryAppComponentsStore from 'app/stores/sentryAppComponentsStore';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import SentryAppComponentsStore from 'sentry/stores/sentryAppComponentsStore';
 
 // TODO(ts): Update when component type is defined
 type Component = {};

@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import uniqWith from 'lodash/uniqWith';
 import isEqual from 'lodash/isEqual';
 
-import EventErrorItem from 'app/components/events/errorItem';
-import SentryTypes from 'app/sentryTypes';
-import {IconWarning} from 'app/icons';
-import {t, tn} from 'app/locale';
-import space from 'app/styles/space';
+import EventErrorItem from 'sentry/components/events/errorItem';
+import SentryTypes from 'sentry/sentryTypes';
+import {IconWarning} from 'sentry/icons';
+import {t, tn} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 import {BannerContainer, BannerSummary} from './styles';
 

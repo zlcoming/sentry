@@ -3,12 +3,12 @@ import moment from 'moment';
 import Modal from 'react-bootstrap/lib/Modal';
 import {sprintf} from 'sprintf-js';
 
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import {IconWarning} from 'app/icons';
-import ButtonBar from 'app/components/buttonBar';
-import {ResolutionStatusDetails} from 'app/types';
-import {t} from 'app/locale';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import {IconWarning} from 'sentry/icons';
+import ButtonBar from 'sentry/components/buttonBar';
+import {ResolutionStatusDetails} from 'sentry/types';
+import {t} from 'sentry/locale';
 
 const defaultProps = {
   label: t('Ignore this issue until \u2026'),

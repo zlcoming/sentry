@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
-import {loadDocs} from 'app/actionCreators/projects';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NotFound from 'app/components/errors/notFound';
-import Projects from 'app/utils/projects';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import platforms from 'app/data/platforms';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {loadDocs} from 'sentry/actionCreators/projects';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NotFound from 'sentry/components/errors/notFound';
+import Projects from 'sentry/utils/projects';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import platforms from 'sentry/data/platforms';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class ProjectInstallPlatform extends React.Component {
   static propTypes = {

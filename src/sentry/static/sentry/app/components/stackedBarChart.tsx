@@ -5,11 +5,11 @@ import moment from 'moment-timezone';
 import isEqual from 'lodash/isEqual';
 import styled from '@emotion/styled';
 
-import Tooltip from 'app/components/tooltip';
-import Count from 'app/components/count';
-import {use24Hours, getTimeFormat} from 'app/utils/dates';
-import theme from 'app/utils/theme';
-import {formatFloat} from 'app/utils/formatters';
+import Tooltip from 'sentry/components/tooltip';
+import Count from 'sentry/components/count';
+import {use24Hours, getTimeFormat} from 'sentry/utils/dates';
+import theme from 'sentry/utils/theme';
+import {formatFloat} from 'sentry/utils/formatters';
 
 type Point = {x: number; y: number[]; label?: string};
 type Points = Point[];

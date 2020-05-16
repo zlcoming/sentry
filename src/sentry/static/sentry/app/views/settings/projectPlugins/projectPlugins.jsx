@@ -7,13 +7,13 @@ import {
   PanelBody,
   PanelHeader,
   PanelItem,
-} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import Access from 'app/components/acl/access';
-import Link from 'app/components/links/link';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import RouteError from 'app/views/routeError';
-import SentryTypes from 'app/sentryTypes';
+} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import Link from 'sentry/components/links/link';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import RouteError from 'sentry/views/routeError';
+import SentryTypes from 'sentry/sentryTypes';
 
 import {DEPRECATED_PLUGINS} from './constants';
 import ProjectPluginRow from './projectPluginRow';

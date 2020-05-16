@@ -1,9 +1,9 @@
 import Reflux from 'reflux';
 
-import OrganizationActions from 'app/actions/organizationActions';
-import ProjectActions from 'app/actions/projectActions';
-import TeamActions from 'app/actions/teamActions';
-import {ORGANIZATION_FETCH_ERROR_TYPES} from 'app/constants';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import ProjectActions from 'sentry/actions/projectActions';
+import TeamActions from 'sentry/actions/teamActions';
+import {ORGANIZATION_FETCH_ERROR_TYPES} from 'sentry/constants';
 
 const OrganizationStore = Reflux.createStore({
   init() {

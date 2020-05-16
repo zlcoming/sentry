@@ -10,22 +10,22 @@ import {
   SentryAppComponent,
   SentryAppInstallation,
   GroupIntegration,
-} from 'app/types';
-import {t} from 'app/locale';
-import AlertLink from 'app/components/alertLink';
-import AsyncComponent from 'app/components/asyncComponent';
-import ErrorBoundary from 'app/components/errorBoundary';
-import ExternalIssueActions from 'app/components/group/externalIssueActions';
-import ExternalIssueStore from 'app/stores/externalIssueStore';
-import IssueSyncListElement from 'app/components/issueSyncListElement';
-import PluginActions from 'app/components/group/pluginActions';
-import {IconGeneric} from 'app/icons';
-import SentryAppComponentsStore from 'app/stores/sentryAppComponentsStore';
-import SentryAppExternalIssueActions from 'app/components/group/sentryAppExternalIssueActions';
-import SentryAppInstallationStore from 'app/stores/sentryAppInstallationsStore';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/types';
+import {t} from 'sentry/locale';
+import AlertLink from 'sentry/components/alertLink';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import ExternalIssueActions from 'sentry/components/group/externalIssueActions';
+import ExternalIssueStore from 'sentry/stores/externalIssueStore';
+import IssueSyncListElement from 'sentry/components/issueSyncListElement';
+import PluginActions from 'sentry/components/group/pluginActions';
+import {IconGeneric} from 'sentry/icons';
+import SentryAppComponentsStore from 'sentry/stores/sentryAppComponentsStore';
+import SentryAppExternalIssueActions from 'sentry/components/group/sentryAppExternalIssueActions';
+import SentryAppInstallationStore from 'sentry/stores/sentryAppInstallationsStore';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 type Props = AsyncComponent['props'] & {
   group: Group;

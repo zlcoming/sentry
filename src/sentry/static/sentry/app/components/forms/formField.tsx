@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {defined} from 'app/utils';
-import QuestionTooltip from 'app/components/questionTooltip';
-import {Context} from 'app/components/forms/form';
-import {Meta} from 'app/types';
+import {defined} from 'sentry/utils';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import {Context} from 'sentry/components/forms/form';
+import {Meta} from 'sentry/types';
 
 type Value = string | number | boolean;
 

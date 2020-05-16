@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import styled from '@emotion/styled';
 
-import * as newIconset from 'app/icons';
+import * as newIconset from 'sentry/icons';
 
 export default {
   title: 'Style/Icons',

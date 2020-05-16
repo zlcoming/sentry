@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
+import GroupStore from 'sentry/stores/groupStore';
+import StreamGroup from 'sentry/components/stream/group';
 
-import GroupStore from 'app/stores/groupStore';
-import StreamGroup from 'app/components/stream/group';
-
-// jest.mock('app/mixins/projectState');
+// jest.mock('sentry/mixins/projectState');
 
 describe('StreamGroup', function() {
   let GROUP_1;

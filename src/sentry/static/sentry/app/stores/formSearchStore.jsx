@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-import FormSearchActions from 'app/actions/formSearchActions';
+import FormSearchActions from 'sentry/actions/formSearchActions';
 
 /**
  * Store for "form" searches, but probably will include more

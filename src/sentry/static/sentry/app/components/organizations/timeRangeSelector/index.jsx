@@ -3,29 +3,29 @@ import React from 'react';
 import moment from 'moment-timezone';
 import styled from '@emotion/styled';
 
-import {DEFAULT_STATS_PERIOD} from 'app/constants';
-import {analytics} from 'app/utils/analytics';
-import {defined} from 'app/utils';
+import {DEFAULT_STATS_PERIOD} from 'sentry/constants';
+import {analytics} from 'sentry/utils/analytics';
+import {defined} from 'sentry/utils';
 import {
   getLocalToSystem,
   getPeriodAgo,
   getUserTimezone,
   getUtcToSystem,
   parsePeriodToHours,
-} from 'app/utils/dates';
-import {getRelativeSummary} from 'app/components/organizations/timeRangeSelector/utils';
-import DateRange from 'app/components/organizations/timeRangeSelector/dateRange';
-import DateSummary from 'app/components/organizations/timeRangeSelector/dateSummary';
-import DropdownMenu from 'app/components/dropdownMenu';
-import HeaderItem from 'app/components/organizations/headerItem';
-import HookOrDefault from 'app/components/hookOrDefault';
-import MultipleSelectorSubmitRow from 'app/components/organizations/multipleSelectorSubmitRow';
-import SelectorItems from 'app/components/organizations/timeRangeSelector/dateRange/selectorItems';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import getDynamicText from 'app/utils/getDynamicText';
-import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
-import {IconCalendar} from 'app/icons';
+} from 'sentry/utils/dates';
+import {getRelativeSummary} from 'sentry/components/organizations/timeRangeSelector/utils';
+import DateRange from 'sentry/components/organizations/timeRangeSelector/dateRange';
+import DateSummary from 'sentry/components/organizations/timeRangeSelector/dateSummary';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import HeaderItem from 'sentry/components/organizations/headerItem';
+import HookOrDefault from 'sentry/components/hookOrDefault';
+import MultipleSelectorSubmitRow from 'sentry/components/organizations/multipleSelectorSubmitRow';
+import SelectorItems from 'sentry/components/organizations/timeRangeSelector/dateRange/selectorItems';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import getRouteStringFromRoutes from 'sentry/utils/getRouteStringFromRoutes';
+import {IconCalendar} from 'sentry/icons';
 
 // Strips timezone from local date, creates a new moment date object with timezone
 // Then returns as a Date object

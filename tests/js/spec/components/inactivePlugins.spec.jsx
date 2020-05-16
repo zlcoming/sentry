@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount, shallow} from 'sentry-test/enzyme';
-
-import InactivePlugins from 'app/components/inactivePlugins';
+import InactivePlugins from 'sentry/components/inactivePlugins';
 
 describe('InactivePlugins', function() {
   it('renders null when no plugins', function() {

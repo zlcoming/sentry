@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import createReactClass from 'create-react-class';
 
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import StackedBarChart from 'app/components/stackedBarChart';
-import withApi from 'app/utils/withApi';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import StackedBarChart from 'sentry/components/stackedBarChart';
+import withApi from 'sentry/utils/withApi';
 
 const ApiChart = createReactClass({
   propTypes: {

@@ -3,21 +3,21 @@ import styled from '@emotion/styled';
 import {browserHistory} from 'react-router';
 import {Location} from 'history';
 
-import {Client} from 'app/api';
-import {t} from 'app/locale';
-import {Organization, SavedQuery, Project} from 'app/types';
-import withApi from 'app/utils/withApi';
-import Button from 'app/components/button';
-import DropdownButton from 'app/components/dropdownButton';
-import DropdownControl from 'app/components/dropdownControl';
-import Input from 'app/components/forms/input';
-import space from 'app/styles/space';
-import {IconBookmark, IconDelete} from 'app/icons';
-import EventView from 'app/utils/discover/eventView';
-import withProjects from 'app/utils/withProjects';
-import {getDiscoverLandingUrl} from 'app/utils/discover/urls';
-import CreateAlertButton from 'app/components/createAlertButton';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import {Client} from 'sentry/api';
+import {t} from 'sentry/locale';
+import {Organization, SavedQuery, Project} from 'sentry/types';
+import withApi from 'sentry/utils/withApi';
+import Button from 'sentry/components/button';
+import DropdownButton from 'sentry/components/dropdownButton';
+import DropdownControl from 'sentry/components/dropdownControl';
+import Input from 'sentry/components/forms/input';
+import space from 'sentry/styles/space';
+import {IconBookmark, IconDelete} from 'sentry/icons';
+import EventView from 'sentry/utils/discover/eventView';
+import withProjects from 'sentry/utils/withProjects';
+import {getDiscoverLandingUrl} from 'sentry/utils/discover/urls';
+import CreateAlertButton from 'sentry/components/createAlertButton';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 
 import {handleCreateQuery, handleUpdateQuery, handleDeleteQuery} from './utils';
 

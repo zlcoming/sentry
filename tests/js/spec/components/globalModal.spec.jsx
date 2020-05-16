@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {shallow, mount} from 'sentry-test/enzyme';
-
-import GlobalModal from 'app/components/globalModal';
-import {openModal, closeModal} from 'app/actionCreators/modal';
+import GlobalModal from 'sentry/components/globalModal';
+import {openModal, closeModal} from 'sentry/actionCreators/modal';
 
 describe('GlobalModal', function() {
   it('renders', function() {

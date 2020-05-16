@@ -1,4 +1,4 @@
-import {Meta} from 'app/types';
+import {Meta} from 'sentry/types';
 
 export type KeyValueListData = {
   key: string;

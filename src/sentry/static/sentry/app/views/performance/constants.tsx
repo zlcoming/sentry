@@ -1,4 +1,4 @@
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 export const TOP_TRANSACTION_LIMIT = 5;
 

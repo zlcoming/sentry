@@ -1,19 +1,19 @@
 import React from 'react';
 
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import Access from 'app/components/acl/access';
-import AsyncView from 'app/views/asyncView';
-import ExternalLink from 'app/components/links/externalLink';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import PreviewFeature from 'app/components/previewFeature';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import AsyncView from 'sentry/views/asyncView';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import PreviewFeature from 'sentry/components/previewFeature';
 import ReportUri, {
   getSecurityDsn,
-} from 'app/views/settings/projectSecurityHeaders/reportUri';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import formGroups from 'app/data/forms/cspReports';
-import routeTitleGen from 'app/utils/routeTitle';
+} from 'sentry/views/settings/projectSecurityHeaders/reportUri';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import formGroups from 'sentry/data/forms/cspReports';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 export default class ProjectCspReports extends AsyncView {
   getEndpoints() {

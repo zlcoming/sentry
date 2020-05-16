@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import rrwebPlayer from 'rrweb-player';
 
-import theme from 'app/utils/theme';
+import theme from 'sentry/utils/theme';
 
 class RRWebReplayer extends Component {
   static propTypes = {

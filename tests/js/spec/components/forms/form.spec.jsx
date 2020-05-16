@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {Form} from 'app/components/forms';
+import {Form} from 'sentry/components/forms';
 
 describe('Form', function() {
   describe('render()', function() {

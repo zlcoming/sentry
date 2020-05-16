@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 import {
   DESCRIPTIONS,
   EVENT_CHOICES,
-} from 'app/views/settings/organizationDeveloperSettings/constants';
-import Checkbox from 'app/components/checkbox';
-import Tooltip from 'app/components/tooltip';
-import withOrganization from 'app/utils/withOrganization';
-import SentryTypes from 'app/sentryTypes';
-import {Organization} from 'app/types';
+} from 'sentry/views/settings/organizationDeveloperSettings/constants';
+import Checkbox from 'sentry/components/checkbox';
+import Tooltip from 'sentry/components/tooltip';
+import withOrganization from 'sentry/utils/withOrganization';
+import SentryTypes from 'sentry/sentryTypes';
+import {Organization} from 'sentry/types';
 
 type Resource = typeof EVENT_CHOICES[number];
 

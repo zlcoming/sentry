@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {browserHistory} from 'react-router';
 
 import {mount, shallow} from 'sentry-test/enzyme';
-
-import {GroupEvents} from 'app/views/organizationGroupDetails/groupEvents';
+import {GroupEvents} from 'sentry/views/organizationGroupDetails/groupEvents';
 
 const OrganizationGroupEvents = GroupEvents;
 

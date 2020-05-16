@@ -3,31 +3,34 @@ import {Location} from 'history';
 import styled from '@emotion/styled';
 import {browserHistory} from 'react-router';
 
-import {Organization} from 'app/types';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import DiscoverButton from 'app/components/discoverButton';
-import DropdownControl, {DropdownItem} from 'app/components/dropdownControl';
-import PanelTable from 'app/components/panels/panelTable';
-import Link from 'app/components/links/link';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import CellAction, {Actions, updateQuery} from 'app/views/eventsV2/table/cellAction';
-import {TableColumn} from 'app/views/eventsV2/table/types';
-import HeaderCell from 'app/views/eventsV2/table/headerCell';
-import EventView, {MetaType} from 'app/utils/discover/eventView';
-import SortLink from 'app/components/gridEditable/sortLink';
-import {getFieldRenderer} from 'app/utils/discover/fieldRenderers';
-import {getAggregateAlias} from 'app/utils/discover/fields';
-import {generateEventSlug} from 'app/utils/discover/urls';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {decodeScalar} from 'app/utils/queryString';
-import DiscoverQuery, {TableData, TableDataRow} from 'app/utils/discover/discoverQuery';
-import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
+import {Organization} from 'sentry/types';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import DiscoverButton from 'sentry/components/discoverButton';
+import DropdownControl, {DropdownItem} from 'sentry/components/dropdownControl';
+import PanelTable from 'sentry/components/panels/panelTable';
+import Link from 'sentry/components/links/link';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import CellAction, {Actions, updateQuery} from 'sentry/views/eventsV2/table/cellAction';
+import {TableColumn} from 'sentry/views/eventsV2/table/types';
+import HeaderCell from 'sentry/views/eventsV2/table/headerCell';
+import EventView, {MetaType} from 'sentry/utils/discover/eventView';
+import SortLink from 'sentry/components/gridEditable/sortLink';
+import {getFieldRenderer} from 'sentry/utils/discover/fieldRenderers';
+import {getAggregateAlias} from 'sentry/utils/discover/fields';
+import {generateEventSlug} from 'sentry/utils/discover/urls';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {decodeScalar} from 'sentry/utils/queryString';
+import DiscoverQuery, {
+  TableData,
+  TableDataRow,
+} from 'sentry/utils/discover/discoverQuery';
+import {tokenizeSearch, stringifyQueryObject} from 'sentry/utils/tokenizeSearch';
 import {
   TOP_TRANSACTION_LIMIT,
   TOP_TRANSACTION_FILTERS,
-} from 'app/views/performance/constants';
+} from 'sentry/views/performance/constants';
 
 import {GridCell, GridCellNumber} from '../styles';
 import {getTransactionDetailsUrl} from '../utils';

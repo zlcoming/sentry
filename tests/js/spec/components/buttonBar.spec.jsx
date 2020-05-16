@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
 
 describe('ButtonBar', function() {
   const createWrapper = () =>

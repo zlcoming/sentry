@@ -2,12 +2,12 @@ import React from 'react';
 import {boolean} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 
-import Form from 'app/views/settings/components/forms/form';
-import NewBooleanField from 'app/views/settings/components/forms/booleanField';
-import RadioField from 'app/views/settings/components/forms/radioField';
-import RangeField from 'app/views/settings/components/forms/rangeField';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import TextField from 'app/views/settings/components/forms/textField';
+import Form from 'sentry/views/settings/components/forms/form';
+import NewBooleanField from 'sentry/views/settings/components/forms/booleanField';
+import RadioField from 'sentry/views/settings/components/forms/radioField';
+import RangeField from 'sentry/views/settings/components/forms/rangeField';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import TextField from 'sentry/views/settings/components/forms/textField';
 
 export default {
   title: 'Forms/Form',

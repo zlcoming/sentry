@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import SentryTypes from 'app/sentryTypes';
-import Alert from 'app/components/alert';
-import ExternalLink from 'app/components/links/externalLink';
-import {IconUpgrade} from 'app/icons';
-import {t, tct} from 'app/locale';
-import space from 'app/styles/space';
-import EventDataSection from 'app/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import Alert from 'sentry/components/alert';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {IconUpgrade} from 'sentry/icons';
+import {t, tct} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import EventDataSection from 'sentry/components/events/eventDataSection';
 
 const AlertUl = styled('ul')`
   margin-top: ${space(1)};

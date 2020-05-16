@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import BaseBadge from 'app/components/idBadge/baseBadge';
+import BaseBadge from 'sentry/components/idBadge/baseBadge';
 
 describe('BadgeBadge', function() {
   it('has a display name', function() {

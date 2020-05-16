@@ -3,10 +3,10 @@ import isEqual from 'lodash/isEqual';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ChartZoom from 'app/components/charts/chartZoom';
-import ReleaseSeries from 'app/components/charts/releaseSeries';
-import SentryTypes from 'app/sentryTypes';
-import theme from 'app/utils/theme';
+import ChartZoom from 'sentry/components/charts/chartZoom';
+import ReleaseSeries from 'sentry/components/charts/releaseSeries';
+import SentryTypes from 'sentry/sentryTypes';
+import theme from 'sentry/utils/theme';
 
 import {WIDGET_DISPLAY} from './constants';
 import {getChartComponent} from './utils/getChartComponent';

@@ -1,15 +1,15 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {Organization} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {fetchOrgMembers} from 'app/actionCreators/members';
-import {markIncidentAsSeen} from 'app/actionCreators/incident';
-import {t} from 'app/locale';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {Client} from 'sentry/api';
+import {Organization} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {fetchOrgMembers} from 'sentry/actionCreators/members';
+import {markIncidentAsSeen} from 'sentry/actionCreators/incident';
+import {t} from 'sentry/locale';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import {Incident, IncidentStats, IncidentStatus} from '../types';
 import {

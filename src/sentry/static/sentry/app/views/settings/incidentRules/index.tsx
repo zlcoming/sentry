@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Feature from 'app/components/acl/feature';
+import Feature from 'sentry/components/acl/feature';
 
 type Props = {
   children: React.ReactNode;

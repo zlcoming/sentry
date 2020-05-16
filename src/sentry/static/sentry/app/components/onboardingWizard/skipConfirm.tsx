@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import space from 'app/styles/space';
-import {fadeIn} from 'app/styles/animations';
-import ButtonBar from 'app/components/buttonBar';
-import HookOrDefault from 'app/components/hookOrDefault';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import space from 'sentry/styles/space';
+import {fadeIn} from 'sentry/styles/animations';
+import ButtonBar from 'sentry/components/buttonBar';
+import HookOrDefault from 'sentry/components/hookOrDefault';
 
 type Props = {
   children: (opts: {skip: (e: React.MouseEvent) => void}) => React.ReactNode;

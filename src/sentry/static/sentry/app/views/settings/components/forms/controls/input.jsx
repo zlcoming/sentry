@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 
-import {inputStyles} from 'app/styles/input';
+import {inputStyles} from 'sentry/styles/input';
 
 /**
  * Do not forward required to `input` to avoid default browser behavior

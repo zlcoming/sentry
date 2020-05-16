@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 
-import MultipleCheckbox from 'app/views/settings/components/forms/controls/multipleCheckbox';
+import MultipleCheckbox from 'sentry/views/settings/components/forms/controls/multipleCheckbox';
 
 export default {
   title: 'Forms/Controls',

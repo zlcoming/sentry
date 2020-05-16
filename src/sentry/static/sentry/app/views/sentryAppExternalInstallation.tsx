@@ -7,20 +7,20 @@ import {
   Organization,
   SentryApp,
   SentryAppInstallation,
-} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {addQueryParamsToExistingUrl} from 'app/utils/queryString';
-import {installSentryApp} from 'app/actionCreators/sentryAppInstallations';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Field from 'app/views/settings/components/forms/field';
-import {IconFlag} from 'app/icons';
-import NarrowLayout from 'app/components/narrowLayout';
-import OrganizationAvatar from 'app/components/avatar/organizationAvatar';
-import SelectControl from 'app/components/forms/selectControl';
-import SentryAppDetailsModal from 'app/components/modals/sentryAppDetailsModal';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {addQueryParamsToExistingUrl} from 'sentry/utils/queryString';
+import {installSentryApp} from 'sentry/actionCreators/sentryAppInstallations';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Field from 'sentry/views/settings/components/forms/field';
+import {IconFlag} from 'sentry/icons';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import OrganizationAvatar from 'sentry/components/avatar/organizationAvatar';
+import SelectControl from 'sentry/components/forms/selectControl';
+import SentryAppDetailsModal from 'sentry/components/modals/sentryAppDetailsModal';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 type Props = RouteComponentProps<{sentryAppSlug: string}, {}>;
 

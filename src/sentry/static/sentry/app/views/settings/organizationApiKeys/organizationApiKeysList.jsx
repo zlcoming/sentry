@@ -2,18 +2,18 @@ import {Box, Flex} from 'reflexbox';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {t, tct} from 'app/locale';
-import AutoSelectText from 'app/components/autoSelectText';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ExternalLink from 'app/components/links/externalLink';
-import {IconDelete, IconAdd} from 'app/icons';
-import Link from 'app/components/links/link';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import recreateRoute from 'app/utils/recreateRoute';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {t, tct} from 'sentry/locale';
+import AutoSelectText from 'sentry/components/autoSelectText';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {IconDelete, IconAdd} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import recreateRoute from 'sentry/utils/recreateRoute';
 
 class OrganizationApiKeysList extends React.Component {
   static propTypes = {

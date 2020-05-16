@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {objectIsEmpty, toTitleCase, defined} from 'app/utils';
-import EventDataSection from 'app/components/events/eventDataSection';
-import plugins from 'app/plugins';
-import {t} from 'app/locale';
+import {objectIsEmpty, toTitleCase, defined} from 'sentry/utils';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import plugins from 'sentry/plugins';
+import {t} from 'sentry/locale';
 
 const CONTEXT_TYPES = {
-  default: require('app/components/events/contexts/default').default,
-  app: require('app/components/events/contexts/app/app').default,
-  device: require('app/components/events/contexts/device/device').default,
-  os: require('app/components/events/contexts/operatingSystem/operatingSystem').default,
-  runtime: require('app/components/events/contexts/runtime/runtime').default,
-  user: require('app/components/events/contexts/user/user').default,
-  gpu: require('app/components/events/contexts/gpu/gpu').default,
-  trace: require('app/components/events/contexts/trace/trace').default,
-  'redux.state': require('app/components/events/contexts/redux').default,
+  default: require('sentry/components/events/contexts/default').default,
+  app: require('sentry/components/events/contexts/app/app').default,
+  device: require('sentry/components/events/contexts/device/device').default,
+  os: require('sentry/components/events/contexts/operatingSystem/operatingSystem')
+    .default,
+  runtime: require('sentry/components/events/contexts/runtime/runtime').default,
+  user: require('sentry/components/events/contexts/user/user').default,
+  gpu: require('sentry/components/events/contexts/gpu/gpu').default,
+  trace: require('sentry/components/events/contexts/trace/trace').default,
+  'redux.state': require('sentry/components/events/contexts/redux').default,
 };
 
 function getContextComponent(type) {

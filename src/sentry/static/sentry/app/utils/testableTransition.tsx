@@ -1,6 +1,6 @@
 import {Transition} from 'framer-motion';
 
-import {IS_CI} from 'app/constants';
+import {IS_CI} from 'sentry/constants';
 
 /**
  * Use with a framer-motion transition to disable the animation in testing

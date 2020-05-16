@@ -2,25 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelHeader, PanelBody, PanelItem} from 'app/components/panels';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {sortProjects} from 'app/utils';
-import {IconFlag, IconSubtract} from 'app/icons';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import DropdownButton from 'app/components/dropdownButton';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import ProjectActions from 'app/actions/projectActions';
-import ProjectListItem from 'app/views/settings/components/settingsProjectItem';
-import SentryTypes from 'app/sentryTypes';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {Panel, PanelHeader, PanelBody, PanelItem} from 'sentry/components/panels';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {sortProjects} from 'sentry/utils';
+import {IconFlag, IconSubtract} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import DropdownButton from 'sentry/components/dropdownButton';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import ProjectActions from 'sentry/actions/projectActions';
+import ProjectListItem from 'sentry/views/settings/components/settingsProjectItem';
+import SentryTypes from 'sentry/sentryTypes';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class TeamProjects extends React.Component {
   static propTypes = {

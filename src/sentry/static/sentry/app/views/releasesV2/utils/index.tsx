@@ -1,11 +1,11 @@
 import round from 'lodash/round';
 
-import localStorage from 'app/utils/localStorage';
-import ConfigStore from 'app/stores/configStore';
-import OrganizationStore from 'app/stores/organizationStore';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {Client} from 'app/api';
-import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
+import localStorage from 'sentry/utils/localStorage';
+import ConfigStore from 'sentry/stores/configStore';
+import OrganizationStore from 'sentry/stores/organizationStore';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {Client} from 'sentry/api';
+import {stringifyQueryObject, QueryResults} from 'sentry/utils/tokenizeSearch';
 
 const RELEASES_VERSION_KEY = 'releases:version';
 

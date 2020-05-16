@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Link from 'app/components/links/link';
-import {t} from 'app/locale';
-import DateTime from 'app/components/dateTime';
-import FileSize from 'app/components/fileSize';
-import {EventAttachment} from 'app/types';
-import AttachmentUrl from 'app/utils/attachmentUrl';
-import EventAttachmentActions from 'app/components/events/eventAttachmentActions';
-import {types} from 'app/views/organizationGroupDetails/groupEventAttachments/types';
+import Link from 'sentry/components/links/link';
+import {t} from 'sentry/locale';
+import DateTime from 'sentry/components/dateTime';
+import FileSize from 'sentry/components/fileSize';
+import {EventAttachment} from 'sentry/types';
+import AttachmentUrl from 'sentry/utils/attachmentUrl';
+import EventAttachmentActions from 'sentry/components/events/eventAttachmentActions';
+import {types} from 'sentry/views/organizationGroupDetails/groupEventAttachments/types';
 
 type Props = {
   orgId: string;

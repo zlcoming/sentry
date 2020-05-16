@@ -1,19 +1,19 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Activity, Organization} from 'app/types';
-import {PageContent} from 'app/styles/organization';
-import {Panel} from 'app/components/panels';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import ErrorBoundary from 'app/components/errorBoundary';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import PageHeading from 'app/components/pageHeading';
-import Pagination from 'app/components/pagination';
-import routeTitle from 'app/utils/routeTitle';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+import {Activity, Organization} from 'sentry/types';
+import {PageContent} from 'sentry/styles/organization';
+import {Panel} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import PageHeading from 'sentry/components/pageHeading';
+import Pagination from 'sentry/components/pagination';
+import routeTitle from 'sentry/utils/routeTitle';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import ActivityFeedItem from './activityFeedItem';
 

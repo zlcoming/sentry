@@ -3,18 +3,18 @@ import isEqual from 'lodash/isEqual';
 import {Location} from 'history';
 import styled from '@emotion/styled';
 
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import {Organization} from 'app/types';
-import EventsRequest from 'app/components/charts/eventsRequest';
-import AreaChart from 'app/components/charts/areaChart';
-import {getInterval} from 'app/components/charts/utils';
-import {getUtcToLocalDateObject} from 'app/utils/dates';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import LoadingContainer from 'app/components/loading/loadingContainer';
-import {IconWarning} from 'app/icons';
-import theme from 'app/utils/theme';
-import EventView from 'app/utils/discover/eventView';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import {Organization} from 'sentry/types';
+import EventsRequest from 'sentry/components/charts/eventsRequest';
+import AreaChart from 'sentry/components/charts/areaChart';
+import {getInterval} from 'sentry/components/charts/utils';
+import {getUtcToLocalDateObject} from 'sentry/utils/dates';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import LoadingContainer from 'sentry/components/loading/loadingContainer';
+import {IconWarning} from 'sentry/icons';
+import theme from 'sentry/utils/theme';
+import EventView from 'sentry/utils/discover/eventView';
 
 type Props = {
   organization: Organization;

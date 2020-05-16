@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import SpreadLayout from 'app/components/spreadLayout';
+import SpreadLayout from 'sentry/components/spreadLayout';
 
 describe('SpreadLayout', function() {
   it('renders with one child', function() {

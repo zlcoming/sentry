@@ -2,11 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {t} from 'app/locale';
-import ActorAvatar from 'app/components/avatar/actorAvatar';
-import SuggestedOwnerHovercard from 'app/components/group/suggestedOwnerHovercard';
-import {Actor, Commit} from 'app/types';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import ActorAvatar from 'sentry/components/avatar/actorAvatar';
+import SuggestedOwnerHovercard from 'sentry/components/group/suggestedOwnerHovercard';
+import {Actor, Commit} from 'sentry/types';
+import space from 'sentry/styles/space';
 
 import {Wrapper, Header, Heading} from './styles';
 

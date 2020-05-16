@@ -2,8 +2,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import AddIntegrationButton from 'app/views/organizationIntegrations/addIntegrationButton';
+import AddIntegrationButton from 'sentry/views/organizationIntegrations/addIntegrationButton';
 
 describe('AddIntegrationButton', function() {
   const provider = TestStubs.GitHubIntegrationProvider();

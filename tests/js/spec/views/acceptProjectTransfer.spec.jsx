@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import AcceptProjectTransfer from 'app/views/acceptProjectTransfer';
+import AcceptProjectTransfer from 'sentry/views/acceptProjectTransfer';
 
 jest.mock('jquery');
 

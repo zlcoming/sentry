@@ -1,7 +1,7 @@
 import React from 'react';
 
-import InputField, {onEvent} from 'app/views/settings/components/forms/inputField';
-import RangeSlider from 'app/views/settings/components/forms/controls/rangeSlider';
+import InputField, {onEvent} from 'sentry/views/settings/components/forms/inputField';
+import RangeSlider from 'sentry/views/settings/components/forms/controls/rangeSlider';
 
 type DefaultProps = {
   formatMessageValue?: false | Function;

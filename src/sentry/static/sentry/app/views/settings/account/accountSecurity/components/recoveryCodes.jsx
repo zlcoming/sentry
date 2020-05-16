@@ -8,14 +8,14 @@ import {
   PanelHeader,
   PanelItem,
   PanelAlert,
-} from 'app/components/panels';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import Clipboard from 'app/components/clipboard';
-import Confirm from 'app/components/confirm';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import {IconCopy, IconDownload, IconPrint} from 'app/icons';
-import space from 'app/styles/space';
+} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import Clipboard from 'sentry/components/clipboard';
+import Confirm from 'sentry/components/confirm';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import {IconCopy, IconDownload, IconPrint} from 'sentry/icons';
+import space from 'sentry/styles/space';
 
 class RecoveryCodes extends React.Component {
   static propTypes = {

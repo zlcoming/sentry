@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import ExternalLink from 'app/components/links/externalLink';
+import ExternalLink from 'sentry/components/links/externalLink';
 
 export default {
   title: 'UI/Links/ExternalLink',

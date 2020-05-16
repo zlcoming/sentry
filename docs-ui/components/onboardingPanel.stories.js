@@ -1,8 +1,8 @@
 import React from 'react';
-import {withInfo} from '@storybook/addon-info';
+import { withInfo } from '@storybook/addon-info';
 
-import {IconFire} from 'app/icons';
-import OnboardingPanel from 'app/components/onboardingPanel';
+import { IconFire } from 'sentry/icons';
+import OnboardingPanel from 'sentry/components/onboardingPanel';
 
 export default {
   title: 'UI/OnboardingPanel',

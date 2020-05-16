@@ -2,10 +2,9 @@ import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import EventDetails from 'app/views/eventsV2/eventDetails';
-import {ALL_VIEWS, DEFAULT_EVENT_VIEW} from 'app/views/eventsV2/data';
-import EventView from 'app/utils/discover/eventView';
+import EventDetails from 'sentry/views/eventsV2/eventDetails';
+import {ALL_VIEWS, DEFAULT_EVENT_VIEW} from 'sentry/views/eventsV2/data';
+import EventView from 'sentry/utils/discover/eventView';
 
 describe('EventsV2 > EventDetails', function() {
   const allEventsView = EventView.fromSavedQuery(DEFAULT_EVENT_VIEW);

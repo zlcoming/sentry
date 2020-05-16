@@ -2,10 +2,10 @@ import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
-import SelectControl from 'app/components/forms/selectControl';
+import {Client} from 'sentry/api';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
+import SelectControl from 'sentry/components/forms/selectControl';
 
 class IssueListTagFilter extends React.Component {
   static tagValueToSelectFormat = ({value}) => ({

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import ConfigStore from 'app/stores/configStore';
-import SeenByList from 'app/components/seenByList';
+import ConfigStore from 'sentry/stores/configStore';
+import SeenByList from 'sentry/components/seenByList';
 
 describe('SeenByList', function() {
   beforeEach(function() {

@@ -1,7 +1,7 @@
 /**
  * Handled vs Unhandled Events
  */
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const handledVsUnhandledQuery = {
   name: t('Handled vs. Unhandled'),

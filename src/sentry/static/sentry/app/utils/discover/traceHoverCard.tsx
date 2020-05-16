@@ -2,16 +2,16 @@ import React from 'react';
 import {Location, LocationDescriptor} from 'history';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import Hovercard from 'app/components/hovercard';
-import Version from 'app/components/version';
-import space from 'app/styles/space';
-import Clipboard from 'app/components/clipboard';
-import {IconCopy} from 'app/icons';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import LoadingError from 'app/components/loadingError';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import Hovercard from 'sentry/components/hovercard';
+import Version from 'sentry/components/version';
+import space from 'sentry/styles/space';
+import Clipboard from 'sentry/components/clipboard';
+import {IconCopy} from 'sentry/icons';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import LoadingError from 'sentry/components/loadingError';
 
 import EventView from './eventView';
 import DiscoverQuery, {TableData} from './discoverQuery';

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {Form, SelectCreatableField} from 'app/components/forms';
+import {Form, SelectCreatableField} from 'sentry/components/forms';
 
 describe('SelectCreatableField', function() {
   describe('deprecatedSelectControl', function() {

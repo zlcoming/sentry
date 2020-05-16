@@ -3,30 +3,30 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import styled from '@emotion/styled';
 
-import {Panel, PanelItem, PanelHeader} from 'app/components/panels';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {joinTeam, leaveTeam} from 'app/actionCreators/teams';
+import {Panel, PanelItem, PanelHeader} from 'sentry/components/panels';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {joinTeam, leaveTeam} from 'sentry/actionCreators/teams';
 import {
   openInviteMembersModal,
   openTeamAccessRequestModal,
-} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import Button from 'app/components/button';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import DropdownButton from 'app/components/dropdownButton';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import IdBadge from 'app/components/idBadge';
-import {IconSubtract, IconUser} from 'app/icons';
-import Link from 'app/components/links/link';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import SentryTypes from 'app/sentryTypes';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withConfig from 'app/utils/withConfig';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import Button from 'sentry/components/button';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import DropdownButton from 'sentry/components/dropdownButton';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import IdBadge from 'sentry/components/idBadge';
+import {IconSubtract, IconUser} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import SentryTypes from 'sentry/sentryTypes';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withConfig from 'sentry/utils/withConfig';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class TeamMembers extends React.Component {
   static propTypes = {

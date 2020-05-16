@@ -1,11 +1,11 @@
-import AreaChart from 'app/components/charts/areaChart';
-import BarChart from 'app/components/charts/barChart';
-import LineChart from 'app/components/charts/lineChart';
-import PercentageAreaChart from 'app/components/charts/percentageAreaChart';
-import PercentageTableChart from 'app/components/charts/percentageTableChart';
-import PieChart from 'app/components/charts/pieChart';
-import StackedAreaChart from 'app/components/charts/stackedAreaChart';
-import WorldMapChart from 'app/components/charts/worldMapChart';
+import AreaChart from 'sentry/components/charts/areaChart';
+import BarChart from 'sentry/components/charts/barChart';
+import LineChart from 'sentry/components/charts/lineChart';
+import PercentageAreaChart from 'sentry/components/charts/percentageAreaChart';
+import PercentageTableChart from 'sentry/components/charts/percentageTableChart';
+import PieChart from 'sentry/components/charts/pieChart';
+import StackedAreaChart from 'sentry/components/charts/stackedAreaChart';
+import WorldMapChart from 'sentry/components/charts/worldMapChart';
 
 import {WIDGET_DISPLAY} from '../constants';
 

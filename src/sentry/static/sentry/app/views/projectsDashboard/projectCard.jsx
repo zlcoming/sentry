@@ -5,15 +5,15 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import BookmarkStar from 'app/components/projects/bookmarkStar';
-import {Client} from 'app/api';
-import {loadStatsForProject} from 'app/actionCreators/projects';
-import IdBadge from 'app/components/idBadge';
-import Link from 'app/components/links/link';
-import ProjectsStatsStore from 'app/stores/projectsStatsStore';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+import BookmarkStar from 'sentry/components/projects/bookmarkStar';
+import {Client} from 'sentry/api';
+import {loadStatsForProject} from 'sentry/actionCreators/projects';
+import IdBadge from 'sentry/components/idBadge';
+import Link from 'sentry/components/links/link';
+import ProjectsStatsStore from 'sentry/stores/projectsStatsStore';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import Chart from './chart';
 import Deploys from './deploys';

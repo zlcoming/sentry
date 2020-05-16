@@ -3,15 +3,15 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import * as Sentry from '@sentry/react';
 
-import {Organization, Project} from 'app/types';
-import {t} from 'app/locale';
-import {trackAnalyticsEvent, trackAdhocEvent} from 'app/utils/analytics';
-import Button from 'app/components/button';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import withProjects from 'app/utils/withProjects';
+import {Organization, Project} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {trackAnalyticsEvent, trackAdhocEvent} from 'sentry/utils/analytics';
+import Button from 'sentry/components/button';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProjects from 'sentry/utils/withProjects';
 
 import UserFeedbackIllustration from './userFeedbackIllustration';
 

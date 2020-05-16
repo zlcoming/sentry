@@ -2,21 +2,21 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {openInviteMembersModal} from 'app/actionCreators/modal';
-import {Organization, Member} from 'app/types';
-import {Panel} from 'app/components/panels';
-import {t} from 'app/locale';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import AsyncView from 'app/views/asyncView';
-import Badge from 'app/components/badge';
-import Button from 'app/components/button';
-import {IconMail} from 'app/icons';
-import ListLink from 'app/components/links/listLink';
-import NavTabs from 'app/components/navTabs';
-import routeTitleGen from 'app/utils/routeTitle';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+import {openInviteMembersModal} from 'sentry/actionCreators/modal';
+import {Organization, Member} from 'sentry/types';
+import {Panel} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import AsyncView from 'sentry/views/asyncView';
+import Badge from 'sentry/components/badge';
+import Button from 'sentry/components/button';
+import {IconMail} from 'sentry/icons';
+import ListLink from 'sentry/components/links/listLink';
+import NavTabs from 'sentry/components/navTabs';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 type Props = {
   children?: any;

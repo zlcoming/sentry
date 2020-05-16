@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SentryTypes from 'app/sentryTypes';
-import OrganizationAvatar from 'app/components/avatar/organizationAvatar';
-import ProjectAvatar from 'app/components/avatar/projectAvatar';
-import TeamAvatar from 'app/components/avatar/teamAvatar';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import {Team, OrganizationSummary, AvatarProject} from 'app/types';
+import SentryTypes from 'sentry/sentryTypes';
+import OrganizationAvatar from 'sentry/components/avatar/organizationAvatar';
+import ProjectAvatar from 'sentry/components/avatar/projectAvatar';
+import TeamAvatar from 'sentry/components/avatar/teamAvatar';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import {Team, OrganizationSummary, AvatarProject} from 'sentry/types';
 
 const BasicModelShape = PropTypes.shape({slug: PropTypes.string});
 

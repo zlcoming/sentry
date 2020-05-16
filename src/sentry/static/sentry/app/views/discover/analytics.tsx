@@ -1,5 +1,5 @@
-import {Organization} from 'app/types';
-import {analytics} from 'app/utils/analytics';
+import {Organization} from 'sentry/types';
+import {analytics} from 'sentry/utils/analytics';
 
 import {Query} from './types';
 

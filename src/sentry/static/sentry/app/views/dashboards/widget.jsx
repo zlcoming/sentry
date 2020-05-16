@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody} from 'app/components/panels';
-import {t} from 'app/locale';
-import ErrorBoundary from 'app/components/errorBoundary';
-import LoadingMask from 'app/components/loadingMask';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import withOrganization from 'app/utils/withOrganization';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import LoadingMask from 'sentry/components/loadingMask';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import DiscoverQuery from './discoverQuery';
 import ExploreWidget from './exploreWidget';

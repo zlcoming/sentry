@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {extractMultilineFields} from 'app/utils';
-import {tct} from 'app/locale';
-import {Field} from 'app/views/settings/components/forms/type';
+import {extractMultilineFields} from 'sentry/utils';
+import {tct} from 'sentry/locale';
+import {Field} from 'sentry/views/settings/components/forms/type';
 
 const getPublicFormFields = (): Field[] => [
   {

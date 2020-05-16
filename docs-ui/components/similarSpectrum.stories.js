@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import SimilarSpectrum from 'app/components/similarSpectrum';
+import SimilarSpectrum from 'sentry/components/similarSpectrum';
 
 export default {
   title: 'Other/SimilarSpectrum',

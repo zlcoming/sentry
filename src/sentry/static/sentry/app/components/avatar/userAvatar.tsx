@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {AvatarUser} from 'app/types';
-import {userDisplayName} from 'app/utils/formatters';
-import BaseAvatar from 'app/components/avatar/baseAvatar';
-import SentryTypes from 'app/sentryTypes';
-import {isRenderFunc} from 'app/utils/isRenderFunc';
+import {AvatarUser} from 'sentry/types';
+import {userDisplayName} from 'sentry/utils/formatters';
+import BaseAvatar from 'sentry/components/avatar/baseAvatar';
+import SentryTypes from 'sentry/sentryTypes';
+import {isRenderFunc} from 'sentry/utils/isRenderFunc';
 
 type RenderTooltipFunc = (user: AvatarUser) => React.ReactNode;
 

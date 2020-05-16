@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ReleaseDetails from 'app/views/releases/detail/';
-import ProjectsStore from 'app/stores/projectsStore';
+import ReleaseDetails from 'sentry/views/releases/detail/';
+import ProjectsStore from 'sentry/stores/projectsStore';
 
 describe('ReleaseDetails', function() {
   let deleteMock;

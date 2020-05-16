@@ -3,12 +3,12 @@ import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 import React from 'react';
 
-import {t} from 'app/locale';
-import {openDebugFileSourceModal} from 'app/actionCreators/modal';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import {DEBUG_SOURCE_TYPES} from 'app/data/debugFileSources';
-import TextBlock from 'app/views/settings/components/text/textBlock';
+import {t} from 'sentry/locale';
+import {openDebugFileSourceModal} from 'sentry/actionCreators/modal';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import {DEBUG_SOURCE_TYPES} from 'sentry/data/debugFileSources';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
 
 // Export route to make these forms searchable by label/help
 export const route = '/settings/:orgId/projects/:projectId/debug-symbols/';

@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import AttachmentUrl from 'app/utils/attachmentUrl';
-import UserAvatar from 'app/components/avatar/userAvatar';
-import DateTime from 'app/components/dateTime';
-import DeviceName from 'app/components/deviceName';
-import FileSize from 'app/components/fileSize';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
+import AttachmentUrl from 'sentry/utils/attachmentUrl';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import DateTime from 'sentry/components/dateTime';
+import DeviceName from 'sentry/components/deviceName';
+import FileSize from 'sentry/components/fileSize';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class EventsTableRow extends React.Component {
   static propTypes = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import Input from 'app/views/settings/components/forms/controls/input';
-import TextOverflow from 'app/components/textOverflow';
-import {defined} from 'app/utils';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import TextOverflow from 'sentry/components/textOverflow';
+import {defined} from 'sentry/utils';
 
 import {unarySuggestions, binarySuggestions} from '../../utils';
 import SourceSuggestionExamples from './sourceSuggestionExamples';

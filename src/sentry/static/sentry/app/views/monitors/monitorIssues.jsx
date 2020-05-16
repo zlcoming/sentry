@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import IssueList from 'app/components/issueList';
-import {t} from 'app/locale';
+import IssueList from 'sentry/components/issueList';
+import {t} from 'sentry/locale';
 
 export default class MonitorIssues extends Component {
   static propTypes = {

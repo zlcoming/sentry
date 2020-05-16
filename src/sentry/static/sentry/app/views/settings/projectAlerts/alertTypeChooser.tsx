@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Card from 'app/components/card';
-import {t, tct} from 'app/locale';
-import space from 'app/styles/space';
-import Radio from 'app/components/radio';
-import textStyles from 'app/styles/text';
-import {List, ListItem} from 'app/components/list';
-import FeatureBadge from 'app/components/featureBadge';
-import Tooltip from 'app/components/tooltip';
-import {Panel, PanelHeader} from 'app/components/panels';
-import RadioField from 'app/views/settings/components/forms/radioField';
-import Feature from 'app/components/acl/feature';
-import ExternalLink from 'app/components/links/externalLink';
-import withExperiment from 'app/utils/withExperiment';
-import {ExperimentAssignment} from 'app/types/experiments';
-import {Organization} from 'app/types';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import Card from 'sentry/components/card';
+import {t, tct} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Radio from 'sentry/components/radio';
+import textStyles from 'sentry/styles/text';
+import {List, ListItem} from 'sentry/components/list';
+import FeatureBadge from 'sentry/components/featureBadge';
+import Tooltip from 'sentry/components/tooltip';
+import {Panel, PanelHeader} from 'sentry/components/panels';
+import RadioField from 'sentry/views/settings/components/forms/radioField';
+import Feature from 'sentry/components/acl/feature';
+import ExternalLink from 'sentry/components/links/externalLink';
+import withExperiment from 'sentry/utils/withExperiment';
+import {ExperimentAssignment} from 'sentry/types/experiments';
+import {Organization} from 'sentry/types';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 
 type AlertType = 'metric' | 'issue' | null;
 

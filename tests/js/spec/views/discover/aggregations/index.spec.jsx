@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Aggregations from 'app/views/discover/aggregations';
+import Aggregations from 'sentry/views/discover/aggregations';
 
 describe('Aggregations', function() {
   let wrapper, onChangeMock, aggregations;

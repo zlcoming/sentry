@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import TextOverflow from 'app/components/textOverflow';
-import space from 'app/styles/space';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import TextOverflow from 'sentry/components/textOverflow';
+import space from 'sentry/styles/space';
 
 class InactivePlugins extends React.Component {
   static propTypes = {

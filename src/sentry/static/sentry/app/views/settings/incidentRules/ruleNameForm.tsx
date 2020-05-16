@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
-import TextField from 'app/views/settings/components/forms/textField';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import TextField from 'sentry/views/settings/components/forms/textField';
 
 type Props = {
   disabled: boolean;

@@ -2,13 +2,13 @@ import React from 'react';
 import * as ReactRouter from 'react-router';
 import isEqual from 'lodash/isEqual';
 
-import {DATE_TIME_KEYS} from 'app/constants/globalSelectionHeader';
+import {DATE_TIME_KEYS} from 'sentry/constants/globalSelectionHeader';
 import {
   initializeUrlState,
   updateProjects,
   updateEnvironments,
   updateDateTime,
-} from 'app/actionCreators/globalSelection';
+} from 'sentry/actionCreators/globalSelection';
 
 import {getStateFromQuery} from './utils';
 import GlobalSelectionHeader from './globalSelectionHeader';

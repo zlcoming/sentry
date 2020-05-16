@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-import OrganizationsActions from 'app/actions/organizationsActions';
+import OrganizationsActions from 'sentry/actions/organizationsActions';
 
 const OrganizationsStore = Reflux.createStore({
   listenables: [OrganizationsActions],

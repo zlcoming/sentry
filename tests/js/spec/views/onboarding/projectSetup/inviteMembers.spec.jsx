@@ -2,9 +2,8 @@ import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {selectByValue} from 'sentry-test/select';
-
-import ConfigStore from 'app/stores/configStore';
-import InviteMembers from 'app/views/onboarding/projectSetup/inviteMembers';
+import ConfigStore from 'sentry/stores/configStore';
+import InviteMembers from 'sentry/views/onboarding/projectSetup/inviteMembers';
 
 describe('InviteMembers', function() {
   const email = 'test@someDomain.com';

@@ -3,8 +3,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import space from 'app/styles/space';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import space from 'sentry/styles/space';
 
 type Props = {
   title?: React.ReactNode;

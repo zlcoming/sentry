@@ -5,8 +5,8 @@ import scrollToElement from 'scroll-to-element';
 import {Location} from 'history';
 import * as Sentry from '@sentry/react';
 
-import {defined} from 'app/utils';
-import {sanitizeQuerySelector} from 'app/utils/sanitizeQuerySelector';
+import {defined} from 'sentry/utils';
+import {sanitizeQuerySelector} from 'sentry/utils/sanitizeQuerySelector';
 
 import {Field, FieldObject, JsonFormObject} from './type';
 import FieldFromConfig from './fieldFromConfig';

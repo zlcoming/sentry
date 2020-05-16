@@ -1,7 +1,7 @@
 import DocumentTitle from 'react-document-title';
 import React from 'react';
 
-import AsyncComponent from 'app/components/asyncComponent';
+import AsyncComponent from 'sentry/components/asyncComponent';
 
 type AsyncViewState = AsyncComponent['state'];
 type AsyncViewProps = AsyncComponent['props'];

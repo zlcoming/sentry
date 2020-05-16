@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {disconnectIdentity} from 'app/actionCreators/account';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
+import {disconnectIdentity} from 'sentry/actionCreators/account';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
 
 const ENDPOINT = '/users/me/social-identities/';
 

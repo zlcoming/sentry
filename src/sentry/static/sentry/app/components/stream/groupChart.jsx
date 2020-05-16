@@ -2,7 +2,7 @@ import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import BarChart from 'app/components/barChart';
+import BarChart from 'sentry/components/barChart';
 
 class GroupChart extends React.Component {
   static propTypes = {

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Button from 'app/components/button';
-import space from 'app/styles/space';
-import {IconChevron} from 'app/icons';
+import Button from 'sentry/components/button';
+import space from 'sentry/styles/space';
+import {IconChevron} from 'sentry/icons';
 
 type Props = React.ComponentProps<typeof Button> & {
   /**

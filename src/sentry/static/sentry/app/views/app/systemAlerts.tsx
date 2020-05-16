@@ -3,8 +3,8 @@ import createReactClass from 'create-react-class';
 import Reflux from 'reflux';
 import {ThemeProvider} from 'emotion-theming';
 
-import AlertStore from 'app/stores/alertStore';
-import theme from 'app/utils/theme';
+import AlertStore from 'sentry/stores/alertStore';
+import theme from 'sentry/utils/theme';
 
 import AlertMessage from './alertMessage';
 

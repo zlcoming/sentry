@@ -1,8 +1,7 @@
 import React from 'react';
 
+import QueryCount from 'sentry/components/queryCount';
 import {shallow} from 'sentry-test/enzyme';
-
-import QueryCount from 'app/components/queryCount';
 
 describe('QueryCount', function() {
   it('displays count when no max', function() {

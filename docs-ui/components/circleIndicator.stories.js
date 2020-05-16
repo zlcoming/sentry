@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {number, boolean} from '@storybook/addon-knobs';
 
-import CircleIndicator from 'app/components/circleIndicator';
+import CircleIndicator from 'sentry/components/circleIndicator';
 
 export default {
   title: 'UI/CircleIndicator',

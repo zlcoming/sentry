@@ -2,7 +2,7 @@ import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import DetailedError from 'app/components/errors/detailedError';
+import DetailedError from 'sentry/components/errors/detailedError';
 
 export default {
   title: 'UI/DetailedError',

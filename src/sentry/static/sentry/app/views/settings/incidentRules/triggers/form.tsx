@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import {Config, Organization, Project} from 'app/types';
-import {fetchOrgMembers} from 'app/actionCreators/members';
-import {t, tct} from 'app/locale';
-import CircleIndicator from 'app/components/circleIndicator';
-import Field from 'app/views/settings/components/forms/field';
-import ThresholdControl from 'app/views/settings/incidentRules/triggers/thresholdControl';
-import withApi from 'app/utils/withApi';
-import withConfig from 'app/utils/withConfig';
-import space from 'app/styles/space';
+import {Client} from 'sentry/api';
+import {Config, Organization, Project} from 'sentry/types';
+import {fetchOrgMembers} from 'sentry/actionCreators/members';
+import {t, tct} from 'sentry/locale';
+import CircleIndicator from 'sentry/components/circleIndicator';
+import Field from 'sentry/views/settings/components/forms/field';
+import ThresholdControl from 'sentry/views/settings/incidentRules/triggers/thresholdControl';
+import withApi from 'sentry/utils/withApi';
+import withConfig from 'sentry/utils/withConfig';
+import space from 'sentry/styles/space';
 
 import {
   AlertRuleThresholdType,

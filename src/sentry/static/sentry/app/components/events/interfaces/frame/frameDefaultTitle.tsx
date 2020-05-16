@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Frame, PlatformType, Meta} from 'app/types';
-import {defined, isUrl} from 'app/utils';
-import Tooltip from 'app/components/tooltip';
-import Truncate from 'app/components/truncate';
-import {IconQuestion, IconOpen} from 'app/icons';
-import ExternalLink from 'app/components/links/externalLink';
-import AnnotatedText from 'app/components/events/meta/annotatedText';
-import {t} from 'app/locale';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import space from 'app/styles/space';
+import {Frame, PlatformType, Meta} from 'sentry/types';
+import {defined, isUrl} from 'sentry/utils';
+import Tooltip from 'sentry/components/tooltip';
+import Truncate from 'sentry/components/truncate';
+import {IconQuestion, IconOpen} from 'sentry/icons';
+import ExternalLink from 'sentry/components/links/externalLink';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
+import {t} from 'sentry/locale';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import space from 'sentry/styles/space';
 
 import FrameFunctionName from './frameFunctionName';
 import {getPlatform, trimPackage} from './utils';

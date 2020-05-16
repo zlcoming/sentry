@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Actor} from 'app/types';
-import ActorAvatar from 'app/components/avatar/actorAvatar';
+import {Actor} from 'sentry/types';
+import ActorAvatar from 'sentry/components/avatar/actorAvatar';
 
 type Value = {
   actor: Actor;

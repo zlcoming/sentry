@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import space from 'app/styles/space';
-import Confirm from 'app/components/confirm';
-import {IconDelete, IconDownload} from 'app/icons';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import space from 'sentry/styles/space';
+import Confirm from 'sentry/components/confirm';
+import {IconDelete, IconDownload} from 'sentry/icons';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
 
 type Props = {
   api: Client;

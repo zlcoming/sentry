@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 
-import {tct} from 'app/locale';
-import Field from 'app/views/settings/components/forms/field';
-import getDynamicText from 'app/utils/getDynamicText';
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
+import {tct} from 'sentry/locale';
+import Field from 'sentry/views/settings/components/forms/field';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
 
 const DEFAULT_ENDPOINT = 'https://sentry.example.com/api/security-report/';
 

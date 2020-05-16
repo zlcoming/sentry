@@ -5,14 +5,14 @@ import pick from 'lodash/pick';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {openDiffModal} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import GroupingStore from 'app/stores/groupingStore';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import SpreadLayout from 'app/components/spreadLayout';
-import Toolbar from 'app/components/toolbar';
-import space from 'app/styles/space';
+import {openDiffModal} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import GroupingStore from 'sentry/stores/groupingStore';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import SpreadLayout from 'sentry/components/spreadLayout';
+import Toolbar from 'sentry/components/toolbar';
+import space from 'sentry/styles/space';
 
 const MergedToolbar = createReactClass({
   displayName: 'MergedToolbar',

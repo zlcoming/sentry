@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import DropdownLink from 'app/components/dropdownLink';
-import MenuItem from 'app/components/menuItem';
+import DropdownLink from 'sentry/components/dropdownLink';
+import MenuItem from 'sentry/components/menuItem';
 
 export default {
   title: 'UI/Dropdowns/DropdownLink',

@@ -3,8 +3,8 @@ import React from 'react';
 import u2f from 'u2f-api';
 import * as Sentry from '@sentry/react';
 
-import ConfigStore from 'app/stores/configStore';
-import {t, tct} from 'app/locale';
+import ConfigStore from 'sentry/stores/configStore';
+import {t, tct} from 'sentry/locale';
 
 class U2fInterface extends React.Component {
   static propTypes = {

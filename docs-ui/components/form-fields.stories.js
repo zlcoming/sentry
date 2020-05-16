@@ -3,19 +3,19 @@ import {action} from '@storybook/addon-actions';
 import {number, boolean} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 
-import {Panel} from 'app/components/panels';
-import DatePickerField from 'app/views/settings/components/forms/datePickerField';
-import Form from 'app/views/settings/components/forms/form';
-import FormField from 'app/views/settings/components/forms/formField';
-import NewBooleanField from 'app/views/settings/components/forms/booleanField';
-import RadioField from 'app/views/settings/components/forms/radioField';
-import RadioGroup from 'app/views/settings/components/forms/controls/radioGroup';
-import RangeSlider from 'app/views/settings/components/forms/controls/rangeSlider';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import Switch from 'app/components/switch';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import TextField from 'app/views/settings/components/forms/textField';
-import TextareaField from 'app/views/settings/components/forms/textareaField';
+import {Panel} from 'sentry/components/panels';
+import DatePickerField from 'sentry/views/settings/components/forms/datePickerField';
+import Form from 'sentry/views/settings/components/forms/form';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import NewBooleanField from 'sentry/views/settings/components/forms/booleanField';
+import RadioField from 'sentry/views/settings/components/forms/radioField';
+import RadioGroup from 'sentry/views/settings/components/forms/controls/radioGroup';
+import RangeSlider from 'sentry/views/settings/components/forms/controls/rangeSlider';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import Switch from 'sentry/components/switch';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import TextareaField from 'sentry/views/settings/components/forms/textareaField';
 
 export default {
   title: 'Forms/Fields',

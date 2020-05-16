@@ -2,8 +2,7 @@ import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import IncidentRulesList from 'app/views/settings/incidentRules/list';
+import IncidentRulesList from 'sentry/views/settings/incidentRules/list';
 
 describe('Incident Rules List', function() {
   it('renders', function() {

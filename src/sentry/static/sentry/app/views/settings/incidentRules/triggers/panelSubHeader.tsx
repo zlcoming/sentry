@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import {PanelHeader} from 'app/components/panels';
-import space from 'app/styles/space';
+import {PanelHeader} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
 
 /**
  * Displays a Panel Header that has less vertical padding as to not draw as much attention but still

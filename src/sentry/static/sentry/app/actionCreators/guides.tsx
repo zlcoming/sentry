@@ -1,7 +1,7 @@
-import {Client} from 'app/api';
-import ConfigStore from 'app/stores/configStore';
-import GuideActions from 'app/actions/guideActions';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import {Client} from 'sentry/api';
+import ConfigStore from 'sentry/stores/configStore';
+import GuideActions from 'sentry/actions/guideActions';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 
 const api = new Client();
 

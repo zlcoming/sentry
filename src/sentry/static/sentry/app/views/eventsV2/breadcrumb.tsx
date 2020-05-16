@@ -1,11 +1,11 @@
 import React from 'react';
 import {Location} from 'history';
 
-import {t} from 'app/locale';
-import {Event, Organization} from 'app/types';
-import EventView from 'app/utils/discover/eventView';
-import Breadcrumbs, {Crumb} from 'app/components/breadcrumbs';
-import {getDiscoverLandingUrl} from 'app/utils/discover/urls';
+import {t} from 'sentry/locale';
+import {Event, Organization} from 'sentry/types';
+import EventView from 'sentry/utils/discover/eventView';
+import Breadcrumbs, {Crumb} from 'sentry/components/breadcrumbs';
+import {getDiscoverLandingUrl} from 'sentry/utils/discover/urls';
 
 type DefaultProps = {
   event: Event | undefined;

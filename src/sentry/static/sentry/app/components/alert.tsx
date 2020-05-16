@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
+import space from 'sentry/styles/space';
 
 // exporting it down with alertStyles caused error  'Props' is not defined  no-undef
 export type Props = {

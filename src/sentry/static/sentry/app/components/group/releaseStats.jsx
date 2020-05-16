@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SentryTypes from 'app/sentryTypes';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import GroupReleaseChart from 'app/components/group/releaseChart';
-import SeenInfo from 'app/components/group/seenInfo';
-import getDynamicText from 'app/utils/getDynamicText';
-import {t} from 'app/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import GroupReleaseChart from 'sentry/components/group/releaseChart';
+import SeenInfo from 'sentry/components/group/seenInfo';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import {t} from 'sentry/locale';
 
 class GroupReleaseStats extends React.PureComponent {
   static propTypes = {

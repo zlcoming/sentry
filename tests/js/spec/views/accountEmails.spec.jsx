@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme, shallow} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import AccountEmails from 'app/views/settings/account/accountEmails';
+import {Client} from 'sentry/api';
+import AccountEmails from 'sentry/views/settings/account/accountEmails';
 
 jest.mock('scroll-to-element', () => {});
 

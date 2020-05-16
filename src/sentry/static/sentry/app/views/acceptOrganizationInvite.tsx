@@ -4,17 +4,17 @@ import {urlEncode} from '@sentry/utils';
 import React, {MouseEvent} from 'react';
 import styled from '@emotion/styled';
 
-import {logout} from 'app/actionCreators/account';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import ExternalLink from 'app/components/links/externalLink';
-import Link from 'app/components/links/link';
-import NarrowLayout from 'app/components/narrowLayout';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import space from 'app/styles/space';
+import {logout} from 'sentry/actionCreators/account';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Link from 'sentry/components/links/link';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import space from 'sentry/styles/space';
 
 type InviteDetails = {
   orgSlug: string;

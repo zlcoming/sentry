@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
 
 export default {
   title: 'Utility/TextCopyInput',

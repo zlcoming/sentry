@@ -2,17 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {addTeamToProject, removeTeamFromProject} from 'app/actionCreators/projects';
-import {openCreateTeamModal} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Link from 'app/components/links/link';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TeamSelect from 'app/views/settings/components/teamSelect';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import routeTitleGen from 'app/utils/routeTitle';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {addTeamToProject, removeTeamFromProject} from 'sentry/actionCreators/projects';
+import {openCreateTeamModal} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Link from 'sentry/components/links/link';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TeamSelect from 'sentry/views/settings/components/teamSelect';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 class ProjectTeams extends AsyncView {
   getEndpoints() {

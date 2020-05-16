@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
-import Frame from 'app/components/events/interfaces/frame/frame';
-import {t} from 'app/locale';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import Frame from 'sentry/components/events/interfaces/frame/frame';
+import {t} from 'sentry/locale';
 
 class TemplateInterface extends React.Component {
   static propTypes = {

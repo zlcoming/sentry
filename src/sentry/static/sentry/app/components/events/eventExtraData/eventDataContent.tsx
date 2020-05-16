@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {defined} from 'app/utils';
-import ContextBlock from 'app/components/events/contexts/contextBlock';
+import {defined} from 'sentry/utils';
+import ContextBlock from 'sentry/components/events/contexts/contextBlock';
 
 import getEventExtraDataKnownData from './getEventExtraDataKnownData';
 

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {APIRequestMethod} from 'app/api';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import FormModel, {FormOptions} from 'app/views/settings/components/forms/model';
-import Panel from 'app/components/panels/panel';
-import space from 'app/styles/space';
-import {isRenderFunc} from 'app/utils/isRenderFunc';
+import {APIRequestMethod} from 'sentry/api';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import FormModel, {FormOptions} from 'sentry/views/settings/components/forms/model';
+import Panel from 'sentry/components/panels/panel';
+import space from 'sentry/styles/space';
+import {isRenderFunc} from 'sentry/utils/isRenderFunc';
 
 type Data = {};
 

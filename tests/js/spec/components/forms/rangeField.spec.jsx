@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {RangeField} from 'app/components/forms';
+import {RangeField} from 'sentry/components/forms';
 
 describe('RangeField', function() {
   describe('render()', function() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import isObject from 'lodash/isObject';
 
-import {EventGroupComponent} from 'app/types';
+import {EventGroupComponent} from 'sentry/types';
 
 import GroupingComponent, {
   GroupingValue,

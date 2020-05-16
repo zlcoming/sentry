@@ -4,12 +4,12 @@ import styled from '@emotion/styled';
 import * as PopperJS from 'popper.js';
 import {Manager, Reference, Popper} from 'react-popper';
 
-import {t} from 'app/locale';
-import {IconEllipsis} from 'app/icons';
-import space from 'app/styles/space';
-import {getAggregateAlias} from 'app/utils/discover/fields';
-import {TableDataRow} from 'app/utils/discover/discoverQuery';
-import {QueryResults} from 'app/utils/tokenizeSearch';
+import {t} from 'sentry/locale';
+import {IconEllipsis} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import {getAggregateAlias} from 'sentry/utils/discover/fields';
+import {TableDataRow} from 'sentry/utils/discover/discoverQuery';
+import {QueryResults} from 'sentry/utils/tokenizeSearch';
 
 import {TableColumn} from './types';
 

@@ -3,26 +3,26 @@ import React from 'react';
 import omit from 'lodash/omit';
 import styled from '@emotion/styled';
 
-import {Panel, PanelHeader, PanelBody, PanelItem} from 'app/components/panels';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
+import {Panel, PanelHeader, PanelBody, PanelItem} from 'sentry/components/panels';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import FileSize from 'app/components/fileSize';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import SentryTypes from 'app/sentryTypes';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import space from 'app/styles/space';
-import {IconDelete, IconOpen} from 'app/icons';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import FileSize from 'sentry/components/fileSize';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import SentryTypes from 'sentry/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import space from 'sentry/styles/space';
+import {IconDelete, IconOpen} from 'sentry/icons';
 
 class ReleaseArtifacts extends React.Component {
   static propTypes = {

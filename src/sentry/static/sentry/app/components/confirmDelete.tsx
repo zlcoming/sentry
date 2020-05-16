@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Confirm from 'app/components/confirm';
-import Alert from 'app/components/alert';
-import Input from 'app/views/settings/components/forms/controls/input';
-import Field from 'app/views/settings/components/forms/field';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
+import Confirm from 'sentry/components/confirm';
+import Alert from 'sentry/components/alert';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import Field from 'sentry/views/settings/components/forms/field';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
 
 const defaultProps = {
   priority: 'primary' as React.ComponentProps<typeof Button>['priority'],

@@ -2,7 +2,7 @@ import React from 'react';
 // import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import Badge from 'app/components/badge';
+import Badge from 'sentry/components/badge';
 
 export default {
   title: 'UI/Badge',

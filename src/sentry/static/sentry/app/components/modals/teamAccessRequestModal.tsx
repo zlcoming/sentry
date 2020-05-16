@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {Client} from 'app/api';
-import {ModalRenderProps, TeamAccessRequestModalOptions} from 'app/actionCreators/modal';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {Client} from 'sentry/api';
+import {
+  ModalRenderProps,
+  TeamAccessRequestModalOptions,
+} from 'sentry/actionCreators/modal';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 type Props = ModalRenderProps &
   TeamAccessRequestModalOptions & {

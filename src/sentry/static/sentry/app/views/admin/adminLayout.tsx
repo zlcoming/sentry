@@ -2,8 +2,8 @@ import DocumentTitle from 'react-document-title';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import ListLink from 'app/components/links/listLink';
+import space from 'sentry/styles/space';
+import ListLink from 'sentry/components/links/listLink';
 
 const AdminLayout: React.FC = ({children}) => (
   <DocumentTitle title="Sentry Admin">

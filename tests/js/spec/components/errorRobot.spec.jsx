@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import {ErrorRobot} from 'app/components/errorRobot';
+import {Client} from 'sentry/api';
+import {ErrorRobot} from 'sentry/components/errorRobot';
 
 describe('ErrorRobot', function() {
   let getIssues;

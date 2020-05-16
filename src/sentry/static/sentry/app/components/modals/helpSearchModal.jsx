@@ -3,10 +3,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {ClassNames, css} from '@emotion/core';
 
-import {t} from 'app/locale';
-import Search from 'app/components/search';
-import HelpSource from 'app/components/search/sources/helpSource';
-import theme from 'app/utils/theme';
+import {t} from 'sentry/locale';
+import Search from 'sentry/components/search';
+import HelpSource from 'sentry/components/search/sources/helpSource';
+import theme from 'sentry/utils/theme';
 
 class HelpSearchModal extends React.Component {
   static propTypes = {

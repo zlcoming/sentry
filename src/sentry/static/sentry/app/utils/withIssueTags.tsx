@@ -3,10 +3,10 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import assign from 'lodash/assign';
 
-import getDisplayName from 'app/utils/getDisplayName';
-import MemberListStore from 'app/stores/memberListStore';
-import TagStore from 'app/stores/tagStore';
-import {User, TagCollection} from 'app/types';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import MemberListStore from 'sentry/stores/memberListStore';
+import TagStore from 'sentry/stores/tagStore';
+import {User, TagCollection} from 'sentry/types';
 
 type InjectedTagsProps = {
   tags: TagCollection;

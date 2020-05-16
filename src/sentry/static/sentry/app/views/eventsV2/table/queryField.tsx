@@ -5,13 +5,17 @@ import cloneDeep from 'lodash/cloneDeep';
 // eslint-disable-next-line import/named
 import {components, SingleValueProps, OptionProps} from 'react-select';
 
-import Input from 'app/views/settings/components/forms/controls/input';
-import SelectControl from 'app/components/forms/selectControl';
-import {SelectValue} from 'app/types';
-import {t} from 'app/locale';
-import Badge from 'app/components/badge';
-import space from 'app/styles/space';
-import {ColumnType, AggregateParameter, QueryFieldValue} from 'app/utils/discover/fields';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import SelectControl from 'sentry/components/forms/selectControl';
+import {SelectValue} from 'sentry/types';
+import {t} from 'sentry/locale';
+import Badge from 'sentry/components/badge';
+import space from 'sentry/styles/space';
+import {
+  ColumnType,
+  AggregateParameter,
+  QueryFieldValue,
+} from 'sentry/utils/discover/fields';
 
 import {FieldValueKind, FieldValue} from './types';
 

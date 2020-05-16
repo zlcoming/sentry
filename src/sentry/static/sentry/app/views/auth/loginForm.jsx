@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {formFooterClass} from 'app/views/auth/login';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import Form from 'app/components/forms/form';
-import Link from 'app/components/links/link';
-import PasswordField from 'app/components/forms/passwordField';
-import {IconGithub, IconGoogle, IconVsts} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import TextField from 'app/components/forms/textField';
-import space from 'app/styles/space';
+import {formFooterClass} from 'sentry/views/auth/login';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import Form from 'sentry/components/forms/form';
+import Link from 'sentry/components/links/link';
+import PasswordField from 'sentry/components/forms/passwordField';
+import {IconGithub, IconGoogle, IconVsts} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import TextField from 'sentry/components/forms/textField';
+import space from 'sentry/styles/space';
 
 // TODO(epurkhiser): The abstraction here would be much nicer if we just
 // exposed a configuration object telling us what auth providers there are.

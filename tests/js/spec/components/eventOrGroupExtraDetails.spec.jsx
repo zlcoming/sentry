@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import EventOrGroupExtraDetails from 'app/components/eventOrGroupExtraDetails';
+import EventOrGroupExtraDetails from 'sentry/components/eventOrGroupExtraDetails';
 
 describe('EventOrGroupExtraDetails', function() {
   it('renders last and first seen', function() {

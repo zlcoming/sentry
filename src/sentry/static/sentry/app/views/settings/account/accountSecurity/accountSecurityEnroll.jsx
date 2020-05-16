@@ -1,28 +1,28 @@
 import {withRouter} from 'react-router';
 import React from 'react';
 
-import {PanelItem} from 'app/components/panels';
+import {PanelItem} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {openRecoveryOptions} from 'app/actionCreators/modal';
-import {fetchOrganizationByMember} from 'app/actionCreators/organizations';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import CircleIndicator from 'app/components/circleIndicator';
-import Field from 'app/views/settings/components/forms/field';
-import Form from 'app/views/settings/components/forms/form';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import Qrcode from 'app/components/qrcode';
-import RemoveConfirm from 'app/views/settings/account/accountSecurity/components/removeConfirm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import U2fsign from 'app/components/u2f/u2fsign';
-import getPendingInvite from 'app/utils/getPendingInvite';
+} from 'sentry/actionCreators/indicator';
+import {openRecoveryOptions} from 'sentry/actionCreators/modal';
+import {fetchOrganizationByMember} from 'sentry/actionCreators/organizations';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import CircleIndicator from 'sentry/components/circleIndicator';
+import Field from 'sentry/views/settings/components/forms/field';
+import Form from 'sentry/views/settings/components/forms/form';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import Qrcode from 'sentry/components/qrcode';
+import RemoveConfirm from 'sentry/views/settings/account/accountSecurity/components/removeConfirm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import U2fsign from 'sentry/components/u2f/u2fsign';
+import getPendingInvite from 'sentry/utils/getPendingInvite';
 
 /**
  * Retrieve additional form fields (or modify ones) based on 2fa method

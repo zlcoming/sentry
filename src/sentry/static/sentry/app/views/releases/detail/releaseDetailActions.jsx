@@ -2,16 +2,16 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {addErrorMessage, addLoadingMessage} from 'app/actionCreators/indicator';
-import SentryTypes from 'app/sentryTypes';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import {IconDelete} from 'app/icons';
-import Feature from 'app/components/acl/feature';
-import SwitchReleasesButton from 'app/views/releasesV2/utils/switchReleasesButton';
-import ButtonBar from 'app/components/buttonBar';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import {addErrorMessage, addLoadingMessage} from 'sentry/actionCreators/indicator';
+import SentryTypes from 'sentry/sentryTypes';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import {IconDelete} from 'sentry/icons';
+import Feature from 'sentry/components/acl/feature';
+import SwitchReleasesButton from 'sentry/views/releasesV2/utils/switchReleasesButton';
+import ButtonBar from 'sentry/components/buttonBar';
+import space from 'sentry/styles/space';
 
 import {deleteRelease} from './utils';
 

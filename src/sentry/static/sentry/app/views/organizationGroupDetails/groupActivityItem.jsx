@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t, tct, tn} from 'app/locale';
-import CommitLink from 'app/components/commitLink';
-import Duration from 'app/components/duration';
-import MemberListStore from 'app/stores/memberListStore';
-import PullRequestLink from 'app/components/pullRequestLink';
-import TeamStore from 'app/stores/teamStore';
-import Version from 'app/components/version';
+import {t, tct, tn} from 'sentry/locale';
+import CommitLink from 'sentry/components/commitLink';
+import Duration from 'sentry/components/duration';
+import MemberListStore from 'sentry/stores/memberListStore';
+import PullRequestLink from 'sentry/components/pullRequestLink';
+import TeamStore from 'sentry/stores/teamStore';
+import Version from 'sentry/components/version';
 
 class GroupActivityItem extends React.Component {
   static propTypes = {

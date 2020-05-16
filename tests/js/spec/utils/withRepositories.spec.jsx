@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import RepositoryStore from 'app/stores/repositoryStore';
-import withRepositories from 'app/utils/withRepositories';
+import RepositoryStore from 'sentry/stores/repositoryStore';
+import withRepositories from 'sentry/utils/withRepositories';
 
 describe('withRepositories HoC', function() {
   const orgSlug = 'myOrg';

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconSize} from 'app/utils/theme';
-import Tooltip from 'app/components/tooltip';
-import {IconQuestion} from 'app/icons';
+import {IconSize} from 'sentry/utils/theme';
+import Tooltip from 'sentry/components/tooltip';
+import {IconQuestion} from 'sentry/icons';
 
 type ContainerProps = {
   className?: string;

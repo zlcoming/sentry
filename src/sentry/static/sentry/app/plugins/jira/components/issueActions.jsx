@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {Form, FormState} from 'app/components/forms';
-import DefaultIssuePlugin from 'app/plugins/defaultIssuePlugin';
+import {Form, FormState} from 'sentry/components/forms';
+import DefaultIssuePlugin from 'sentry/plugins/defaultIssuePlugin';
 
 class IssueActions extends DefaultIssuePlugin.DefaultIssueActions {
   changeField(action, name, value) {

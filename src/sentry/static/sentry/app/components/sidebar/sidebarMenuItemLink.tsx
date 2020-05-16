@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Link from 'app/components/links/link';
-import ExternalLink from 'app/components/links/externalLink';
+import Link from 'sentry/components/links/link';
+import ExternalLink from 'sentry/components/links/externalLink';
 
 type Props = {
   // SidebarMenuItemLink content (accepted via string or components / DOM nodes)

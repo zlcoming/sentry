@@ -1,10 +1,10 @@
 import React from 'react';
 import omit from 'lodash/omit';
 
-import CrumbTable from 'app/components/events/interfaces/breadcrumbs/crumbTable';
-import SummaryLine from 'app/components/events/interfaces/breadcrumbs/summaryLine';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {defined} from 'app/utils';
+import CrumbTable from 'sentry/components/events/interfaces/breadcrumbs/crumbTable';
+import SummaryLine from 'sentry/components/events/interfaces/breadcrumbs/summaryLine';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {defined} from 'sentry/utils';
 
 import getBreadcrumbCustomRendererValue from './getBreadcrumbCustomRendererValue';
 import {BreadcrumbTypeDefault} from './types';

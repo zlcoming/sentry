@@ -2,16 +2,16 @@ import React from 'react';
 import {Location} from 'history';
 import styled from '@emotion/styled';
 
-import {Organization} from 'app/types';
-import space from 'app/styles/space';
-import EventView from 'app/utils/discover/eventView';
-import {t} from 'app/locale';
-import {getFieldRenderer} from 'app/utils/discover/fieldRenderers';
-import {getTermHelp} from 'app/views/performance/data';
-import DiscoverQuery, {TableDataRow} from 'app/utils/discover/discoverQuery';
-import QuestionTooltip from 'app/components/questionTooltip';
-import {SectionHeading} from 'app/components/charts/styles';
-import UserMisery from 'app/components/userMisery';
+import {Organization} from 'sentry/types';
+import space from 'sentry/styles/space';
+import EventView from 'sentry/utils/discover/eventView';
+import {t} from 'sentry/locale';
+import {getFieldRenderer} from 'sentry/utils/discover/fieldRenderers';
+import {getTermHelp} from 'sentry/views/performance/data';
+import DiscoverQuery, {TableDataRow} from 'sentry/utils/discover/discoverQuery';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import {SectionHeading} from 'sentry/components/charts/styles';
+import UserMisery from 'sentry/components/userMisery';
 
 type Props = {
   location: Location;

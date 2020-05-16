@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Organization, EventAttachment} from 'app/types';
-import ConfigStore from 'app/stores/configStore';
-import withOrganization from 'app/utils/withOrganization';
-import SentryTypes from 'app/sentryTypes';
+import {Organization, EventAttachment} from 'sentry/types';
+import ConfigStore from 'sentry/stores/configStore';
+import withOrganization from 'sentry/utils/withOrganization';
+import SentryTypes from 'sentry/sentryTypes';
 
 type Props = {
   organization: Organization;

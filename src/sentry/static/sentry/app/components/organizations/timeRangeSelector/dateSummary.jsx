@@ -6,9 +6,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 
-import {DEFAULT_DAY_END_TIME, DEFAULT_DAY_START_TIME} from 'app/utils/dates';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
+import {DEFAULT_DAY_END_TIME, DEFAULT_DAY_START_TIME} from 'sentry/utils/dates';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 class DateSummary extends React.Component {
   static propTypes = {

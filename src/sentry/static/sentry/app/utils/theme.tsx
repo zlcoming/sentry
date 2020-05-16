@@ -1,6 +1,6 @@
 import color from 'color';
 
-import CHART_PALETTE from 'app/constants/chartPalette';
+import CHART_PALETTE from 'sentry/constants/chartPalette';
 
 const colors = {
   white: '#FFFFFF',

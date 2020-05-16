@@ -1,10 +1,10 @@
 import React from 'react';
 
-import AccountSettingsNavigation from 'app/views/settings/account/accountSettingsNavigation';
-import {fetchOrganizationDetails} from 'app/actionCreators/organizations';
-import SentryTypes from 'app/sentryTypes';
-import SettingsLayout from 'app/views/settings/components/settingsLayout';
-import withLatestContext from 'app/utils/withLatestContext';
+import AccountSettingsNavigation from 'sentry/views/settings/account/accountSettingsNavigation';
+import {fetchOrganizationDetails} from 'sentry/actionCreators/organizations';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsLayout from 'sentry/views/settings/components/settingsLayout';
+import withLatestContext from 'sentry/utils/withLatestContext';
 
 class AccountSettingsLayout extends React.Component {
   static propTypes = {

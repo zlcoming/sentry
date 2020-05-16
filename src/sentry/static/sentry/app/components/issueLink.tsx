@@ -3,16 +3,16 @@ import React from 'react';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Count from 'app/components/count';
-import EventAnnotation from 'app/components/events/eventAnnotation';
-import EventMessage from 'app/components/events/eventMessage';
-import EventOrGroupTitle from 'app/components/eventOrGroupTitle';
-import Hovercard from 'app/components/hovercard';
-import TimeSince from 'app/components/timeSince';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import {Group} from 'app/types';
+import {t} from 'sentry/locale';
+import Count from 'sentry/components/count';
+import EventAnnotation from 'sentry/components/events/eventAnnotation';
+import EventMessage from 'sentry/components/events/eventMessage';
+import EventOrGroupTitle from 'sentry/components/eventOrGroupTitle';
+import Hovercard from 'sentry/components/hovercard';
+import TimeSince from 'sentry/components/timeSince';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import {Group} from 'sentry/types';
 
 type Props = {
   orgId: string;

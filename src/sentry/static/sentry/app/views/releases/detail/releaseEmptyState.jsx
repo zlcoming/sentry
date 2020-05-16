@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import Button from 'app/components/button';
-import Well from 'app/components/well';
-import {IconCommit} from 'app/icons';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import withOrganization from 'app/utils/withOrganization';
+import space from 'sentry/styles/space';
+import Button from 'sentry/components/button';
+import Well from 'sentry/components/well';
+import {IconCommit} from 'sentry/icons';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class ReleaseEmptyState extends React.Component {
   static propTypes = {

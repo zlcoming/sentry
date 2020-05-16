@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import DropdownButton from 'app/components/dropdownButton';
-import DropdownMenu from 'app/components/dropdownMenu';
-import {InlineContainer, SectionHeading} from 'app/components/charts/styles';
-import {DropdownItem} from 'app/components/dropdownControl';
-import DropdownBubble from 'app/components/dropdownBubble';
-import space from 'app/styles/space';
-import {SelectValue} from 'app/types';
+import DropdownButton from 'sentry/components/dropdownButton';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import {InlineContainer, SectionHeading} from 'sentry/components/charts/styles';
+import {DropdownItem} from 'sentry/components/dropdownControl';
+import DropdownBubble from 'sentry/components/dropdownBubble';
+import space from 'sentry/styles/space';
+import {SelectValue} from 'sentry/types';
 
 type Props = {
   options: SelectValue<string>[];

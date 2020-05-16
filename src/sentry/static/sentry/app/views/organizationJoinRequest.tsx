@@ -2,14 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Params} from 'react-router/lib/Router';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t, tct} from 'app/locale';
-import {trackAdhocEvent} from 'app/utils/analytics';
-import EmailField from 'app/views/settings/components/forms/emailField';
-import Form from 'app/views/settings/components/forms/form';
-import {IconMegaphone} from 'app/icons';
-import NarrowLayout from 'app/components/narrowLayout';
-import space from 'app/styles/space';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t, tct} from 'sentry/locale';
+import {trackAdhocEvent} from 'sentry/utils/analytics';
+import EmailField from 'sentry/views/settings/components/forms/emailField';
+import Form from 'sentry/views/settings/components/forms/form';
+import {IconMegaphone} from 'sentry/icons';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import space from 'sentry/styles/space';
 
 type Props = {
   params: Params;

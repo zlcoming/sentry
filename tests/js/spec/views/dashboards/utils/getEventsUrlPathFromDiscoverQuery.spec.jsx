@@ -1,4 +1,4 @@
-import {getEventsUrlPathFromDiscoverQuery} from 'app/views/dashboards/utils/getEventsUrlPathFromDiscoverQuery';
+import {getEventsUrlPathFromDiscoverQuery} from 'sentry/views/dashboards/utils/getEventsUrlPathFromDiscoverQuery';
 
 describe('getEventsUrlPathFromDiscoverQuery', function() {
   const organization = TestStubs.Organization();

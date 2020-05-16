@@ -1,20 +1,20 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {ApiApplication} from 'app/types';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
+import {ApiApplication} from 'sentry/types';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import Row from 'app/views/settings/account/apiApplications/row';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import {IconAdd} from 'app/icons';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import Row from 'sentry/views/settings/account/apiApplications/row';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import {IconAdd} from 'sentry/icons';
 
 const ROUTE_PREFIX = '/settings/account/api/';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import SentryTypes from 'app/sentryTypes';
-import EventsChart from 'app/components/charts/eventsChart';
-import withApi from 'app/utils/withApi';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
+import SentryTypes from 'sentry/sentryTypes';
+import EventsChart from 'sentry/components/charts/eventsChart';
+import withApi from 'sentry/utils/withApi';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
 
 const Chart = withGlobalSelection(
   withApi(

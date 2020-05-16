@@ -6,34 +6,34 @@ import scrollToElement from 'scroll-to-element';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {Panel, PanelItem, PanelBody, PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Form from 'app/views/settings/components/forms/form';
-import FormModel, {FieldValue} from 'app/views/settings/components/forms/model';
-import FormField from 'app/views/settings/components/forms/formField';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import {IconAdd, IconDelete} from 'app/icons';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import PermissionsObserver from 'app/views/settings/organizationDeveloperSettings/permissionsObserver';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {Panel, PanelItem, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Form from 'sentry/views/settings/components/forms/form';
+import FormModel, {FieldValue} from 'sentry/views/settings/components/forms/model';
+import FormField from 'sentry/views/settings/components/forms/formField';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import {IconAdd, IconDelete} from 'sentry/icons';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import PermissionsObserver from 'sentry/views/settings/organizationDeveloperSettings/permissionsObserver';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
 import {
   publicIntegrationForms,
   internalIntegrationForms,
-} from 'app/data/forms/sentryApplication';
-import getDynamicText from 'app/utils/getDynamicText';
-import routeTitleGen from 'app/utils/routeTitle';
-import DateTime from 'app/components/dateTime';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
+} from 'sentry/data/forms/sentryApplication';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import DateTime from 'sentry/components/dateTime';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
 import {
   addSentryAppToken,
   removeSentryAppToken,
-} from 'app/actionCreators/sentryAppTokens';
-import {SentryApp, InternalAppApiToken, Scope} from 'app/types';
-import Tooltip from 'app/components/tooltip';
-import {SENTRY_APP_PERMISSIONS} from 'app/constants';
+} from 'sentry/actionCreators/sentryAppTokens';
+import {SentryApp, InternalAppApiToken, Scope} from 'sentry/types';
+import Tooltip from 'sentry/components/tooltip';
+import {SENTRY_APP_PERMISSIONS} from 'sentry/constants';
 
 type Resource = 'Project' | 'Team' | 'Release' | 'Event' | 'Organization' | 'Member';
 

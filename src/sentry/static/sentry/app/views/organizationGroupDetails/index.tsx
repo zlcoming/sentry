@@ -1,10 +1,10 @@
 import * as ReactRouter from 'react-router';
 import React from 'react';
 
-import {analytics, metric} from 'app/utils/analytics';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import withOrganization, {isLightweightOrganization} from 'app/utils/withOrganization';
-import {GlobalSelection, Organization} from 'app/types';
+import {analytics, metric} from 'sentry/utils/analytics';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import withOrganization, {isLightweightOrganization} from 'sentry/utils/withOrganization';
+import {GlobalSelection, Organization} from 'sentry/types';
 
 import GroupDetails from './groupDetails';
 

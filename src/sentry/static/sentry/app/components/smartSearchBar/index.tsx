@@ -8,35 +8,35 @@ import debounce from 'lodash/debounce';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import {defined} from 'app/utils';
-import {getParams} from 'app/components/organizations/globalSelectionHeader/getParams';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import CreateSavedSearchButton from 'app/views/issueList/createSavedSearchButton';
-import DropdownLink from 'app/components/dropdownLink';
-import {IconEllipsis, IconSearch, IconSliders, IconClose, IconPin} from 'app/icons';
-import MemberListStore from 'app/stores/memberListStore';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import {Client} from 'app/api';
-import {LightWeightOrganization, SavedSearch, Tag} from 'app/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import {defined} from 'sentry/utils';
+import {getParams} from 'sentry/components/organizations/globalSelectionHeader/getParams';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import CreateSavedSearchButton from 'sentry/views/issueList/createSavedSearchButton';
+import DropdownLink from 'sentry/components/dropdownLink';
+import {IconEllipsis, IconSearch, IconSliders, IconClose, IconPin} from 'sentry/icons';
+import MemberListStore from 'sentry/stores/memberListStore';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Client} from 'sentry/api';
+import {LightWeightOrganization, SavedSearch, Tag} from 'sentry/types';
 import {
   fetchRecentSearches,
   pinSearch,
   saveRecentSearch,
   unpinSearch,
-} from 'app/actionCreators/savedSearches';
+} from 'sentry/actionCreators/savedSearches';
 import {
   DEFAULT_DEBOUNCE_DURATION,
   MAX_AUTOCOMPLETE_RELEASES,
   NEGATION_OPERATOR,
-} from 'app/constants';
+} from 'sentry/constants';
 
 import SearchDropdown from './searchDropdown';
 import {SearchItem, SearchType, SearchGroup, ItemType} from './types';

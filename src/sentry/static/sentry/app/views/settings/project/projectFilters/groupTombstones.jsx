@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import Avatar from 'app/components/avatar';
-import EventOrGroupHeader from 'app/components/eventOrGroupHeader';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import Tooltip from 'app/components/tooltip';
-import {IconDelete} from 'app/icons';
-import {Panel, PanelItem} from 'app/components/panels';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import space from 'app/styles/space';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Avatar from 'sentry/components/avatar';
+import EventOrGroupHeader from 'sentry/components/eventOrGroupHeader';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import Tooltip from 'sentry/components/tooltip';
+import {IconDelete} from 'sentry/icons';
+import {Panel, PanelItem} from 'sentry/components/panels';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import space from 'sentry/styles/space';
 
 class GroupTombstoneRow extends React.Component {
   static propTypes = {

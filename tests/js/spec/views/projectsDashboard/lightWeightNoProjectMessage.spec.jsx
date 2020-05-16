@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import ProjectsStore from 'app/stores/projectsStore';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import ProjectsStore from 'sentry/stores/projectsStore';
 
 describe('LightWeightNoProjectMessage', function() {
   beforeEach(function() {

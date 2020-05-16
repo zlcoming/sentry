@@ -10,21 +10,21 @@ import {
   CellMeasurerCache,
 } from 'react-virtualized';
 
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import space from 'app/styles/space';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import Button from 'app/components/button';
-import Checkbox from 'app/components/checkbox';
-import EventDataSection from 'app/components/events/eventDataSection';
-import {Panel, PanelBody} from 'app/components/panels';
-import DebugMetaStore, {DebugMetaActions} from 'app/stores/debugMetaStore';
-import SearchBar from 'app/components/searchBar';
-import {parseAddress, getImageRange} from 'app/components/events/interfaces/utils';
-import ImageForBar from 'app/components/events/interfaces/imageForBar';
-import {t, tct} from 'app/locale';
-import ClippedBox from 'app/components/clippedBox';
-import {IconWarning} from 'app/icons';
-import {Organization, Project, Event, Frame} from 'app/types';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import space from 'sentry/styles/space';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import Button from 'sentry/components/button';
+import Checkbox from 'sentry/components/checkbox';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import DebugMetaStore, {DebugMetaActions} from 'sentry/stores/debugMetaStore';
+import SearchBar from 'sentry/components/searchBar';
+import {parseAddress, getImageRange} from 'sentry/components/events/interfaces/utils';
+import ImageForBar from 'sentry/components/events/interfaces/imageForBar';
+import {t, tct} from 'sentry/locale';
+import ClippedBox from 'sentry/components/clippedBox';
+import {IconWarning} from 'sentry/icons';
+import {Organization, Project, Event, Frame} from 'sentry/types';
 
 import DebugImage from './debugImage';
 import {getFileName} from './utils';

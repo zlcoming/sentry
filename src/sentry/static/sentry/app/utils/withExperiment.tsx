@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ConfigStore from 'app/stores/configStore';
-import {Organization} from 'app/types';
-import {getDisplayName} from 'app/utils/environment';
-import {experimentConfig, unassignedValue} from 'app/data/experimentConfig';
-import {logExperiment} from 'app/utils/analytics';
+import ConfigStore from 'sentry/stores/configStore';
+import {Organization} from 'sentry/types';
+import {getDisplayName} from 'sentry/utils/environment';
+import {experimentConfig, unassignedValue} from 'sentry/data/experimentConfig';
+import {logExperiment} from 'sentry/utils/analytics';
 import {
   Experiments,
   ExperimentKey,
@@ -12,7 +12,7 @@ import {
   ExperimentType,
   OrgExperiments,
   UserExperiments,
-} from 'app/types/experiments';
+} from 'sentry/types/experiments';
 
 type Options<E extends ExperimentKey, L extends boolean> = {
   /**

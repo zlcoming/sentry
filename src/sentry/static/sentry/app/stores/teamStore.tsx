@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
-import {Team} from 'app/types';
-import TeamActions from 'app/actions/teamActions';
+import {Team} from 'sentry/types';
+import TeamActions from 'sentry/actions/teamActions';
 
 type TeamStoreInterface = {
   initialized: boolean;

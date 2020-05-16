@@ -2,8 +2,8 @@ import LazyLoad from 'react-lazyload';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BarChart from 'app/components/barChart';
-import SentryTypes from 'app/sentryTypes';
+import BarChart from 'sentry/components/barChart';
+import SentryTypes from 'sentry/sentryTypes';
 
 const ProjectStatsGraph = ({project, stats}) => {
   stats = stats || project.stats;

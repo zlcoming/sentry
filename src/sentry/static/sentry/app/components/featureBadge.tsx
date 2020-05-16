@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Tag from 'app/views/settings/components/tag';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import theme from 'app/utils/theme';
-import CircleIndicator from 'app/components/circleIndicator';
+import Tag from 'sentry/views/settings/components/tag';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import theme from 'sentry/utils/theme';
+import CircleIndicator from 'sentry/components/circleIndicator';
 
 type BadgeProps = {
   type: 'alpha' | 'beta' | 'new';

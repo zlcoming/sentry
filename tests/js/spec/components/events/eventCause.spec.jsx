@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import EventCause from 'app/components/events/eventCause';
+import {Client} from 'sentry/api';
+import EventCause from 'sentry/components/events/eventCause';
 
 describe('EventCause', function() {
   const event = TestStubs.Event();

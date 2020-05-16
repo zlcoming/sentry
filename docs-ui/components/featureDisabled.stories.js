@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import FeatureDisabled from 'app/components/acl/featureDisabled';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
 
 export default {
   title: 'UI/FeatureDisabled',

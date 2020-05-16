@@ -11,8 +11,8 @@ import {
   IconMobile,
   IconSwitch,
   IconSpan,
-} from 'app/icons';
-import {t} from 'app/locale';
+} from 'sentry/icons';
+import {t} from 'sentry/locale';
 
 import {BreadcrumbType} from './types';
 

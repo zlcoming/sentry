@@ -1,14 +1,14 @@
-import {Client} from 'app/api';
-import {t} from 'app/locale';
-import {Organization, NewQuery, SavedQuery} from 'app/types';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
+import {Client} from 'sentry/api';
+import {t} from 'sentry/locale';
+import {Organization, NewQuery, SavedQuery} from 'sentry/types';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
 import {
   createSavedQuery,
   deleteSavedQuery,
   updateSavedQuery,
-} from 'app/actionCreators/discoverSavedQueries';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import EventView from 'app/utils/discover/eventView';
+} from 'sentry/actionCreators/discoverSavedQueries';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import EventView from 'sentry/utils/discover/eventView';
 
 export function handleCreateQuery(
   api: Client,

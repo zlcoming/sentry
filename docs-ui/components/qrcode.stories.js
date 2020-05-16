@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import Qrcode from 'app/components/qrcode';
+import Qrcode from 'sentry/components/qrcode';
 
 export default {
   title: 'UI/Qrcode',

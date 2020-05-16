@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import TimeSince from 'app/components/timeSince';
-import Button from 'app/components/button';
-import {IconClock, IconDelete, IconDownload} from 'app/icons';
-import ButtonBar from 'app/components/buttonBar';
-import FileSize from 'app/components/fileSize';
-import {Artifact} from 'app/types';
-import Confirm from 'app/components/confirm';
-import Access from 'app/components/acl/access';
-import Tooltip from 'app/components/tooltip';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import TimeSince from 'sentry/components/timeSince';
+import Button from 'sentry/components/button';
+import {IconClock, IconDelete, IconDownload} from 'sentry/icons';
+import ButtonBar from 'sentry/components/buttonBar';
+import FileSize from 'sentry/components/fileSize';
+import {Artifact} from 'sentry/types';
+import Confirm from 'sentry/components/confirm';
+import Access from 'sentry/components/acl/access';
+import Tooltip from 'sentry/components/tooltip';
 
 import Tag from '../../components/tag';
 

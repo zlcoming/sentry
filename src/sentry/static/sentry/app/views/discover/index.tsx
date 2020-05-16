@@ -2,16 +2,16 @@ import React from 'react';
 import {browserHistory, WithRouterProps} from 'react-router';
 import DocumentTitle from 'react-document-title';
 
-import {getUserTimezone, getUtcToLocalDateObject} from 'app/utils/dates';
-import {t} from 'app/locale';
-import {updateProjects, updateDateTime} from 'app/actionCreators/globalSelection';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import withOrganization from 'app/utils/withOrganization';
-import Feature from 'app/components/acl/feature';
-import Alert from 'app/components/alert';
-import {GlobalSelection, Organization} from 'app/types';
-import {getDiscoverLandingUrl} from 'app/utils/discover/urls';
-import Redirect from 'app/utils/redirect';
+import {getUserTimezone, getUtcToLocalDateObject} from 'sentry/utils/dates';
+import {t} from 'sentry/locale';
+import {updateProjects, updateDateTime} from 'sentry/actionCreators/globalSelection';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import withOrganization from 'sentry/utils/withOrganization';
+import Feature from 'sentry/components/acl/feature';
+import Alert from 'sentry/components/alert';
+import {GlobalSelection, Organization} from 'sentry/types';
+import {getDiscoverLandingUrl} from 'sentry/utils/discover/urls';
+import Redirect from 'sentry/utils/redirect';
 
 import Discover from './discover';
 import createQueryBuilder from './queryBuilder';

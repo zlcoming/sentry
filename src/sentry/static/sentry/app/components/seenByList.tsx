@@ -3,14 +3,14 @@ import classNames from 'classnames';
 import moment from 'moment';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {User} from 'app/types';
-import {IconShow} from 'app/icons';
-import {userDisplayName} from 'app/utils/formatters';
-import AvatarList from 'app/components/avatar/avatarList';
-import ConfigStore from 'app/stores/configStore';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import {User} from 'sentry/types';
+import {IconShow} from 'sentry/icons';
+import {userDisplayName} from 'sentry/utils/formatters';
+import AvatarList from 'sentry/components/avatar/avatarList';
+import ConfigStore from 'sentry/stores/configStore';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
 
 type Props = {
   // Avatar size

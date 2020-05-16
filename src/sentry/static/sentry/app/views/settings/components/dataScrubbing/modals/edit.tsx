@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 import ModalManager from './modalManager';
 import {Rule, ProjectId} from '../types';

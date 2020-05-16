@@ -3,7 +3,7 @@ import React from 'react';
 import {Link as RouterLink} from 'react-router';
 import * as qs from 'query-string';
 
-import {extractSelectionParameters} from 'app/components/organizations/globalSelectionHeader/utils';
+import {extractSelectionParameters} from 'sentry/components/organizations/globalSelectionHeader/utils';
 
 /**
  * A modified link used for navigating between organization level pages that

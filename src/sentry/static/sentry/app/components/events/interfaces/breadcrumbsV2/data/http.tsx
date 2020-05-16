@@ -1,11 +1,11 @@
 import React from 'react';
 import omit from 'lodash/omit';
 
-import ExternalLink from 'app/components/links/externalLink';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {t} from 'app/locale';
-import {defined} from 'app/utils';
-import Highlight from 'app/components/highlight';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {t} from 'sentry/locale';
+import {defined} from 'sentry/utils';
+import Highlight from 'sentry/components/highlight';
 
 import getBreadcrumbCustomRendererValue from '../../breadcrumbs/getBreadcrumbCustomRendererValue';
 import {BreadcrumbTypeHTTP} from '../types';

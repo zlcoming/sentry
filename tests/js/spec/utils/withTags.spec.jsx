@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import TagStore from 'app/stores/tagStore';
-import withTags from 'app/utils/withTags';
+import TagStore from 'sentry/stores/tagStore';
+import withTags from 'sentry/utils/withTags';
 
 describe('withTags HoC', function() {
   beforeEach(() => {

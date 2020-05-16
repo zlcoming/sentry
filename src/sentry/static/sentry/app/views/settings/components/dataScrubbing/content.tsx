@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import {IconWarning} from 'app/icons';
+import {t} from 'sentry/locale';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import {IconWarning} from 'sentry/icons';
 
 import Rules from './rules';
 import {Rule} from './types';

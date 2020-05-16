@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import {IconInfo} from 'app/icons';
-import space from 'app/styles/space';
-import ExternalLink from 'app/components/links/externalLink';
-import Link from 'app/components/links/link';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import {IconInfo} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Link from 'sentry/components/links/link';
 
 const NotFound = () => (
   <NotFoundAlert type="error" icon={<IconInfo size="lg" />}>

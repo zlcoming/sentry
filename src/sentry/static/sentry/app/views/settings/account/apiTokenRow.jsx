@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {IconSubtract} from 'app/icons';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import DateTime from 'app/components/dateTime';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import getDynamicText from 'app/utils/getDynamicText';
-import space from 'app/styles/space';
+import {PanelItem} from 'sentry/components/panels';
+import {IconSubtract} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import DateTime from 'sentry/components/dateTime';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import space from 'sentry/styles/space';
 
 class ApiTokenRow extends React.Component {
   static propTypes = {

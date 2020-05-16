@@ -1,15 +1,15 @@
 import React from 'react';
 
-import {fetchPlugins, enablePlugin, disablePlugin} from 'app/actionCreators/plugins';
-import {t} from 'app/locale';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import withPlugins from 'app/utils/withPlugins';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {fetchPlugins, enablePlugin, disablePlugin} from 'sentry/actionCreators/plugins';
+import {t} from 'sentry/locale';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import withPlugins from 'sentry/utils/withPlugins';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 import ProjectPlugins from './projectPlugins';
 

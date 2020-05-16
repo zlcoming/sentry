@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import theme, {IconSize, Color} from 'app/utils/theme';
+import theme, {IconSize, Color} from 'sentry/utils/theme';
 
 type Props = React.SVGAttributes<SVGElement> & {
   color?: Color;

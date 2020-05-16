@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import ReleaseStore from 'app/stores/releaseStore';
-import withRelease from 'app/utils/withRelease';
+import ReleaseStore from 'sentry/stores/releaseStore';
+import withRelease from 'sentry/utils/withRelease';
 
 describe('withRelease HoC', function() {
   const orgSlug = 'myOrg';

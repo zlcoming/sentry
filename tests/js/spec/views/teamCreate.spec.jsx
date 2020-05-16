@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {TeamCreate} from 'app/views/teamCreate';
+import {TeamCreate} from 'sentry/views/teamCreate';
 
 describe('TeamCreate', function() {
   describe('render()', function() {

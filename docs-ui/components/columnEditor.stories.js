@@ -2,10 +2,10 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 
-import {openModal} from 'app/actionCreators/modal';
-import Button from 'app/components/button';
-import GlobalModal from 'app/components/globalModal';
-import ColumnEditModal, {modalCss} from 'app/views/eventsV2/table/columnEditModal';
+import {openModal} from 'sentry/actionCreators/modal';
+import Button from 'sentry/components/button';
+import GlobalModal from 'sentry/components/globalModal';
+import ColumnEditModal, {modalCss} from 'sentry/views/eventsV2/table/columnEditModal';
 
 export default {
   title: 'Discover/ColumnEditor',

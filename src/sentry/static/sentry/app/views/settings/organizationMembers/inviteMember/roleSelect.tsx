@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {MemberRole} from 'app/types';
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {t} from 'app/locale';
-import Radio from 'app/components/radio';
-import TextBlock from 'app/views/settings/components/text/textBlock';
+import {MemberRole} from 'sentry/types';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import Radio from 'sentry/components/radio';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
 
 const Label = styled('label')`
   display: flex;

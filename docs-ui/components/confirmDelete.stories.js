@@ -2,8 +2,8 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {action} from '@storybook/addon-actions';
 
-import ConfirmDelete from 'app/components/confirmDelete';
-import Button from 'app/components/button';
+import ConfirmDelete from 'sentry/components/confirmDelete';
+import Button from 'sentry/components/button';
 
 export default {
   title: 'UI/Confirm',

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import PageHeading from 'app/components/pageHeading';
+import PageHeading from 'sentry/components/pageHeading';
 
 describe('PageHeading', function() {
   it('renders', function() {

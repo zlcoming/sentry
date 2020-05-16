@@ -1,7 +1,7 @@
-import TeamActions from 'app/actions/teamActions';
-import {tct} from 'app/locale';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {uniqueId} from 'app/utils/guid';
+import TeamActions from 'sentry/actions/teamActions';
+import {tct} from 'sentry/locale';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {uniqueId} from 'sentry/utils/guid';
 
 const doCallback = (params = {}, name, ...args) => {
   if (typeof params[name] === 'function') {

@@ -1,11 +1,11 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Authenticator, OrganizationSummary} from 'app/types';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {defined} from 'app/utils';
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
+import {Authenticator, OrganizationSummary} from 'sentry/types';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {defined} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
 
 const ENDPOINT = '/users/me/authenticators/';
 

@@ -1,9 +1,9 @@
 import moment from 'moment';
 
-import {GlobalSelection} from 'app/types';
-import {DEFAULT_STATS_PERIOD} from 'app/constants';
-import {parsePeriodToHours} from 'app/utils/dates';
-import {escape} from 'app/utils';
+import {GlobalSelection} from 'sentry/types';
+import {DEFAULT_STATS_PERIOD} from 'sentry/constants';
+import {parsePeriodToHours} from 'sentry/utils/dates';
+import {escape} from 'sentry/utils';
 
 const DEFAULT_TRUNCATE_LENGTH = 80;
 

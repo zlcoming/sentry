@@ -1,8 +1,8 @@
-import CHART_PALETTE from 'app/constants/chartPalette';
+import CHART_PALETTE from 'sentry/constants/chartPalette';
 import {
   spanColors,
   pickSpanBarColour,
-} from 'app/components/events/interfaces/spans/utils';
+} from 'sentry/components/events/interfaces/spans/utils';
 
 describe('pickSpanBarColour()', function() {
   it('returns blue when undefined', function() {

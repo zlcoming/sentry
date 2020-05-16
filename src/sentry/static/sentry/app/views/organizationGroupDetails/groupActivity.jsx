@@ -5,19 +5,19 @@ import {
   addErrorMessage,
   addLoadingMessage,
   clearIndicators,
-} from 'app/actionCreators/indicator';
-import {createNote, deleteNote, updateNote} from 'app/actionCreators/group';
-import {t} from 'app/locale';
-import {uniqueId} from 'app/utils/guid';
-import ActivityAuthor from 'app/components/activity/author';
-import ActivityItem from 'app/components/activity/item';
-import ConfigStore from 'app/stores/configStore';
-import ErrorBoundary from 'app/components/errorBoundary';
-import Note from 'app/components/activity/note';
-import NoteInputWithStorage from 'app/components/activity/note/inputWithStorage';
-import SentryTypes from 'app/sentryTypes';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/indicator';
+import {createNote, deleteNote, updateNote} from 'sentry/actionCreators/group';
+import {t} from 'sentry/locale';
+import {uniqueId} from 'sentry/utils/guid';
+import ActivityAuthor from 'sentry/components/activity/author';
+import ActivityItem from 'sentry/components/activity/item';
+import ConfigStore from 'sentry/stores/configStore';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import Note from 'sentry/components/activity/note';
+import NoteInputWithStorage from 'sentry/components/activity/note/inputWithStorage';
+import SentryTypes from 'sentry/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import GroupActivityItem from './groupActivityItem';
 

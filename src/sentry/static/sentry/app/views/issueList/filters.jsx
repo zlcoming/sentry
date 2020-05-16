@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PageHeader} from 'app/styles/organization';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {t} from 'app/locale';
-import PageHeading from 'app/components/pageHeading';
-import QueryCount from 'app/components/queryCount';
-import SentryTypes from 'app/sentryTypes';
+import {PageHeader} from 'sentry/styles/organization';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {t} from 'sentry/locale';
+import PageHeading from 'sentry/components/pageHeading';
+import QueryCount from 'sentry/components/queryCount';
+import SentryTypes from 'sentry/sentryTypes';
 
 import IssueListSearchBar from './searchBar';
 import IssueListSortOptions from './sortOptions';

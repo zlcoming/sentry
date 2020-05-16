@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueList';
-import Annotated from 'app/components/events/meta/annotated';
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import {objectIsEmpty} from 'app/utils';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueList';
+import Annotated from 'sentry/components/events/meta/annotated';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import {objectIsEmpty} from 'sentry/utils';
 
 class MessageInterface extends React.Component {
   static propTypes = {

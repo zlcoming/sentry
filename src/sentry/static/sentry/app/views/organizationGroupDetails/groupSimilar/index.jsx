@@ -5,12 +5,12 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import * as queryString from 'query-string';
 
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
-import GroupingActions from 'app/actions/groupingActions';
-import GroupingStore from 'app/stores/groupingStore';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
+import GroupingActions from 'sentry/actions/groupingActions';
+import GroupingStore from 'sentry/stores/groupingStore';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
 
 import SimilarList from './similarList';
 

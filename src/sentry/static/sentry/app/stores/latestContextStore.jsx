@@ -1,9 +1,9 @@
 import Reflux from 'reflux';
 
-import ProjectActions from 'app/actions/projectActions';
-import OrganizationActions from 'app/actions/organizationActions';
-import OrganizationsActions from 'app/actions/organizationsActions';
-import NavigationActions from 'app/actions/navigationActions';
+import ProjectActions from 'sentry/actions/projectActions';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import OrganizationsActions from 'sentry/actions/organizationsActions';
+import NavigationActions from 'sentry/actions/navigationActions';
 
 // Keeps track of last usable project/org
 // this currently won't track when users navigate out of a org/project completely,

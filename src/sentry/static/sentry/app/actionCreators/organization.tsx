@@ -1,14 +1,14 @@
 import * as Sentry from '@sentry/react';
 
-import {Client} from 'app/api';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {setActiveOrganization} from 'app/actionCreators/organizations';
-import GlobalSelectionActions from 'app/actions/globalSelectionActions';
-import OrganizationActions from 'app/actions/organizationActions';
-import ProjectActions from 'app/actions/projectActions';
-import ProjectsStore from 'app/stores/projectsStore';
-import TeamActions from 'app/actions/teamActions';
-import TeamStore from 'app/stores/teamStore';
+import {Client} from 'sentry/api';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {setActiveOrganization} from 'sentry/actionCreators/organizations';
+import GlobalSelectionActions from 'sentry/actions/globalSelectionActions';
+import OrganizationActions from 'sentry/actions/organizationActions';
+import ProjectActions from 'sentry/actions/projectActions';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import TeamActions from 'sentry/actions/teamActions';
+import TeamStore from 'sentry/stores/teamStore';
 
 /**
  * Fetches an organization's details with an option for the detailed representation

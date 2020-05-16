@@ -2,9 +2,8 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import ProjectAlertSettings from 'app/views/settings/projectAlerts/settings';
+import {Client} from 'sentry/api';
+import ProjectAlertSettings from 'sentry/views/settings/projectAlerts/settings';
 
 describe('ProjectAlertSettings', function() {
   let organization;

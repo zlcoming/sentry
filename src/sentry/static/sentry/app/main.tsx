@@ -4,10 +4,10 @@ import {cache} from 'emotion'; // eslint-disable-line emotion/no-vanilla
 import React from 'react';
 import {Router, browserHistory} from 'react-router';
 
-import GlobalStyles from 'app/styles/global';
-import routes from 'app/routes';
-import theme from 'app/utils/theme';
-import {loadPreferencesState} from 'app/actionCreators/preferences';
+import GlobalStyles from 'sentry/styles/global';
+import routes from 'sentry/routes';
+import theme from 'sentry/utils/theme';
+import {loadPreferencesState} from 'sentry/actionCreators/preferences';
 
 class Main extends React.Component {
   componentDidMount() {

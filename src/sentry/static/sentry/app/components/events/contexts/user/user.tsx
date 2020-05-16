@@ -1,12 +1,12 @@
 import React from 'react';
 
-import UserAvatar from 'app/components/avatar/userAvatar';
-import {AvatarUser as UserType} from 'app/types';
-import {removeFilterMaskedEntries} from 'app/components/events/interfaces/utils';
-import ContextBlock from 'app/components/events/contexts/contextBlock';
-import ErrorBoundary from 'app/components/errorBoundary';
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueList';
-import {defined} from 'app/utils';
+import UserAvatar from 'sentry/components/avatar/userAvatar';
+import {AvatarUser as UserType} from 'sentry/types';
+import {removeFilterMaskedEntries} from 'sentry/components/events/interfaces/utils';
+import ContextBlock from 'sentry/components/events/contexts/contextBlock';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueList';
+import {defined} from 'sentry/utils';
 
 import getUserKnownData from './getUserKnownData';
 import {UserKnownDataType} from './types';

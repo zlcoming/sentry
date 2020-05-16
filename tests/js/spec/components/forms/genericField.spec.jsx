@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {GenericField, FormState} from 'app/components/forms';
+import {GenericField, FormState} from 'sentry/components/forms';
 
 describe('GenericField', function() {
   it('renders text as TextInput', function() {

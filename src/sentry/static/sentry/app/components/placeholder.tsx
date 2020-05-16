@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-import space from 'app/styles/space';
+import space from 'sentry/styles/space';
 
 const defaultProps = {
   shape: 'rect' as 'rect' | 'circle',

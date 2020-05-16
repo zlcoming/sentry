@@ -1,4 +1,4 @@
-import {IS_CI} from 'app/constants';
+import {IS_CI} from 'sentry/constants';
 
 // Return a specified "fixed" string when we are in a testing environment
 // (more specifically, when IS_CI is true)

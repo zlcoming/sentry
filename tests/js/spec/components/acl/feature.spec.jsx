@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {mount, mountWithTheme} from 'sentry-test/enzyme';
-
-import Feature from 'app/components/acl/feature';
-import ConfigStore from 'app/stores/configStore';
-import HookStore from 'app/stores/hookStore';
+import Feature from 'sentry/components/acl/feature';
+import ConfigStore from 'sentry/stores/configStore';
+import HookStore from 'sentry/stores/hookStore';
 
 describe('Feature', function() {
   const organization = TestStubs.Organization({

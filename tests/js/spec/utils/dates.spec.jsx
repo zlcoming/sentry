@@ -4,8 +4,8 @@ import {
   parsePeriodToHours,
   use24Hours,
   getTimeFormat,
-} from 'app/utils/dates';
-import ConfigStore from 'app/stores/configStore';
+} from 'sentry/utils/dates';
+import ConfigStore from 'sentry/stores/configStore';
 
 describe('utils.dates', function() {
   describe('setDateToTime', function() {

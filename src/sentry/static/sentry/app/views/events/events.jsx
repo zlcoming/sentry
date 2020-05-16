@@ -5,17 +5,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {Panel} from 'app/components/panels';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import AsyncView from 'app/views/asyncView';
-import Feature from 'app/components/acl/feature';
-import Pagination from 'app/components/pagination';
-import SentryTypes from 'app/sentryTypes';
-import parseLinkHeader from 'app/utils/parseLinkHeader';
-import withOrganization from 'app/utils/withOrganization';
-import {getParams} from 'app/components/organizations/globalSelectionHeader/getParams';
+import {Panel} from 'sentry/components/panels';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import AsyncView from 'sentry/views/asyncView';
+import Feature from 'sentry/components/acl/feature';
+import Pagination from 'sentry/components/pagination';
+import SentryTypes from 'sentry/sentryTypes';
+import parseLinkHeader from 'sentry/utils/parseLinkHeader';
+import withOrganization from 'sentry/utils/withOrganization';
+import {getParams} from 'sentry/components/organizations/globalSelectionHeader/getParams';
 
 import EventsTable from './eventsTable';
 import Chart from './chart';

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Highlight from 'app/components/highlight';
-import {defined} from 'app/utils';
-import Tooltip from 'app/components/tooltip';
-import getDynamicText from 'app/utils/getDynamicText';
-import TextOverflow from 'app/components/textOverflow';
+import Highlight from 'sentry/components/highlight';
+import {defined} from 'sentry/utils';
+import Tooltip from 'sentry/components/tooltip';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import TextOverflow from 'sentry/components/textOverflow';
 
 import {getFormattedTimestamp} from './utils';
 

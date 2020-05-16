@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Event} from 'app/types';
-import {t} from 'app/locale';
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
+import {Event} from 'sentry/types';
+import {t} from 'sentry/locale';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
 
 import EventDataContent from './eventDataContent';
 

@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {StyledForm} from 'app/components/forms/form';
-import {defined} from 'app/utils';
-import SelectControl from 'app/components/forms/selectControl';
-import SelectField from 'app/components/forms/selectField';
-import convertFromSelect2Choices from 'app/utils/convertFromSelect2Choices';
+import {StyledForm} from 'sentry/components/forms/form';
+import {defined} from 'sentry/utils';
+import SelectControl from 'sentry/components/forms/selectControl';
+import SelectField from 'sentry/components/forms/selectField';
+import convertFromSelect2Choices from 'sentry/utils/convertFromSelect2Choices';
 
 /**
  * This is a <SelectField> that allows the user to create new options if one does't exist.

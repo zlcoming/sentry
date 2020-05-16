@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 import React from 'react';
 
-import {Panel, PanelHeader, PanelBody} from 'app/components/panels';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import CommitRow from 'app/components/commitRow';
-import DropdownLink from 'app/components/dropdownLink';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import MenuItem from 'app/components/menuItem';
+import {Panel, PanelHeader, PanelBody} from 'sentry/components/panels';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import CommitRow from 'sentry/components/commitRow';
+import DropdownLink from 'sentry/components/dropdownLink';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import MenuItem from 'sentry/components/menuItem';
 
 class ReleaseCommits extends React.Component {
   static propTypes = {

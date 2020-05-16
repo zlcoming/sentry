@@ -1,4 +1,4 @@
-import XAxis from 'app/components/charts/components/xAxis';
+import XAxis from 'sentry/components/charts/components/xAxis';
 
 jest.mock('moment', () => {
   const moment = jest.requireActual('moment-timezone');

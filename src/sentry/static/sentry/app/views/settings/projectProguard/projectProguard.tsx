@@ -2,20 +2,20 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {PanelTable} from 'app/components/panels';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Pagination from 'app/components/pagination';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import {Organization, Project} from 'app/types';
-import routeTitleGen from 'app/utils/routeTitle';
-import Checkbox from 'app/components/checkbox';
-import SearchBar from 'app/components/searchBar';
+import space from 'sentry/styles/space';
+import {PanelTable} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Pagination from 'sentry/components/pagination';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import {Organization, Project} from 'sentry/types';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import Checkbox from 'sentry/components/checkbox';
+import SearchBar from 'sentry/components/searchBar';
 // TODO(android-mappings): use own components once we decide how this should look like
-import DebugFileRow from 'app/views/settings/projectDebugFiles/debugFileRow';
-import {DebugFile} from 'app/views/settings/projectDebugFiles/types';
+import DebugFileRow from 'sentry/views/settings/projectDebugFiles/debugFileRow';
+import {DebugFile} from 'sentry/views/settings/projectDebugFiles/types';
 
 type Props = RouteComponentProps<{orgId: string; projectId: string}, {}> & {
   organization: Organization;

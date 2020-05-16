@@ -3,16 +3,16 @@ import styled from '@emotion/styled';
 import pick from 'lodash/pick';
 import omit from 'lodash/omit';
 
-import EventDataSection from 'app/components/events/eventDataSection';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import {t} from 'app/locale';
-import {Event} from 'app/types';
-import space from 'app/styles/space';
-import SearchBar from 'app/components/searchBar';
-import Button from 'app/components/button';
-import {IconWarning} from 'app/icons/iconWarning';
-import {defined} from 'app/utils';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import {t} from 'sentry/locale';
+import {Event} from 'sentry/types';
+import space from 'sentry/styles/space';
+import SearchBar from 'sentry/components/searchBar';
+import Button from 'sentry/components/button';
+import {IconWarning} from 'sentry/icons/iconWarning';
+import {defined} from 'sentry/utils';
 
 import {
   Breadcrumb,

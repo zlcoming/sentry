@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import PlatformList from 'app/components/platformList';
+import PlatformList from 'sentry/components/platformList';
 
 describe('PlatformList', function() {
   it('renders max of three icons from platforms', function() {

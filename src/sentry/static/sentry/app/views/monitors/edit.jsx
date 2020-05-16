@@ -1,7 +1,7 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 
-import AsyncView from 'app/views/asyncView';
+import AsyncView from 'sentry/views/asyncView';
 
 import MonitorForm from './monitorForm';
 

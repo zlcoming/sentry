@@ -3,17 +3,17 @@ import React from 'react';
 import moment from 'moment';
 import styled from '@emotion/styled';
 
-import {t, tct} from 'app/locale';
-import {openInviteMembersModal} from 'app/actionCreators/modal';
-import ActorAvatar from 'app/components/avatar/actorAvatar';
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import Hovercard from 'app/components/hovercard';
-import {IconCommit, IconWarning} from 'app/icons';
-import Link from 'app/components/links/link';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
+import {t, tct} from 'sentry/locale';
+import {openInviteMembersModal} from 'sentry/actionCreators/modal';
+import ActorAvatar from 'sentry/components/avatar/actorAvatar';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import Hovercard from 'sentry/components/hovercard';
+import {IconCommit, IconWarning} from 'sentry/icons';
+import Link from 'sentry/components/links/link';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
 
 class SuggestedOwnerHovercard extends React.Component {
   static propTypes = {

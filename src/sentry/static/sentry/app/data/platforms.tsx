@@ -1,7 +1,7 @@
 /* eslint import/no-unresolved:0 import/order:0 */
-import {PlatformIntegration} from 'app/types';
+import {PlatformIntegration} from 'sentry/types';
 import {platforms} from 'integration-docs-platforms';
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const otherPlatform = {
   integrations: [

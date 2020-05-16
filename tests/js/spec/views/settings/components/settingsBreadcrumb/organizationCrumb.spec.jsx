@@ -3,10 +3,9 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
+import OrganizationCrumb from 'sentry/views/settings/components/settingsBreadcrumb/organizationCrumb';
 
-import OrganizationCrumb from 'app/views/settings/components/settingsBreadcrumb/organizationCrumb';
-
-jest.unmock('app/utils/recreateRoute');
+jest.unmock('sentry/utils/recreateRoute');
 
 describe('OrganizationCrumb', function() {
   const {organization, project, routerContext} = initializeOrg();

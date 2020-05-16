@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 
-import {Theme} from 'app/utils/theme';
+import {Theme} from 'sentry/utils/theme';
 
 type Props = {
   disabled?: boolean;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AsyncView from 'app/views/asyncView';
-import {TextField} from 'app/components/forms';
-import InternalStatChart from 'app/components/internalStatChart';
+import AsyncView from 'sentry/views/asyncView';
+import {TextField} from 'sentry/components/forms';
+import InternalStatChart from 'sentry/components/internalStatChart';
 
 export default class AdminQuotas extends AsyncView {
   getDefaultState() {

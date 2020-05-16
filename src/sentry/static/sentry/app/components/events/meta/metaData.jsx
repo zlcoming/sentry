@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import isNil from 'lodash/isNil';
 
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import ErrorBoundary from 'app/components/errorBoundary';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import ErrorBoundary from 'sentry/components/errorBoundary';
 
 /**
  * Retrieves metadata from an object (object should be a proxy that

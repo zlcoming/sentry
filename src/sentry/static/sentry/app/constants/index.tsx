@@ -3,8 +3,8 @@
  * Common constants here
  */
 
-import {t} from 'app/locale';
-import {Scope} from 'app/types';
+import {t} from 'sentry/locale';
+import {Scope} from 'sentry/types';
 
 // This is considered the "default" route/view that users should be taken
 // to when the application does not have any further context

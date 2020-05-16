@@ -3,7 +3,7 @@ import {action} from '@storybook/addon-actions';
 import {boolean} from '@storybook/addon-knobs';
 import {withInfo} from '@storybook/addon-info';
 
-import U2fEnrolledDetails from 'app/views/settings/account/accountSecurity/components/u2fEnrolledDetails';
+import U2fEnrolledDetails from 'sentry/views/settings/account/accountSecurity/components/u2fEnrolledDetails';
 
 export default {
   title: 'Other/U2fEnrolledDetails',

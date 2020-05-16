@@ -4,39 +4,39 @@ import React from 'react';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import {ALL_ENVIRONMENTS_KEY} from 'app/constants';
-import {Environment, Organization, Project, OnboardingTaskKey} from 'app/types';
+import {ALL_ENVIRONMENTS_KEY} from 'sentry/constants';
+import {Environment, Organization, Project, OnboardingTaskKey} from 'sentry/types';
 import {
   IssueAlertRule,
   IssueAlertRuleActionTemplate,
   IssueAlertRuleConditionTemplate,
   UnsavedIssueAlertRule,
-} from 'app/types/alerts';
-import {IconWarning} from 'app/icons';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
+} from 'sentry/types/alerts';
+import {IconWarning} from 'sentry/icons';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {getDisplayName} from 'app/utils/environment';
-import {t} from 'app/locale';
-import Alert from 'app/components/alert';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import Form from 'app/views/settings/components/forms/form';
-import LoadingMask from 'app/components/loadingMask';
-import PanelAlert from 'app/components/panels/panelAlert';
-import PanelItem from 'app/components/panels/panelItem';
-import PanelSubHeader from 'app/views/settings/incidentRules/triggers/panelSubHeader';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import TextField from 'app/views/settings/components/forms/textField';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import {updateOnboardingTask} from 'app/actionCreators/onboardingTasks';
+} from 'sentry/actionCreators/indicator';
+import {getDisplayName} from 'sentry/utils/environment';
+import {t} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import Form from 'sentry/views/settings/components/forms/form';
+import LoadingMask from 'sentry/components/loadingMask';
+import PanelAlert from 'sentry/components/panels/panelAlert';
+import PanelItem from 'sentry/components/panels/panelItem';
+import PanelSubHeader from 'sentry/views/settings/incidentRules/triggers/panelSubHeader';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import TextField from 'sentry/views/settings/components/forms/textField';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import {updateOnboardingTask} from 'sentry/actionCreators/onboardingTasks';
 
 import RuleNodeList from './ruleNodeList';
 

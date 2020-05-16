@@ -1,13 +1,13 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import LoadingError from 'app/components/loadingError';
-import Placeholder from 'app/components/placeholder';
-import StackedBarChart from 'app/components/stackedBarChart';
+import {Client} from 'sentry/api';
+import {Panel, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import LoadingError from 'sentry/components/loadingError';
+import Placeholder from 'sentry/components/placeholder';
+import StackedBarChart from 'sentry/components/stackedBarChart';
 
 type Point = React.ComponentProps<typeof StackedBarChart>['points'][0];
 type Props = {

@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {SourceMapsArchive} from 'app/types';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import {IconDelete} from 'app/icons';
-import ButtonBar from 'app/components/buttonBar';
-import Version from 'app/components/version';
-import Count from 'app/components/count';
-import Confirm from 'app/components/confirm';
-import DateTime from 'app/components/dateTime';
-import Link from 'app/components/links/link';
-import TextOverflow from 'app/components/textOverflow';
-import space from 'app/styles/space';
+import {SourceMapsArchive} from 'sentry/types';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import {IconDelete} from 'sentry/icons';
+import ButtonBar from 'sentry/components/buttonBar';
+import Version from 'sentry/components/version';
+import Count from 'sentry/components/count';
+import Confirm from 'sentry/components/confirm';
+import DateTime from 'sentry/components/dateTime';
+import Link from 'sentry/components/links/link';
+import TextOverflow from 'sentry/components/textOverflow';
+import space from 'sentry/styles/space';
 
 type Props = {
   archive: SourceMapsArchive;

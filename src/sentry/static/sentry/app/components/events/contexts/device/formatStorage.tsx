@@ -1,4 +1,4 @@
-import {formatBytes} from 'app/utils';
+import {formatBytes} from 'sentry/utils';
 
 function formatStorage(
   storage_size: number,

@@ -2,8 +2,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import ResultGrid from 'app/components/resultGrid';
-import {t} from 'app/locale';
+import ResultGrid from 'sentry/components/resultGrid';
+import {t} from 'sentry/locale';
 
 export const prettyDate = function(x) {
   return moment(x).format('ll');

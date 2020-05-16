@@ -2,15 +2,15 @@ import {browserHistory} from 'react-router';
 import React from 'react';
 import moment from 'moment';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {getUtcDateString} from 'app/utils/dates';
-import {t, tct} from 'app/locale';
-import {updateProjects, updateDateTime} from 'app/actionCreators/globalSelection';
-import ConfigStore from 'app/stores/configStore';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import PageHeading from 'app/components/pageHeading';
-import {Organization} from 'app/types';
-import localStorage from 'app/utils/localStorage';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {getUtcDateString} from 'sentry/utils/dates';
+import {t, tct} from 'sentry/locale';
+import {updateProjects, updateDateTime} from 'sentry/actionCreators/globalSelection';
+import ConfigStore from 'sentry/stores/configStore';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import PageHeading from 'sentry/components/pageHeading';
+import {Organization} from 'sentry/types';
+import localStorage from 'sentry/utils/localStorage';
 
 import {
   DiscoverContainer,

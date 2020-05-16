@@ -3,9 +3,9 @@ import moment from 'moment';
 import set from 'lodash/set';
 import isNumber from 'lodash/isNumber';
 
-import {SentryTransactionEvent} from 'app/types';
-import {assert} from 'app/types/utils';
-import CHART_PALETTE from 'app/constants/chartPalette';
+import {SentryTransactionEvent} from 'sentry/types';
+import {assert} from 'sentry/types/utils';
+import CHART_PALETTE from 'sentry/constants/chartPalette';
 
 import {
   ParsedTraceType,

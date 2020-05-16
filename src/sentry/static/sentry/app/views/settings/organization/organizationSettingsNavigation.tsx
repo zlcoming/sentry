@@ -2,14 +2,14 @@ import Reflux from 'reflux';
 import React from 'react';
 import createReactClass from 'create-react-class';
 
-import SentryTypes from 'app/sentryTypes';
-import HookStore from 'app/stores/hookStore';
-import SettingsNavigation from 'app/views/settings/components/settingsNavigation';
-import navigationConfiguration from 'app/views/settings/organization/navigationConfiguration';
-import withOrganization from 'app/utils/withOrganization';
-import {Organization} from 'app/types';
-import {HookName, Hooks} from 'app/types/hooks';
-import {NavigationSection} from 'app/views/settings/types';
+import SentryTypes from 'sentry/sentryTypes';
+import HookStore from 'sentry/stores/hookStore';
+import SettingsNavigation from 'sentry/views/settings/components/settingsNavigation';
+import navigationConfiguration from 'sentry/views/settings/organization/navigationConfiguration';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Organization} from 'sentry/types';
+import {HookName, Hooks} from 'sentry/types/hooks';
+import {NavigationSection} from 'sentry/views/settings/types';
 
 type Props = {
   organization: Organization;

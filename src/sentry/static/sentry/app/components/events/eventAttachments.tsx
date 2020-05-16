@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import {Event, EventAttachment} from 'app/types';
-import {t} from 'app/locale';
-import {Panel, PanelBody, PanelItem} from 'app/components/panels';
-import EventAttachmentActions from 'app/components/events/eventAttachmentActions';
-import EventDataSection from 'app/components/events/eventDataSection';
-import FileSize from 'app/components/fileSize';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import space from 'app/styles/space';
-import AttachmentUrl from 'app/utils/attachmentUrl';
-import withApi from 'app/utils/withApi';
+import {Client} from 'sentry/api';
+import {Event, EventAttachment} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {Panel, PanelBody, PanelItem} from 'sentry/components/panels';
+import EventAttachmentActions from 'sentry/components/events/eventAttachmentActions';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import FileSize from 'sentry/components/fileSize';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import space from 'sentry/styles/space';
+import AttachmentUrl from 'sentry/utils/attachmentUrl';
+import withApi from 'sentry/utils/withApi';
 
 type Props = {
   api: Client;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Scope} from 'app/types';
+import {Scope} from 'sentry/types';
 
 import BooleanField from './booleanField';
 import EmailField from './emailField';

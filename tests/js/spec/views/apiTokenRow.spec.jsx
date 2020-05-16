@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow, mountWithTheme} from 'sentry-test/enzyme';
-
-import ApiTokenRow from 'app/views/settings/account/apiTokenRow';
+import ApiTokenRow from 'sentry/views/settings/account/apiTokenRow';
 
 describe('ApiTokenRow', function() {
   it('renders', function() {

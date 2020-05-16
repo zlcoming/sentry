@@ -1,6 +1,6 @@
 import React from 'react';
 
-import InputField from 'app/components/forms/inputField';
+import InputField from 'sentry/components/forms/inputField';
 
 type State = InputField['state'] & {
   value?: string;

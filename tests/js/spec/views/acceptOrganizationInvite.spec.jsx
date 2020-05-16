@@ -2,11 +2,10 @@ import {browserHistory} from 'react-router';
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import {logout} from 'sentry/actionCreators/account';
+import AcceptOrganizationInvite from 'sentry/views/acceptOrganizationInvite';
 
-import {logout} from 'app/actionCreators/account';
-import AcceptOrganizationInvite from 'app/views/acceptOrganizationInvite';
-
-jest.mock('app/actionCreators/account');
+jest.mock('sentry/actionCreators/account');
 
 const addMock = body =>
   MockApiClient.addMockResponse({

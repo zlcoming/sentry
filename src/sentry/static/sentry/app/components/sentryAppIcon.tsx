@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {SentryAppComponent} from 'app/types';
-import {IconClickup, IconClubhouse, IconRookout, IconGeneric} from 'app/icons';
+import {SentryAppComponent} from 'sentry/types';
+import {IconClickup, IconClubhouse, IconRookout, IconGeneric} from 'sentry/icons';
 
 type Props = {
   slug: SentryAppComponent['sentryApp']['slug'];

@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import RangeSlider from 'app/views/settings/components/forms/controls/rangeSlider';
+import RangeSlider from 'sentry/views/settings/components/forms/controls/rangeSlider';
 
 export default {
   title: 'Forms/Controls',

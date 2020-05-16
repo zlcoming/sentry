@@ -3,19 +3,19 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 import styled from '@emotion/styled';
 
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import plugins from 'app/plugins';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import plugins from 'sentry/plugins';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 class PluginConfig extends React.Component {
   static propTypes = {

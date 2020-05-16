@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex';
 import Reflux from 'reflux';
 
-import SavedSearchesActions from 'app/actions/savedSearchesActions';
+import SavedSearchesActions from 'sentry/actions/savedSearchesActions';
 
 const SavedSearchesStore = Reflux.createStore({
   init() {

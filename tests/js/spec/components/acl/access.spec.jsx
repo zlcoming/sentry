@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import Access from 'app/components/acl/access';
-import ConfigStore from 'app/stores/configStore';
+import Access from 'sentry/components/acl/access';
+import ConfigStore from 'sentry/stores/configStore';
 
 describe('Access', function() {
   const organization = TestStubs.Organization({

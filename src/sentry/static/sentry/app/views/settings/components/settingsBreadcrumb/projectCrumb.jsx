@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import BreadcrumbDropdown from 'app/views/settings/components/settingsBreadcrumb/breadcrumbDropdown';
-import IdBadge from 'app/components/idBadge';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import MenuItem from 'app/views/settings/components/settingsBreadcrumb/menuItem';
-import SentryTypes from 'app/sentryTypes';
-import findFirstRouteWithoutRouteParam from 'app/views/settings/components/settingsBreadcrumb/findFirstRouteWithoutRouteParam';
-import recreateRoute from 'app/utils/recreateRoute';
-import replaceRouterParams from 'app/utils/replaceRouterParams';
-import space from 'app/styles/space';
-import withLatestContext from 'app/utils/withLatestContext';
-import withProjects from 'app/utils/withProjects';
+import BreadcrumbDropdown from 'sentry/views/settings/components/settingsBreadcrumb/breadcrumbDropdown';
+import IdBadge from 'sentry/components/idBadge';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import MenuItem from 'sentry/views/settings/components/settingsBreadcrumb/menuItem';
+import SentryTypes from 'sentry/sentryTypes';
+import findFirstRouteWithoutRouteParam from 'sentry/views/settings/components/settingsBreadcrumb/findFirstRouteWithoutRouteParam';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import replaceRouterParams from 'sentry/utils/replaceRouterParams';
+import space from 'sentry/styles/space';
+import withLatestContext from 'sentry/utils/withLatestContext';
+import withProjects from 'sentry/utils/withProjects';
 
 import {CrumbLink} from '.';
 

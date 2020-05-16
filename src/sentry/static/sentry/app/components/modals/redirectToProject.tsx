@@ -2,11 +2,11 @@ import * as ReactRouter from 'react-router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import Text from 'app/components/text';
-import recreateRoute from 'app/utils/recreateRoute';
-import {ModalRenderProps} from 'app/actionCreators/modal';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import Text from 'sentry/components/text';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import {ModalRenderProps} from 'sentry/actionCreators/modal';
 
 type Props = ModalRenderProps &
   ReactRouter.WithRouterProps & {

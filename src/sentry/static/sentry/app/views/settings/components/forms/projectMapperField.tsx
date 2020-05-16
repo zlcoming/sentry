@@ -2,19 +2,19 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {components} from 'react-select';
 
-import space from 'app/styles/space';
-import InputField from 'app/views/settings/components/forms/inputField';
-import FormFieldControlState from 'app/views/settings/components/forms/formField/controlState';
-import FieldErrorReason from 'app/views/settings/components/forms/field/fieldErrorReason';
-import FormModel from 'app/views/settings/components/forms/model';
-import {ProjectMapperType} from 'app/views/settings/components/forms/type';
-import SelectControl from 'app/components/forms/selectControl';
-import IdBadge from 'app/components/idBadge';
-import Button from 'app/components/button';
-import {IconVercel, IconGeneric, IconDelete, IconOpen} from 'app/icons';
-import ExternalLink from 'app/components/links/externalLink';
-import {t} from 'app/locale';
-import {removeAtArrayIndex} from 'app/utils/removeAtArrayIndex';
+import space from 'sentry/styles/space';
+import InputField from 'sentry/views/settings/components/forms/inputField';
+import FormFieldControlState from 'sentry/views/settings/components/forms/formField/controlState';
+import FieldErrorReason from 'sentry/views/settings/components/forms/field/fieldErrorReason';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import {ProjectMapperType} from 'sentry/views/settings/components/forms/type';
+import SelectControl from 'sentry/components/forms/selectControl';
+import IdBadge from 'sentry/components/idBadge';
+import Button from 'sentry/components/button';
+import {IconVercel, IconGeneric, IconDelete, IconOpen} from 'sentry/icons';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {t} from 'sentry/locale';
+import {removeAtArrayIndex} from 'sentry/utils/removeAtArrayIndex';
 
 type MappedValue = string | number;
 

@@ -4,19 +4,19 @@ import React from 'react';
 import keydown from 'react-keydown';
 import styled from '@emotion/styled';
 
-import {analytics} from 'app/utils/analytics';
-import {inputStyles} from 'app/styles/input';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import ExternalLink from 'app/components/links/externalLink';
-import ListLink from 'app/components/links/listLink';
-import NavTabs from 'app/components/navTabs';
-import PlatformIconTile from 'app/components/platformIconTile';
-import categoryList from 'app/data/platformCategories';
-import platforms from 'app/data/platforms';
-import space from 'app/styles/space';
-import {IconClose, IconSearch, IconProject} from 'app/icons';
+import {analytics} from 'sentry/utils/analytics';
+import {inputStyles} from 'sentry/styles/input';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import ExternalLink from 'sentry/components/links/externalLink';
+import ListLink from 'sentry/components/links/listLink';
+import NavTabs from 'sentry/components/navTabs';
+import PlatformIconTile from 'sentry/components/platformIconTile';
+import categoryList from 'sentry/data/platformCategories';
+import platforms from 'sentry/data/platforms';
+import space from 'sentry/styles/space';
+import {IconClose, IconSearch, IconProject} from 'sentry/icons';
 
 const PLATFORM_CATEGORIES = categoryList.concat({id: 'all', name: t('All')});
 

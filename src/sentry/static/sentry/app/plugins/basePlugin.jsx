@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Settings from 'app/plugins/components/settings';
+import Settings from 'sentry/plugins/components/settings';
 
 class BasePlugin {
   constructor(data) {

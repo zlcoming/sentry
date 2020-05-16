@@ -11,8 +11,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {callIfFunction} from 'app/utils/callIfFunction';
-import DropdownMenu from 'app/components/dropdownMenu';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import DropdownMenu from 'sentry/components/dropdownMenu';
 
 class AutoComplete extends React.Component {
   static propTypes = {

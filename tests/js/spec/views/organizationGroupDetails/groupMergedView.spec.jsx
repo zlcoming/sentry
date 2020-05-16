@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
+import {GroupMergedView} from 'sentry/views/organizationGroupDetails/groupMerged';
+import {Client} from 'sentry/api';
 
-import {GroupMergedView} from 'app/views/organizationGroupDetails/groupMerged';
-import {Client} from 'app/api';
-
-jest.mock('app/api');
+jest.mock('sentry/api');
 
 describe('Issues -> Merged View', function() {
   const events = TestStubs.DetailedEvents();

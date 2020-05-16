@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {defined} from 'app/utils';
-import {t} from 'app/locale';
-import ClippedBox from 'app/components/clippedBox';
-import ErrorBoundary from 'app/components/errorBoundary';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {defined} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import ClippedBox from 'sentry/components/clippedBox';
+import ErrorBoundary from 'sentry/components/errorBoundary';
 
 import RichHttpContentClippedBoxKeyValueList from './richHttpContentClippedBoxKeyValueList';
 import RichHttpContentClippedBoxBodySection from './richHttpContentClippedBoxBodySection';

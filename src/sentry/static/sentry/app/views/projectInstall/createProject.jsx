@@ -4,26 +4,26 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {inputStyles} from 'app/styles/input';
-import {openCreateTeamModal} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import PageHeading from 'app/components/pageHeading';
-import PlatformIconTile from 'app/components/platformIconTile';
-import PlatformPicker from 'app/components/platformPicker';
-import ProjectActions from 'app/actions/projectActions';
-import SelectControl from 'app/components/forms/selectControl';
-import SentryTypes from 'app/sentryTypes';
-import Tooltip from 'app/components/tooltip';
-import getPlatformName from 'app/utils/getPlatformName';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import withTeams from 'app/utils/withTeams';
-import IssueAlertOptions from 'app/views/projectInstall/issueAlertOptions';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {IconAdd} from 'app/icons';
+import {inputStyles} from 'sentry/styles/input';
+import {openCreateTeamModal} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import PageHeading from 'sentry/components/pageHeading';
+import PlatformIconTile from 'sentry/components/platformIconTile';
+import PlatformPicker from 'sentry/components/platformPicker';
+import ProjectActions from 'sentry/actions/projectActions';
+import SelectControl from 'sentry/components/forms/selectControl';
+import SentryTypes from 'sentry/sentryTypes';
+import Tooltip from 'sentry/components/tooltip';
+import getPlatformName from 'sentry/utils/getPlatformName';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import withTeams from 'sentry/utils/withTeams';
+import IssueAlertOptions from 'sentry/views/projectInstall/issueAlertOptions';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {IconAdd} from 'sentry/icons';
 
 class CreateProject extends React.Component {
   static propTypes = {

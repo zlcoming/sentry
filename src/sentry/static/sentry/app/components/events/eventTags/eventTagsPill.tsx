@@ -4,15 +4,15 @@ import {Link} from 'react-router';
 import * as queryString from 'query-string';
 import {Query, Location} from 'history';
 
-import {EventTag, Meta} from 'app/types';
-import AnnotatedText from 'app/components/events/meta/annotatedText';
-import DeviceName from 'app/components/deviceName';
-import {isUrl} from 'app/utils';
-import Pill from 'app/components/pill';
-import VersionHoverCard from 'app/components/versionHoverCard';
-import TraceHoverCard from 'app/utils/discover/traceHoverCard';
-import Version from 'app/components/version';
-import {IconOpen, IconInfo} from 'app/icons';
+import {EventTag, Meta} from 'sentry/types';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
+import DeviceName from 'sentry/components/deviceName';
+import {isUrl} from 'sentry/utils';
+import Pill from 'sentry/components/pill';
+import VersionHoverCard from 'sentry/components/versionHoverCard';
+import TraceHoverCard from 'sentry/utils/discover/traceHoverCard';
+import Version from 'sentry/components/version';
+import {IconOpen, IconInfo} from 'sentry/icons';
 
 type Props = {
   tag: EventTag;

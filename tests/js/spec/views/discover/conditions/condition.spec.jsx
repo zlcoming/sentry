@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Condition from 'app/views/discover/conditions/condition';
+import Condition from 'sentry/views/discover/conditions/condition';
 
 describe('Condition', function() {
   afterEach(function() {

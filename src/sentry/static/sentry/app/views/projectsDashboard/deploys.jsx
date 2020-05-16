@@ -2,13 +2,13 @@ import React from 'react';
 import moment from 'moment-timezone';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import SentryTypes from 'app/sentryTypes';
-import TextOverflow from 'app/components/textOverflow';
-import getDynamicText from 'app/utils/getDynamicText';
-import Version from 'app/components/version';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import SentryTypes from 'sentry/sentryTypes';
+import TextOverflow from 'sentry/components/textOverflow';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import Version from 'sentry/components/version';
+import space from 'sentry/styles/space';
 
 const DEPLOY_COUNT = 2;
 

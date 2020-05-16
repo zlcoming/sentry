@@ -1,4 +1,4 @@
-import {PlatformType} from 'app/types';
+import {PlatformType} from 'sentry/types';
 
 export function trimPackage(pkg: string) {
   const pieces = pkg.split(/^([a-z]:\\|\\\\)/i.test(pkg) ? '\\' : '/');

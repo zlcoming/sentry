@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {t} from 'app/locale';
-import {Meta, Frame} from 'app/types';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import AnnotatedText from 'app/components/events/meta/annotatedText';
+import {t} from 'sentry/locale';
+import {Meta, Frame} from 'sentry/types';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
 
 type Props = {
   frame: Frame;

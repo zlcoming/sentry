@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import Qrcode from 'app/components/qrcode';
+import Qrcode from 'sentry/components/qrcode';
 
 describe('Qrcode', function() {
   it('renders', function() {

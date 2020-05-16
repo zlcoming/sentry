@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow, mount} from 'sentry-test/enzyme';
-
-import IssueSyncListElement from 'app/components/issueSyncListElement';
+import IssueSyncListElement from 'sentry/components/issueSyncListElement';
 
 describe('AlertLink', function() {
   it('renders', function() {

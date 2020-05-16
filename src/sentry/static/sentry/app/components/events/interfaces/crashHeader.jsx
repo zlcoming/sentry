@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import Tooltip from 'app/components/tooltip';
-import {t} from 'app/locale';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import space from 'app/styles/space';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import Tooltip from 'sentry/components/tooltip';
+import {t} from 'sentry/locale';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import space from 'sentry/styles/space';
 
 class CrashHeader extends React.Component {
   static propTypes = {

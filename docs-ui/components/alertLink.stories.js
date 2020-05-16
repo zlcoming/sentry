@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import AlertLink from 'app/components/alertLink';
-import {IconDocs, IconGeneric, IconMail, IconStack, IconStar} from 'app/icons';
+import AlertLink from 'sentry/components/alertLink';
+import {IconDocs, IconGeneric, IconMail, IconStack, IconStar} from 'sentry/icons';
 
 export default {
   title: 'UI/Alerts/AlertLink',

@@ -2,7 +2,7 @@
  * This function is responsible for fetching and storing result data for
  * result tables and visualizations.
  */
-import parseLinkHeader from 'app/utils/parseLinkHeader';
+import parseLinkHeader from 'sentry/utils/parseLinkHeader';
 
 export default function createResultManager(queryBuilder: any): any {
   let data: any = getDefault();

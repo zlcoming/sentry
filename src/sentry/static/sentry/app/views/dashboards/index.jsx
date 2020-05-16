@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {PageContent, PageHeader} from 'app/styles/organization';
-import {t} from 'app/locale';
-import Feature from 'app/components/acl/feature';
-import PageHeading from 'app/components/pageHeading';
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import GlobalSelectionHeader from 'app/components/organizations/globalSelectionHeader';
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
+import {PageContent, PageHeader} from 'sentry/styles/organization';
+import {t} from 'sentry/locale';
+import Feature from 'sentry/components/acl/feature';
+import PageHeading from 'sentry/components/pageHeading';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import GlobalSelectionHeader from 'sentry/components/organizations/globalSelectionHeader';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class Dashboards extends React.Component {
   static propTypes = {

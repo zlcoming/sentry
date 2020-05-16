@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniq from 'lodash/uniq';
 
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import SentryTypes from 'app/sentryTypes';
-import OwnerInput from 'app/views/settings/project/projectOwnership/ownerInput';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import SentryTypes from 'sentry/sentryTypes';
+import OwnerInput from 'sentry/views/settings/project/projectOwnership/ownerInput';
 
 class ProjectOwnershipModal extends AsyncComponent {
   static propTypes = {

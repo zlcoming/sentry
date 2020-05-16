@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-import {APIRequestMethod, Client} from 'app/api';
+import {APIRequestMethod, Client} from 'sentry/api';
 import {
   addLoadingMessage,
   clearIndicators,
   addErrorMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import Form from 'app/components/forms/form';
-import FormState from 'app/components/forms/state';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import Form from 'sentry/components/forms/form';
+import FormState from 'sentry/components/forms/state';
 
 type Props = Form['props'] & {
   onSubmit?: (data: object) => void;

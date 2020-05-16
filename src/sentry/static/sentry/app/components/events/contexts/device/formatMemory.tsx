@@ -1,4 +1,4 @@
-import {formatBytes} from 'app/utils';
+import {formatBytes} from 'sentry/utils';
 
 function formatMemory(memory_size: number, free_memory: number, usable_memory: number) {
   if (

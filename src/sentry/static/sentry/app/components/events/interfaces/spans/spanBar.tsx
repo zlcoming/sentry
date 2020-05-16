@@ -2,15 +2,15 @@ import React from 'react';
 import styled from '@emotion/styled';
 import 'intersection-observer'; // this is a polyfill
 
-import {Organization, SentryTransactionEvent} from 'app/types';
-import {t} from 'app/locale';
-import {defined, OmitHtmlDivProps} from 'app/utils';
-import space from 'app/styles/space';
-import Count from 'app/components/count';
-import Tooltip from 'app/components/tooltip';
-import {TableDataRow} from 'app/utils/discover/discoverQuery';
-import {IconChevron, IconWarning} from 'app/icons';
-import globalTheme from 'app/utils/theme';
+import {Organization, SentryTransactionEvent} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {defined, OmitHtmlDivProps} from 'sentry/utils';
+import space from 'sentry/styles/space';
+import Count from 'sentry/components/count';
+import Tooltip from 'sentry/components/tooltip';
+import {TableDataRow} from 'sentry/utils/discover/discoverQuery';
+import {IconChevron, IconWarning} from 'sentry/icons';
+import globalTheme from 'sentry/utils/theme';
 
 import {
   toPercent,

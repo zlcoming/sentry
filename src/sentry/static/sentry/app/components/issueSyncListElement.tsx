@@ -13,10 +13,10 @@ import {
   IconJira,
   IconOpen,
   IconVsts,
-} from 'app/icons';
-import space from 'app/styles/space';
-import Hovercard from 'app/components/hovercard';
-import {callIfFunction} from 'app/utils/callIfFunction';
+} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import Hovercard from 'sentry/components/hovercard';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
 
 type Props = {
   externalIssueLink: string | null;

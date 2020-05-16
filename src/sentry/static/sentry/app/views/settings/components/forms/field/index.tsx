@@ -8,17 +8,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import QuestionTooltip from 'app/components/questionTooltip';
-import ControlState from 'app/views/settings/components/forms/field/controlState';
-import FieldControl from 'app/views/settings/components/forms/field/fieldControl';
-import FieldDescription from 'app/views/settings/components/forms/field/fieldDescription';
-import FieldErrorReason from 'app/views/settings/components/forms/field/fieldErrorReason';
-import FieldHelp from 'app/views/settings/components/forms/field/fieldHelp';
-import FieldLabel from 'app/views/settings/components/forms/field/fieldLabel';
-import FieldRequiredBadge from 'app/views/settings/components/forms/field/fieldRequiredBadge';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import ControlState from 'sentry/views/settings/components/forms/field/controlState';
+import FieldControl from 'sentry/views/settings/components/forms/field/fieldControl';
+import FieldDescription from 'sentry/views/settings/components/forms/field/fieldDescription';
+import FieldErrorReason from 'sentry/views/settings/components/forms/field/fieldErrorReason';
+import FieldHelp from 'sentry/views/settings/components/forms/field/fieldHelp';
+import FieldLabel from 'sentry/views/settings/components/forms/field/fieldLabel';
+import FieldRequiredBadge from 'sentry/views/settings/components/forms/field/fieldRequiredBadge';
 import FieldWrapper, {
   Props as FieldWrapperProps,
-} from 'app/views/settings/components/forms/field/fieldWrapper';
+} from 'sentry/views/settings/components/forms/field/fieldWrapper';
 
 import FieldQuestion from './fieldQuestion';
 

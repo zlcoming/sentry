@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import LineChart from 'app/components/charts/lineChart';
+import LineChart from 'sentry/components/charts/lineChart';
 
 export default {
   title: 'Charts/LineChart',

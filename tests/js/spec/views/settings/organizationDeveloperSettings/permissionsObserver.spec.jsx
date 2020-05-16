@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import FormModel from 'app/views/settings/components/forms/model';
-import PermissionsObserver from 'app/views/settings/organizationDeveloperSettings/permissionsObserver';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import PermissionsObserver from 'sentry/views/settings/organizationDeveloperSettings/permissionsObserver';
 
 describe('PermissionsObserver', () => {
   let wrapper;

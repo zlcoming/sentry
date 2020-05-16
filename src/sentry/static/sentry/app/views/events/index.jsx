@@ -3,20 +3,20 @@ import React from 'react';
 import styled from '@emotion/styled';
 import isEqual from 'lodash/isEqual';
 
-import {loadOrganizationTags} from 'app/actionCreators/tags';
-import {getParams} from 'app/components/organizations/globalSelectionHeader/getParams';
-import {t} from 'app/locale';
-import FeatureBadge from 'app/components/featureBadge';
-import Feature from 'app/components/acl/feature';
-import GlobalSelectionHeader from 'app/components/organizations/globalSelectionHeader';
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import SentryTypes from 'app/sentryTypes';
-import PageHeading from 'app/components/pageHeading';
-import withApi from 'app/utils/withApi';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import withOrganization from 'app/utils/withOrganization';
-import {PageContent, PageHeader} from 'app/styles/organization';
-import space from 'app/styles/space';
+import {loadOrganizationTags} from 'sentry/actionCreators/tags';
+import {getParams} from 'sentry/components/organizations/globalSelectionHeader/getParams';
+import {t} from 'sentry/locale';
+import FeatureBadge from 'sentry/components/featureBadge';
+import Feature from 'sentry/components/acl/feature';
+import GlobalSelectionHeader from 'sentry/components/organizations/globalSelectionHeader';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import SentryTypes from 'sentry/sentryTypes';
+import PageHeading from 'sentry/components/pageHeading';
+import withApi from 'sentry/utils/withApi';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import withOrganization from 'sentry/utils/withOrganization';
+import {PageContent, PageHeader} from 'sentry/styles/organization';
+import space from 'sentry/styles/space';
 
 import SearchBar from './searchBar';
 

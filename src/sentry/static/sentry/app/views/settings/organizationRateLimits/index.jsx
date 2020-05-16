@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import OrganizationRateLimits from './organizationRateLimits';
 

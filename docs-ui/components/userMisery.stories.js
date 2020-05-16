@@ -1,8 +1,8 @@
 import React from 'react';
-import {withInfo} from '@storybook/addon-info';
+import { withInfo } from '@storybook/addon-info';
 import styled from '@emotion/styled';
 
-import UserMisery from 'app/components/userMisery';
+import UserMisery from 'sentry/components/userMisery';
 
 export default {
   title: 'Other/ScoreBar/UserMisery',

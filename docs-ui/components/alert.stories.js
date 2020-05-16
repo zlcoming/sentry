@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {withInfo} from '@storybook/addon-info';
 
-import space from 'app/styles/space';
-import Alert from 'app/components/alert';
-import ExternalLink from 'app/components/links/externalLink';
-import {IconInfo, IconCheckmark, IconWarning, IconNot} from 'app/icons';
+import space from 'sentry/styles/space';
+import Alert from 'sentry/components/alert';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {IconInfo, IconCheckmark, IconWarning, IconNot} from 'sentry/icons';
 
 export default {
   title: 'UI/Alerts/Alert',

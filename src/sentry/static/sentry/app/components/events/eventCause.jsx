@@ -4,13 +4,13 @@ import uniqBy from 'lodash/uniqBy';
 import flatMap from 'lodash/flatMap';
 import styled from '@emotion/styled';
 
-import CommitRow from 'app/components/commitRow';
-import {IconAdd, IconSubtract} from 'app/icons';
-import {Panel} from 'app/components/panels';
-import {DataSection, CauseHeader} from 'app/components/events/styles';
-import withApi from 'app/utils/withApi';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
+import CommitRow from 'sentry/components/commitRow';
+import {IconAdd, IconSubtract} from 'sentry/icons';
+import {Panel} from 'sentry/components/panels';
+import {DataSection, CauseHeader} from 'sentry/components/events/styles';
+import withApi from 'sentry/utils/withApi';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
 
 const ExpandButton = styled('button')`
   display: flex;

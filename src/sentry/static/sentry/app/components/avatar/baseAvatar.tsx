@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import * as qs from 'query-string';
 import styled from '@emotion/styled';
 
-import LetterAvatar from 'app/components/letterAvatar';
-import Tooltip from 'app/components/tooltip';
+import LetterAvatar from 'sentry/components/letterAvatar';
+import Tooltip from 'sentry/components/tooltip';
 
 import {imageStyle} from './styles';
 import Gravatar from './gravatar';

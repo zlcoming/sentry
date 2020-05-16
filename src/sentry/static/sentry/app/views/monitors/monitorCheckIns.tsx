@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Monitor} from 'app/views/monitors/types';
-import {PanelBody, PanelItem} from 'app/components/panels';
-import AsyncComponent from 'app/components/asyncComponent';
-import Duration from 'app/components/duration';
-import TimeSince from 'app/components/timeSince';
-import space from 'app/styles/space';
+import {Monitor} from 'sentry/views/monitors/types';
+import {PanelBody, PanelItem} from 'sentry/components/panels';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Duration from 'sentry/components/duration';
+import TimeSince from 'sentry/components/timeSince';
+import space from 'sentry/styles/space';
 
 import CheckInIcon from './checkInIcon';
 

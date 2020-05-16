@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import OnboardingPanel from 'app/components/onboardingPanel';
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
+import OnboardingPanel from 'sentry/components/onboardingPanel';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
 
 class ReleaseLandingCard extends React.Component {
   static propTypes = {

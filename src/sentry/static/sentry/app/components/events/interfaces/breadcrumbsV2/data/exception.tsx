@@ -1,9 +1,9 @@
 import React from 'react';
 import omit from 'lodash/omit';
 
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {defined} from 'app/utils';
-import Highlight from 'app/components/highlight';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {defined} from 'sentry/utils';
+import Highlight from 'sentry/components/highlight';
 
 import getBreadcrumbCustomRendererValue from '../../breadcrumbs/getBreadcrumbCustomRendererValue';
 import {BreadcrumbTypeDefault} from '../types';

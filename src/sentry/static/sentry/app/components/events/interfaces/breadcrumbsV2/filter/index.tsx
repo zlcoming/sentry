@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import isEqual from 'lodash/isEqual';
 
-import DropdownControl from 'app/components/dropdownControl';
+import DropdownControl from 'sentry/components/dropdownControl';
 
 import DropDownButton from './dropdownButton';
 import OptionsGroup from './optionsGroup';

@@ -2,21 +2,21 @@ import {Link} from 'react-router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Activity, Organization} from 'app/types';
-import {t, tn, tct} from 'app/locale';
-import CommitLink from 'app/components/commitLink';
-import Duration from 'app/components/duration';
-import ExternalLink from 'app/components/links/externalLink';
-import IssueLink from 'app/components/issueLink';
-import MemberListStore from 'app/stores/memberListStore';
-import PullRequestLink from 'app/components/pullRequestLink';
-import TeamStore from 'app/stores/teamStore';
-import TimeSince from 'app/components/timeSince';
-import Version from 'app/components/version';
-import VersionHoverCard from 'app/components/versionHoverCard';
-import marked from 'app/utils/marked';
-import space from 'app/styles/space';
-import ActivityAvatar from 'app/components/activity/item/avatar';
+import {Activity, Organization} from 'sentry/types';
+import {t, tn, tct} from 'sentry/locale';
+import CommitLink from 'sentry/components/commitLink';
+import Duration from 'sentry/components/duration';
+import ExternalLink from 'sentry/components/links/externalLink';
+import IssueLink from 'sentry/components/issueLink';
+import MemberListStore from 'sentry/stores/memberListStore';
+import PullRequestLink from 'sentry/components/pullRequestLink';
+import TeamStore from 'sentry/stores/teamStore';
+import TimeSince from 'sentry/components/timeSince';
+import Version from 'sentry/components/version';
+import VersionHoverCard from 'sentry/components/versionHoverCard';
+import marked from 'sentry/utils/marked';
+import space from 'sentry/styles/space';
+import ActivityAvatar from 'sentry/components/activity/item/avatar';
 
 const defaultProps = {
   defaultClipped: false,

@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
-import {t} from 'app/locale';
-import IndicatorActions from 'app/actions/indicatorActions';
+import {t} from 'sentry/locale';
+import IndicatorActions from 'sentry/actions/indicatorActions';
 
 const IndicatorStore = Reflux.createStore({
   init() {

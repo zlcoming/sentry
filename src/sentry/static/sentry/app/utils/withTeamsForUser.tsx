@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {Client} from 'app/api';
-import {Organization, Project, Team, TeamWithProjects} from 'app/types';
-import getDisplayName from 'app/utils/getDisplayName';
-import getProjectsByTeams from 'app/utils/getProjectsByTeams';
-import ConfigStore from 'app/stores/configStore';
+import {Client} from 'sentry/api';
+import {Organization, Project, Team, TeamWithProjects} from 'sentry/types';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import getProjectsByTeams from 'sentry/utils/getProjectsByTeams';
+import ConfigStore from 'sentry/stores/configStore';
 
 import {metric} from './analytics';
 

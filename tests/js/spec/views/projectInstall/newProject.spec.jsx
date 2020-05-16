@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {Client} from 'app/api';
-import NewProject from 'app/views/projectInstall/newProject';
+import {Client} from 'sentry/api';
+import NewProject from 'sentry/views/projectInstall/newProject';
 
 describe('NewProjectPlatform', function() {
   beforeEach(function() {

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import ConfigStore from 'app/stores/configStore';
-import NavTabs from 'app/components/navTabs';
-import {IconMarkdown} from 'app/icons';
-import marked from 'app/utils/marked';
-import space from 'app/styles/space';
-import textStyles from 'app/styles/text';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import ConfigStore from 'sentry/stores/configStore';
+import NavTabs from 'sentry/components/navTabs';
+import {IconMarkdown} from 'sentry/icons';
+import marked from 'sentry/utils/marked';
+import space from 'sentry/styles/space';
+import textStyles from 'sentry/styles/text';
 
 import Mentionables from './mentionables';
 import mentionStyle from './mentionStyle';

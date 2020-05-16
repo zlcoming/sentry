@@ -2,14 +2,14 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import {defined} from 'app/utils';
-import {Organization, Project, Plugin} from 'app/types';
-import {fetchPlugins} from 'app/actionCreators/plugins';
-import getDisplayName from 'app/utils/getDisplayName';
-import PluginsStore from 'app/stores/pluginsStore';
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
+import {defined} from 'sentry/utils';
+import {Organization, Project, Plugin} from 'sentry/types';
+import {fetchPlugins} from 'sentry/actionCreators/plugins';
+import getDisplayName from 'sentry/utils/getDisplayName';
+import PluginsStore from 'sentry/stores/pluginsStore';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
 
 type WithPluginProps = {
   organization: Organization;

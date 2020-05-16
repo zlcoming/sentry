@@ -2,12 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import sortBy from 'lodash/sortBy';
 
-import space from 'app/styles/space';
-import {t} from 'app/locale';
-import Input from 'app/views/settings/components/forms/controls/input';
-import Field from 'app/views/settings/components/forms/field';
-import Button from 'app/components/button';
-import {IconChevron} from 'app/icons';
+import space from 'sentry/styles/space';
+import {t} from 'sentry/locale';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import Field from 'sentry/views/settings/components/forms/field';
+import Button from 'sentry/components/button';
+import {IconChevron} from 'sentry/icons';
 
 import EventIdField from './eventIdField';
 import SelectField from './selectField';

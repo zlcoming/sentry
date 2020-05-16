@@ -1,9 +1,9 @@
 import React from 'react';
 
-import SentryTypes from 'app/sentryTypes';
-import EventDataSection from 'app/components/events/eventDataSection';
-import Annotated from 'app/components/events/meta/annotated';
-import {t} from 'app/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import Annotated from 'sentry/components/events/meta/annotated';
+import {t} from 'sentry/locale';
 
 type Props = {
   event: SentryTypes.Event;

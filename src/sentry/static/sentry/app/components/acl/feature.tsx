@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Project, Organization, Config} from 'app/types';
-import {FeatureDisabledHooks} from 'app/types/hooks';
-import HookStore from 'app/stores/hookStore';
-import SentryTypes from 'app/sentryTypes';
-import withConfig from 'app/utils/withConfig';
-import withOrganization from 'app/utils/withOrganization';
-import withProject from 'app/utils/withProject';
-import {isRenderFunc} from 'app/utils/isRenderFunc';
+import {Project, Organization, Config} from 'sentry/types';
+import {FeatureDisabledHooks} from 'sentry/types/hooks';
+import HookStore from 'sentry/stores/hookStore';
+import SentryTypes from 'sentry/sentryTypes';
+import withConfig from 'sentry/utils/withConfig';
+import withOrganization from 'sentry/utils/withOrganization';
+import withProject from 'sentry/utils/withProject';
+import {isRenderFunc} from 'sentry/utils/isRenderFunc';
 
 import ComingSoon from './comingSoon';
 

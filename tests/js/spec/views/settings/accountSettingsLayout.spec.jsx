@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import * as OrgActions from 'app/actionCreators/organizations';
-import AccountSettingsLayout from 'app/views/settings/account/accountSettingsLayout';
+import * as OrgActions from 'sentry/actionCreators/organizations';
+import AccountSettingsLayout from 'sentry/views/settings/account/accountSettingsLayout';
 
 describe('AccountSettingsLayout', function() {
   let wrapper;

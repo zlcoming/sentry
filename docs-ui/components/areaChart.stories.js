@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import AreaChart from 'app/components/charts/areaChart';
+import AreaChart from 'sentry/components/charts/areaChart';
 
 export default {
   title: 'Charts/AreaChart',

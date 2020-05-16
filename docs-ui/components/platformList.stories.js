@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import PlatformList from 'app/components/platformList';
+import PlatformList from 'sentry/components/platformList';
 
 export default {
   title: 'UI/Platform List',

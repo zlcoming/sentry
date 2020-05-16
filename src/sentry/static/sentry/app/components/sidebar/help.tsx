@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {openHelpSearchModal} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import DropdownMenu from 'app/components/dropdownMenu';
-import SidebarItem from 'app/components/sidebar/sidebarItem';
-import Hook from 'app/components/hook';
-import {IconQuestion} from 'app/icons';
-import {Organization} from 'app/types';
+import {openHelpSearchModal} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import DropdownMenu from 'sentry/components/dropdownMenu';
+import SidebarItem from 'sentry/components/sidebar/sidebarItem';
+import Hook from 'sentry/components/hook';
+import {IconQuestion} from 'sentry/icons';
+import {Organization} from 'sentry/types';
 
 import SidebarMenuItem from './sidebarMenuItem';
 import SidebarDropdownMenu from './sidebarDropdownMenu.styled';

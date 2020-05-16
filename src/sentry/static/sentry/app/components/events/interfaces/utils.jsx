@@ -3,8 +3,8 @@ import isString from 'lodash/isString';
 import * as queryString from 'query-string';
 import * as Sentry from '@sentry/react';
 
-import {FILTER_MASK} from 'app/constants';
-import {defined} from 'app/utils';
+import {FILTER_MASK} from 'sentry/constants';
+import {defined} from 'sentry/utils';
 
 export function escapeQuotes(v) {
   return v.replace(/\\/g, '\\\\').replace(/"/g, '\\"');

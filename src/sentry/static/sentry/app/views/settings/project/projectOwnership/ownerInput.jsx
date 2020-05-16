@@ -3,15 +3,15 @@ import React from 'react';
 import styled from '@emotion/styled';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import {Client} from 'app/api';
-import memberListStore from 'app/stores/memberListStore';
-import ProjectsStore from 'app/stores/projectsStore';
-import Button from 'app/components/button';
-import SentryTypes from 'app/sentryTypes';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import {inputStyles} from 'app/styles/input';
-import RuleBuilder from 'app/views/settings/project/projectOwnership/ruleBuilder';
+import {Client} from 'sentry/api';
+import memberListStore from 'sentry/stores/memberListStore';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import Button from 'sentry/components/button';
+import SentryTypes from 'sentry/sentryTypes';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import {inputStyles} from 'sentry/styles/input';
+import RuleBuilder from 'sentry/views/settings/project/projectOwnership/ruleBuilder';
 
 class OwnerInput extends React.Component {
   static propTypes = {

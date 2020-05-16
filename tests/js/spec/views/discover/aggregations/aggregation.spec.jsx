@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Aggregation from 'app/views/discover/aggregations/aggregation';
+import Aggregation from 'sentry/views/discover/aggregations/aggregation';
 
 describe('Aggregation', function() {
   describe('render()', function() {

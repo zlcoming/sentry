@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {sortArray} from 'app/utils';
-import AsyncView from 'app/views/asyncView';
-import Pagination from 'app/components/pagination';
-import {t} from 'app/locale';
-import routeTitleGen from 'app/utils/routeTitle';
+import {sortArray} from 'sentry/utils';
+import AsyncView from 'sentry/views/asyncView';
+import Pagination from 'sentry/components/pagination';
+import {t} from 'sentry/locale';
+import routeTitleGen from 'sentry/utils/routeTitle';
 
 import OrganizationRepositories from './organizationRepositories';
 

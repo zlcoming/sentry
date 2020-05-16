@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import LoadingIndicator from 'app/components/loadingIndicator';
-import LoadingError from 'app/components/loadingError';
-import {t, tn} from 'app/locale';
-import withOrganization from 'app/utils/withOrganization';
-import withApi from 'app/utils/withApi';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import LoadingError from 'sentry/components/loadingError';
+import {t, tn} from 'sentry/locale';
+import withOrganization from 'sentry/utils/withOrganization';
+import withApi from 'sentry/utils/withApi';
 
 class ReleaseProjectStatSparkline extends React.Component {
   static propTypes = {

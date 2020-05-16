@@ -2,19 +2,19 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {Frame, SentryAppComponent} from 'app/types';
-import {t} from 'app/locale';
-import {defined} from 'app/utils';
-import ClippedBox from 'app/components/clippedBox';
-import ContextLine from 'app/components/events/interfaces/contextLine';
-import FrameRegisters from 'app/components/events/interfaces/frameRegisters/frameRegisters';
-import FrameVariables from 'app/components/events/interfaces/frameVariables';
-import ErrorBoundary from 'app/components/errorBoundary';
-import {IconFlag} from 'app/icons';
-import {Assembly} from 'app/components/events/interfaces/assembly';
-import {parseAssembly} from 'app/components/events/interfaces/utils';
-import {OpenInContextLine} from 'app/components/events/interfaces/openInContextLine';
-import space from 'app/styles/space';
+import {Frame, SentryAppComponent} from 'sentry/types';
+import {t} from 'sentry/locale';
+import {defined} from 'sentry/utils';
+import ClippedBox from 'sentry/components/clippedBox';
+import ContextLine from 'sentry/components/events/interfaces/contextLine';
+import FrameRegisters from 'sentry/components/events/interfaces/frameRegisters/frameRegisters';
+import FrameVariables from 'sentry/components/events/interfaces/frameVariables';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import {IconFlag} from 'sentry/icons';
+import {Assembly} from 'sentry/components/events/interfaces/assembly';
+import {parseAssembly} from 'sentry/components/events/interfaces/utils';
+import {OpenInContextLine} from 'sentry/components/events/interfaces/openInContextLine';
+import space from 'sentry/styles/space';
 
 type Props = {
   frame: Frame;

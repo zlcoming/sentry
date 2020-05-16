@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {shallow} from 'sentry-test/enzyme';
-
-import {TextField} from 'app/components/forms';
+import {TextField} from 'sentry/components/forms';
 
 describe('TextField', function() {
   describe('render()', function() {

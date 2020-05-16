@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {selectText} from 'app/utils/selectText';
-import {IconInfo, IconChevron, IconLock} from 'app/icons';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import ExternalLink from 'app/components/links/externalLink';
-import space from 'app/styles/space';
-import {CONFIG_DOCS_URL} from 'app/constants';
+import {selectText} from 'sentry/utils/selectText';
+import {IconInfo, IconChevron, IconLock} from 'sentry/icons';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import ExternalLink from 'sentry/components/links/externalLink';
+import space from 'sentry/styles/space';
+import {CONFIG_DOCS_URL} from 'sentry/constants';
 
 const installText = (features: string[], featureName: string): string =>
   `# ${t('Enables the %s feature', featureName)}\n${features

@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import BarChart from 'app/components/charts/barChart';
+import BarChart from 'sentry/components/charts/barChart';
 
 export default {
   title: 'Charts/BarChart',

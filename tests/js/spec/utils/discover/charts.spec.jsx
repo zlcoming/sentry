@@ -1,4 +1,4 @@
-import {tooltipFormatter, axisLabelFormatter} from 'app/utils/discover/charts';
+import {tooltipFormatter, axisLabelFormatter} from 'sentry/utils/discover/charts';
 
 describe('tooltipFormatter()', function() {
   it('formats values', function() {

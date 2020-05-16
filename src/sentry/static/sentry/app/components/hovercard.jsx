@@ -6,9 +6,9 @@ import {Manager, Reference, Popper} from 'react-popper';
 import styled from '@emotion/styled';
 import {keyframes} from '@emotion/core';
 
-import {fadeIn} from 'app/styles/animations';
-import space from 'app/styles/space';
-import {domId} from 'app/utils/domId';
+import {fadeIn} from 'sentry/styles/animations';
+import space from 'sentry/styles/space';
+import {domId} from 'sentry/utils/domId';
 
 const VALID_DIRECTIONS = ['top', 'bottom', 'left', 'right'];
 

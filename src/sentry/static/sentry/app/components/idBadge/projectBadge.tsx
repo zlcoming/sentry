@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {AvatarProject} from 'app/types';
-import BaseBadge from 'app/components/idBadge/baseBadge';
-import BadgeDisplayName from 'app/components/idBadge/badgeDisplayName';
+import {AvatarProject} from 'sentry/types';
+import BaseBadge from 'sentry/components/idBadge/baseBadge';
+import BadgeDisplayName from 'sentry/components/idBadge/badgeDisplayName';
 
 type Props = {
   project: AvatarProject;

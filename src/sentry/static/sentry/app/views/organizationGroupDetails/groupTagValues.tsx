@@ -4,22 +4,22 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 
-import {isUrl, percent} from 'app/utils';
-import {t} from 'app/locale';
-import AsyncComponent from 'app/components/asyncComponent';
-import UserBadge from 'app/components/idBadge/userBadge';
-import Button from 'app/components/button';
-import ButtonBar from 'app/components/buttonBar';
-import DeviceName from 'app/components/deviceName';
-import ExternalLink from 'app/components/links/externalLink';
-import GlobalSelectionLink from 'app/components/globalSelectionLink';
-import {IconMail, IconOpen} from 'app/icons';
-import DetailedError from 'app/components/errors/detailedError';
-import Pagination from 'app/components/pagination';
-import TimeSince from 'app/components/timeSince';
-import DataExport, {ExportQueryType} from 'app/components/dataExport';
-import space from 'app/styles/space';
-import {Group, Tag, TagValue, Environment} from 'app/types';
+import {isUrl, percent} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import UserBadge from 'sentry/components/idBadge/userBadge';
+import Button from 'sentry/components/button';
+import ButtonBar from 'sentry/components/buttonBar';
+import DeviceName from 'sentry/components/deviceName';
+import ExternalLink from 'sentry/components/links/externalLink';
+import GlobalSelectionLink from 'sentry/components/globalSelectionLink';
+import {IconMail, IconOpen} from 'sentry/icons';
+import DetailedError from 'sentry/components/errors/detailedError';
+import Pagination from 'sentry/components/pagination';
+import TimeSince from 'sentry/components/timeSince';
+import DataExport, {ExportQueryType} from 'sentry/components/dataExport';
+import space from 'sentry/styles/space';
+import {Group, Tag, TagValue, Environment} from 'sentry/types';
 
 type RouteParams = {
   groupId: string;

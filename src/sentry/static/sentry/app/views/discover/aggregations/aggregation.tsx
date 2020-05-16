@@ -1,8 +1,8 @@
 import React from 'react';
 import {Value} from 'react-select-legacy';
 
-import {t} from 'app/locale';
-import SelectControl from 'app/components/forms/selectControl';
+import {t} from 'sentry/locale';
+import SelectControl from 'sentry/components/forms/selectControl';
 
 import {getInternal, getExternal} from './utils';
 import {Aggregation, DiscoverBaseProps, ReactSelectOption} from '../types';

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SentryTypes from 'app/sentryTypes';
-import LastCommit from 'app/components/lastCommit';
-import RepositoryFileSummary from 'app/components/repositoryFileSummary';
-import AsyncComponent from 'app/components/asyncComponent';
-import {t} from 'app/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import LastCommit from 'sentry/components/lastCommit';
+import RepositoryFileSummary from 'sentry/components/repositoryFileSummary';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import {t} from 'sentry/locale';
 
 import {getFilesByRepository} from './utils';
 import ReleaseDeploys from './releaseDeploys';

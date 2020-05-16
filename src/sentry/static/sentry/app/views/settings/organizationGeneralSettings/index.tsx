@@ -2,24 +2,24 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import {browserHistory} from 'react-router';
 import React from 'react';
 
-import {Client} from 'app/api';
-import {Organization} from 'app/types';
-import {Panel, PanelHeader} from 'app/components/panels';
-import {addLoadingMessage} from 'app/actionCreators/indicator';
+import {Client} from 'sentry/api';
+import {Organization} from 'sentry/types';
+import {Panel, PanelHeader} from 'sentry/components/panels';
+import {addLoadingMessage} from 'sentry/actionCreators/indicator';
 import {
   changeOrganizationSlug,
   removeAndRedirectToRemainingOrganization,
   updateOrganization,
-} from 'app/actionCreators/organizations';
-import {t, tct} from 'app/locale';
-import Field from 'app/views/settings/components/forms/field';
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
-import PermissionAlert from 'app/views/settings/organization/permissionAlert';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/organizations';
+import {t, tct} from 'sentry/locale';
+import Field from 'sentry/views/settings/components/forms/field';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
+import PermissionAlert from 'sentry/views/settings/organization/permissionAlert';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import OrganizationSettingsForm from './organizationSettingsForm';
 

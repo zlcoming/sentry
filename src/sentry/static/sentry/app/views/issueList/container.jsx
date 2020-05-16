@@ -1,12 +1,12 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 
-import {PageContent} from 'app/styles/organization';
-import GlobalSelectionHeader from 'app/components/organizations/globalSelectionHeader';
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import SentryTypes from 'app/sentryTypes';
-import {metric} from 'app/utils/analytics';
-import withOrganization, {isLightweightOrganization} from 'app/utils/withOrganization';
+import {PageContent} from 'sentry/styles/organization';
+import GlobalSelectionHeader from 'sentry/components/organizations/globalSelectionHeader';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import SentryTypes from 'sentry/sentryTypes';
+import {metric} from 'sentry/utils/analytics';
+import withOrganization, {isLightweightOrganization} from 'sentry/utils/withOrganization';
 
 class IssueListContainer extends React.Component {
   static propTypes = {

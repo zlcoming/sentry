@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import CreateSavedSearchButton from 'app/views/issueList/createSavedSearchButton';
+import CreateSavedSearchButton from 'sentry/views/issueList/createSavedSearchButton';
 
 describe('CreateSavedSearchButton', function() {
   let wrapper, organization, createMock;

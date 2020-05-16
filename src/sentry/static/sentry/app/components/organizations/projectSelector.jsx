@@ -4,22 +4,22 @@ import sortBy from 'lodash/sortBy';
 import styled from '@emotion/styled';
 import {Link} from 'react-router';
 
-import {analytics} from 'app/utils/analytics';
-import {t} from 'app/locale';
-import {alertHighlight, pulse} from 'app/styles/animations';
-import Button from 'app/components/button';
-import BookmarkStar from 'app/components/projects/bookmarkStar';
-import DropdownAutoComplete from 'app/components/dropdownAutoComplete';
-import Feature from 'app/components/acl/feature';
-import FeatureDisabled from 'app/components/acl/featureDisabled';
-import GlobalSelectionHeaderRow from 'app/components/globalSelectionHeaderRow';
-import Highlight from 'app/components/highlight';
-import Hovercard from 'app/components/hovercard';
-import IdBadge from 'app/components/idBadge';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
-import {IconAdd, IconSettings} from 'app/icons';
+import {analytics} from 'sentry/utils/analytics';
+import {t} from 'sentry/locale';
+import {alertHighlight, pulse} from 'sentry/styles/animations';
+import Button from 'sentry/components/button';
+import BookmarkStar from 'sentry/components/projects/bookmarkStar';
+import DropdownAutoComplete from 'sentry/components/dropdownAutoComplete';
+import Feature from 'sentry/components/acl/feature';
+import FeatureDisabled from 'sentry/components/acl/featureDisabled';
+import GlobalSelectionHeaderRow from 'sentry/components/globalSelectionHeaderRow';
+import Highlight from 'sentry/components/highlight';
+import Hovercard from 'sentry/components/hovercard';
+import IdBadge from 'sentry/components/idBadge';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
+import {IconAdd, IconSettings} from 'sentry/icons';
 
 const renderDisabledCheckbox = p => (
   <Hovercard

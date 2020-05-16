@@ -1,8 +1,8 @@
 import React from 'react';
 
-import RangeSlider from 'app/views/settings/components/forms/controls/rangeSlider';
-import Alert from 'app/components/alert';
-import {AvatarProject} from 'app/types';
+import RangeSlider from 'sentry/views/settings/components/forms/controls/rangeSlider';
+import Alert from 'sentry/components/alert';
+import {AvatarProject} from 'sentry/types';
 
 export const FieldType = [
   'array',

@@ -1,11 +1,11 @@
-import SavedSearchesStore from 'app/stores/savedSearchesStore';
+import SavedSearchesStore from 'sentry/stores/savedSearchesStore';
 import {
   fetchSavedSearches,
   deleteSavedSearch,
   pinSearch,
   unpinSearch,
-} from 'app/actionCreators/savedSearches';
-import {Client} from 'app/api';
+} from 'sentry/actionCreators/savedSearches';
+import {Client} from 'sentry/api';
 
 describe('SavedSearchesStore', function() {
   let api;

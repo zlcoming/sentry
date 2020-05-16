@@ -2,7 +2,7 @@ import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import LoadingError from 'app/components/loadingError';
+import LoadingError from 'sentry/components/loadingError';
 
 export default {
   title: 'UI/Loaders/LoadingError',

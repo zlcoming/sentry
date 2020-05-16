@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import {objectIsEmpty} from 'app/utils';
-import SentryTypes from 'app/sentryTypes';
+import {t} from 'sentry/locale';
+import {objectIsEmpty} from 'sentry/utils';
+import SentryTypes from 'sentry/sentryTypes';
 
 import ContextSummaryUser from './contextSummaryUser';
 import ContextSummaryGeneric from './contextSummaryGeneric';

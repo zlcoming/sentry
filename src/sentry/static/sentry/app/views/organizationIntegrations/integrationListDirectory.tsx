@@ -9,14 +9,14 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import Feature from 'app/components/acl/feature';
-import AsyncComponent from 'app/components/asyncComponent';
-import SelectControl from 'app/components/forms/selectControl';
-import {Panel, PanelBody} from 'app/components/panels';
-import SearchBar from 'app/components/searchBar';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import {t, tct} from 'app/locale';
-import space from 'app/styles/space';
+import Feature from 'sentry/components/acl/feature';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import SelectControl from 'sentry/components/forms/selectControl';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import SearchBar from 'sentry/components/searchBar';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import {t, tct} from 'sentry/locale';
+import space from 'sentry/styles/space';
 import {
   AppOrProviderOrPlugin,
   DocumentIntegration,
@@ -26,8 +26,8 @@ import {
   PluginWithProjectList,
   SentryApp,
   SentryAppInstallation,
-} from 'app/types';
-import {createFuzzySearch} from 'app/utils/createFuzzySearch';
+} from 'sentry/types';
+import {createFuzzySearch} from 'sentry/utils/createFuzzySearch';
 import {
   getCategoriesForIntegration,
   getReauthAlertText,
@@ -37,10 +37,10 @@ import {
   isSentryApp,
   isSlackWorkspaceApp,
   trackIntegrationEvent,
-} from 'app/utils/integrationUtil';
-import withOrganization from 'app/utils/withOrganization';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import PermissionAlert from 'app/views/settings/organization/permissionAlert';
+} from 'sentry/utils/integrationUtil';
+import withOrganization from 'sentry/utils/withOrganization';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import PermissionAlert from 'sentry/views/settings/organization/permissionAlert';
 
 import {documentIntegrations, POPULARITY_WEIGHT} from './constants';
 import IntegrationRow from './integrationRow';

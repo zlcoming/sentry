@@ -2,9 +2,9 @@ import isArray from 'lodash/isArray';
 import isUndefined from 'lodash/isUndefined';
 import Reflux from 'reflux';
 
-import GroupActions from 'app/actions/groupActions';
-import IndicatorStore from 'app/stores/indicatorStore';
-import {t} from 'app/locale';
+import GroupActions from 'sentry/actions/groupActions';
+import IndicatorStore from 'sentry/stores/indicatorStore';
+import {t} from 'sentry/locale';
 
 function showAlert(msg, type) {
   IndicatorStore.add(msg, type, {

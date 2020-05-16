@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 enum SnoozeTimes {
   // all values in minutes

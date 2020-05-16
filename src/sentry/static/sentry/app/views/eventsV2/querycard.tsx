@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ActivityAvatar from 'app/components/activity/item/avatar';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
-import Link from 'app/components/links/link';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import {User} from 'app/types';
-import Card from 'app/components/card';
+import ActivityAvatar from 'sentry/components/activity/item/avatar';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
+import Link from 'sentry/components/links/link';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import {User} from 'sentry/types';
+import Card from 'sentry/components/card';
 
 type Props = {
   title?: string;

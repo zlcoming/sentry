@@ -1,7 +1,7 @@
 /**
  * Anonymous affected users
  */
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const anonymousUsersAffectedQuery = {
   name: t('Anonymous Users'),

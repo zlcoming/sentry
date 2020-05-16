@@ -2,19 +2,25 @@ import React from 'react';
 import {Location, LocationDescriptorObject} from 'history';
 import * as ReactRouter from 'react-router';
 
-import {Organization, Project} from 'app/types';
-import Pagination from 'app/components/pagination';
-import Link from 'app/components/links/link';
-import EventView, {EventData, isFieldSortable} from 'app/utils/discover/eventView';
-import {TableColumn} from 'app/views/eventsV2/table/types';
-import GridEditable, {COL_WIDTH_UNDEFINED, GridColumn} from 'app/components/gridEditable';
-import SortLink from 'app/components/gridEditable/sortLink';
-import HeaderCell from 'app/views/eventsV2/table/headerCell';
-import CellAction, {Actions, updateQuery} from 'app/views/eventsV2/table/cellAction';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {getFieldRenderer} from 'app/utils/discover/fieldRenderers';
-import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
-import DiscoverQuery, {TableData, TableDataRow} from 'app/utils/discover/discoverQuery';
+import {Organization, Project} from 'sentry/types';
+import Pagination from 'sentry/components/pagination';
+import Link from 'sentry/components/links/link';
+import EventView, {EventData, isFieldSortable} from 'sentry/utils/discover/eventView';
+import {TableColumn} from 'sentry/views/eventsV2/table/types';
+import GridEditable, {
+  COL_WIDTH_UNDEFINED,
+  GridColumn,
+} from 'sentry/components/gridEditable';
+import SortLink from 'sentry/components/gridEditable/sortLink';
+import HeaderCell from 'sentry/views/eventsV2/table/headerCell';
+import CellAction, {Actions, updateQuery} from 'sentry/views/eventsV2/table/cellAction';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {getFieldRenderer} from 'sentry/utils/discover/fieldRenderers';
+import {tokenizeSearch, stringifyQueryObject} from 'sentry/utils/tokenizeSearch';
+import DiscoverQuery, {
+  TableData,
+  TableDataRow,
+} from 'sentry/utils/discover/discoverQuery';
 
 import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';
 import {COLUMN_TITLES} from './data';

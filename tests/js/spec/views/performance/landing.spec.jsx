@@ -2,9 +2,8 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ProjectsStore from 'app/stores/projectsStore';
-import PerformanceLanding from 'app/views/performance/landing';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import PerformanceLanding from 'sentry/views/performance/landing';
 
 function initializeData(projects, query) {
   const features = ['transaction-event', 'performance-view'];

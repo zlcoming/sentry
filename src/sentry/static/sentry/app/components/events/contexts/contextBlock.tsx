@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ErrorBoundary from 'app/components/errorBoundary';
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueListV2';
-import {KeyValueListData} from 'app/components/events/interfaces/keyValueList/types';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueListV2';
+import {KeyValueListData} from 'sentry/components/events/interfaces/keyValueList/types';
 
 type Props = {
   knownData: Array<KeyValueListData>;

@@ -1,4 +1,4 @@
-import {getDiscoverConditionsToSearchString} from 'app/views/dashboards/utils/getDiscoverConditionsToSearchString';
+import {getDiscoverConditionsToSearchString} from 'sentry/views/dashboards/utils/getDiscoverConditionsToSearchString';
 
 describe('getDiscoverConditionsToSearchString', function() {
   it('handles empty conditions', function() {

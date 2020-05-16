@@ -1,6 +1,6 @@
-import {t} from 'app/locale';
-import {Widget} from 'app/types';
-import {SnubaResult} from 'app/views/discover/types';
+import {t} from 'sentry/locale';
+import {Widget} from 'sentry/types';
+import {SnubaResult} from 'sentry/views/discover/types';
 
 import {WIDGET_DISPLAY} from '../constants';
 import {getChartDataFunc} from './getChartDataFunc';

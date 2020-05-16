@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import RelativeSelector from 'app/components/organizations/timeRangeSelector/dateRange/relativeSelector';
-import SelectorItem from 'app/components/organizations/timeRangeSelector/dateRange/selectorItem';
+import {t} from 'sentry/locale';
+import RelativeSelector from 'sentry/components/organizations/timeRangeSelector/dateRange/relativeSelector';
+import SelectorItem from 'sentry/components/organizations/timeRangeSelector/dateRange/selectorItem';
 
 const SelectorItems = ({
   shouldShowRelative,

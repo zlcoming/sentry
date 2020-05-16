@@ -2,11 +2,11 @@ import {Link} from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {openCreateTeamModal} from 'app/actionCreators/modal';
-import {tct} from 'app/locale';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import SentryTypes from 'app/sentryTypes';
-import TextBlock from 'app/views/settings/components/text/textBlock';
+import {openCreateTeamModal} from 'sentry/actionCreators/modal';
+import {tct} from 'sentry/locale';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import SentryTypes from 'sentry/sentryTypes';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
 
 import AllTeamsRow from './allTeamsRow';
 

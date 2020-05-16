@@ -2,7 +2,7 @@ import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {withInfo} from '@storybook/addon-info';
 
-import LinkWithConfirmation from 'app/components/links/linkWithConfirmation';
+import LinkWithConfirmation from 'sentry/components/links/linkWithConfirmation';
 
 export default {
   title: 'UI/Confirm',

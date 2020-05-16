@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Event} from 'app/types';
+import {Event} from 'sentry/types';
 
 import Default from './default';
 import Exception from './exception';

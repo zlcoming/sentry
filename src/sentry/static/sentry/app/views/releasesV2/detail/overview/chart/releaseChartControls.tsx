@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 import {
   ChartControls,
   InlineContainer,
   SectionHeading,
   SectionValue,
-} from 'app/components/charts/styles';
-import OptionSelector from 'app/components/charts/optionSelector';
-import styled from 'app/styled';
-import space from 'app/styles/space';
-import {SelectValue} from 'app/types';
+} from 'sentry/components/charts/styles';
+import OptionSelector from 'sentry/components/charts/optionSelector';
+import styled from 'sentry/styled';
+import space from 'sentry/styles/space';
+import {SelectValue} from 'sentry/types';
 
 export enum YAxis {
   SESSIONS = 'sessions',

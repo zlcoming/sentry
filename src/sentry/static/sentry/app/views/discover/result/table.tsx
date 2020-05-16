@@ -2,13 +2,13 @@ import React from 'react';
 import {MultiGrid, AutoSizer} from 'react-virtualized';
 import styled from '@emotion/styled';
 
-import {Organization} from 'app/types';
-import {t} from 'app/locale';
-import ExternalLink from 'app/components/links/externalLink';
-import Tooltip from 'app/components/tooltip';
-import Panel from 'app/components/panels/panel';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import withOrganization from 'app/utils/withOrganization';
+import {Organization} from 'sentry/types';
+import {t} from 'sentry/locale';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Tooltip from 'sentry/components/tooltip';
+import Panel from 'sentry/components/panels/panel';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import {getDisplayValue, getDisplayText} from './utils';
 import {Query, SnubaResult} from '../types';

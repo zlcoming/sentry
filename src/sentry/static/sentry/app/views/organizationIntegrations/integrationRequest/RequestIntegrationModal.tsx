@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {ModalRenderProps} from 'app/actionCreators/modal';
-import AsyncComponent from 'app/components/asyncComponent';
-import Button from 'app/components/button';
-import {t} from 'app/locale';
-import TextareaField from 'app/views/settings/components/forms/textareaField';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {ModalRenderProps} from 'sentry/actionCreators/modal';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Button from 'sentry/components/button';
+import {t} from 'sentry/locale';
+import TextareaField from 'sentry/views/settings/components/forms/textareaField';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 import RequestIntegrationButton from './RequestIntegrationButton';
 

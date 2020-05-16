@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as Sentry from '@sentry/react';
 
-import {Client} from 'app/api';
-import {createFuzzySearch} from 'app/utils/createFuzzySearch';
-import {singleLineRenderer as markedSingleLine} from 'app/utils/marked';
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import withLatestContext from 'app/utils/withLatestContext';
-import {documentIntegrationList} from 'app/views/organizationIntegrations/constants';
+import {Client} from 'sentry/api';
+import {createFuzzySearch} from 'sentry/utils/createFuzzySearch';
+import {singleLineRenderer as markedSingleLine} from 'sentry/utils/marked';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import withLatestContext from 'sentry/utils/withLatestContext';
+import {documentIntegrationList} from 'sentry/views/organizationIntegrations/constants';
 
 // event ids must have string length of 32
 const shouldSearchEventIds = query => typeof query === 'string' && query.length === 32;

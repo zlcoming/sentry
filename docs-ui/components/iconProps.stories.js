@@ -2,7 +2,7 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import styled from '@emotion/styled';
 
-import {IconAdd, IconArrow, IconBookmark, IconGroup, IconPin} from 'app/icons';
+import {IconAdd, IconArrow, IconBookmark, IconGroup, IconPin} from 'sentry/icons';
 
 export default {
   title: 'Style/Icons',

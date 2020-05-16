@@ -1,11 +1,10 @@
 import React from 'react';
 
 import {mountWithTheme, shallow} from 'sentry-test/enzyme';
-
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import GuideActions from 'app/actions/guideActions';
-import ConfigStore from 'app/stores/configStore';
-import theme from 'app/utils/theme';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import GuideActions from 'sentry/actions/guideActions';
+import ConfigStore from 'sentry/stores/configStore';
+import theme from 'sentry/utils/theme';
 
 describe('GuideAnchor', function() {
   let wrapper, wrapper2;

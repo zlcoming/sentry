@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/lib/Modal';
 
-import {t} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import Access from 'app/components/acl/access';
-import Button from 'app/components/button';
-import {createSavedSearch} from 'app/actionCreators/savedSearches';
-import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
-import {TextField} from 'app/components/forms';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import {IconAdd} from 'app/icons';
+import {t} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import Access from 'sentry/components/acl/access';
+import Button from 'sentry/components/button';
+import {createSavedSearch} from 'sentry/actionCreators/savedSearches';
+import {addLoadingMessage, clearIndicators} from 'sentry/actionCreators/indicator';
+import {TextField} from 'sentry/components/forms';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import {IconAdd} from 'sentry/icons';
 
 class CreateSavedSearchButton extends React.Component {
   static propTypes = {

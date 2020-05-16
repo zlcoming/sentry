@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import {Panel, PanelHeader} from 'app/components/panels';
-import {IconTelescope, IconUser} from 'app/icons';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import space from 'app/styles/space';
+import {Panel, PanelHeader} from 'sentry/components/panels';
+import {IconTelescope, IconUser} from 'sentry/icons';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import space from 'sentry/styles/space';
 
 export default {
   title: 'UI/EmptyMessage',

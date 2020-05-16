@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {Client} from 'app/api';
-import {DEFAULT_QUERY} from 'app/constants';
-import {LightWeightOrganization, Project} from 'app/types';
-import {t} from 'app/locale';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import ErrorRobot from 'app/components/errorRobot';
-import LoadingIndicator from 'app/components/loadingIndicator';
+import {Client} from 'sentry/api';
+import {DEFAULT_QUERY} from 'sentry/constants';
+import {LightWeightOrganization, Project} from 'sentry/types';
+import {t} from 'sentry/locale';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import ErrorRobot from 'sentry/components/errorRobot';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
 
 import NoUnresolvedIssues from './noUnresolvedIssues';
 

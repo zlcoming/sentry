@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 
-import {defined} from 'app/utils';
-import Tooltip from 'app/components/tooltip';
-import getDynamicText from 'app/utils/getDynamicText';
+import {defined} from 'sentry/utils';
+import Tooltip from 'sentry/components/tooltip';
+import getDynamicText from 'sentry/utils/getDynamicText';
 
 const getBreadcrumbTimeTooltipTitle = (timestamp: string) => {
   const parsedTimestamp = moment(timestamp);

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import FrameRegisters from 'app/components/events/interfaces/frameRegisters/frameRegisters';
-import FrameRegistersValue from 'app/components/events/interfaces/frameRegisters/frameRegistersValue';
+import FrameRegisters from 'sentry/components/events/interfaces/frameRegisters/frameRegisters';
+import FrameRegistersValue from 'sentry/components/events/interfaces/frameRegisters/frameRegistersValue';
 
 describe('FrameRegisters', () => {
   it('should render registers', () => {

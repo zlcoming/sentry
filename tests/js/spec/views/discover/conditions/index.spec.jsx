@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import Conditions from 'app/views/discover/conditions';
+import Conditions from 'sentry/views/discover/conditions';
 
 describe('Conditions', function() {
   let wrapper, onChangeMock, conditions;

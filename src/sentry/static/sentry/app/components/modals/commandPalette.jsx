@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {analytics} from 'app/utils/analytics';
-import {t} from 'app/locale';
-import Search from 'app/components/search';
-import theme from 'app/utils/theme';
+import {analytics} from 'sentry/utils/analytics';
+import {t} from 'sentry/locale';
+import Search from 'sentry/components/search';
+import theme from 'sentry/utils/theme';
 
 class CommandPaletteModal extends React.Component {
   static propTypes = {

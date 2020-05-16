@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {tct} from 'app/locale';
-import Button from 'app/components/button';
-import {IconAdd, IconSubtract} from 'app/icons';
+import space from 'sentry/styles/space';
+import {tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import {IconAdd, IconSubtract} from 'sentry/icons';
 
 import {GroupingComponentListItem} from './groupingComponent';
 

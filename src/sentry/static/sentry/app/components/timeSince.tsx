@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment-timezone';
 
-import ConfigStore from 'app/stores/configStore';
-import {t} from 'app/locale';
+import ConfigStore from 'sentry/stores/configStore';
+import {t} from 'sentry/locale';
 
 const ONE_MINUTE_IN_MS = 60000;
 

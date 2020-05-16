@@ -2,7 +2,7 @@ import $ from 'jquery';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-import InputField from 'app/components/forms/inputField';
+import InputField from 'sentry/components/forms/inputField';
 
 export default class RangeField extends InputField {
   static formatMinutes = value => {

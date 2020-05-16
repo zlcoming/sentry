@@ -4,20 +4,20 @@ import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {PanelItem} from 'app/components/panels';
-import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
-import {IconChat, IconCheckmark, IconEllipsis, IconMute, IconStar} from 'app/icons';
-import {t} from 'app/locale';
-import DropdownLink from 'app/components/dropdownLink';
-import ErrorLevel from 'app/components/events/errorLevel';
-import GroupChart from 'app/components/stream/groupChart';
-import GroupStore from 'app/stores/groupStore';
-import Link from 'app/components/links/link';
-import SentryTypes from 'app/sentryTypes';
-import SnoozeAction from 'app/components/issues/snoozeAction';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {PanelItem} from 'sentry/components/panels';
+import {addLoadingMessage, clearIndicators} from 'sentry/actionCreators/indicator';
+import {IconChat, IconCheckmark, IconEllipsis, IconMute, IconStar} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import DropdownLink from 'sentry/components/dropdownLink';
+import ErrorLevel from 'sentry/components/events/errorLevel';
+import GroupChart from 'sentry/components/stream/groupChart';
+import GroupStore from 'sentry/stores/groupStore';
+import Link from 'sentry/components/links/link';
+import SentryTypes from 'sentry/sentryTypes';
+import SnoozeAction from 'sentry/components/issues/snoozeAction';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 class CompactIssueHeader extends React.Component {
   static propTypes = {

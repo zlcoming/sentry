@@ -1,4 +1,4 @@
-import {defined} from 'app/utils';
+import {defined} from 'sentry/utils';
 
 import {Breadcrumb, BreadcrumbType} from './types';
 

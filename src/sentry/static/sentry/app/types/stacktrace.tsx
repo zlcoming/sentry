@@ -1,4 +1,4 @@
-import {Frame} from 'app/types';
+import {Frame} from 'sentry/types';
 
 export type StackViewType = 'app' | 'full' | 'raw';
 

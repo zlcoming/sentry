@@ -3,13 +3,13 @@ import React from 'react';
 import Reflux from 'reflux';
 import createReactClass from 'create-react-class';
 
-import {loadStats} from 'app/actionCreators/projects';
-import {sortArray} from 'app/utils';
-import ProjectsStore from 'app/stores/projectsStore';
-import SentryTypes from 'app/sentryTypes';
-import TeamStore from 'app/stores/teamStore';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
+import {loadStats} from 'sentry/actionCreators/projects';
+import {sortArray} from 'sentry/utils';
+import ProjectsStore from 'sentry/stores/projectsStore';
+import SentryTypes from 'sentry/sentryTypes';
+import TeamStore from 'sentry/stores/teamStore';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import OrganizationTeams from './organizationTeams';
 

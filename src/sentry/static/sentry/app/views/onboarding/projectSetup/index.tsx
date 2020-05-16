@@ -2,12 +2,12 @@ import React from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import styled from '@emotion/styled';
 
-import {analytics} from 'app/utils/analytics';
-import {t} from 'app/locale';
-import HookOrDefault from 'app/components/hookOrDefault';
-import withOrganization from 'app/utils/withOrganization';
-import testableTransition from 'app/utils/testableTransition';
-import {Organization} from 'app/types';
+import {analytics} from 'sentry/utils/analytics';
+import {t} from 'sentry/locale';
+import HookOrDefault from 'sentry/components/hookOrDefault';
+import withOrganization from 'sentry/utils/withOrganization';
+import testableTransition from 'sentry/utils/testableTransition';
+import {Organization} from 'sentry/types';
 
 import {StepProps} from '../types';
 import InviteMembers from './inviteMembers';

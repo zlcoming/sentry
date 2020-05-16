@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import SelectControl from 'app/components/forms/selectControl';
-import {MemberRole} from 'app/types';
+import space from 'sentry/styles/space';
+import SelectControl from 'sentry/components/forms/selectControl';
+import {MemberRole} from 'sentry/types';
 
 type Props = SelectControl['props'] & {
   roles: MemberRole[];

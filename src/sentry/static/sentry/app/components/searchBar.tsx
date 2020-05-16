@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
 
-import {IconClose} from 'app/icons/iconClose';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import {IconSearch} from 'app/icons';
+import {IconClose} from 'sentry/icons/iconClose';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import {IconSearch} from 'sentry/icons';
 
 type DefaultProps = {
   query: string;

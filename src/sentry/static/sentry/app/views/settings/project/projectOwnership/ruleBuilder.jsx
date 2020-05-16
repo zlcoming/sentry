@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import memberListStore from 'app/stores/memberListStore';
-import Button from 'app/components/button';
-import SelectField from 'app/components/forms/selectField';
-import TextOverflow from 'app/components/textOverflow';
-import {IconAdd, IconChevron} from 'app/icons';
-import Input from 'app/views/settings/components/forms/controls/input';
-import SentryTypes from 'app/sentryTypes';
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import SelectOwners from 'app/views/settings/project/projectOwnership/selectOwners';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import memberListStore from 'sentry/stores/memberListStore';
+import Button from 'sentry/components/button';
+import SelectField from 'sentry/components/forms/selectField';
+import TextOverflow from 'sentry/components/textOverflow';
+import {IconAdd, IconChevron} from 'sentry/icons';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import SentryTypes from 'sentry/sentryTypes';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import SelectOwners from 'sentry/views/settings/project/projectOwnership/selectOwners';
+import space from 'sentry/styles/space';
 
 const initialState = {
   text: '',

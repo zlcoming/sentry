@@ -4,20 +4,26 @@ import classNames from 'classnames';
 import scrollToElement from 'scroll-to-element';
 import styled from '@emotion/styled';
 
-import {defined, objectIsEmpty} from 'app/utils';
-import {t} from 'app/locale';
-import TogglableAddress from 'app/components/events/interfaces/togglableAddress';
-import PackageLink from 'app/components/events/interfaces/packageLink';
-import PackageStatus from 'app/components/events/interfaces/packageStatus';
-import StrictClick from 'app/components/strictClick';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import withSentryAppComponents from 'app/utils/withSentryAppComponents';
-import {DebugMetaActions} from 'app/stores/debugMetaStore';
-import {SymbolicatorStatus} from 'app/components/events/interfaces/types';
-import {combineStatus} from 'app/components/events/interfaces/debugMeta/utils';
-import {IconRefresh, IconAdd, IconSubtract, IconQuestion, IconWarning} from 'app/icons';
-import overflowEllipsis from 'app/styles/overflowEllipsis';
+import {defined, objectIsEmpty} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import TogglableAddress from 'sentry/components/events/interfaces/togglableAddress';
+import PackageLink from 'sentry/components/events/interfaces/packageLink';
+import PackageStatus from 'sentry/components/events/interfaces/packageStatus';
+import StrictClick from 'sentry/components/strictClick';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import withSentryAppComponents from 'sentry/utils/withSentryAppComponents';
+import {DebugMetaActions} from 'sentry/stores/debugMetaStore';
+import {SymbolicatorStatus} from 'sentry/components/events/interfaces/types';
+import {combineStatus} from 'sentry/components/events/interfaces/debugMeta/utils';
+import {
+  IconRefresh,
+  IconAdd,
+  IconSubtract,
+  IconQuestion,
+  IconWarning,
+} from 'sentry/icons';
+import overflowEllipsis from 'sentry/styles/overflowEllipsis';
 
 import FrameDefaultTitle from './frameDefaultTitle';
 import FrameContext from './frameContext';

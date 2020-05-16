@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import intersection from 'lodash/intersection';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import {SentryApp, Scope} from 'app/types';
-import {t} from 'app/locale';
-import Form from 'app/views/settings/components/forms/form';
-import FormModel from 'app/views/settings/components/forms/model';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import space from 'app/styles/space';
-import {SENTRY_APP_PERMISSIONS, PermissionChoice} from 'app/constants';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {SentryApp, Scope} from 'sentry/types';
+import {t} from 'sentry/locale';
+import Form from 'sentry/views/settings/components/forms/form';
+import FormModel from 'sentry/views/settings/components/forms/model';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import space from 'sentry/styles/space';
+import {SENTRY_APP_PERMISSIONS, PermissionChoice} from 'sentry/constants';
 
 /**
  * Given an array of scopes, return the choices the user has picked for each option

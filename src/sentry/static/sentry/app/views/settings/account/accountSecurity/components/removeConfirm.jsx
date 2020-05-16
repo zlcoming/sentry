@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import ConfirmHeader from 'app/views/settings/account/accountSecurity/components/confirmHeader';
-import Confirm from 'app/components/confirm';
-import TextBlock from 'app/views/settings/components/text/textBlock';
+import {t} from 'sentry/locale';
+import ConfirmHeader from 'sentry/views/settings/account/accountSecurity/components/confirmHeader';
+import Confirm from 'sentry/components/confirm';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
 
 const message = (
   <React.Fragment>

@@ -2,8 +2,7 @@ import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import ReleaseSeries from 'app/components/charts/releaseSeries';
+import ReleaseSeries from 'sentry/components/charts/releaseSeries';
 
 describe('ReleaseSeries', function() {
   const renderFunc = jest.fn(() => null);

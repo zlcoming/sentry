@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconCircle, IconCheckmark, IconFlag} from 'app/icons';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
+import {IconCircle, IconCheckmark, IconFlag} from 'sentry/icons';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
 
 type Props = {
   status: 'error' | 'success' | 'empty';

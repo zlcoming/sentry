@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
 
 import ApiChart from './apiChart';
 import EventChart from './eventChart';

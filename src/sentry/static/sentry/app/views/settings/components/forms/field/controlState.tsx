@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {fadeOut, pulse} from 'app/styles/animations';
-import {IconCheckmark, IconWarning} from 'app/icons';
-import Spinner from 'app/views/settings/components/forms/spinner';
+import {fadeOut, pulse} from 'sentry/styles/animations';
+import {IconCheckmark, IconWarning} from 'sentry/icons';
+import Spinner from 'sentry/views/settings/components/forms/spinner';
 
 type Props = {
   isSaving?: boolean;

@@ -3,10 +3,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 
-import {Theme} from 'app/utils/theme';
-import space from 'app/styles/space';
-import {IconClose} from 'app/icons';
-import {slideInLeft} from 'app/styles/animations';
+import {Theme} from 'sentry/utils/theme';
+import space from 'sentry/styles/space';
+import {IconClose} from 'sentry/icons';
+import {slideInLeft} from 'sentry/styles/animations';
 
 import {CommonSidebarProps} from './types';
 

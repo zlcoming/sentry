@@ -6,9 +6,9 @@ import styled from '@emotion/styled';
 import {
   ProjectTableLayout,
   ProjectTableDataElement,
-} from 'app/views/organizationStats/projectTableLayout';
-import Count from 'app/components/count';
-import space from 'app/styles/space';
+} from 'sentry/views/organizationStats/projectTableLayout';
+import Count from 'sentry/components/count';
+import space from 'sentry/styles/space';
 
 const ProjectTable = ({projectMap, projectTotals, orgTotal, organization}) => {
   const getPercent = (item, total) => {

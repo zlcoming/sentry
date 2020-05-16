@@ -1,13 +1,13 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
 
-import LineChart from 'app/components/charts/lineChart';
-import AreaChart from 'app/components/charts/areaChart';
-import StackedAreaChart from 'app/components/charts/stackedAreaChart';
-import {Series} from 'app/types/echarts';
-import theme from 'app/utils/theme';
-import {defined} from 'app/utils';
-import {getExactDuration} from 'app/utils/formatters';
+import LineChart from 'sentry/components/charts/lineChart';
+import AreaChart from 'sentry/components/charts/areaChart';
+import StackedAreaChart from 'sentry/components/charts/stackedAreaChart';
+import {Series} from 'sentry/types/echarts';
+import theme from 'sentry/utils/theme';
+import {defined} from 'sentry/utils';
+import {getExactDuration} from 'sentry/utils/formatters';
 
 import {YAxis} from './releaseChartControls';
 

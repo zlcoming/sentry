@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ActivityItem from 'app/components/activity/item';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
+import ActivityItem from 'sentry/components/activity/item';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
 
 import EditorTools from './editorTools';
 import NoteBody from './body';

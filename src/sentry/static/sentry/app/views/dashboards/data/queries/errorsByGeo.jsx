@@ -1,5 +1,5 @@
-import {OPERATOR} from 'app/views/discover/data';
-import {t} from 'app/locale';
+import {OPERATOR} from 'sentry/views/discover/data';
+import {t} from 'sentry/locale';
 
 /**
  * Top Errors by geo location

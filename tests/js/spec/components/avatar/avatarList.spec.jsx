@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import AvatarList from 'app/components/avatar/avatarList';
+import AvatarList from 'sentry/components/avatar/avatarList';
 
 describe('AvatarList', function() {
   it('renders with user avatars', function() {

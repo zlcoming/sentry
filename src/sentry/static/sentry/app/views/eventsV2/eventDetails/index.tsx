@@ -4,14 +4,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Location} from 'history';
 
-import {Organization} from 'app/types';
-import {PageContent} from 'app/styles/organization';
-import {t} from 'app/locale';
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
-import EventView from 'app/utils/discover/eventView';
+import {Organization} from 'sentry/types';
+import {PageContent} from 'sentry/styles/organization';
+import {t} from 'sentry/locale';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
+import EventView from 'sentry/utils/discover/eventView';
 
 import EventDetailsContent from './content';
 

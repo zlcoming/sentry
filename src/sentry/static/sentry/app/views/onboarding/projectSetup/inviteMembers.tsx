@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addSuccessMessage} from 'app/actionCreators/indicator';
-import {analytics} from 'app/utils/analytics';
-import {getCurrentMember} from 'app/actionCreators/members';
-import {t, tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import EmailField from 'app/views/settings/components/forms/emailField';
-import Form from 'app/views/settings/components/forms/form';
-import Panel from 'app/components/panels/panel';
-import {IconGroup} from 'app/icons';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withConfig from 'app/utils/withConfig';
-import withOrganization from 'app/utils/withOrganization';
-import {Client} from 'app/api';
-import {Organization, Config, Project, MemberRole} from 'app/types';
-import FormModel from 'app/views/settings/components/forms/model';
+import {addSuccessMessage} from 'sentry/actionCreators/indicator';
+import {analytics} from 'sentry/utils/analytics';
+import {getCurrentMember} from 'sentry/actionCreators/members';
+import {t, tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import EmailField from 'sentry/views/settings/components/forms/emailField';
+import Form from 'sentry/views/settings/components/forms/form';
+import Panel from 'sentry/components/panels/panel';
+import {IconGroup} from 'sentry/icons';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withConfig from 'sentry/utils/withConfig';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Client} from 'sentry/api';
+import {Organization, Config, Project, MemberRole} from 'sentry/types';
+import FormModel from 'sentry/views/settings/components/forms/model';
 
 import {StepProps} from '../types';
 

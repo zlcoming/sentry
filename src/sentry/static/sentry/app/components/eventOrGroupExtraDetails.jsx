@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconChat} from 'app/icons';
-import {tct} from 'app/locale';
-import EventAnnotation from 'app/components/events/eventAnnotation';
-import ProjectBadge from 'app/components/idBadge/projectBadge';
-import SentryTypes from 'app/sentryTypes';
-import ShortId from 'app/components/shortId';
-import Times from 'app/components/group/times';
-import space from 'app/styles/space';
+import {IconChat} from 'sentry/icons';
+import {tct} from 'sentry/locale';
+import EventAnnotation from 'sentry/components/events/eventAnnotation';
+import ProjectBadge from 'sentry/components/idBadge/projectBadge';
+import SentryTypes from 'sentry/sentryTypes';
+import ShortId from 'sentry/components/shortId';
+import Times from 'sentry/components/group/times';
+import space from 'sentry/styles/space';
 
 class EventOrGroupExtraDetails extends React.Component {
   static propTypes = {

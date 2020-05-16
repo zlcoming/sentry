@@ -1,10 +1,9 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {DEFAULT_EVENT_VIEW, ALL_VIEWS} from 'app/views/eventsV2/data';
-import CreateAlertButton from 'app/components/createAlertButton';
-import EventView from 'app/utils/discover/eventView';
+import {DEFAULT_EVENT_VIEW, ALL_VIEWS} from 'sentry/views/eventsV2/data';
+import CreateAlertButton from 'sentry/components/createAlertButton';
+import EventView from 'sentry/utils/discover/eventView';
 
 const onIncompatibleQueryMock = jest.fn();
 const onCloseMock = jest.fn();

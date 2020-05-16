@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {ListGroup, ListGroupItem} from 'app/components/listGroup';
-import FileChange from 'app/components/fileChange';
-import {t, tn} from 'app/locale';
-import space from 'app/styles/space';
+import {ListGroup, ListGroupItem} from 'sentry/components/listGroup';
+import FileChange from 'sentry/components/fileChange';
+import {t, tn} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 function Collapsed(props) {
   return (

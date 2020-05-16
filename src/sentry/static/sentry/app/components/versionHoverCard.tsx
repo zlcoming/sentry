@@ -1,24 +1,24 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import AvatarList from 'app/components/avatar/avatarList';
-import Button from 'app/components/button';
-import Hovercard from 'app/components/hovercard';
-import LastCommit from 'app/components/lastCommit';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import RepoLabel from 'app/components/repoLabel';
-import TimeSince from 'app/components/timeSince';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
-import withRelease from 'app/utils/withRelease';
-import withRepositories from 'app/utils/withRepositories';
-import Clipboard from 'app/components/clipboard';
-import {IconCopy} from 'app/icons';
-import Version from 'app/components/version';
-import {Client} from 'app/api';
-import {Deploy, Release, Repository} from 'app/types';
+import {t} from 'sentry/locale';
+import AvatarList from 'sentry/components/avatar/avatarList';
+import Button from 'sentry/components/button';
+import Hovercard from 'sentry/components/hovercard';
+import LastCommit from 'sentry/components/lastCommit';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import RepoLabel from 'sentry/components/repoLabel';
+import TimeSince from 'sentry/components/timeSince';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
+import withRelease from 'sentry/utils/withRelease';
+import withRepositories from 'sentry/utils/withRepositories';
+import Clipboard from 'sentry/components/clipboard';
+import {IconCopy} from 'sentry/icons';
+import Version from 'sentry/components/version';
+import {Client} from 'sentry/api';
+import {Deploy, Release, Repository} from 'sentry/types';
 
 type Props = {
   api: Client;

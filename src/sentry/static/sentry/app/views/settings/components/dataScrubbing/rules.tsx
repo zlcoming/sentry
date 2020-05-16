@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import TextOverflow from 'app/components/textOverflow';
-import {IconDelete, IconEdit} from 'app/icons';
-import Button from 'app/components/button';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import TextOverflow from 'sentry/components/textOverflow';
+import {IconDelete, IconEdit} from 'sentry/icons';
+import Button from 'sentry/components/button';
 
 import {getMethodLabel, getRuleLabel} from './utils';
 import {RuleType, MethodType, Rule} from './types';

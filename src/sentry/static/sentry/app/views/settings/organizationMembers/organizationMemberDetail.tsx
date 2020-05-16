@@ -4,31 +4,31 @@ import React from 'react';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {Member, Organization, Team} from 'app/types';
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
+import {Member, Organization, Team} from 'sentry/types';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
 import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {inputStyles} from 'app/styles/input';
-import {removeAuthenticator} from 'app/actionCreators/account';
-import {resendMemberInvite, updateMember} from 'app/actionCreators/members';
-import {t, tct} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import AutoSelectText from 'app/components/autoSelectText';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import DateTime from 'app/components/dateTime';
-import ExternalLink from 'app/components/links/externalLink';
-import Field from 'app/views/settings/components/forms/field';
-import NotFound from 'app/components/errors/notFound';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TeamSelect from 'app/views/settings/components/teamSelect';
-import Tooltip from 'app/components/tooltip';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+} from 'sentry/actionCreators/indicator';
+import {inputStyles} from 'sentry/styles/input';
+import {removeAuthenticator} from 'sentry/actionCreators/account';
+import {resendMemberInvite, updateMember} from 'sentry/actionCreators/members';
+import {t, tct} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import AutoSelectText from 'sentry/components/autoSelectText';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import DateTime from 'sentry/components/dateTime';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Field from 'sentry/views/settings/components/forms/field';
+import NotFound from 'sentry/components/errors/notFound';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TeamSelect from 'sentry/views/settings/components/teamSelect';
+import Tooltip from 'sentry/components/tooltip';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import RoleSelect from './inviteMember/roleSelect';
 

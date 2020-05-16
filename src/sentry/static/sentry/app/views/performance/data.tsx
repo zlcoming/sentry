@@ -1,10 +1,10 @@
 import {Location} from 'history';
 
-import {t} from 'app/locale';
-import {NewQuery, LightWeightOrganization, SelectValue} from 'app/types';
-import EventView from 'app/utils/discover/eventView';
-import {decodeScalar} from 'app/utils/queryString';
-import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
+import {t} from 'sentry/locale';
+import {NewQuery, LightWeightOrganization, SelectValue} from 'sentry/types';
+import EventView from 'sentry/utils/discover/eventView';
+import {decodeScalar} from 'sentry/utils/queryString';
+import {tokenizeSearch, stringifyQueryObject} from 'sentry/utils/tokenizeSearch';
 
 export const DEFAULT_STATS_PERIOD = '24h';
 

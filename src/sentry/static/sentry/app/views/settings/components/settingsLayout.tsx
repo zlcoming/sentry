@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import Button from 'app/components/button';
-import {slideInLeft, fadeIn} from 'app/styles/animations';
-import {IconClose, IconMenu} from 'app/icons';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import Button from 'sentry/components/button';
+import {slideInLeft, fadeIn} from 'sentry/styles/animations';
+import {IconClose, IconMenu} from 'sentry/icons';
 
 import SettingsBreadcrumb from './settingsBreadcrumb';
 import SettingsHeader from './settingsHeader';

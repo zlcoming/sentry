@@ -1,21 +1,21 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import AddIntegration from 'app/views/organizationIntegrations/addIntegration';
-import BreadcrumbTitle from 'app/views/settings/components/settingsBreadcrumb/breadcrumbTitle';
-import Button from 'app/components/button';
-import {IconAdd} from 'app/icons';
-import Form from 'app/views/settings/components/forms/form';
-import IntegrationAlertRules from 'app/views/organizationIntegrations/integrationAlertRules';
-import IntegrationItem from 'app/views/organizationIntegrations/integrationItem';
-import IntegrationRepos from 'app/views/organizationIntegrations/integrationRepos';
-import JsonForm from 'app/views/settings/components/forms/jsonForm';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import withOrganization from 'app/utils/withOrganization';
-import {Organization, Integration, IntegrationProvider} from 'app/types';
-import {trackIntegrationEvent} from 'app/utils/integrationUtil';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import AddIntegration from 'sentry/views/organizationIntegrations/addIntegration';
+import BreadcrumbTitle from 'sentry/views/settings/components/settingsBreadcrumb/breadcrumbTitle';
+import Button from 'sentry/components/button';
+import {IconAdd} from 'sentry/icons';
+import Form from 'sentry/views/settings/components/forms/form';
+import IntegrationAlertRules from 'sentry/views/organizationIntegrations/integrationAlertRules';
+import IntegrationItem from 'sentry/views/organizationIntegrations/integrationItem';
+import IntegrationRepos from 'sentry/views/organizationIntegrations/integrationRepos';
+import JsonForm from 'sentry/views/settings/components/forms/jsonForm';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import withOrganization from 'sentry/utils/withOrganization';
+import {Organization, Integration, IntegrationProvider} from 'sentry/types';
+import {trackIntegrationEvent} from 'sentry/utils/integrationUtil';
 
 type RouteParams = {
   orgId: string;

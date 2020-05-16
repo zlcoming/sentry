@@ -1,7 +1,7 @@
-import {KeyValueListData} from 'app/components/events/interfaces/keyValueList/types';
-import {getMeta} from 'app/components/events/meta/metaProxy';
-import {AvatarUser as UserType} from 'app/types';
-import {defined} from 'app/utils';
+import {KeyValueListData} from 'sentry/components/events/interfaces/keyValueList/types';
+import {getMeta} from 'sentry/components/events/meta/metaProxy';
+import {AvatarUser as UserType} from 'sentry/types';
+import {defined} from 'sentry/utils';
 
 import getUserKnownDataDetails from './getUserKnownDataDetails';
 import {UserKnownDataType} from './types';

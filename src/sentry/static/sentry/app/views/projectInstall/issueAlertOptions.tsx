@@ -3,15 +3,15 @@ import isEqual from 'lodash/isEqual';
 import styled from '@emotion/styled';
 import * as Sentry from '@sentry/react';
 
-import {t} from 'app/locale';
-import {Organization} from 'app/types';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import AsyncComponent from 'app/components/asyncComponent';
-import Input from 'app/views/settings/components/forms/controls/input';
-import PageHeading from 'app/components/pageHeading';
-import SelectControl from 'app/components/forms/selectControl';
-import RadioGroup from 'app/views/settings/components/forms/controls/radioGroup';
+import {t} from 'sentry/locale';
+import {Organization} from 'sentry/types';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import PageHeading from 'sentry/components/pageHeading';
+import SelectControl from 'sentry/components/forms/selectControl';
+import RadioGroup from 'sentry/views/settings/components/forms/controls/radioGroup';
 
 enum MetricValues {
   ERRORS,

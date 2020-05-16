@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import RepoLabel from 'app/components/repoLabel';
+import RepoLabel from 'sentry/components/repoLabel';
 
 export default {
   title: 'RepoLabel',

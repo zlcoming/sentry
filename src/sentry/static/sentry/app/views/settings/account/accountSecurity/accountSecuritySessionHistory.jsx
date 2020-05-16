@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import ListLink from 'app/components/links/listLink';
-import NavTabs from 'app/components/navTabs';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TimeSince from 'app/components/timeSince';
-import recreateRoute from 'app/utils/recreateRoute';
-import space from 'app/styles/space';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import ListLink from 'sentry/components/links/listLink';
+import NavTabs from 'sentry/components/navTabs';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TimeSince from 'sentry/components/timeSince';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import space from 'sentry/styles/space';
 
 class SessionRow extends React.Component {
   static propTypes = {

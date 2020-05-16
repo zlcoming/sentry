@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {openInviteMembersModal} from 'app/actionCreators/modal';
-import {sourceMaps} from 'app/data/platformCategories';
+import {t} from 'sentry/locale';
+import {openInviteMembersModal} from 'sentry/actionCreators/modal';
+import {sourceMaps} from 'sentry/data/platformCategories';
 import {
   Organization,
   OnboardingTaskDescriptor,
@@ -11,14 +11,14 @@ import {
   OnboardingTask,
   Project,
   OnboardingSupplementComponentProps,
-} from 'app/types';
-import withApi from 'app/utils/withApi';
-import {Client} from 'app/api';
-import withProjects from 'app/utils/withProjects';
-import EventWaiter from 'app/utils/eventWaiter';
-import {taskIsDone} from 'app/components/onboardingWizard/utils';
-import pulsingIndicatorStyles from 'app/styles/pulsingIndicator';
-import space from 'app/styles/space';
+} from 'sentry/types';
+import withApi from 'sentry/utils/withApi';
+import {Client} from 'sentry/api';
+import withProjects from 'sentry/utils/withProjects';
+import EventWaiter from 'sentry/utils/eventWaiter';
+import {taskIsDone} from 'sentry/components/onboardingWizard/utils';
+import pulsingIndicatorStyles from 'sentry/styles/pulsingIndicator';
+import space from 'sentry/styles/space';
 
 function hasPlatformWithSourceMaps(organization: Organization): boolean {
   const projects = organization?.projects;

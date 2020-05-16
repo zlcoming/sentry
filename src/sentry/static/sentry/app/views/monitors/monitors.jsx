@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {PageHeader} from 'app/styles/organization';
-import {Panel, PanelBody, PanelItem} from 'app/components/panels';
-import {getParams} from 'app/components/organizations/globalSelectionHeader/getParams';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import FeatureBadge from 'app/components/featureBadge';
-import Button from 'app/components/button';
-import PageHeading from 'app/components/pageHeading';
-import Pagination from 'app/components/pagination';
-import SearchBar from 'app/components/searchBar';
-import SentryTypes from 'app/sentryTypes';
-import TimeSince from 'app/components/timeSince';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
+import {PageHeader} from 'sentry/styles/organization';
+import {Panel, PanelBody, PanelItem} from 'sentry/components/panels';
+import {getParams} from 'sentry/components/organizations/globalSelectionHeader/getParams';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import FeatureBadge from 'sentry/components/featureBadge';
+import Button from 'sentry/components/button';
+import PageHeading from 'sentry/components/pageHeading';
+import Pagination from 'sentry/components/pagination';
+import SearchBar from 'sentry/components/searchBar';
+import SentryTypes from 'sentry/sentryTypes';
+import TimeSince from 'sentry/components/timeSince';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
 
 import MonitorIcon from './monitorIcon';
 

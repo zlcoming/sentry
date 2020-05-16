@@ -4,34 +4,34 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import styled from '@emotion/styled';
 
-import {DEFAULT_STATS_PERIOD} from 'app/constants';
+import {DEFAULT_STATS_PERIOD} from 'sentry/constants';
 import {
   GlobalSelection,
   Environment,
   Organization,
   MinimalProject,
   Project,
-} from 'app/types';
-import {PageContent} from 'app/styles/organization';
-import {callIfFunction} from 'app/utils/callIfFunction';
-import {t} from 'app/locale';
+} from 'sentry/types';
+import {PageContent} from 'sentry/styles/organization';
+import {callIfFunction} from 'sentry/utils/callIfFunction';
+import {t} from 'sentry/locale';
 import {
   updateDateTime,
   updateEnvironments,
   updateProjects,
-} from 'app/actionCreators/globalSelection';
-import BackToIssues from 'app/components/organizations/backToIssues';
-import HeaderItemPosition from 'app/components/organizations/headerItemPosition';
-import HeaderSeparator from 'app/components/organizations/headerSeparator';
-import {IconArrow} from 'app/icons';
-import MultipleEnvironmentSelector from 'app/components/organizations/multipleEnvironmentSelector';
-import MultipleProjectSelector from 'app/components/organizations/multipleProjectSelector';
-import Projects from 'app/utils/projects';
-import SentryTypes from 'app/sentryTypes';
-import TimeRangeSelector from 'app/components/organizations/timeRangeSelector';
-import Tooltip from 'app/components/tooltip';
-import space from 'app/styles/space';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
+} from 'sentry/actionCreators/globalSelection';
+import BackToIssues from 'sentry/components/organizations/backToIssues';
+import HeaderItemPosition from 'sentry/components/organizations/headerItemPosition';
+import HeaderSeparator from 'sentry/components/organizations/headerSeparator';
+import {IconArrow} from 'sentry/icons';
+import MultipleEnvironmentSelector from 'sentry/components/organizations/multipleEnvironmentSelector';
+import MultipleProjectSelector from 'sentry/components/organizations/multipleProjectSelector';
+import Projects from 'sentry/utils/projects';
+import SentryTypes from 'sentry/sentryTypes';
+import TimeRangeSelector from 'sentry/components/organizations/timeRangeSelector';
+import Tooltip from 'sentry/components/tooltip';
+import space from 'sentry/styles/space';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
 
 import Header from './header';
 

@@ -1,7 +1,7 @@
 /**
  * Events by Release
  */
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 
 const eventsByRelease = {
   name: t('Events by Release'),

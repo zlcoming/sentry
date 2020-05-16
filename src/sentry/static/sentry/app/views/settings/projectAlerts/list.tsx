@@ -2,22 +2,22 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconAdd, IconSettings} from 'app/icons';
-import {IssueAlertRule} from 'app/types/alerts';
-import {Organization} from 'app/types';
-import {PanelTable} from 'app/components/panels';
-import {SavedIncidentRule} from 'app/views/settings/incidentRules/types';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import OnboardingHovercard from 'app/views/settings/projectAlerts/onboardingHovercard';
-import Pagination from 'app/components/pagination';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import RuleRow from 'app/views/settings/projectAlerts/ruleRow';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import Tooltip from 'app/components/tooltip';
-import routeTitle from 'app/utils/routeTitle';
-import space from 'app/styles/space';
+import {IconAdd, IconSettings} from 'sentry/icons';
+import {IssueAlertRule} from 'sentry/types/alerts';
+import {Organization} from 'sentry/types';
+import {PanelTable} from 'sentry/components/panels';
+import {SavedIncidentRule} from 'sentry/views/settings/incidentRules/types';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import OnboardingHovercard from 'sentry/views/settings/projectAlerts/onboardingHovercard';
+import Pagination from 'sentry/components/pagination';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import RuleRow from 'sentry/views/settings/projectAlerts/ruleRow';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import Tooltip from 'sentry/components/tooltip';
+import routeTitle from 'sentry/utils/routeTitle';
+import space from 'sentry/styles/space';
 
 type Props = {
   canEditRule: boolean;

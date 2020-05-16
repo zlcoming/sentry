@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import {IconClose} from 'app/icons/iconClose';
-import Link from 'app/components/links/link';
+import {t} from 'sentry/locale';
+import {IconClose} from 'sentry/icons/iconClose';
+import Link from 'sentry/components/links/link';
 
 import ConditionRow from './condition';
 import {PlaceholderText, SelectListItem, AddText, SidebarLabel} from '../styles';

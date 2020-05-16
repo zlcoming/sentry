@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 // eslint-disable-next-line import/named
 import {components, OptionProps} from 'react-select';
 
-import SelectControl from 'app/components/forms/selectControl';
-import space from 'app/styles/space';
+import SelectControl from 'sentry/components/forms/selectControl';
+import space from 'sentry/styles/space';
 
 type SelectControlProps = React.ComponentProps<typeof SelectControl>;
 

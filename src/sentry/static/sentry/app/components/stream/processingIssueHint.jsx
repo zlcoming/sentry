@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import Button from 'app/components/button';
-import {IconWarning, IconSettings} from 'app/icons';
-import TimeSince from 'app/components/timeSince';
-import {t, tn, tct} from 'app/locale';
-import space from 'app/styles/space';
+import Button from 'sentry/components/button';
+import {IconWarning, IconSettings} from 'sentry/icons';
+import TimeSince from 'sentry/components/timeSince';
+import {t, tn, tct} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 class ProcessingIssueHint extends React.Component {
   static propTypes = {

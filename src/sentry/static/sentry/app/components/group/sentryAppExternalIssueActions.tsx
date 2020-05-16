@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/lib/Modal';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import withApi from 'app/utils/withApi';
-import {IconAdd, IconClose} from 'app/icons';
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {IntegrationLink} from 'app/components/issueSyncListElement';
-import {SentryAppIcon} from 'app/components/sentryAppIcon';
-import SentryAppExternalIssueForm from 'app/components/group/sentryAppExternalIssueForm';
-import NavTabs from 'app/components/navTabs';
-import {t, tct} from 'app/locale';
-import SentryTypes from 'app/sentryTypes';
-import space from 'app/styles/space';
-import {deleteExternalIssue} from 'app/actionCreators/platformExternalIssues';
-import {recordInteraction} from 'app/utils/recordSentryAppInteraction';
+import {Client} from 'sentry/api';
+import withApi from 'sentry/utils/withApi';
+import {IconAdd, IconClose} from 'sentry/icons';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {IntegrationLink} from 'sentry/components/issueSyncListElement';
+import {SentryAppIcon} from 'sentry/components/sentryAppIcon';
+import SentryAppExternalIssueForm from 'sentry/components/group/sentryAppExternalIssueForm';
+import NavTabs from 'sentry/components/navTabs';
+import {t, tct} from 'sentry/locale';
+import SentryTypes from 'sentry/sentryTypes';
+import space from 'sentry/styles/space';
+import {deleteExternalIssue} from 'sentry/actionCreators/platformExternalIssues';
+import {recordInteraction} from 'sentry/utils/recordSentryAppInteraction';
 import {
   Group,
   PlatformExternalIssue,
   Event,
   SentryAppComponent,
   SentryAppInstallation,
-} from 'app/types';
+} from 'sentry/types';
 
 type Props = {
   api: Client;

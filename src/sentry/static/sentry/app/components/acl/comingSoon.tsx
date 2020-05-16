@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {t} from 'app/locale';
-import {IconInfo} from 'app/icons';
-import Alert from 'app/components/alert';
+import {t} from 'sentry/locale';
+import {IconInfo} from 'sentry/icons';
+import Alert from 'sentry/components/alert';
 
 const ComingSoon = () => (
   <Alert type="info" icon={<IconInfo size="md" />}>

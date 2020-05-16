@@ -3,9 +3,9 @@ import {
   UnsavedIncidentRule,
   Trigger,
   Dataset,
-} from 'app/views/settings/incidentRules/types';
-import EventView from 'app/utils/discover/eventView';
-import {AggregationKey, LooseFieldKey} from 'app/utils/discover/fields';
+} from 'sentry/views/settings/incidentRules/types';
+import EventView from 'sentry/utils/discover/eventView';
+import {AggregationKey, LooseFieldKey} from 'sentry/utils/discover/fields';
 
 export const DEFAULT_AGGREGATE = 'count()';
 

@@ -2,9 +2,8 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ProjectAlerts from 'app/views/settings/projectAlerts';
-import ProjectAlertsList from 'app/views/settings/projectAlerts/list';
+import ProjectAlerts from 'sentry/views/settings/projectAlerts';
+import ProjectAlertsList from 'sentry/views/settings/projectAlerts/list';
 
 describe('ProjectAlertsList', function() {
   let listMock;

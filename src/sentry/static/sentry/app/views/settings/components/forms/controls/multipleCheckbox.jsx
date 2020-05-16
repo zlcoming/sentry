@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {defined} from 'app/utils';
+import {defined} from 'sentry/utils';
 
 const MultipleCheckboxWrapper = styled('div')`
   display: flex;

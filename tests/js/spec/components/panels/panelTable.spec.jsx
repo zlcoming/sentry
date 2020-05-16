@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import PanelTable from 'app/components/panels/panelTable';
+import PanelTable from 'sentry/components/panels/panelTable';
 
 describe('PanelTable', function() {
   const createWrapper = (props = {}) =>

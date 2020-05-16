@@ -3,17 +3,17 @@ import {Location} from 'history';
 import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 
-import {IconWarning} from 'app/icons';
-import {t} from 'app/locale';
-import AreaChart from 'app/components/charts/areaChart';
-import ErrorPanel from 'app/components/charts/errorPanel';
-import LoadingPanel from 'app/components/charts/loadingPanel';
-import QuestionTooltip from 'app/components/questionTooltip';
-import AsyncComponent from 'app/components/asyncComponent';
-import {OrganizationSummary} from 'app/types';
-import EventView from 'app/utils/discover/eventView';
-import theme from 'app/utils/theme';
-import {getDuration} from 'app/utils/formatters';
+import {IconWarning} from 'sentry/icons';
+import {t} from 'sentry/locale';
+import AreaChart from 'sentry/components/charts/areaChart';
+import ErrorPanel from 'sentry/components/charts/errorPanel';
+import LoadingPanel from 'sentry/components/charts/loadingPanel';
+import QuestionTooltip from 'sentry/components/questionTooltip';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import {OrganizationSummary} from 'sentry/types';
+import EventView from 'sentry/utils/discover/eventView';
+import theme from 'sentry/utils/theme';
+import {getDuration} from 'sentry/utils/formatters';
 
 import {HeaderTitleLegend} from '../styles';
 

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme, shallow} from 'sentry-test/enzyme';
-
-import RichHttpContent from 'app/components/events/interfaces/richHttpContent/richHttpContent';
+import RichHttpContent from 'sentry/components/events/interfaces/richHttpContent/richHttpContent';
 
 describe('RichHttpContent', function() {
   let data;

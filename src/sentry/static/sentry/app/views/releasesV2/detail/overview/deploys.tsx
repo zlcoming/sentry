@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import space from 'app/styles/space';
-import {Deploy} from 'app/types';
-import TimeSince from 'app/components/timeSince';
-import DeployBadge from 'app/components/deployBadge';
-import TextOverflow from 'app/components/textOverflow';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
+import {Deploy} from 'sentry/types';
+import TimeSince from 'sentry/components/timeSince';
+import DeployBadge from 'sentry/components/deployBadge';
+import TextOverflow from 'sentry/components/textOverflow';
 
 import {SectionHeading, Wrapper} from './styles';
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {ProjectKey} from 'app/views/settings/project/projectKeys/types';
-import {t, tct} from 'app/locale';
-import ExternalLink from 'app/components/links/externalLink';
-import Link from 'app/components/links/link';
-import Field from 'app/views/settings/components/forms/field';
-import TextCopyInput from 'app/views/settings/components/forms/textCopyInput';
-import getDynamicText from 'app/utils/getDynamicText';
-import space from 'app/styles/space';
+import {ProjectKey} from 'sentry/views/settings/project/projectKeys/types';
+import {t, tct} from 'sentry/locale';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Link from 'sentry/components/links/link';
+import Field from 'sentry/views/settings/components/forms/field';
+import TextCopyInput from 'sentry/views/settings/components/forms/textCopyInput';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import space from 'sentry/styles/space';
 
 const DEFAULT_PROPS = {
   showDsn: true,

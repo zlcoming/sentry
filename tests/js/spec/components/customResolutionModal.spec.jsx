@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import CustomResolutionModal from 'app/components/customResolutionModal';
+import CustomResolutionModal from 'sentry/components/customResolutionModal';
 
 describe('CustomResolutionModal', function() {
   let releasesMock;

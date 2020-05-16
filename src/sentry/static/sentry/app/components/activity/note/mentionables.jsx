@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Reflux from 'reflux';
 
-import MemberListStore from 'app/stores/memberListStore';
-import Projects from 'app/utils/projects';
-import SentryTypes from 'app/sentryTypes';
-import withOrganization from 'app/utils/withOrganization';
+import MemberListStore from 'sentry/stores/memberListStore';
+import Projects from 'sentry/utils/projects';
+import SentryTypes from 'sentry/sentryTypes';
+import withOrganization from 'sentry/utils/withOrganization';
 
 const buildUserId = id => `user:${id}`;
 const buildTeamId = id => `team:${id}`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {css} from '@emotion/core';
 
-import theme from 'app/utils/theme';
+import theme from 'sentry/utils/theme';
 
 import SvgIcon from './svgIcon';
 

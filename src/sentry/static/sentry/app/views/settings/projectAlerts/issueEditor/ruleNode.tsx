@@ -7,17 +7,17 @@ import {
   IssueAlertRuleCondition,
   IssueAlertRuleConditionTemplate,
   MailActionTargetType,
-} from 'app/types/alerts';
-import Alert from 'app/components/alert';
-import Button from 'app/components/button';
-import Input from 'app/views/settings/components/forms/controls/input';
-import SelectControl from 'app/components/forms/selectControl';
-import space from 'app/styles/space';
-import {t, tct} from 'app/locale';
-import MailActionFields from 'app/views/settings/projectAlerts/issueEditor/mailActionFields';
-import ExternalLink from 'app/components/links/externalLink';
-import {Organization, Project} from 'app/types';
-import {IconDelete} from 'app/icons';
+} from 'sentry/types/alerts';
+import Alert from 'sentry/components/alert';
+import Button from 'sentry/components/button';
+import Input from 'sentry/views/settings/components/forms/controls/input';
+import SelectControl from 'sentry/components/forms/selectControl';
+import space from 'sentry/styles/space';
+import {t, tct} from 'sentry/locale';
+import MailActionFields from 'sentry/views/settings/projectAlerts/issueEditor/mailActionFields';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {Organization, Project} from 'sentry/types';
+import {IconDelete} from 'sentry/icons';
 
 type FormField = {
   // Type of form fields

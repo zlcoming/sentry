@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import {Event, OrganizationSummary} from 'app/types';
-import {SectionHeading} from 'app/components/charts/styles';
-import DateTime from 'app/components/dateTime';
-import ExternalLink from 'app/components/links/externalLink';
-import FileSize from 'app/components/fileSize';
-import ProjectBadge from 'app/components/idBadge/projectBadge';
-import space from 'app/styles/space';
-import getDynamicText from 'app/utils/getDynamicText';
-import Projects from 'app/utils/projects';
+import {t} from 'sentry/locale';
+import {Event, OrganizationSummary} from 'sentry/types';
+import {SectionHeading} from 'sentry/components/charts/styles';
+import DateTime from 'sentry/components/dateTime';
+import ExternalLink from 'sentry/components/links/externalLink';
+import FileSize from 'sentry/components/fileSize';
+import ProjectBadge from 'sentry/components/idBadge/projectBadge';
+import space from 'sentry/styles/space';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import Projects from 'sentry/utils/projects';
 
 type Props = {
   event: Event;

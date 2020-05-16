@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import SpreadLayout from 'app/components/spreadLayout';
+import SpreadLayout from 'sentry/components/spreadLayout';
 
 export default {
   title: 'Deprecated/ComponentLayouts/SpreadLayout',

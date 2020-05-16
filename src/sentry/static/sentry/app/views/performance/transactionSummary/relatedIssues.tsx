@@ -3,18 +3,18 @@ import {Location} from 'history';
 import styled from '@emotion/styled';
 import pick from 'lodash/pick';
 
-import {t, tct} from 'app/locale';
-import {DEFAULT_RELATIVE_PERIODS} from 'app/constants';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
-import {SectionHeading} from 'app/components/charts/styles';
-import Button from 'app/components/button';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
-import {Panel, PanelBody} from 'app/components/panels';
-import space from 'app/styles/space';
-import {OrganizationSummary} from 'app/types';
-import GroupList from 'app/components/issues/groupList';
-import {trackAnalyticsEvent} from 'app/utils/analytics';
-import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
+import {t, tct} from 'sentry/locale';
+import {DEFAULT_RELATIVE_PERIODS} from 'sentry/constants';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
+import {SectionHeading} from 'sentry/components/charts/styles';
+import Button from 'sentry/components/button';
+import EmptyStateWarning from 'sentry/components/emptyStateWarning';
+import {Panel, PanelBody} from 'sentry/components/panels';
+import space from 'sentry/styles/space';
+import {OrganizationSummary} from 'sentry/types';
+import GroupList from 'sentry/components/issues/groupList';
+import {trackAnalyticsEvent} from 'sentry/utils/analytics';
+import {stringifyQueryObject, QueryResults} from 'sentry/utils/tokenizeSearch';
 
 type Props = {
   organization: OrganizationSummary;

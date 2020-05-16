@@ -3,19 +3,19 @@ import {Location} from 'history';
 import partial from 'lodash/partial';
 import styled from '@emotion/styled';
 
-import {Organization} from 'app/types';
-import {t} from 'app/locale';
-import Count from 'app/components/count';
-import Duration from 'app/components/duration';
-import ProjectBadge from 'app/components/idBadge/projectBadge';
-import UserBadge from 'app/components/idBadge/userBadge';
-import UserMisery from 'app/components/userMisery';
-import Version from 'app/components/version';
-import {defined} from 'app/utils';
-import getDynamicText from 'app/utils/getDynamicText';
-import {formatFloat, formatPercentage} from 'app/utils/formatters';
-import {getAggregateAlias, AGGREGATIONS} from 'app/utils/discover/fields';
-import Projects from 'app/utils/projects';
+import {Organization} from 'sentry/types';
+import {t} from 'sentry/locale';
+import Count from 'sentry/components/count';
+import Duration from 'sentry/components/duration';
+import ProjectBadge from 'sentry/components/idBadge/projectBadge';
+import UserBadge from 'sentry/components/idBadge/userBadge';
+import UserMisery from 'sentry/components/userMisery';
+import Version from 'sentry/components/version';
+import {defined} from 'sentry/utils';
+import getDynamicText from 'sentry/utils/getDynamicText';
+import {formatFloat, formatPercentage} from 'sentry/utils/formatters';
+import {getAggregateAlias, AGGREGATIONS} from 'sentry/utils/discover/fields';
+import Projects from 'sentry/utils/projects';
 
 import {
   BarContainer,

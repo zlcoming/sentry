@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Panel, PanelBody, PanelItem} from 'app/components/panels';
-import IssueList from 'app/components/issueList';
-import {t} from 'app/locale';
-import {IconRefresh} from 'app/icons';
+import {Panel, PanelBody, PanelItem} from 'sentry/components/panels';
+import IssueList from 'sentry/components/issueList';
+import {t} from 'sentry/locale';
+import {IconRefresh} from 'sentry/icons';
 
 export default class NewIssues extends React.Component {
   static propTypes = {

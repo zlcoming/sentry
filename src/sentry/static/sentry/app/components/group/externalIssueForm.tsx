@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import * as queryString from 'query-string';
 import debounce from 'lodash/debounce';
 
-import {addSuccessMessage} from 'app/actionCreators/indicator';
-import AsyncComponent from 'app/components/asyncComponent';
-import FieldFromConfig from 'app/views/settings/components/forms/fieldFromConfig';
-import Form from 'app/views/settings/components/forms/form';
-import {FieldValue} from 'app/views/settings/components/forms/model';
-import SentryTypes from 'app/sentryTypes';
-import {t} from 'app/locale';
+import {addSuccessMessage} from 'sentry/actionCreators/indicator';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import FieldFromConfig from 'sentry/views/settings/components/forms/fieldFromConfig';
+import Form from 'sentry/views/settings/components/forms/form';
+import {FieldValue} from 'sentry/views/settings/components/forms/model';
+import SentryTypes from 'sentry/sentryTypes';
+import {t} from 'sentry/locale';
 import {
   Group,
   Integration,
   PlatformExternalIssue,
   IntegrationIssueConfig,
   IssueConfigField,
-} from 'app/types';
+} from 'sentry/types';
 
 const MESSAGES_BY_ACTION = {
   link: t('Successfully linked issue.'),

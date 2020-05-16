@@ -4,16 +4,16 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import withApi from 'app/utils/withApi';
-import {BorderlessEventEntries} from 'app/components/events/eventEntries';
-import Footer from 'app/components/footer';
-import LoadingError from 'app/components/loadingError';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import NotFound from 'app/components/errors/notFound';
-import SentryTypes from 'app/sentryTypes';
-import SharedGroupHeader from 'app/views/sharedGroupDetails/sharedGroupHeader';
-import space from 'app/styles/space';
+import {t} from 'sentry/locale';
+import withApi from 'sentry/utils/withApi';
+import {BorderlessEventEntries} from 'sentry/components/events/eventEntries';
+import Footer from 'sentry/components/footer';
+import LoadingError from 'sentry/components/loadingError';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import NotFound from 'sentry/components/errors/notFound';
+import SentryTypes from 'sentry/sentryTypes';
+import SharedGroupHeader from 'sentry/views/sharedGroupDetails/sharedGroupHeader';
+import space from 'sentry/styles/space';
 
 const SharedGroupDetails = createReactClass({
   displayName: 'SharedGroupDetails',

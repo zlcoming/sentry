@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import rawStacktraceContent from 'app/components/events/interfaces/rawStacktraceContent';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import LoadingError from 'app/components/loadingError';
-import ClippedBox from 'app/components/clippedBox';
-import SentryTypes from 'app/sentryTypes';
-import withApi from 'app/utils/withApi';
-import withOrganization from 'app/utils/withOrganization';
-import {t} from 'app/locale';
+import rawStacktraceContent from 'sentry/components/events/interfaces/rawStacktraceContent';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import LoadingError from 'sentry/components/loadingError';
+import ClippedBox from 'sentry/components/clippedBox';
+import SentryTypes from 'sentry/sentryTypes';
+import withApi from 'sentry/utils/withApi';
+import withOrganization from 'sentry/utils/withOrganization';
+import {t} from 'sentry/locale';
 
 class RawExceptionContent extends React.Component {
   static propTypes = {

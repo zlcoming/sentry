@@ -1,11 +1,11 @@
-import {GridColumnOrder, GridColumnSortBy} from 'app/components/gridEditable';
+import {GridColumnOrder, GridColumnSortBy} from 'sentry/components/gridEditable';
 import {
   Column,
   ColumnType,
   ColumnValueType,
   AggregateParameter,
-} from 'app/utils/discover/fields';
-import {TableDataRow} from 'app/utils/discover/discoverQuery';
+} from 'sentry/utils/discover/fields';
+import {TableDataRow} from 'sentry/utils/discover/discoverQuery';
 
 /**
  * It is assumed that `aggregation` and `field` have the same ColumnValueType

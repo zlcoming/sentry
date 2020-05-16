@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Highlight from 'app/components/highlight';
-import Tag from 'app/views/settings/components/tag';
-import {Color} from 'app/utils/theme';
+import {t} from 'sentry/locale';
+import Highlight from 'sentry/components/highlight';
+import Tag from 'sentry/views/settings/components/tag';
+import {Color} from 'sentry/utils/theme';
 
 import {BreadcrumbLevelType} from './types';
 

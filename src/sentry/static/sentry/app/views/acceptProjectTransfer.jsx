@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import AsyncView from 'app/views/asyncView';
-import Form from 'app/views/settings/components/forms/form';
-import NarrowLayout from 'app/components/narrowLayout';
-import SelectField from 'app/views/settings/components/forms/selectField';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import {t, tct} from 'app/locale';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import AsyncView from 'sentry/views/asyncView';
+import Form from 'sentry/views/settings/components/forms/form';
+import NarrowLayout from 'sentry/components/narrowLayout';
+import SelectField from 'sentry/views/settings/components/forms/selectField';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import {t, tct} from 'sentry/locale';
 
 class AcceptProjectTransfer extends AsyncView {
   getEndpoints() {

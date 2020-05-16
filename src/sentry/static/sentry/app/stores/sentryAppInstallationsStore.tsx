@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-import {SentryAppInstallation} from 'app/types';
+import {SentryAppInstallation} from 'sentry/types';
 
 const SentryAppInstallationStore = Reflux.createStore({
   init() {

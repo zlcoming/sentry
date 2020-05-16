@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import LazyLoad from 'app/components/lazyLoad';
+import LazyLoad from 'sentry/components/lazyLoad';
 
 describe('LazyLoad', function() {
   it('renders with a loading indicator when promise is not resolved yet', function() {

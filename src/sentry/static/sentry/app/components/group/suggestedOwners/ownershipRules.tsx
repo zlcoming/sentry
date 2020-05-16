@@ -2,14 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {ClassNames} from '@emotion/core';
 
-import {IconQuestion} from 'app/icons';
-import {openCreateOwnershipRule} from 'app/actionCreators/modal';
-import {t} from 'app/locale';
-import Button from 'app/components/button';
-import GuideAnchor from 'app/components/assistant/guideAnchor';
-import Hovercard from 'app/components/hovercard';
-import space from 'app/styles/space';
-import {Project, Organization} from 'app/types';
+import {IconQuestion} from 'sentry/icons';
+import {openCreateOwnershipRule} from 'sentry/actionCreators/modal';
+import {t} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import GuideAnchor from 'sentry/components/assistant/guideAnchor';
+import Hovercard from 'sentry/components/hovercard';
+import space from 'sentry/styles/space';
+import {Project, Organization} from 'sentry/types';
 
 import {Wrapper, Header, Heading} from './styles';
 

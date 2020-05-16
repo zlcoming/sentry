@@ -3,11 +3,10 @@ import React from 'react';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mockRouterPush} from 'sentry-test/mockRouterPush';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import {setActiveOrganization} from 'app/actionCreators/organizations';
-import GlobalSelectionStore from 'app/stores/globalSelectionStore';
-import EventsContainer from 'app/views/events';
-import ProjectsStore from 'app/stores/projectsStore';
+import {setActiveOrganization} from 'sentry/actionCreators/organizations';
+import GlobalSelectionStore from 'sentry/stores/globalSelectionStore';
+import EventsContainer from 'sentry/views/events';
+import ProjectsStore from 'sentry/stores/projectsStore';
 
 describe('EventsContainer', function() {
   let wrapper;

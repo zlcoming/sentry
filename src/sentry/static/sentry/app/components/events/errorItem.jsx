@@ -4,9 +4,9 @@ import startCase from 'lodash/startCase';
 import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueList';
-import {t} from 'app/locale';
-import {EventError} from 'app/sentryTypes';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueList';
+import {t} from 'sentry/locale';
+import {EventError} from 'sentry/sentryTypes';
 
 const keyMapping = {
   image_uuid: 'Debug ID',

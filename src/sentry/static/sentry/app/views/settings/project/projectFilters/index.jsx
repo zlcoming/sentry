@@ -1,18 +1,18 @@
 import {Link} from 'react-router';
 import React from 'react';
 
-import {t} from 'app/locale';
-import GroupTombstones from 'app/views/settings/project/projectFilters/groupTombstones';
-import NavTabs from 'app/components/navTabs';
-import SentryDocumentTitle from 'app/components/sentryDocumentTitle';
-import PermissionAlert from 'app/views/settings/project/permissionAlert';
-import ProjectFiltersChart from 'app/views/settings/project/projectFilters/projectFiltersChart';
-import ProjectFiltersSettings from 'app/views/settings/project/projectFilters/projectFiltersSettings';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import TextBlock from 'app/views/settings/components/text/textBlock';
-import recreateRoute from 'app/utils/recreateRoute';
-import withProject from 'app/utils/withProject';
+import {t} from 'sentry/locale';
+import GroupTombstones from 'sentry/views/settings/project/projectFilters/groupTombstones';
+import NavTabs from 'sentry/components/navTabs';
+import SentryDocumentTitle from 'sentry/components/sentryDocumentTitle';
+import PermissionAlert from 'sentry/views/settings/project/permissionAlert';
+import ProjectFiltersChart from 'sentry/views/settings/project/projectFilters/projectFiltersChart';
+import ProjectFiltersSettings from 'sentry/views/settings/project/projectFilters/projectFiltersSettings';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import TextBlock from 'sentry/views/settings/components/text/textBlock';
+import recreateRoute from 'sentry/utils/recreateRoute';
+import withProject from 'sentry/utils/withProject';
 
 class ProjectFilters extends React.Component {
   static propTypes = {

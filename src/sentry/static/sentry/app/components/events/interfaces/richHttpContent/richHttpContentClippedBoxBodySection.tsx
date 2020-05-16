@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AnnotatedText from 'app/components/events/meta/annotatedText';
-import KeyValueList from 'app/components/events/interfaces/keyValueList/keyValueListV2';
-import {Meta} from 'app/types';
-import ContextData from 'app/components/contextData';
-import {defined} from 'app/utils';
-import ErrorBoundary from 'app/components/errorBoundary';
-import ClippedBox from 'app/components/clippedBox';
-import {t} from 'app/locale';
+import AnnotatedText from 'sentry/components/events/meta/annotatedText';
+import KeyValueList from 'sentry/components/events/interfaces/keyValueList/keyValueListV2';
+import {Meta} from 'sentry/types';
+import ContextData from 'sentry/components/contextData';
+import {defined} from 'sentry/utils';
+import ErrorBoundary from 'sentry/components/errorBoundary';
+import ClippedBox from 'sentry/components/clippedBox';
+import {t} from 'sentry/locale';
 
 import getTransformedData from './getTransformedData';
 import {SubData, InferredContentType} from './types';

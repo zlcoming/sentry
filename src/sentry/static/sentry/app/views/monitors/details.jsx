@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AsyncView from 'app/views/asyncView';
-import {Panel, PanelHeader} from 'app/components/panels';
-import {t} from 'app/locale';
+import AsyncView from 'sentry/views/asyncView';
+import {Panel, PanelHeader} from 'sentry/components/panels';
+import {t} from 'sentry/locale';
 
 import MonitorCheckIns from './monitorCheckIns';
 import MonitorHeader from './monitorHeader';

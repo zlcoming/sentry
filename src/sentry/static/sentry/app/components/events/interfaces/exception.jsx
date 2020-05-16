@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {t} from 'app/locale';
-import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
-import {isStacktraceNewestFirst} from 'app/components/events/interfaces/stacktrace';
-import CrashHeader from 'app/components/events/interfaces/crashHeader';
-import CrashContent from 'app/components/events/interfaces/crashContent';
+import {t} from 'sentry/locale';
+import EventDataSection from 'sentry/components/events/eventDataSection';
+import SentryTypes from 'sentry/sentryTypes';
+import {isStacktraceNewestFirst} from 'sentry/components/events/interfaces/stacktrace';
+import CrashHeader from 'sentry/components/events/interfaces/crashHeader';
+import CrashContent from 'sentry/components/events/interfaces/crashContent';
 
 class ExceptionInterface extends React.Component {
   static propTypes = {

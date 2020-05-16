@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
-
-import TableChart from 'app/components/charts/tableChart';
+import TableChart from 'sentry/components/charts/tableChart';
 
 describe('TableChart', function() {
   const renderer = jest.fn(() => null);

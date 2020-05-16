@@ -1,11 +1,11 @@
 import {RouteComponentProps} from 'react-router/lib/Router';
 import React from 'react';
 
-import {Organization} from 'app/types';
-import ProjectContext from 'app/views/projects/projectContext';
-import ProjectSettingsNavigation from 'app/views/settings/project/projectSettingsNavigation';
-import SettingsLayout from 'app/views/settings/components/settingsLayout';
-import withOrganization from 'app/utils/withOrganization';
+import {Organization} from 'sentry/types';
+import ProjectContext from 'sentry/views/projects/projectContext';
+import ProjectSettingsNavigation from 'sentry/views/settings/project/projectSettingsNavigation';
+import SettingsLayout from 'sentry/views/settings/components/settingsLayout';
+import withOrganization from 'sentry/utils/withOrganization';
 
 type Props = {
   organization: Organization;

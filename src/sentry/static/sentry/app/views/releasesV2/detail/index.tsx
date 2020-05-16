@@ -3,7 +3,7 @@ import {RouteComponentProps} from 'react-router/lib/Router';
 import pick from 'lodash/pick';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
+import {t} from 'sentry/locale';
 import {
   Organization,
   ReleaseProject,
@@ -11,22 +11,22 @@ import {
   Deploy,
   GlobalSelection,
   ReleaseWithHealth,
-} from 'app/types';
-import AsyncView from 'app/views/asyncView';
-import GlobalSelectionHeader from 'app/components/organizations/globalSelectionHeader';
-import LightWeightNoProjectMessage from 'app/components/lightWeightNoProjectMessage';
-import {PageContent} from 'app/styles/organization';
-import withOrganization from 'app/utils/withOrganization';
-import routeTitleGen from 'app/utils/routeTitle';
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
-import {formatVersion} from 'app/utils/formatters';
-import AsyncComponent from 'app/components/asyncComponent';
-import withGlobalSelection from 'app/utils/withGlobalSelection';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import {IconInfo, IconWarning} from 'app/icons';
-import space from 'app/styles/space';
-import Alert from 'app/components/alert';
-import {Body} from 'app/components/layouts/thirds';
+} from 'sentry/types';
+import AsyncView from 'sentry/views/asyncView';
+import GlobalSelectionHeader from 'sentry/components/organizations/globalSelectionHeader';
+import LightWeightNoProjectMessage from 'sentry/components/lightWeightNoProjectMessage';
+import {PageContent} from 'sentry/styles/organization';
+import withOrganization from 'sentry/utils/withOrganization';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
+import {formatVersion} from 'sentry/utils/formatters';
+import AsyncComponent from 'sentry/components/asyncComponent';
+import withGlobalSelection from 'sentry/utils/withGlobalSelection';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import {IconInfo, IconWarning} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import Alert from 'sentry/components/alert';
+import {Body} from 'sentry/components/layouts/thirds';
 
 import ReleaseHeader from './releaseHeader';
 import PickProjectToContinue from './pickProjectToContinue';

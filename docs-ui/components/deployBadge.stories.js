@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import DeployBadge from 'app/components/deployBadge';
+import DeployBadge from 'sentry/components/deployBadge';
 
 const deploy = {
   name: '85fedddce5a61a58b160fa6b3d6a1a8451e94eb9 to prod',

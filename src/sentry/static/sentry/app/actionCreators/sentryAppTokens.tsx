@@ -2,10 +2,10 @@ import {
   addErrorMessage,
   addLoadingMessage,
   addSuccessMessage,
-} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import {SentryApp, InternalAppApiToken} from 'app/types';
-import {Client} from 'app/api';
+} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import {SentryApp, InternalAppApiToken} from 'sentry/types';
+import {Client} from 'sentry/api';
 
 /**
  * Install a sentry application

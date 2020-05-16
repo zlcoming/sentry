@@ -1,7 +1,7 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import NavTabs from 'app/components/navTabs';
+import NavTabs from 'sentry/components/navTabs';
 
 export default {
   title: 'UI/NavTabs',

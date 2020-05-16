@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import styled from '@emotion/styled';
 import {motion} from 'framer-motion';
 
-import {t} from 'app/locale';
-import {IconCheckmark, IconClose} from 'app/icons';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import testableTransition from 'app/utils/testableTransition';
+import {t} from 'sentry/locale';
+import {IconCheckmark, IconClose} from 'sentry/icons';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import testableTransition from 'sentry/utils/testableTransition';
 
 const Toast = styled(motion.div)`
   display: flex;

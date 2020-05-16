@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {addSuccessMessage, addErrorMessage} from 'app/actionCreators/indicator';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
+import {addSuccessMessage, addErrorMessage} from 'sentry/actionCreators/indicator';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
 
 export default class AdminEnvironment extends AsyncView {
   getEndpoints() {

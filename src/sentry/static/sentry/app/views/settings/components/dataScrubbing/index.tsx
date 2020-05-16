@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import space from 'app/styles/space';
-import {t, tct} from 'app/locale';
-import {Panel, PanelAlert, PanelBody, PanelHeader} from 'app/components/panels';
-import {Client} from 'app/api';
-import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
-import ExternalLink from 'app/components/links/externalLink';
-import Button from 'app/components/button';
-import {Organization, Project} from 'app/types';
-import {openModal} from 'app/actionCreators/modal';
+import space from 'sentry/styles/space';
+import {t, tct} from 'sentry/locale';
+import {Panel, PanelAlert, PanelBody, PanelHeader} from 'sentry/components/panels';
+import {Client} from 'sentry/api';
+import {addErrorMessage, addSuccessMessage} from 'sentry/actionCreators/indicator';
+import ExternalLink from 'sentry/components/links/externalLink';
+import Button from 'sentry/components/button';
+import {Organization, Project} from 'sentry/types';
+import {openModal} from 'sentry/actionCreators/modal';
 
 import Edit from './modals/edit';
 import Add from './modals/add';

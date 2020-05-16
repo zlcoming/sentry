@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SettingsBreadcrumbActions from 'app/actions/settingsBreadcrumbActions';
+import SettingsBreadcrumbActions from 'sentry/actions/settingsBreadcrumbActions';
 
 class BreadcrumbTitle extends React.Component {
   static propTypes = {

@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {Client} from 'app/api';
-import {PanelItem} from 'app/components/panels';
-import {Repository, RepositoryStatus} from 'app/types';
-import {deleteRepository, cancelDeleteRepository} from 'app/actionCreators/integrations';
-import {t} from 'app/locale';
-import Access from 'app/components/acl/access';
-import Button from 'app/components/button';
-import Confirm from 'app/components/confirm';
-import {IconDelete} from 'app/icons';
-import space from 'app/styles/space';
-import Tooltip from 'app/components/tooltip';
+import {Client} from 'sentry/api';
+import {PanelItem} from 'sentry/components/panels';
+import {Repository, RepositoryStatus} from 'sentry/types';
+import {
+  deleteRepository,
+  cancelDeleteRepository,
+} from 'sentry/actionCreators/integrations';
+import {t} from 'sentry/locale';
+import Access from 'sentry/components/acl/access';
+import Button from 'sentry/components/button';
+import Confirm from 'sentry/components/confirm';
+import {IconDelete} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import Tooltip from 'sentry/components/tooltip';
 
 type DefaultProps = {
   showProvider?: boolean;

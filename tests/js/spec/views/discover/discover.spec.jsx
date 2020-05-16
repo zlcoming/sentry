@@ -3,11 +3,10 @@ import React from 'react';
 
 import {initializeOrg} from 'sentry-test/initializeOrg';
 import {mountWithTheme} from 'sentry-test/enzyme';
-
-import ConfigStore from 'app/stores/configStore';
-import Discover from 'app/views/discover/discover';
-import GlobalSelectionStore from 'app/stores/globalSelectionStore';
-import createQueryBuilder from 'app/views/discover/queryBuilder';
+import ConfigStore from 'sentry/stores/configStore';
+import Discover from 'sentry/views/discover/discover';
+import GlobalSelectionStore from 'sentry/stores/globalSelectionStore';
+import createQueryBuilder from 'sentry/views/discover/queryBuilder';
 
 describe('Discover', function() {
   let organization, project, queryBuilder, routerContext;

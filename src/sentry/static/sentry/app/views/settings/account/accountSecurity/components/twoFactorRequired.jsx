@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {tct} from 'app/locale';
-import Alert from 'app/components/alert';
-import ExternalLink from 'app/components/links/externalLink';
-import {IconFlag} from 'app/icons';
-import space from 'app/styles/space';
-import getPendingInvite from 'app/utils/getPendingInvite';
+import {tct} from 'sentry/locale';
+import Alert from 'sentry/components/alert';
+import ExternalLink from 'sentry/components/links/externalLink';
+import {IconFlag} from 'sentry/icons';
+import space from 'sentry/styles/space';
+import getPendingInvite from 'sentry/utils/getPendingInvite';
 
 const TwoFactorRequired = () =>
   !getPendingInvite() ? null : (

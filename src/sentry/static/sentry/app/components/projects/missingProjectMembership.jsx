@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {addErrorMessage} from 'app/actionCreators/indicator';
-import {joinTeam} from 'app/actionCreators/teams';
-import {t} from 'app/locale';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import {IconFlag} from 'app/icons';
-import Well from 'app/components/well';
-import space from 'app/styles/space';
-import withApi from 'app/utils/withApi';
+import {addErrorMessage} from 'sentry/actionCreators/indicator';
+import {joinTeam} from 'sentry/actionCreators/teams';
+import {t} from 'sentry/locale';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import {IconFlag} from 'sentry/icons';
+import Well from 'sentry/components/well';
+import space from 'sentry/styles/space';
+import withApi from 'sentry/utils/withApi';
 
 class MissingProjectMembership extends React.Component {
   static propTypes = {

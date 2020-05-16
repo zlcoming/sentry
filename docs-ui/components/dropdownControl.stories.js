@@ -2,8 +2,8 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {text, boolean} from '@storybook/addon-knobs';
 
-import DropdownControl, {DropdownItem} from 'app/components/dropdownControl';
-import MenuItem from 'app/components/menuItem';
+import DropdownControl, {DropdownItem} from 'sentry/components/dropdownControl';
+import MenuItem from 'sentry/components/menuItem';
 
 export default {
   title: 'UI/Dropdowns/DropdownControl',

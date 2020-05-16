@@ -2,9 +2,8 @@ import React from 'react';
 
 import {mount} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
-
-import ConfigStore from 'app/stores/configStore';
-import GroupReleaseStats from 'app/components/group/releaseStats';
+import ConfigStore from 'sentry/stores/configStore';
+import GroupReleaseStats from 'sentry/components/group/releaseStats';
 
 describe('GroupReleaseStats', function() {
   const {organization, project, routerContext} = initializeOrg();

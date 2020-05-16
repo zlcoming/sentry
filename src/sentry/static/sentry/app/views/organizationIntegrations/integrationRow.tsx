@@ -2,19 +2,19 @@ import React from 'react';
 import styled from '@emotion/styled';
 import startCase from 'lodash/startCase';
 
-import {IconWarning} from 'app/icons';
-import Button from 'app/components/button';
-import Alert from 'app/components/alert';
-import Link from 'app/components/links/link';
-import {PanelItem} from 'app/components/panels';
-import PluginIcon from 'app/plugins/components/pluginIcon';
-import space from 'app/styles/space';
-import {Organization, SentryApp, IntegrationInstallationStatus} from 'app/types';
-import {t} from 'app/locale';
+import {IconWarning} from 'sentry/icons';
+import Button from 'sentry/components/button';
+import Alert from 'sentry/components/alert';
+import Link from 'sentry/components/links/link';
+import {PanelItem} from 'sentry/components/panels';
+import PluginIcon from 'sentry/plugins/components/pluginIcon';
+import space from 'sentry/styles/space';
+import {Organization, SentryApp, IntegrationInstallationStatus} from 'sentry/types';
+import {t} from 'sentry/locale';
 import {
   trackIntegrationEvent,
   convertIntegrationTypeToSnakeCase,
-} from 'app/utils/integrationUtil';
+} from 'sentry/utils/integrationUtil';
 
 import IntegrationStatus from './integrationStatus';
 

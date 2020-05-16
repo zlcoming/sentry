@@ -2,9 +2,9 @@ import {css} from '@emotion/core';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {IconClose} from 'app/icons/iconClose';
-import {t} from 'app/locale';
-import space from 'app/styles/space';
+import {IconClose} from 'sentry/icons/iconClose';
+import {t} from 'sentry/locale';
+import space from 'sentry/styles/space';
 
 type Props = {
   title?: string;

@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
-import EnvironmentActions from 'app/actions/environmentActions';
-import {getDisplayName, getUrlRoutingName} from 'app/utils/environment';
+import EnvironmentActions from 'sentry/actions/environmentActions';
+import {getDisplayName, getUrlRoutingName} from 'sentry/utils/environment';
 
 const OrganizationEnvironmentsStore = Reflux.createStore({
   init() {

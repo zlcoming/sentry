@@ -2,8 +2,8 @@ import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 import {number, boolean, text} from '@storybook/addon-knobs';
 
-import LineChart from 'app/components/charts/lineChart';
-import BarChart from 'app/components/charts/barChart';
+import LineChart from 'sentry/components/charts/lineChart';
+import BarChart from 'sentry/components/charts/barChart';
 
 export default {
   title: 'Charts/Playground',

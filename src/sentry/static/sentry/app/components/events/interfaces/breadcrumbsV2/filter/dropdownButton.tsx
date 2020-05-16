@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {t, tn} from 'app/locale';
-import {GetActorPropsFn} from 'app/components/dropdownMenu';
-import DropdownButton from 'app/components/dropdownButton';
+import {t, tn} from 'sentry/locale';
+import {GetActorPropsFn} from 'sentry/components/dropdownMenu';
+import DropdownButton from 'sentry/components/dropdownButton';
 
 type DropdownButtonProps = React.ComponentProps<typeof DropdownButton>;
 

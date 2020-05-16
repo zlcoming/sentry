@@ -1,6 +1,6 @@
 import pick from 'lodash/pick';
 
-import {URL_PARAM} from 'app/constants/globalSelectionHeader';
+import {URL_PARAM} from 'sentry/constants/globalSelectionHeader';
 
 /**
  * Get query term for API given location.query

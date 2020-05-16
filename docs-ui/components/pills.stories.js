@@ -1,8 +1,8 @@
 import React from 'react';
 import {withInfo} from '@storybook/addon-info';
 
-import Pills from 'app/components/pills';
-import Pill from 'app/components/pill';
+import Pills from 'sentry/components/pills';
+import Pill from 'sentry/components/pill';
 
 export default {
   title: 'UI/Pills',

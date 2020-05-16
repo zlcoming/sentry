@@ -12,14 +12,14 @@ import {
   recordFinish,
   registerAnchor,
   unregisterAnchor,
-} from 'app/actionCreators/guides';
-import {Guide} from 'app/components/assistant/types';
-import {t, tct} from 'app/locale';
-import Button from 'app/components/button';
-import GuideStore from 'app/stores/guideStore';
-import Hovercard, {Body as HovercardBody} from 'app/components/hovercard';
-import space from 'app/styles/space';
-import theme from 'app/utils/theme';
+} from 'sentry/actionCreators/guides';
+import {Guide} from 'sentry/components/assistant/types';
+import {t, tct} from 'sentry/locale';
+import Button from 'sentry/components/button';
+import GuideStore from 'sentry/stores/guideStore';
+import Hovercard, {Body as HovercardBody} from 'sentry/components/hovercard';
+import space from 'sentry/styles/space';
+import theme from 'sentry/utils/theme';
 
 type Props = {
   target?: string;

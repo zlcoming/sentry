@@ -2,22 +2,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {sortProjects} from 'app/utils';
-import {t} from 'app/locale';
-import AsyncView from 'app/views/asyncView';
-import Button from 'app/components/button';
-import EmptyMessage from 'app/views/settings/components/emptyMessage';
-import LoadingIndicator from 'app/components/loadingIndicator';
-import Pagination from 'app/components/pagination';
-import {Panel, PanelBody, PanelHeader, PanelItem} from 'app/components/panels';
-import Placeholder from 'app/components/placeholder';
-import ProjectListItem from 'app/views/settings/components/settingsProjectItem';
-import SentryTypes from 'app/sentryTypes';
-import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import routeTitleGen from 'app/utils/routeTitle';
-import space from 'app/styles/space';
-import withOrganization from 'app/utils/withOrganization';
-import {IconAdd} from 'app/icons';
+import {sortProjects} from 'sentry/utils';
+import {t} from 'sentry/locale';
+import AsyncView from 'sentry/views/asyncView';
+import Button from 'sentry/components/button';
+import EmptyMessage from 'sentry/views/settings/components/emptyMessage';
+import LoadingIndicator from 'sentry/components/loadingIndicator';
+import Pagination from 'sentry/components/pagination';
+import {Panel, PanelBody, PanelHeader, PanelItem} from 'sentry/components/panels';
+import Placeholder from 'sentry/components/placeholder';
+import ProjectListItem from 'sentry/views/settings/components/settingsProjectItem';
+import SentryTypes from 'sentry/sentryTypes';
+import SettingsPageHeader from 'sentry/views/settings/components/settingsPageHeader';
+import routeTitleGen from 'sentry/utils/routeTitle';
+import space from 'sentry/styles/space';
+import withOrganization from 'sentry/utils/withOrganization';
+import {IconAdd} from 'sentry/icons';
 
 import ProjectStatsGraph from './projectStatsGraph';
 
