@@ -4,31 +4,29 @@ import styled from '@emotion/styled';
 import space from 'app/styles/space';
 import CheckboxFancy from 'app/components/checkboxFancy/checkboxFancy';
 
-import {FilterType, FilterGroupType, FilterGroup} from './types';
-
 type Props = {
   groupHeaderTitle: string;
-  data: Array<FilterGroup>;
-  onClick: (type: FilterType, groupType: FilterGroupType) => void;
+  options: Array<Option>;
+  // onClick: (type: FilterType, groupType: FilterGroupType) => void;
 };
 
-const Group = ({groupHeaderTitle, data, onClick}: Props) => {
-  const handleClick = (type: FilterType, groupType: FilterGroupType) => (
-    event: React.MouseEvent<HTMLLIElement>
-  ) => {
-    event.stopPropagation();
-    onClick(type, groupType);
-  };
+const Group = ({groupHeaderTitle, filters, onClick}: Props) => {
+  // const handleClick = (type: FilterType, groupType: FilterGroupType) => (
+  //   event: React.MouseEvent<HTMLLIElement>
+  // ) => {
+  //   event.stopPropagation();
+  //   onClick(type, groupType);
+  // };
 
   return (
     <div>
       <Header>{groupHeaderTitle}</Header>
       <List>
-        {data.map(({type, groupType, description, isChecked, symbol}) => (
+        {filters.map(({type, groupType, description, isChecked, symbol}) => (
           <ListItem
             key={type}
             isChecked={isChecked}
-            onClick={handleClick(type, groupType)}
+            // onClick={handleClick(type, groupType)}
           >
             {symbol}
             <Description>{description}</Description>
