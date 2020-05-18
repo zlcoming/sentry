@@ -4,7 +4,7 @@ import {BreadCrumbIconWrapper} from '../styles';
 import {IconProps} from '../../breadcrumbs/types';
 import {BreadcrumbDetails} from './types';
 
-const BreadcrumbFilterGroupIcon = ({
+const GroupIcon = ({
   icon,
   color,
   borderColor,
@@ -20,4 +20,4 @@ const BreadcrumbFilterGroupIcon = ({
   );
 };
 
-export default BreadcrumbFilterGroupIcon;
+export {GroupIcon};

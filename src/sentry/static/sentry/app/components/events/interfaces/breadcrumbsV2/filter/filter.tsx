@@ -7,9 +7,9 @@ import {t, tn} from 'app/locale';
 import DropdownControl from 'app/components/dropdownControl';
 import DropdownButton from 'app/components/dropdownButton';
 
-import BreadcrumbFilterGroup from './breadcrumbFilterGroup';
-import BreadcrumbFilterHeader from './breadcrumbFilterHeader';
-import BreadcrumbFilterFooter from './breadcrumbFilterFooter';
+import {Group} from './group';
+import {Header} from './header';
+import {Footer} from './footer';
 import {FilterGroup, FilterGroupType, FilterType} from './types';
 
 type Props = {
@@ -22,7 +22,7 @@ type State = {
   checkedOptionsQuantity: number;
 };
 
-class BreadcrumbFilter extends React.Component<Props, State> {
+class Filter extends React.Component<Props, State> {
   state: State = {
     filterGroups: [],
     checkedOptionsQuantity: 0,
@@ -117,6 +117,7 @@ class BreadcrumbFilter extends React.Component<Props, State> {
     const {onFilter} = this.props;
     const {filterGroups, checkedOptionsQuantity} = this.state;
 
+    console.log('filterGroups', filterGroups);
     const hasFilterGroupsGroupTypeLevel = filterGroups.find(
       filterGroup => filterGroup.groupType === FilterGroupType.LEVEL
     );
@@ -125,12 +126,12 @@ class BreadcrumbFilter extends React.Component<Props, State> {
       <Wrapper>
         <DropdownControl menuWidth="240px" blendWithActor button={this.getDropDownButton}>
           <React.Fragment>
-            <BreadcrumbFilterHeader
+            <Header
               onSelectAll={this.handleSelectAll}
               selectedQuantity={checkedOptionsQuantity}
               isAllSelected={filterGroups.length === checkedOptionsQuantity}
             />
-            <BreadcrumbFilterGroup
+            <Group
               groupHeaderTitle={t('Type')}
               onClick={this.handleClickItem}
               data={filterGroups.filter(
@@ -138,7 +139,7 @@ class BreadcrumbFilter extends React.Component<Props, State> {
               )}
             />
             {hasFilterGroupsGroupTypeLevel && (
-              <BreadcrumbFilterGroup
+              <Group
                 groupHeaderTitle={t('Level')}
                 onClick={this.handleClickItem}
                 data={filterGroups.filter(
@@ -147,7 +148,7 @@ class BreadcrumbFilter extends React.Component<Props, State> {
               />
             )}
             {!isEqual(this.props.filterGroups, filterGroups) && (
-              <BreadcrumbFilterFooter onSubmit={onFilter(filterGroups)} />
+              <Footer onSubmit={onFilter(filterGroups)} />
             )}
           </React.Fragment>
         </DropdownControl>
@@ -156,7 +157,7 @@ class BreadcrumbFilter extends React.Component<Props, State> {
   }
 }
 
-export default BreadcrumbFilter;
+export {Filter};
 
 const StyledDropdownButton = styled(DropdownButton)<{hasDarkBorderBottomColor?: boolean}>`
   border-right: 0;
