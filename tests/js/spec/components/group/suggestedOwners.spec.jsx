@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {mountWithTheme} from 'sentry-test/enzyme';
-import SuggestedOwners from 'app/components/group/suggestedOwners';
+import SuggestedOwners from 'app/components/group/suggestedOwners/suggestedOwners';
 import MemberListStore from 'app/stores/memberListStore';
 import {Client} from 'app/api';
 
@@ -72,7 +72,7 @@ describe('SuggestedOwners', function() {
     ).toBe(true);
   });
 
-  it('does not call committers endpoint if `group.firstRelease` does not exist', function() {
+  it.only('does not call committers endpoint if `group.firstRelease` does not exist', function() {
     const committers = Client.addMockResponse({
       url: `${endpoint}/committers/`,
       body: {
@@ -99,6 +99,7 @@ describe('SuggestedOwners', function() {
     );
 
     expect(committers).not.toHaveBeenCalled();
+
     expect(wrapper.find('ActorAvatar')).toHaveLength(1);
   });
 

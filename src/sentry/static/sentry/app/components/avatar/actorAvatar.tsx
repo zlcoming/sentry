@@ -16,6 +16,7 @@ type Props = {
   title?: string;
   gravatar?: boolean;
   className?: string;
+  hasTooltip?: boolean;
 };
 
 class ActorAvatar extends React.Component<Props> {
@@ -28,16 +29,16 @@ class ActorAvatar extends React.Component<Props> {
   };
 
   render() {
-    const {actor, ...props} = this.props;
+    const {actor, hasTooltip = true, ...props} = this.props;
 
     if (actor.type === 'user') {
       const user = actor.id ? MemberListStore.getById(actor.id) : actor;
-      return <UserAvatar user={user} hasTooltip {...props} />;
+      return <UserAvatar user={user} hasTooltip={hasTooltip} {...props} />;
     }
 
     if (actor.type === 'team') {
       const team = TeamStore.getById(actor.id);
-      return <TeamAvatar team={team} hasTooltip {...props} />;
+      return <TeamAvatar team={team} hasTooltip={hasTooltip} {...props} />;
     }
 
     Sentry.withScope(scope => {

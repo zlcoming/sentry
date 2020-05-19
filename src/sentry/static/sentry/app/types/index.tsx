@@ -64,10 +64,12 @@ export type Avatar = {
   avatarType: 'letter_avatar' | 'upload' | 'gravatar';
 };
 
-export type Actor = {
-  id: string;
+export type Actor = Pick<
+  User,
+  'id' | 'username' | 'email' | 'name' | 'options' | 'hasPasswordAuth' | 'flags'
+> & {
   type: 'user' | 'team';
-  name: string;
+  isAuthenticated: boolean;
 };
 
 /**
@@ -337,7 +339,7 @@ type UserEnrolledAuthenticator = {
   id: EnrolledAuthenticator['authId'];
 };
 
-export type User = AvatarUser & {
+export type User = Omit<AvatarUser, 'options'> & {
   lastLogin: string;
   isSuperuser: boolean;
   emails: {
@@ -356,10 +358,10 @@ export type User = AvatarUser & {
   dateJoined: string;
   options: {
     timezone: string;
-    stacktraceOrder: number;
-    language: string;
-    clock24Hours: boolean;
-    avatarType: string;
+    stacktraceOrder?: number;
+    language?: string;
+    clock24Hours?: boolean;
+    avatarType?: string;
   };
   flags: {newsletter_consent_prompt: boolean};
   hasPasswordAuth: boolean;
@@ -368,8 +370,8 @@ export type User = AvatarUser & {
 };
 
 export type CommitAuthor = {
-  email?: string;
-  name?: string;
+  email: string;
+  name: string;
 };
 
 // TODO(ts): This type is incomplete
