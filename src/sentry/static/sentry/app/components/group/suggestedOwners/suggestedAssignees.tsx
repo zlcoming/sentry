@@ -43,5 +43,5 @@ const SuggestedAssignees = ({owners}: Props) => (
 export {SuggestedAssignees};
 
 const StyledSmall = styled('small')`
-  background: ${p => p.theme.white};
+  font-size: ${p => p.theme.fontSizeExtraSmall};
 `;
