@@ -62,6 +62,7 @@ class SAML2ProviderTest(TestCase):
             "email": ["valid@example.com"],
             "first": ["Morty"],
             "last": ["Smith"],
+            "expiresAt": ["2016-01-03T09:13:17.000Z"],
         }
 
         state = {"auth_attributes": attrs}
@@ -70,3 +71,4 @@ class SAML2ProviderTest(TestCase):
         assert identity["id"] == "123"
         assert identity["email"] == "valid@example.com"
         assert identity["name"] == "Morty Smith"
+        assert identity["exipresAt"] == "2016-01-03T09:13:17.000Z"

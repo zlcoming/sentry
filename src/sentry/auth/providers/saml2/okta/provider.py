@@ -15,9 +15,11 @@ class OktaSAML2Provider(SAML2Provider):
         return [SelectIdP()]
 
     def attribute_mapping(self):
+        print("provider.py/attribute_mapping")
         return {
             Attributes.IDENTIFIER: "identifier",
             Attributes.USER_EMAIL: "email",
             Attributes.FIRST_NAME: "firstName",
             Attributes.LAST_NAME: "lastName",
+            Attributes.EXPIRES_AT: "expiresAt",
         }

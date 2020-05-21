@@ -201,6 +201,7 @@ def login(request, user, passed_2fa=None, after_2fa=None, organization_id=None, 
 
     Returns boolean indicating if the user was logged in.
     """
+    print("auth.py/login")
     has_2fa = Authenticator.objects.user_has_2fa(user)
     if passed_2fa is None:
         passed_2fa = request.session.get(MFA_SESSION_KEY, "") == six.text_type(user.id)

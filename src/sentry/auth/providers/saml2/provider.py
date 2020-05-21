@@ -21,16 +21,15 @@ from sentry.utils.http import absolute_uri
 from sentry.web.frontend.base import BaseView
 
 
+#### we want to use patched_auth instead of OneLogin_Saml2_Auth, and patched_auth should use patched_response instead of the OneLogin response.
 try:
-    from onelogin.saml2.auth import OneLogin_Saml2_Auth, OneLogin_Saml2_Settings
+    from onelogin.saml2.auth import OneLogin_Saml2_Settings
     from onelogin.saml2.constants import OneLogin_Saml2_Constants
 
     HAS_SAML2 = True
 except ImportError:
     HAS_SAML2 = False
-
-    def OneLogin_Saml2_Auth(*args, **kwargs):
-        raise NotImplementedError("Missing SAML libraries")
+    print("##### issues w Settings and Constants")
 
     def OneLogin_Saml2_Settings(*args, **kwargs):
         raise NotImplementedError("Missing SAML libraries")
@@ -42,6 +41,18 @@ except ImportError:
     @add_metaclass(OneLogin_Saml2_ConstantsType)
     class OneLogin_Saml2_Constants(object):
         pass
+
+
+try:
+    from sentry.auth.providers.patched_auth import OneLogin_Saml2_Auth
+
+    HAS_SAML2 = True
+except ImportError:
+    print("##### issue w patched_auth")
+    HAS_SAML2 = False
+
+    def OneLogin_Saml2_Auth(*args, **kwargs):
+        raise NotImplementedError("Missing SAML libraries")
 
 
 ERR_NO_SAML_SSO = _("The organization does not exist or does not have SAML SSO enabled.")
@@ -70,6 +81,7 @@ def get_provider(organization_slug):
 
 class SAML2LoginView(AuthView):
     def dispatch(self, request, helper):
+        print("provider.py/SAML2LoginView/dispatch")
         if "SAMLResponse" in request.POST:
             return helper.next_step()
 
@@ -134,6 +146,7 @@ class SAML2AcceptACSView(BaseView):
 class SAML2ACSView(AuthView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, helper):
+        print("provider.py/SAML2ACSView/dispatch")
         provider = helper.provider
 
         # If we're authenticating during the setup pipeline the provider will
@@ -142,6 +155,7 @@ class SAML2ACSView(AuthView):
             provider.config = provider.build_config(helper.fetch_state())
 
         saml_config = build_saml_config(provider.config, helper.organization.slug)
+        print("provider.config: ", provider.config)
 
         auth = build_auth(request, saml_config)
         auth.process_response()
@@ -151,6 +165,9 @@ class SAML2ACSView(AuthView):
             return helper.error(ERR_SAML_FAILED.format(reason=auth.get_last_error_reason()))
 
         helper.bind_state("auth_attributes", auth.get_attributes())
+        print("### ATTRIBUTES: ", auth.get_attributes())
+        print("### session expiration?", auth.get_session_expiration())
+        # helper.bind_state("session_expiration", auth.self.__session_expiration)
 
         return helper.next_step()
 
@@ -204,6 +221,7 @@ class Attributes(object):
     USER_EMAIL = "user_email"
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
+    EXPIRES_AT = "expiresAt"
 
 
 class SAML2Provider(Provider):
@@ -288,10 +306,12 @@ class SAML2Provider(Provider):
         return config
 
     def build_identity(self, state):
+        print("provider.py/build_identity")
         raw_attributes = state["auth_attributes"]
         attributes = {}
 
         # map configured provider attributes
+        # raw_attributes == attributes defined in SAML2ACSView dispatch method
         for key, provider_key in iteritems(self.config["attribute_mapping"]):
             attributes[key] = raw_attributes.get(provider_key, [""])[0]
 
@@ -307,11 +327,16 @@ class SAML2Provider(Provider):
         name = (attributes[k] for k in (Attributes.FIRST_NAME, Attributes.LAST_NAME))
         name = " ".join([_f for _f in name if _f])
 
-        return {
+        attributeMap = {
             "id": attributes[Attributes.IDENTIFIER],
             "email": attributes[Attributes.USER_EMAIL],
             "name": name,
         }
+
+        if Attributes.EXPIRES_AT in attributes:
+            attributeMap["expiresAt"] = attributes[Attributes.EXPIRES_AT]
+
+        return attributeMap
 
     def refresh_identity(self, auth_identity):
         # Nothing to refresh
@@ -359,6 +384,11 @@ def build_saml_config(provider_config, org):
                 "url": sls_url,
                 "binding": OneLogin_Saml2_Constants.BINDING_HTTP_REDIRECT,
             },
+            "attributeConsumingService": {
+                "serviceName": "SP test",
+                "serviceDescription": "Test Service",
+                "requestedAttributes": [{"name": "expiresAt", "isRequired": False,},],
+            },
         },
         "security": security_config,
     }
@@ -386,6 +416,9 @@ def build_auth(request, saml_config):
     """
     Construct a OneLogin_Saml2_Auth object for the current request.
     """
+    print("request.get: ", request.GET)
+    print("request.post: ", request.POST)
+    print("request.meta: ", request.META)
     url = urlparse(options.get("system.url-prefix"))
     saml_request = {
         "https": "on" if url.scheme == "https" else "off",
