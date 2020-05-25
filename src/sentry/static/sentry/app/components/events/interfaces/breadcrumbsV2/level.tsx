@@ -7,6 +7,7 @@ import {BreadcrumbLevelType} from './types';
 
 type Props = {
   level?: BreadcrumbLevelType;
+  isDisabled?: boolean;
 };
 
 const Level = ({level}: Props) => {
