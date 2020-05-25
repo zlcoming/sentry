@@ -17,7 +17,7 @@ import ScoreBar from 'app/components/scoreBar';
 import Tooltip from 'app/components/tooltip';
 import ProjectBadge from 'app/components/idBadge/projectBadge';
 import TextOverflow from 'app/components/textOverflow';
-import ClippedBox from 'app/components/clippedBox';
+import ClippedItems from 'app/components/clippedItems';
 import Link from 'app/components/links/link';
 
 import HealthStatsChart from './healthStatsChart';
@@ -79,8 +79,8 @@ const ReleaseHealth = ({release, orgSlug, location, selection}: Props) => {
       </StyledPanelHeader>
 
       <PanelBody>
-        <ClippedBox clipHeight={200}>
-          {sortedProjects.map(project => {
+        <ClippedItems fadeHeight="46px" maxVisibleItems={4}>
+          {sortedProjects.map((project, index) => {
             const {id, slug, healthData, newGroups} = project;
             const {
               hasHealthData,
@@ -96,7 +96,10 @@ const ReleaseHealth = ({release, orgSlug, location, selection}: Props) => {
             } = healthData;
 
             return (
-              <StyledPanelItem key={`${release.version}-${slug}-health`}>
+              <StyledPanelItem
+                key={`${release.version}-${slug}-health`}
+                isLast={index === sortedProjects.length - 1}
+              >
                 <Layout>
                   <ProjectColumn>
                     <GlobalSelectionLink
@@ -206,7 +209,7 @@ const ReleaseHealth = ({release, orgSlug, location, selection}: Props) => {
               </StyledPanelItem>
             );
           })}
-        </ClippedBox>
+        </ClippedItems>
       </PanelBody>
     </React.Fragment>
   );
@@ -220,9 +223,10 @@ const StyledPanelHeader = styled(PanelHeader)`
   font-size: ${p => p.theme.fontSizeSmall};
 `;
 
-const StyledPanelItem = styled(PanelItem)`
+const StyledPanelItem = styled(PanelItem)<{isLast: boolean}>`
   padding: ${space(1)} ${space(2)};
   min-height: 46px;
+  border: ${p => (p.isLast ? 'none' : null)};
 `;
 
 const Layout = styled('div')`
