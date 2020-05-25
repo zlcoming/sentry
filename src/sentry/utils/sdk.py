@@ -11,6 +11,7 @@ import sentry_sdk
 from sentry_sdk.client import get_options
 from sentry_sdk.transport import make_transport
 from sentry_sdk.utils import logger as sdk_logger
+from sentry_sdk.integrations.redis import RedisIntegration
 
 from sentry import options
 from sentry.utils import metrics
@@ -163,6 +164,7 @@ def configure_sdk():
             CeleryIntegration(),
             LoggingIntegration(event_level=None),
             RustInfoIntegration(),
+            RedisIntegration(),
         ],
         traceparent_v2=True,
         **sdk_options
