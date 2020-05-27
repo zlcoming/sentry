@@ -14,12 +14,10 @@ import {Category} from './category';
 import {Icon} from './icon';
 import {Level} from './level';
 import {Grid, GridCell, GridCellLeft} from './styles';
-import {Breadcrumb, BreadcrumbDetails, BreadcrumbType} from './types';
-
-type Breadcrumbs = Array<Breadcrumb & BreadcrumbDetails & {id: number}>;
+import {Breadcrumb, BreadcrumbsWithDetails, BreadcrumbType} from './types';
 
 type Props = {
-  breadcrumbs: Breadcrumbs;
+  breadcrumbs: BreadcrumbsWithDetails;
   collapsedQuantity: number;
   onToggleCollapse: () => void;
   event: Event;
