@@ -43,6 +43,10 @@ export {DropDownButton};
 
 const StyledDropdownButton = styled(DropdownButton)<{hasDarkBorderBottomColor?: boolean}>`
   border-right: 0;
+  &:hover,
+  &:active {
+    border-right: 0;
+  }
   z-index: ${p => p.theme.zIndex.dropdown};
   border-radius: ${p =>
     p.isOpen
@@ -50,10 +54,6 @@ const StyledDropdownButton = styled(DropdownButton)<{hasDarkBorderBottomColor?: 
       : `${p.theme.borderRadius} 0 0 ${p.theme.borderRadius}`};
   white-space: nowrap;
   max-width: 200px;
-  &:hover,
-  &:active {
-    border-right: 0;
-  }
   ${p =>
     !p.isOpen &&
     p.hasDarkBorderBottomColor &&
