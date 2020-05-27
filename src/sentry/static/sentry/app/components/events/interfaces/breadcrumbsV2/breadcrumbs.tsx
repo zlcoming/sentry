@@ -115,9 +115,9 @@ class Breadcrumbs extends React.Component<Props, State> {
 
     for (const index in breadcrumbs) {
       const breadcrumb = breadcrumbs[index];
-      const hasFilterType = filterTypes.findIndex(f => f.type === breadcrumb.type);
+      const foundFilterType = filterTypes.findIndex(f => f.type === breadcrumb.type);
 
-      if (hasFilterType === -1) {
+      if (foundFilterType === -1) {
         filterTypes.push({
           type: breadcrumb.type,
           description: breadcrumb.description,
@@ -131,9 +131,9 @@ class Breadcrumbs extends React.Component<Props, State> {
 
       if (
         breadcrumb?.level &&
-        !filterTypes[hasFilterType].levels.includes(breadcrumb.level)
+        !filterTypes[foundFilterType].levels.includes(breadcrumb.level)
       ) {
-        filterTypes[hasFilterType].levels.push(breadcrumb.level);
+        filterTypes[foundFilterType].levels.push(breadcrumb.level);
       }
     }
 
@@ -146,9 +146,8 @@ class Breadcrumbs extends React.Component<Props, State> {
     for (const indexType in types) {
       for (const indexLevel in types[indexType].levels) {
         const level = types[indexType].levels[indexLevel];
-        const hasFilterLevel = filterLevels.some(f => f.type === level);
 
-        if (hasFilterLevel) {
+        if (filterLevels.some(f => f.type === level)) {
           continue;
         }
 
