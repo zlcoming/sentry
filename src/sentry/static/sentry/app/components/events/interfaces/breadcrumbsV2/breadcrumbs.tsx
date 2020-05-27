@@ -29,16 +29,16 @@ import {Icon} from './icon';
 
 const MAX_CRUMBS_WHEN_COLLAPSED = 10;
 
-type BreadcrumbWithDetails = Breadcrumb & BreadcrumbDetails & {id: number};
+type BreadcrumbsWithDetails = Array<Breadcrumb & BreadcrumbDetails & {id: number}>;
 type FilterOptions = React.ComponentProps<typeof Filter>['options'];
 
 type State = {
   isCollapsed: boolean;
   searchTerm: string;
-  breadcrumbs: Array<BreadcrumbWithDetails>;
-  filteredByFilter: Array<BreadcrumbWithDetails>;
-  filteredByCustomSearch: Array<BreadcrumbWithDetails>;
-  filteredBreadcrumbs: Array<BreadcrumbWithDetails>;
+  breadcrumbs: BreadcrumbsWithDetails;
+  filteredByFilter: BreadcrumbsWithDetails;
+  filteredByCustomSearch: BreadcrumbsWithDetails;
+  filteredBreadcrumbs: BreadcrumbsWithDetails;
   filterOptions: FilterOptions;
   listBodyHeight?: React.CSSProperties['maxHeight'];
 };
@@ -211,7 +211,7 @@ class Breadcrumbs extends React.Component<Props, State> {
   };
 
   getCollapsedCrumbQuantity = (): {
-    filteredCollapsedBreadcrumbs: Array<BreadcrumbWithDetails>;
+    filteredCollapsedBreadcrumbs: BreadcrumbsWithDetails;
     collapsedQuantity: number;
   } => {
     const {isCollapsed, filteredBreadcrumbs} = this.state;
@@ -297,8 +297,8 @@ class Breadcrumbs extends React.Component<Props, State> {
   };
 
   filterCrumbsBy = (
-    type: keyof Pick<BreadcrumbWithDetails, 'level' | 'type'>,
-    breadcrumbs: Array<BreadcrumbWithDetails>,
+    type: keyof Pick<BreadcrumbsWithDetails[0], 'level' | 'type'>,
+    breadcrumbs: BreadcrumbsWithDetails,
     filterOptions: Array<FilterOptions[0][0] | FilterOptions[1][0]>
   ) =>
     breadcrumbs.filter(b => {
