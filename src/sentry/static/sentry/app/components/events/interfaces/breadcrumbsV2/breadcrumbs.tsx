@@ -107,7 +107,7 @@ class Breadcrumbs extends React.Component<Props, State> {
   getFilterOptions = (breadcrumbs: ReturnType<typeof transformCrumbs>): FilterOptions => {
     const types = this.getFilterTypes(breadcrumbs);
     const levels = this.getFilterLevels(types);
-    return [this.getFilterTypes(breadcrumbs), levels];
+    return [types, levels];
   };
 
   getFilterTypes = (breadcrumbs: ReturnType<typeof transformCrumbs>) => {
