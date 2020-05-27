@@ -408,6 +408,8 @@ export {Breadcrumbs};
 
 const Content = styled('div')`
   box-shadow: ${p => p.theme.dropShadowLightest};
+  border-radius: ${p => p.theme.borderRadius};
+  margin-bottom: ${space(3)};
 `;
 
 const StyledEmptyMessage = styled(EmptyMessage)`
