@@ -273,11 +273,11 @@ class Breadcrumbs extends React.Component<Props, State> {
 
   handleClickFilterCheckAll = (checkAll: boolean) => {
     const {filterOptions} = this.state;
-    const newFilterOptions: FilterOptions = [[], []];
+    const updatedFilterOptions: FilterOptions = [[], []];
 
     for (const index in filterOptions) {
       for (const option in filterOptions[index]) {
-        newFilterOptions[index][option] = {
+        updatedFilterOptions[index][option] = {
           ...filterOptions[index][option],
           isChecked: checkAll,
           isDisabled: false,
@@ -288,7 +288,7 @@ class Breadcrumbs extends React.Component<Props, State> {
     this.setState(
       prevState => ({
         filteredByFilter: checkAll ? prevState.breadcrumbs : [],
-        filterOptions: newFilterOptions,
+        filterOptions: updatedFilterOptions,
       }),
       () => {
         this.handleFilterBySearchTerm(this.state.searchTerm);
