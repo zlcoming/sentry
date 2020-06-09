@@ -8,6 +8,9 @@ import {GlobalSelection, Organization} from 'app/types';
 
 import GroupDetails from './groupDetails';
 
+(window as any).props = [];
+(window as any).state = [];
+
 type Props = {
   selection: GlobalSelection;
   isGlobalSelectionReady: boolean;
@@ -42,6 +45,8 @@ class OrganizationGroupDetails extends React.Component<Props> {
 
   render() {
     const {selection, ...props} = this.props;
+
+    console.log(1, 1, this.props, this.state);
 
     return (
       <GroupDetails

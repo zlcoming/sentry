@@ -29,6 +29,8 @@ type State = {
   error: Error;
 };
 
+const deepClone = o => JSON.parse(JSON.stringify(o));
+
 export class GroupEventDetailsContainer extends React.Component<Props, State> {
   state = OrganizationEnvironmentsStore.get();
 
@@ -52,6 +54,11 @@ export class GroupEventDetailsContainer extends React.Component<Props, State> {
   environmentUnsubscribe: any;
 
   render() {
+    console.log(2, 1, this.props, this.state);
+    console.log(window.m('2, 1', 'page-issue-details-start'));
+    // (window as any).props.push(deepClone(this.props));
+    // (window as any).state.push(deepClone(this.state));
+
     if (this.state.error) {
       return (
         <LoadingError

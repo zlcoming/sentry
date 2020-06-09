@@ -7,9 +7,17 @@ export async function fetchSentryAppComponents(
   orgSlug: string,
   projectId: string
 ): Promise<SentryAppComponent[]> {
+  console.log(
+    '            ',
+    window.m('async fetchSentryAppComponents start', 'page-issue-details-start')
+  );
   const componentsUri = `/organizations/${orgSlug}/sentry-app-components/?projectId=${projectId}`;
 
   const res = await api.requestPromise(componentsUri);
+  console.log(
+    '            ',
+    window.m('async fetchSentryAppComponents end', 'page-issue-details-start')
+  );
   SentryAppComponentsActions.loadComponents(res);
   return res;
 }

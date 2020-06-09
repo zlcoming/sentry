@@ -144,6 +144,8 @@ class GroupEvents extends React.Component {
   }
 
   render() {
+    console.log(3, 1, this.props, this.state);
+
     return (
       <div>
         <div style={{marginBottom: 20}}>

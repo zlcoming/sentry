@@ -30,6 +30,11 @@ function appendTrailingSlash(nextState, replace) {
   }
 }
 
+window.m = function(name, start, ...args) {
+  const m = window.performance.measure(name, start, ...args);
+  return {duration: m.duration | 0, name};
+};
+
 /**
  * Use react-router to lazy load a route. Use this for codesplitting containers (e.g. SettingsLayout)
  *

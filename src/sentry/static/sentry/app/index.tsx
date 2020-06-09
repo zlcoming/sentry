@@ -4,6 +4,12 @@ import 'regenerator-runtime/runtime';
 
 import {Config} from 'app/types';
 
+declare global {
+  interface Window {
+    [key: string]: any;
+  }
+}
+
 const BOOTSTRAP_URL = '/api/client-config/';
 
 const bootApplication = (data: Config) => {

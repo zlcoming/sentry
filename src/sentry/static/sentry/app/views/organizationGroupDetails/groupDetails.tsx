@@ -57,12 +57,14 @@ class GroupDetails extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    console.log('x x x x', window.m('GroupDetails start', 'page-issue-details-start'));
     this.fetchData();
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevState.loading && !this.state.loading) {
       callIfFunction(this.props.finishProfile);
+      console.log('x x x x', window.m('GroupDetails end', 'page-issue-details-start'));
     }
 
     if (prevProps.isGlobalSelectionReady !== this.props.isGlobalSelectionReady) {
@@ -216,6 +218,11 @@ class GroupDetails extends React.Component<Props, State> {
   renderContent(project) {
     const {children, environments} = this.props;
     const {group} = this.state;
+
+    console.log(
+      window.m('GroupDetails Children start', 'page-issue-details-start'),
+      project
+    );
 
     return (
       <React.Fragment>

@@ -59,10 +59,13 @@ class GroupEventDetails extends React.Component<Props, State> {
       eventNavLinks: '',
       releasesCompletion: null,
     };
+
+    console.log(window.m('GroupEventDetails construct', 'page-issue-details-start'));
   }
 
   componentDidMount() {
     this.fetchData();
+    console.log(window.m('GroupEventDetails didMount', 'page-issue-details-start'));
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -98,6 +101,11 @@ class GroupEventDetails extends React.Component<Props, State> {
 
     // First Meaningful Paint for /organizations/:orgId/issues/:groupId/
     if (prevState.loading && !this.state.loading && prevState.event === null) {
+      console.log(
+        '> > > ',
+        window.m('app.page.perf.issue-details', 'page-issue-details-start')
+      );
+
       metric.measure({
         name: 'app.page.perf.issue-details',
         start: 'page-issue-details-start',
@@ -142,6 +150,7 @@ class GroupEventDetails extends React.Component<Props, State> {
     /**
      * Perform below requests in parallel
      */
+    console.log('    ', window.m('createPromises start', 'page-issue-details-start'));
     const releasesCompletionPromise = api.requestPromise(
       `/projects/${orgSlug}/${projSlug}/releases/completion/`
     );
@@ -153,17 +162,35 @@ class GroupEventDetails extends React.Component<Props, State> {
       eventId,
       envNames
     );
+    console.log('    ', window.m('createPromises end', 'page-issue-details-start'));
 
     fetchSentryAppInstallations(api, orgSlug);
     fetchSentryAppComponents(api, orgSlug, projectId);
 
+    console.log(
+      '    ',
+      window.m('releasesCompletionPromise start', 'page-issue-details-start')
+    );
     const releasesCompletion = await releasesCompletionPromise;
+    console.log(
+      '    ',
+      window.m('releasesCompletionPromise end', 'page-issue-details-start')
+    );
     this.setState({
       releasesCompletion,
     });
 
     try {
+      console.log(
+        '    ',
+        window.m('fetchGroupEventPromise start', 'page-issue-details-start')
+      );
       const event = await fetchGroupEventPromise;
+      console.log(
+        '    ',
+        window.m('fetchGroupEventPromise end', 'page-issue-details-start')
+      );
+
       this.setState({
         event,
         error: false,
@@ -193,6 +220,8 @@ class GroupEventDetails extends React.Component<Props, State> {
   render() {
     const {group, project, organization, environments, location} = this.props;
     const evt = withMeta(this.state.event);
+
+    console.log('GroupEventDetails render loading', this.state.loading);
 
     return (
       <div>

@@ -189,10 +189,10 @@ metric.measure = function metricMeasure({name, start, end, data = {}, noCleanup}
     );
 
   // By default, clean up measurements
-  if (!noCleanup) {
-    performance.clearMeasures(name);
-    performance.clearMarks(start);
-    performance.clearMarks(endMarkName);
-    metricDataStore.delete(start);
-  }
+  // if (!noCleanup) {
+  //   performance.clearMeasures(name);
+  //   performance.clearMarks(start);
+  //   performance.clearMarks(endMarkName);
+  //   metricDataStore.delete(start);
+  // }
 };
