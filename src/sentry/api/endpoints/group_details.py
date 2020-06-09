@@ -26,8 +26,6 @@ from sentry.models import (
     GroupSeen,
     GroupStatus,
     Release,
-    ReleaseEnvironment,
-    ReleaseProject,
     User,
     UserReport,
 )
@@ -286,48 +284,81 @@ class GroupDetailsEndpoint(GroupEndpoint, EnvironmentMixin):
 
             # the current release is the 'latest seen' release within the
             # environment even if it hasnt affected this issue
-            if environments:
-                with sentry_sdk.start_span(op="GroupDetailsEndpoint.get.current_release") as span:
-                    span.set_data("Environment Count", len(environments))
-                    span.set_data(
-                        "Raw Parameters",
-                        {
-                            "group.id": group.id,
-                            "group.project_id": group.project_id,
-                            "group.project.organization_id": group.project.organization_id,
-                            "environments": [{"id": e.id, "name": e.name} for e in environments],
-                        },
+            with sentry_sdk.start_span(op="GroupDetailsEndpoint.get.current_release") as span:
+                span.set_data("Environment Count", len(environments))
+                span.set_data(
+                    "Raw Parameters",
+                    {
+                        "group.id": group.id,
+                        "group.project_id": group.project_id,
+                        "group.project.organization_id": group.project.organization_id,
+                        "environments": [{"id": e.id, "name": e.name} for e in environments],
+                    },
+                )
+
+                current_release = self._get_current_release(group, environments)
+                if current_release is not None:
+                    data["currentRelease"] = serialize(
+                        current_release, request.user, GroupReleaseWithStatsSerializer()
                     )
 
-                    try:
-                        current_release = GroupRelease.objects.filter(
-                            group_id=group.id,
-                            environment__in=[env.name for env in environments],
-                            release_id=ReleaseEnvironment.objects.filter(
-                                release_id__in=ReleaseProject.objects.filter(
-                                    project_id=group.project_id
-                                ).values_list("release_id", flat=True),
-                                organization_id=group.project.organization_id,
-                                environment_id__in=environment_ids,
-                            )
-                            .order_by("-first_seen")
-                            .values_list("release_id", flat=True)[:1],
-                        )[0]
-                    except IndexError:
-                        current_release = None
-
-                data.update(
-                    {
-                        "currentRelease": serialize(
-                            current_release, request.user, GroupReleaseWithStatsSerializer()
-                        )
-                    }
-                )
             metrics.incr("group.update.http_response", sample_rate=1.0, tags={"status": 200})
             return Response(data)
         except Exception:
             metrics.incr("group.update.http_response", sample_rate=1.0, tags={"status": 500})
             raise
+
+    def _get_current_release(self, group, environments):
+        if not environments:
+            return None
+
+        # Equivalent to the Django object query:
+        #     return GroupRelease.objects.filter(
+        #         group_id=group.id,
+        #         environment__in=[env.name for env in environments],
+        #         release_id=ReleaseEnvironment.objects.filter(
+        #             release_id__in=ReleaseProject.objects.filter(
+        #                 project_id=group.project_id
+        #             ).values_list("release_id", flat=True),
+        #             organization_id=group.project.organization_id,
+        #             environment_id__in=[e.id for e in environments],
+        #         )
+        #         .order_by("-first_seen")
+        #         .values_list("release_id", flat=True)[:1],
+        #     )[0]
+        # Optimized to use inner joins in preference to nested selects.
+
+        sql = (
+            """
+                SELECT
+                    release.*
+                FROM
+                    sentry_grouprelease release
+                    INNER JOIN sentry_environmentrelease environment
+                        ON release.release_id = environment.release_id
+                    INNER JOIN sentry_release_project project
+                        ON environment.release_id = project.release_id
+                WHERE
+                    release.group_id = %s
+                    AND project.project_id = %s
+                    AND environment.organization_id = %s
+                    AND release.environment IN ({0})  -- TODO: Might not need this
+                    AND environment.environment_id IN ({0})
+                ORDER BY
+                    environment.first_seen DESC
+                LIMIT 1
+            """
+        ).format(", ".join(["%s"] * len(environments)))
+
+        params = [group.id, group.project_id, group.project.organization_id]
+        params += [env.name for env in environments]
+        params += [e.id for e in environments]
+
+        query = GroupRelease.objects.raw(sql, params=params)
+
+        results = list(query)
+        assert len(results) <= 1
+        return results[0] if results else None
 
     @attach_scenarios([update_aggregate_scenario])
     def put(self, request, group):
