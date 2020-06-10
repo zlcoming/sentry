@@ -29,10 +29,20 @@ type State = {
   error: Error;
 };
 
-const deepClone = o => JSON.parse(JSON.stringify(o));
+// const deepClone = o => JSON.parse(JSON.stringify(o));
 
 export class GroupEventDetailsContainer extends React.Component<Props, State> {
   state = OrganizationEnvironmentsStore.get();
+  hasEnded: boolean = false;
+
+  constructor(props) {
+    super(props);
+
+    console.log(
+      'GroupEventDetailsContainer start',
+      window.m('GroupDetails Children start', 'page-issue-details-start')
+    );
+  }
 
   componentDidMount() {
     this.environmentUnsubscribe = OrganizationEnvironmentsStore.listen(data =>
@@ -69,6 +79,14 @@ export class GroupEventDetailsContainer extends React.Component<Props, State> {
     // null implies loading state
     if (!this.state.environments) {
       return <LoadingIndicator />;
+    }
+
+    if (!this.hasEnded) {
+      console.log(
+        'GroupEventDetailsContainer end',
+        window.m('GroupDetails Children start', 'page-issue-details-start')
+      );
+      this.hasEnded = true;
     }
     const {selection, ...otherProps} = this.props;
     const environments: Environment[] = this.state.environments.filter(env =>
