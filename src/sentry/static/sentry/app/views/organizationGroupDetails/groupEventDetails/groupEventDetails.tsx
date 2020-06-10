@@ -207,6 +207,10 @@ class GroupEventDetails extends React.Component<Props, State> {
     }
   };
 
+  fetchDataPerf = async () => {
+    //
+  };
+
   get showExampleCommit() {
     const {project} = this.props;
     const {releasesCompletion} = this.state;
