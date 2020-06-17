@@ -16,12 +16,13 @@ import withApi from 'app/utils/withApi';
 import withProjects from 'app/utils/withProjects';
 
 type ProjectPlaceholder = AvatarProject;
+type ProjectPlaceholderId = Pick<Project, 'id'>;
 
 type State = {
   /**
    * Projects from API
    */
-  fetchedProjects: Project[] | ProjectPlaceholder[];
+  fetchedProjects: Project[] | ProjectPlaceholderId[] | ProjectPlaceholder[];
 
   /**
    * Projects fetched from store
@@ -103,6 +104,12 @@ type Props = {
   slugs?: string[];
 
   /**
+   * List of ids to look for summaries for, this can be from `props.projects`,
+   * otherwise fetch from API
+   */
+  ids?: string[];
+
+  /**
    * Number of projects to return when not using `props.slugs`
    */
   limit?: number;
@@ -130,6 +137,7 @@ class Projects extends React.Component<Props, State> {
     orgId: PropTypes.string.isRequired,
     projects: PropTypes.arrayOf(SentryTypes.Project).isRequired,
     slugs: PropTypes.arrayOf(PropTypes.string),
+    ids: PropTypes.arrayOf(PropTypes.string),
     limit: PropTypes.number,
     allProjects: PropTypes.bool,
     passthroughPlaceholderProject: PropTypes.bool,
@@ -152,10 +160,12 @@ class Projects extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    const {slugs} = this.props;
+    const {slugs, ids} = this.props;
 
     if (slugs && !!slugs.length) {
-      this.loadSpecificProjects();
+      this.loadSpecificProjects('slug');
+    } else if (ids && !!ids.length) {
+      this.loadSpecificProjects('id');
     } else {
       this.loadAllProjects();
     }
@@ -167,34 +177,41 @@ class Projects extends React.Component<Props, State> {
   fetchQueue: Set<string> = new Set();
 
   /**
-   * Memoized function that returns a `Map<project.slug, project>`
+   * Memoized function that returns a `Map<project.key, project>`
    */
-  getProjectsMap: (projects: Project[]) => Map<string, Project> = memoize(
-    projects => new Map(projects.map(project => [project.slug, project]))
+  getProjectsMap: (
+    projects: Project[],
+    key: 'slug' | 'id'
+  ) => Map<string, Project> = memoize(
+    (projects, key) => new Map(projects.map(project => [project[key], project]))
   );
 
   /**
    * When `props.slugs` is included, identifies what projects we already
    * have summaries for and what projects need to be fetched from API
    */
-  loadSpecificProjects = () => {
-    const {slugs, projects} = this.props;
+  loadSpecificProjects = (key: 'slug' | 'id') => {
+    const {slugs, ids, projects} = this.props;
 
-    const projectsMap = this.getProjectsMap(projects);
+    const keys = key === 'id' ? ids : slugs;
+    const projectsMap = this.getProjectsMap(projects, key);
 
     // Split slugs into projects that are in store and not in store
     // (so we can request projects not in store)
-    const [inStore, notInStore] = partition(slugs, slug => projectsMap.has(slug));
+    const [inStore, notInStore] = partition(keys, id => projectsMap.has(id));
 
     // Get the actual summaries of projects that are in store
-    const projectsFromStore = inStore.map(slug => projectsMap.get(slug)).filter(defined);
+    const projectsFromStore = inStore.map(id => projectsMap.get(id)).filter(defined);
 
     // Add to queue
-    notInStore.forEach(slug => this.fetchQueue.add(slug));
+    notInStore.forEach(id => this.fetchQueue.add(id));
+    const fetchedProjects = notInStore.map(
+      id => ({[key]: id} as ProjectPlaceholderId)
+    ) as ProjectPlaceholderId[] | ProjectPlaceholder[];
 
     this.setState({
       // placeholders for projects we need to fetch
-      fetchedProjects: notInStore.map(slug => ({slug})),
+      fetchedProjects,
       // set initallyLoaded if any projects were fetched from store
       initiallyLoaded: !!inStore.length,
       projectsFromStore,
@@ -204,13 +221,13 @@ class Projects extends React.Component<Props, State> {
       return;
     }
 
-    this.fetchSpecificProjects();
+    this.fetchSpecificProjects(key);
   };
 
   /**
    * These will fetch projects via API (using project slug) provided by `this.fetchQueue`
    */
-  fetchSpecificProjects = async () => {
+  fetchSpecificProjects = async (key: 'slug' | 'id') => {
     const {api, orgId, passthroughPlaceholderProject} = this.props;
 
     if (!this.fetchQueue.size) {
@@ -226,7 +243,7 @@ class Projects extends React.Component<Props, State> {
 
     try {
       const {results} = await fetchProjects(api, orgId, {
-        slugs: Array.from(this.fetchQueue),
+        [key === 'slug' ? 'slugs' : 'ids']: Array.from(this.fetchQueue),
       });
       projects = results;
     } catch (err) {
@@ -234,7 +251,7 @@ class Projects extends React.Component<Props, State> {
       fetchError = err;
     }
 
-    const projectsMap = this.getProjectsMap(projects);
+    const projectsMap = this.getProjectsMap(projects, key);
 
     // For each item in the fetch queue, lookup the project object and in the case
     // where something wrong has happened and we were unable to get project summary from
@@ -396,6 +413,7 @@ export default withProjects(withApi(Projects));
 
 type FetchProjectsOptions = {
   slugs?: string[];
+  ids?: string[];
   cursor?: State['nextCursor'];
   search?: State['prevSearch'];
   prevSearch?: State['prevSearch'];
@@ -404,7 +422,7 @@ type FetchProjectsOptions = {
 async function fetchProjects(
   api: Client,
   orgId: string,
-  {slugs, search, limit, prevSearch, cursor, allProjects}: FetchProjectsOptions = {}
+  {slugs, ids, search, limit, prevSearch, cursor, allProjects}: FetchProjectsOptions = {}
 ) {
   const query: {
     query?: string;
@@ -415,6 +433,10 @@ async function fetchProjects(
 
   if (slugs && slugs.length) {
     query.query = slugs.map(slug => `slug:${slug}`).join(' ');
+  }
+
+  if (ids && ids.length) {
+    query.query = ids.map(id => `id:${id}`).join(' ');
   }
 
   if (search) {

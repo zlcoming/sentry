@@ -208,6 +208,123 @@ describe('utils.projects', function() {
     });
   });
 
+  describe('with predefined list of ids', function() {
+    it('gets projects that are in the ProjectsStore ', async function() {
+      const wrapper = createWrapper({ids: ['1', '2']});
+
+      // This is initial state
+      expect(renderer).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fetching: false,
+          isIncomplete: null,
+          hasMore: null,
+          projects: [
+            expect.objectContaining({
+              id: '1',
+              slug: 'foo',
+            }),
+            expect.objectContaining({
+              id: '2',
+              slug: 'bar',
+            }),
+          ],
+        })
+      );
+
+      await tick();
+      wrapper.update();
+
+      expect(renderer).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fetching: false,
+          isIncomplete: null,
+          hasMore: null,
+          projects: [
+            expect.objectContaining({
+              id: '1',
+              slug: 'foo',
+            }),
+            expect.objectContaining({
+              id: '2',
+              slug: 'bar',
+            }),
+          ],
+        })
+      );
+    });
+    it('fetches projects from API if not found in store', async function() {
+      const request = MockApiClient.addMockResponse({
+        url: '/organizations/org-slug/projects/',
+        query: {
+          query: 'id:3 id:4',
+        },
+        body: [
+          TestStubs.Project({
+            id: '3',
+            slug: 'a',
+          }),
+          TestStubs.Project({
+            id: '4',
+            slug: 'b',
+          }),
+        ],
+      });
+
+      const wrapper = createWrapper({ids: ['1', '3', '4']});
+
+      // This is initial state
+      expect(renderer).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fetching: true,
+          isIncomplete: null,
+          hasMore: null,
+          projects: [
+            {id: '3'},
+            {id: '4'},
+            expect.objectContaining({
+              id: '1',
+              slug: 'foo',
+            }),
+          ],
+        })
+      );
+
+      await tick();
+      wrapper.update();
+
+      expect(request).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          query: {
+            query: 'id:3 id:4',
+          },
+        })
+      );
+
+      expect(renderer).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fetching: false,
+          isIncomplete: false,
+          hasMore: null,
+          projects: [
+            expect.objectContaining({
+              id: '3',
+              slug: 'a',
+            }),
+            expect.objectContaining({
+              id: '4',
+              slug: 'b',
+            }),
+            expect.objectContaining({
+              id: '1',
+              slug: 'foo',
+            }),
+          ],
+        })
+      );
+    });
+  });
+
   describe('with no pre-defined projects', function() {
     let request;
 
