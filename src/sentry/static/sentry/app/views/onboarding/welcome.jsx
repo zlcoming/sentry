@@ -31,6 +31,7 @@ class OnboardingWelcome extends React.Component {
 
     return (
       <React.Fragment>
+        <PricingInterstitial />
         <p>
           {tct("We're happy you're here, [name]!", {
             name: <strong>{user.name.split(' ')[0]}</strong>,
@@ -71,6 +72,50 @@ class OnboardingWelcome extends React.Component {
     );
   }
 }
+
+const PricingInterstitial = props => (
+  <Container>
+    <PriceCard name={t('Business')} />
+    <PriceCard name={t('Team')} />
+    <PriceCard name={t('Developer')} />
+  </Container>
+);
+
+class PriceCard extends React.Component {
+  render() {
+    const {name} = this.props;
+    const price = 0;
+
+    return (
+      <div>
+        <h2>{name}</h2>
+        <small>{price === 0 ? t('Free') : t('Starts at')}</small>
+        <Price subtext="mo">{price}</Price>
+      </div>
+    );
+  }
+}
+
+const Price = ({subtext, children, ...props}) => (
+  <div {...props}>
+    <Currency />
+    <Ammount>{children}</Ammount>
+    <Subtext>{subtext}</Subtext>
+  </div>
+);
+
+const Currency = styled(p => <span {...p}>$</span>)`
+  vertical-align: top;
+`;
+
+const Ammount = styled('span')``;
+const Subtext = styled('span')``;
+
+const Container = styled('div')`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: ${space(2)};
+`;
 
 const ActionGroup = styled('div')`
   display: flex;

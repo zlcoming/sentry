@@ -156,6 +156,7 @@ class MonitorForm extends Component {
                               placeholder="e.g. 30"
                             />
                             <SelectField
+                              deprecatedSelectControl
                               name="config.schedule_type"
                               label={t('Schedule Type')}
                               disabled={!hasAccess}
