@@ -100,7 +100,14 @@ class SearchBar extends React.PureComponent<SearchBarProps> {
       ? Object.assign({}, FIELD_TAGS, functionTags)
       : omit(FIELD_TAGS, TRACING_FIELDS);
 
-    const combined = assign({}, tags, fieldTags);
+    const scopedTags = Object.keys(tags)
+      .filter(key => fieldTags.hasOwnProperty(key))
+      .reduce((newTags, key) => {
+        newTags[`tags[${key}]`] = tags[key];
+        return newTags;
+      }, {} as TagCollection);
+
+    const combined = assign({}, tags, scopedTags, fieldTags);
     combined.has = {
       key: 'has',
       name: 'Has property',
