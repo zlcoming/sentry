@@ -1,8 +1,8 @@
 /*eslint-env node*/
 /*eslint import/no-nodejs-modules:0 */
 const fs = require('fs');
-
 const path = require('path');
+
 const {CleanWebpackPlugin} = require('clean-webpack-plugin'); // installed via npm
 const webpack = require('webpack');
 const ExtractTextPlugin = require('mini-css-extract-plugin');
@@ -486,6 +486,11 @@ if (IS_UI_DEV_ONLY || IS_DEPLOY_PREVIEW) {
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   appConfig.plugins.push(
     new HtmlWebpackPlugin({
+      favicon: path.resolve(
+        staticPrefix,
+        'images',
+        !IS_PRODUCTION ? 'favicon_dev.png' : 'favicon.png'
+      ),
       devServer: `https://localhost:${SENTRY_WEBPACK_PROXY_PORT}`,
       // inject: false,
       template: path.resolve(staticPrefix, 'index.ejs'),
