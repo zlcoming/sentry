@@ -771,10 +771,6 @@ def resolve_condition(cond, column_resolver):
             cond[0] = column_resolver(cond[0])
             return cond
 
-        if cond[index] == "toFloat32OrNull":
-            cond[index + 1] = resolve_condition(cond[index + 1], column_resolver)
-            return cond
-
         func_args = cond[index + 1]
         for (i, arg) in enumerate(func_args):
             # Nested function
