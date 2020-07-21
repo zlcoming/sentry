@@ -90,6 +90,7 @@ from .endpoints.organization_dashboards import OrganizationDashboardsEndpoint
 from .endpoints.organization_details import OrganizationDetailsEndpoint
 from .endpoints.organization_environments import OrganizationEnvironmentsEndpoint
 from .endpoints.organization_event_details import OrganizationEventDetailsEndpoint
+from .endpoints.organization_events_trends import OrganizationEventsTrends
 from .endpoints.organization_eventid import EventIdLookupEndpoint
 from .endpoints.organization_events import OrganizationEventsEndpoint, OrganizationEventsV2Endpoint
 from .endpoints.organization_events_facets import OrganizationEventsFacetsEndpoint
@@ -828,6 +829,11 @@ urlpatterns = [
                     r"^(?P<organization_slug>[^\/]+)/event-baseline/$",
                     OrganizationEventBaseline.as_view(),
                     name="sentry-api-0-organization-event-baseline",
+                ),
+                url(
+                    r"^(?P<organization_slug>[^\/]+)/events-trends/$",
+                    OrganizationEventsTrends.as_view(),
+                    name="sentry-api-0-organization-events-trends",
                 ),
                 url(
                     r"^(?P<organization_slug>[^\/]+)/issues/new/$",

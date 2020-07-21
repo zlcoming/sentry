@@ -1041,6 +1041,12 @@ class CountColumn(FunctionArg):
         return value
 
 
+class DateColumn(FunctionArg):
+    def normalize(self, value):
+        # TODO(wmak): actually do the thing
+        return value
+
+
 class NumericColumn(FunctionArg):
     def normalize(self, value):
         snuba_column = SEARCH_MAP.get(value)
@@ -1116,6 +1122,22 @@ FUNCTIONS = {
         "name": "percentile",
         "args": [DurationColumnNoLookup("column"), NumberRange("percentile", 0, 1)],
         "aggregate": [u"quantile({percentile:.2f})", u"{column}", None],
+        "result_type": "duration",
+    },
+    "percentileRange": {
+        "name": "percentileRange",
+        "args": [
+            DurationColumn("column"),
+            NumberRange("percentile", 0, 1),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "aggregate": [
+            u"quantileIf({percentile:.2f})"
+            u"({column},and(timestamp>=toDateTime('{start}'),timestamp<toDateTime('{end}')))",
+            u"percentileRange_{index}",
+        ],
         "result_type": "duration",
     },
     "p50": {
@@ -1267,6 +1289,18 @@ FUNCTIONS = {
         "transform": u"abs(minus({column}, {target:g}))",
         "result_type": "duration",
     },
+    "divide": {
+        "name": "divide",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"divide({column_1}, {column_2})",
+        "result_type": "percentage",
+    },
+    "minus": {
+        "name": "minus",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"minus({column_1}, {column_2})",
+        "result_type": "duration",
+    },
 }
 
 
@@ -1366,6 +1400,9 @@ def resolve_function(field, match=None, params=None):
         aggregate[0] = aggregate[0].format(**arguments)
         if isinstance(aggregate[1], six.string_types):
             aggregate[1] = aggregate[1].format(**arguments)
+
+        if isinstance(aggregate[2], six.string_types):
+            aggregate[2] = aggregate[2].format(**arguments)
 
         if aggregate[2] is None:
             aggregate[2] = get_function_alias_with_columns(
