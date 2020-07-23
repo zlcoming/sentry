@@ -24,6 +24,7 @@ import {
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
+import {TrendField} from './landing';
 
 export function getProjectID(
   eventData: EventData,
@@ -51,7 +52,7 @@ type Props = {
   setError: (msg: string | undefined) => void;
   keyTransactions: boolean;
   summaryConditions: string;
-
+  currentTrendField: TrendField;
   projects: Project[];
 };
 
@@ -189,6 +190,7 @@ class TrendChartTable extends React.Component<
       eventView,
       chartTitle,
       titleTooltipContent,
+      currentTrendField,
     } = this.props;
     const {selectedTransaction} = this.state;
     return (
@@ -204,7 +206,7 @@ class TrendChartTable extends React.Component<
             statsPeriod={eventView.statsPeriod}
             chartTitle={chartTitle}
             titleTooltipContent={titleTooltipContent}
-            overrideYAxis={['p50()']}
+            overrideYAxis={[currentTrendField.field]}
             intervalFunction={this.chartIntervalFunction}
             scopedTransaction={selectedTransaction}
             useLineChart

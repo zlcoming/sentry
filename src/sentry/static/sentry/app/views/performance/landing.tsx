@@ -27,6 +27,7 @@ import withGlobalSelection from 'app/utils/withGlobalSelection';
 import withOrganization from 'app/utils/withOrganization';
 import withProjects from 'app/utils/withProjects';
 import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
+import DropdownControl, {DropdownItem} from 'app/components/dropdownControl';
 
 import {generatePerformanceEventView, DEFAULT_STATS_PERIOD} from './data';
 import Table from './table';
@@ -56,7 +57,40 @@ type Props = {
 type State = {
   eventView: EventView;
   error: string | undefined;
+  currentTrendField: TrendField;
 };
+
+export type TrendField = {
+  name: string;
+  field: string;
+};
+
+const TRENDS_FIELDS: TrendField[] = [
+  {
+    name: 'Duration (p50)',
+    field: 'p50()',
+  },
+  {
+    name: 'Duration (p75)',
+    field: 'p75()',
+  },
+  {
+    name: 'Duration (p95)',
+    field: 'p95()',
+  },
+  {
+    name: 'Duration (p99)',
+    field: 'p99()',
+  },
+  {
+    name: 'Apdex',
+    field: 'apdex(300)',
+  },
+  {
+    name: 'User Misery',
+    field: 'user_misery(300)',
+  },
+];
 
 class PerformanceLanding extends React.Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
@@ -66,6 +100,7 @@ class PerformanceLanding extends React.Component<Props, State> {
   state: State = {
     eventView: generatePerformanceEventView(this.props.location),
     error: undefined,
+    currentTrendField: TRENDS_FIELDS[0],
   };
 
   componentDidMount() {
@@ -264,23 +299,53 @@ class PerformanceLanding extends React.Component<Props, State> {
     );
   }
 
+  handleFilterChange = (value: string) => {
+    const trendField = TRENDS_FIELDS.find(({field}) => field === value);
+    if (!trendField) {
+      return;
+    }
+    this.setState({
+      currentTrendField: trendField,
+    });
+  };
+
   renderTrendsPage(
     organization,
     eventView,
     filterString,
     location,
     projects,
-    summaryConditions
+    summaryConditions,
+    currentTrendField
   ) {
     return (
       <div>
-        <StyledSearchBar
-          organization={organization}
-          projectIds={eventView.project}
-          query={filterString}
-          fields={eventView.fields}
-          onSearch={this.handleSearch}
-        />
+        <SearchContainer>
+          <TrendsStyledSearchBar
+            organization={organization}
+            projectIds={eventView.project}
+            query={filterString}
+            fields={eventView.fields}
+            onSearch={this.handleSearch}
+          />
+          <TrendsDropdown>
+            <DropdownControl
+              buttonProps={{prefix: t('Filter')}}
+              label={currentTrendField.name}
+            >
+              {TRENDS_FIELDS.map(({name, field}) => (
+                <DropdownItem
+                  key={field}
+                  onSelect={this.handleFilterChange}
+                  eventKey={field}
+                  isActive={field === currentTrendField.field}
+                >
+                  {name}
+                </DropdownItem>
+              ))}
+            </DropdownControl>
+          </TrendsDropdown>
+        </SearchContainer>
         <Trends
           eventView={eventView}
           projects={projects}
@@ -288,6 +353,7 @@ class PerformanceLanding extends React.Component<Props, State> {
           location={location}
           setError={this.setError}
           summaryConditions={summaryConditions}
+          currentTrendField={currentTrendField}
           keyTransactions
         />
       </div>
@@ -296,7 +362,7 @@ class PerformanceLanding extends React.Component<Props, State> {
 
   render() {
     const {organization, location, router, projects} = this.props;
-    const {eventView} = this.state;
+    const {eventView, currentTrendField} = this.state;
     const showOnboarding = this.shouldShowOnboarding();
     const filterString = this.getTransactionSearchQuery();
     const summaryConditions = this.getSummaryConditions(filterString);
@@ -330,7 +396,8 @@ class PerformanceLanding extends React.Component<Props, State> {
                   filterString,
                   location,
                   projects,
-                  summaryConditions
+                  summaryConditions,
+                  currentTrendField
                 )
               ) : (
                 this.renderTransactionsPage(
@@ -366,6 +433,18 @@ const StyledSearchBar = styled(SearchBar)`
   flex-grow: 1;
 
   margin-bottom: ${space(2)};
+`;
+
+const TrendsStyledSearchBar = styled(StyledSearchBar)`
+  margin-right: ${space(1)};
+`;
+
+const TrendsDropdown = styled('div')`
+  flex-grow: 0;
+`;
+
+const SearchContainer = styled('div')`
+  display: flex;
 `;
 
 export default withApi(
