@@ -31,10 +31,12 @@ import {generatePerformanceEventView, DEFAULT_STATS_PERIOD} from './data';
 import Table from './table';
 import Charts from './charts/index';
 import Onboarding from './onboarding';
+import Trends from './trends';
 
 enum FilterViews {
   ALL_TRANSACTIONS = 'ALL_TRANSACTIONS',
   KEY_TRANSACTIONS = 'KEY_TRANSACTIONS',
+  TRENDS = 'TRENDS',
 }
 
 const VIEWS = Object.values(FilterViews);
@@ -128,6 +130,8 @@ class PerformanceLanding extends React.Component<Props, State> {
         return t('By Transaction');
       case FilterViews.KEY_TRANSACTIONS:
         return t('By Key Transaction');
+      case FilterViews.TRENDS:
+        return t('Trends');
       default:
         throw Error(`Unknown view: ${currentView}`);
     }
@@ -220,6 +224,74 @@ class PerformanceLanding extends React.Component<Props, State> {
     );
   }
 
+  renderTransactionsPage(
+    organization,
+    eventView,
+    filterString,
+    router,
+    location,
+    projects,
+    summaryConditions,
+    currentView
+  ) {
+    return (
+      <div>
+        <StyledSearchBar
+          organization={organization}
+          projectIds={eventView.project}
+          query={filterString}
+          fields={eventView.fields}
+          onSearch={this.handleSearch}
+        />
+        <Charts
+          eventView={eventView}
+          organization={organization}
+          location={location}
+          router={router}
+          keyTransactions={currentView === FilterViews.KEY_TRANSACTIONS}
+        />
+        <Table
+          eventView={eventView}
+          projects={projects}
+          organization={organization}
+          location={location}
+          setError={this.setError}
+          keyTransactions={currentView === FilterViews.KEY_TRANSACTIONS}
+          summaryConditions={summaryConditions}
+        />
+      </div>
+    );
+  }
+
+  renderTrendsPage(
+    organization,
+    eventView,
+    filterString,
+    location,
+    projects,
+    summaryConditions
+  ) {
+    return (
+      <div>
+        <StyledSearchBar
+          organization={organization}
+          projectIds={eventView.project}
+          query={filterString}
+          fields={eventView.fields}
+          onSearch={this.handleSearch}
+        />
+        <Trends
+          eventView={eventView}
+          projects={projects}
+          organization={organization}
+          location={location}
+          setError={this.setError}
+          summaryConditions={summaryConditions}
+        />
+      </div>
+    );
+  }
+
   render() {
     const {organization, location, router, projects} = this.props;
     const {eventView} = this.state;
@@ -249,32 +321,26 @@ class PerformanceLanding extends React.Component<Props, State> {
               {this.renderError()}
               {showOnboarding ? (
                 <Onboarding />
+              ) : currentView === FilterViews.TRENDS ? (
+                this.renderTrendsPage(
+                  organization,
+                  eventView,
+                  filterString,
+                  location,
+                  projects,
+                  summaryConditions
+                )
               ) : (
-                <div>
-                  <StyledSearchBar
-                    organization={organization}
-                    projectIds={eventView.project}
-                    query={filterString}
-                    fields={eventView.fields}
-                    onSearch={this.handleSearch}
-                  />
-                  <Charts
-                    eventView={eventView}
-                    organization={organization}
-                    location={location}
-                    router={router}
-                    keyTransactions={currentView === 'KEY_TRANSACTIONS'}
-                  />
-                  <Table
-                    eventView={eventView}
-                    projects={projects}
-                    organization={organization}
-                    location={location}
-                    setError={this.setError}
-                    keyTransactions={currentView === 'KEY_TRANSACTIONS'}
-                    summaryConditions={summaryConditions}
-                  />
-                </div>
+                this.renderTransactionsPage(
+                  organization,
+                  eventView,
+                  filterString,
+                  router,
+                  location,
+                  projects,
+                  summaryConditions,
+                  currentView
+                )
               )}
             </LightWeightNoProjectMessage>
           </PageContent>

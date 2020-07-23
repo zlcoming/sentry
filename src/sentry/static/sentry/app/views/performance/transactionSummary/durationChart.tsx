@@ -7,6 +7,7 @@ import {OrganizationSummary} from 'app/types';
 import {Client} from 'app/api';
 import {t} from 'app/locale';
 import AreaChart from 'app/components/charts/areaChart';
+import LineChart from 'app/components/charts/lineChart';
 import ChartZoom from 'app/components/charts/chartZoom';
 import ErrorPanel from 'app/components/charts/errorPanel';
 import TransparentLoadingMask from 'app/components/charts/transparentLoadingMask';
@@ -25,6 +26,7 @@ import {getDuration} from 'app/utils/formatters';
 import getDynamicText from 'app/utils/getDynamicText';
 
 import {HeaderTitleLegend} from '../styles';
+import {TrendsTransaction} from '../trends';
 
 const QUERY_KEYS = [
   'environment',
@@ -42,9 +44,19 @@ type Props = ReactRouter.WithRouterProps &
     api: Client;
     location: Location;
     organization: OrganizationSummary;
+    chartTitle?: string;
+    titleTooltipContent?: string;
+    overrideYAxis?: string[];
+    intervalFunction?: (dateTimeSelection: any) => string;
+    useLineChart?: boolean;
+    scopedTransaction?: TrendsTransaction;
   };
 
 const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()'];
+
+function scopedTransactionQuery(query: string, scopedTransaction: TrendsTransaction) {
+  return `${query} event.type:transaction transaction:${scopedTransaction.transaction}`;
+}
 
 /**
  * Fetch and render a stacked area chart that shows duration
@@ -76,6 +88,12 @@ class DurationChart extends React.Component<Props> {
       query,
       statsPeriod,
       router,
+      chartTitle,
+      titleTooltipContent,
+      overrideYAxis,
+      intervalFunction,
+      useLineChart,
+      scopedTransaction,
     } = this.props;
 
     const unselectedSeries = location.query.unselectedSeries ?? [];
@@ -122,15 +140,20 @@ class DurationChart extends React.Component<Props> {
       period: statsPeriod,
     };
 
+    const _query = scopedTransaction
+      ? scopedTransactionQuery(query, scopedTransaction)
+      : query;
+
     return (
       <React.Fragment>
         <HeaderTitleLegend>
-          {t('Duration Breakdown')}
+          {t(chartTitle || 'Duration Breakdown')}
           <QuestionTooltip
             size="sm"
             position="top"
             title={t(
-              `Duration Breakdown reflects transaction durations by percentile over time.`
+              titleTooltipContent ||
+                `Duration Breakdown reflects transaction durations by percentile over time.`
             )}
           />
         </HeaderTitleLegend>
@@ -149,11 +172,15 @@ class DurationChart extends React.Component<Props> {
               environment={[...environment]}
               start={start}
               end={end}
-              interval={getInterval(datetimeSelection, true)}
+              interval={
+                intervalFunction
+                  ? intervalFunction(datetimeSelection)
+                  : getInterval(datetimeSelection, true)
+              }
               showLoading={false}
-              query={query}
+              query={_query}
               includePrevious={false}
-              yAxis={YAXIS_VALUES}
+              yAxis={overrideYAxis || YAXIS_VALUES}
             >
               {({results, errored, loading, reloading}) => {
                 if (errored) {
@@ -175,7 +202,7 @@ class DurationChart extends React.Component<Props> {
                           ...values,
                           color: colors[i],
                           lineStyle: {
-                            opacity: 0,
+                            opacity: useLineChart ? 1 : 0,
                           },
                         };
                       })
@@ -198,7 +225,26 @@ class DurationChart extends React.Component<Props> {
                       <TransitionChart loading={loading} reloading={reloading}>
                         <TransparentLoadingMask visible={reloading} />
                         {getDynamicText({
-                          value: (
+                          value: useLineChart ? (
+                            <LineChart
+                              {...zoomRenderProps} // TODO: Removed legend for now to avoid issues with no timeseries being displayed
+                              onLegendSelectChanged={this.handleLegendSelectChanged}
+                              series={[...series, ...releaseSeries]}
+                              seriesOptions={{
+                                showSymbol: false,
+                              }}
+                              tooltip={tooltip}
+                              toolBox={{
+                                show: false, // TODO: Replace with check for trends or move out into separate chart just for trends
+                              }}
+                              grid={{
+                                left: '10px',
+                                right: '10px',
+                                top: '40px',
+                                bottom: '0px',
+                              }}
+                            />
+                          ) : (
                             <AreaChart
                               {...zoomRenderProps}
                               legend={legend}

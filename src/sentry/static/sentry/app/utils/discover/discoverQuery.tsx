@@ -5,11 +5,15 @@ import {Client} from 'app/api';
 import withApi from 'app/utils/withApi';
 import EventView, {isAPIPayloadSimilar} from 'app/utils/discover/eventView';
 import {TableData} from 'app/views/eventsV2/table/types';
+import {TrendsTransaction} from 'app/views/performance/trends';
+
+export type EventTrendsData = TrendsTransaction[];
 
 type ChildrenProps = {
   isLoading: boolean;
   error: null | string;
   tableData: TableData | null;
+  eventTrendsData?: EventTrendsData | null;
   pageLinks: null | string;
 };
 
@@ -19,6 +23,8 @@ type Props = {
   eventView: EventView;
   orgSlug: string;
   keyTransactions?: boolean;
+  trendsEndpoint?: boolean;
+  isWorstTrends?: boolean;
   limit?: number;
 
   children: (props: ChildrenProps) => React.ReactNode;
@@ -74,19 +80,34 @@ class DiscoverQuery extends React.Component<Props, State> {
   };
 
   fetchData = () => {
-    const {eventView, orgSlug, location, limit, keyTransactions} = this.props;
+    const {
+      eventView,
+      orgSlug,
+      location,
+      limit,
+      keyTransactions,
+      trendsEndpoint,
+      isWorstTrends,
+    } = this.props;
 
     if (!eventView.isValid()) {
       return;
     }
 
-    const route = keyTransactions ? 'key-transactions' : 'eventsv2';
+    let route = keyTransactions ? 'key-transactions' : 'eventsv2';
+    if (trendsEndpoint) {
+      route = 'events-trends';
+    }
 
     const url = `/organizations/${orgSlug}/${route}/`;
     const tableFetchID = Symbol('tableFetchID');
     const apiPayload = eventView.getEventsAPIPayload(location);
 
     this.setState({isLoading: true, tableFetchID});
+
+    if (trendsEndpoint && isWorstTrends) {
+      apiPayload.orderby = '-percentage';
+    }
 
     if (limit) {
       apiPayload.per_page = limit;
@@ -113,6 +134,7 @@ class DiscoverQuery extends React.Component<Props, State> {
           error: null,
           pageLinks: jqXHR ? jqXHR.getResponseHeader('Link') : prevState.pageLinks,
           tableData: data,
+          eventTrendsData: data, // TODO: clean this up
         }));
       })
       .catch(err => {
@@ -126,13 +148,14 @@ class DiscoverQuery extends React.Component<Props, State> {
   };
 
   render() {
-    const {isLoading, error, tableData, pageLinks} = this.state;
+    const {isLoading, error, tableData, pageLinks, eventTrendsData} = this.state;
 
     const childrenProps = {
       isLoading,
       error,
       tableData,
       pageLinks,
+      eventTrendsData,
     };
 
     return this.props.children(childrenProps);
