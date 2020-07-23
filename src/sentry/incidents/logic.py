@@ -36,6 +36,8 @@ from sentry.snuba.dataset import Dataset
 from sentry.snuba.models import QueryDatasets
 from sentry.snuba.subscriptions import (
     bulk_create_snuba_subscriptions,
+    bulk_enable_snuba_subscriptions,
+    bulk_disable_snuba_subscriptions,
     bulk_delete_snuba_subscriptions,
     create_snuba_query,
     update_snuba_query,
@@ -808,6 +810,22 @@ def subscribe_projects_to_alert_rule(alert_rule, projects):
     )
 
 
+def enable_alert_rule(alert_rule):
+    if alert_rule.status != AlertRuleStatus.DISABLED.value:
+        return
+    with transaction.atomic():
+        alert_rule.update(status=AlertRuleStatus.PENDING.value)
+        bulk_enable_snuba_subscriptions(alert_rule.snuba_query.subscriptions.all())
+
+
+def disable_alert_rule(alert_rule):
+    if alert_rule.status != AlertRuleStatus.PENDING.value:
+        return
+    with transaction.atomic():
+        alert_rule.update(status=AlertRuleStatus.DISABLED.value)
+        bulk_disable_snuba_subscriptions(alert_rule.snuba_query.subscriptions.all())
+
+
 def delete_alert_rule(alert_rule):
     """
     Marks an alert rule as deleted and fires off a task to actually delete it.
@@ -1008,14 +1026,14 @@ def create_alert_rule_trigger_action(
     :param integration: (Optional) The Integration related to this action.
     :return: The created action
     """
+
     target_display = None
-    if type == AlertRuleTriggerAction.Type.SLACK:
-
+    if type.value in AlertRuleTriggerAction.INTEGRATION_TYPES:
         if target_type != AlertRuleTriggerAction.TargetType.SPECIFIC:
-            raise InvalidTriggerActionError("Slack action must specify channel")
+            raise InvalidTriggerActionError("Must specify specific target type")
 
-        channel_id = get_alert_rule_trigger_action_slack_channel_id(
-            trigger.alert_rule.organization, integration.id, target_identifier
+        channel_id = get_alert_rule_trigger_action_integration_object_id(
+            type.value, trigger.alert_rule.organization, integration.id, target_identifier
         )
 
         # Use the channel name for display
@@ -1055,15 +1073,13 @@ def update_alert_rule_trigger_action(
     if target_identifier is not None:
         type = updated_fields.get("type", trigger_action.type)
 
-        if type == AlertRuleTriggerAction.Type.SLACK.value:
+        if type in AlertRuleTriggerAction.INTEGRATION_TYPES:
             integration = updated_fields.get("integration", trigger_action.integration)
-            channel_id = get_alert_rule_trigger_action_slack_channel_id(
-                trigger_action.alert_rule_trigger.alert_rule.organization,
-                integration.id,
-                target_identifier,
+            organization = trigger_action.alert_rule_trigger.alert_rule.organization
+            channel_id = get_alert_rule_trigger_action_integration_object_id(
+                type, organization, integration.id, target_identifier,
             )
-
-            # Use the channel name for display
+            # Use the target identifier for display
             updated_fields["target_display"] = target_identifier
             updated_fields["target_identifier"] = channel_id
         else:
@@ -1071,6 +1087,15 @@ def update_alert_rule_trigger_action(
 
     trigger_action.update(**updated_fields)
     return trigger_action
+
+
+def get_alert_rule_trigger_action_integration_object_id(type, *args, **kwargs):
+    if type == AlertRuleTriggerAction.Type.SLACK.value:
+        return get_alert_rule_trigger_action_slack_channel_id(*args, **kwargs)
+    elif type == AlertRuleTriggerAction.Type.MSTEAMS.value:
+        return get_alert_rule_trigger_action_msteams_channel_id(*args, **kwargs)
+    else:
+        raise Exception("Not implemented")
 
 
 def get_alert_rule_trigger_action_slack_channel_id(organization, integration_id, name):
@@ -1097,6 +1122,18 @@ def get_alert_rule_trigger_action_slack_channel_id(organization, integration_id,
             "Could not find channel %s. Channel may not exist, or Sentry may not "
             "have been granted permission to access it" % name
         )
+
+    return channel_id
+
+
+def get_alert_rule_trigger_action_msteams_channel_id(organization, integration_id, name):
+    from sentry.integrations.msteams.utils import get_channel_id
+
+    channel_id = get_channel_id(organization, integration_id, name)
+
+    if channel_id is None:
+        # no granting access for msteams channels unlike slack
+        raise InvalidTriggerActionError("Could not find channel %s." % name)
 
     return channel_id
 
