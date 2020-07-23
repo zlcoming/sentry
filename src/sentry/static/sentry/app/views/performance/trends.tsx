@@ -22,6 +22,7 @@ import {
   TWO_WEEKS,
 } from 'app/components/charts/utils';
 import Link from 'app/components/links/link';
+import {Field} from 'app/utils/discover/fields';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
@@ -104,7 +105,7 @@ type TrendsQueryWrapperProps = Props & {
 function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
   const {eventView, organization, location, trendType, currentTrendField} = props;
   const trendsView = eventView.clone(); // TODO: fix hack
-  const additionalRequiredTrendFields = ['tranasction', 'project', 'count()'];
+  const additionalRequiredTrendFields = ['transaction', 'project', 'count()'];
   trendsView.fields = [
     ...additionalRequiredTrendFields.map(field => ({field})),
     ...TRENDS_FIELDS,
@@ -222,7 +223,7 @@ class TrendChartTable extends React.Component<
             useLineChart
           />
         </DurationContainer>
-        {eventTrendsData ? (
+        {eventTrendsData && eventTrendsData.length ? (
           <TrendsTransactionList
             selectedTransaction={selectedTransaction}
             data={eventTrendsData}
@@ -273,10 +274,17 @@ function TrendsTransactionList(props: TransactionListProps) {
 
 export type TrendsTransaction = {
   transaction: string;
-  delta: number;
-  percentage: number;
+  divide_aggregateRange_2_aggregateRange_1: number;
+  minus_aggregateRange_2_aggregateRange_1: number;
+  count: number;
   aggregateRange_1: number;
   aggregateRange_2: number;
+  p99?: number;
+  p95?: number;
+  p75?: number;
+  p50?: number;
+  user_misery_300?: number;
+  apdex_300?: number;
 };
 
 type TransactionItemProps = TransactionListProps & {
@@ -351,10 +359,13 @@ function TransactionItem(props: TransactionItemProps) {
         </ItemTransactionNameContainer>
         <ItemTransactionPercentContainer>
           <ItemTransactionPercent>
-            {(transaction.percentage * 100).toFixed(0)}%
+            {(transaction.divide_aggregateRange_2_aggregateRange_1 * 100).toFixed(0)}%
           </ItemTransactionPercent>
           <ItemTransactionPercentFaster color={color}>
-            {transformDelta(transaction.delta, trendType)}
+            {transformDelta(
+              transaction.minus_aggregateRange_2_aggregateRange_1,
+              trendType
+            )}
           </ItemTransactionPercentFaster>
         </ItemTransactionPercentContainer>
       </ItemSplit>

@@ -80,7 +80,8 @@ class DiscoverQuery extends React.Component<Props, State> {
 
     return (
       !isAPIPayloadSimilar(thisAPIPayload, otherAPIPayload) ||
-      prevProps.limit !== this.props.limit
+      prevProps.limit !== this.props.limit ||
+      prevProps.currentTrendField !== this.props.currentTrendField
     );
   };
 
@@ -116,11 +117,12 @@ class DiscoverQuery extends React.Component<Props, State> {
     this.setState({isLoading: true, tableFetchID});
 
     if (trendsEndpoint && isWorstTrends) {
-      apiPayload.orderby = '-percentage';
+      apiPayload.orderby = '-divide_aggregateRange_2_aggregateRange_1';
     }
 
     if (currentTrendField) {
       apiPayload.trendFunction = currentTrendField.field;
+      apiPayload.sort = '';
     }
 
     if (limit) {
