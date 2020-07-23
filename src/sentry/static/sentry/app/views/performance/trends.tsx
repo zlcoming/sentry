@@ -393,6 +393,7 @@ const ItemTransactionPercent = styled('div')``;
 const ItemTransactionPercentFaster = styled('div')`
   color: ${p => radioColorMap[p.color || '']};
   font-size: 14px;
+  white-space: nowrap;
 `;
 const ItemTransactionPercentContainer = styled('div')`
   display: flex;
