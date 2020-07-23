@@ -3,9 +3,13 @@ import {Location} from 'history';
 
 import {Client} from 'app/api';
 import withApi from 'app/utils/withApi';
-import EventView, {isAPIPayloadSimilar} from 'app/utils/discover/eventView';
+import EventView, {
+  isAPIPayloadSimilar,
+  LocationQuery,
+} from 'app/utils/discover/eventView';
 import {TableData} from 'app/views/eventsV2/table/types';
 import {TrendsTransaction} from 'app/views/performance/trends';
+import {EventQuery} from 'app/actionCreators/events';
 
 export type EventTrendsData = TrendsTransaction[];
 
@@ -101,7 +105,10 @@ class DiscoverQuery extends React.Component<Props, State> {
 
     const url = `/organizations/${orgSlug}/${route}/`;
     const tableFetchID = Symbol('tableFetchID');
-    const apiPayload = eventView.getEventsAPIPayload(location);
+    const apiPayload: LocationQuery &
+      EventQuery & {
+        orderby?: string;
+      } = eventView.getEventsAPIPayload(location);
 
     this.setState({isLoading: true, tableFetchID});
 

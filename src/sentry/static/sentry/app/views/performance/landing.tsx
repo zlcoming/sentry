@@ -288,6 +288,7 @@ class PerformanceLanding extends React.Component<Props, State> {
           location={location}
           setError={this.setError}
           summaryConditions={summaryConditions}
+          keyTransactions
         />
       </div>
     );
