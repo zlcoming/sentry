@@ -65,7 +65,7 @@ export type TrendField = {
   field: string;
 };
 
-const TRENDS_FIELDS: TrendField[] = [
+export const TRENDS_FIELDS: TrendField[] = [
   {
     name: 'Duration (p50)',
     field: 'p50()',

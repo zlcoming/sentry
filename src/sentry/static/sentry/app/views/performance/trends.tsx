@@ -25,7 +25,7 @@ import Link from 'app/components/links/link';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
-import {TrendField} from './landing';
+import {TrendField, TRENDS_FIELDS} from './landing';
 import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';
 
 export function getProjectID(
@@ -102,21 +102,30 @@ type TrendsQueryWrapperProps = Props & {
 };
 
 function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
-  const {eventView, organization, location, trendType} = props;
+  const {eventView, organization, location, trendType, currentTrendField} = props;
+  const trendsView = eventView.clone(); // TODO: fix hack
+  const additionalRequiredTrendFields = ['tranasction', 'project', 'count()'];
+  trendsView.fields = [
+    ...additionalRequiredTrendFields.map(field => ({field})),
+    ...TRENDS_FIELDS,
+  ] as Readonly<Field[]>;
+
   return (
     <Panel>
       <DiscoverQuery
-        eventView={eventView}
+        eventView={trendsView}
         orgSlug={organization.slug}
         location={location}
         trendsEndpoint
         isWorstTrends={trendType === TrendType.REGRESSION}
+        currentTrendField={currentTrendField}
       >
         {({isLoading, eventTrendsData}) => (
           <TrendChartTable
             isLoading={isLoading}
             eventTrendsData={eventTrendsData}
             {...props}
+            eventView={trendsView}
           />
         )}
       </DiscoverQuery>

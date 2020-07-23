@@ -10,6 +10,7 @@ import EventView, {
 import {TableData} from 'app/views/eventsV2/table/types';
 import {TrendsTransaction} from 'app/views/performance/trends';
 import {EventQuery} from 'app/actionCreators/events';
+import {TrendField} from 'app/views/performance/landing';
 
 export type EventTrendsData = TrendsTransaction[];
 
@@ -30,7 +31,7 @@ type Props = {
   trendsEndpoint?: boolean;
   isWorstTrends?: boolean;
   limit?: number;
-
+  currentTrendField?: TrendField;
   children: (props: ChildrenProps) => React.ReactNode;
 };
 
@@ -92,6 +93,7 @@ class DiscoverQuery extends React.Component<Props, State> {
       keyTransactions,
       trendsEndpoint,
       isWorstTrends,
+      currentTrendField,
     } = this.props;
 
     if (!eventView.isValid()) {
@@ -108,12 +110,17 @@ class DiscoverQuery extends React.Component<Props, State> {
     const apiPayload: LocationQuery &
       EventQuery & {
         orderby?: string;
+        trendFunction?: string;
       } = eventView.getEventsAPIPayload(location);
 
     this.setState({isLoading: true, tableFetchID});
 
     if (trendsEndpoint && isWorstTrends) {
       apiPayload.orderby = '-percentage';
+    }
+
+    if (currentTrendField) {
+      apiPayload.trendFunction = currentTrendField.field;
     }
 
     if (limit) {
