@@ -301,6 +301,15 @@ function transformDelta(milliseconds, trendType) {
   return `${getAbsoluteSecondsString(Math.abs(milliseconds))} ${suffix}`;
 }
 
+function transformAbsolute(milliseconds) {
+  const seconds = Math.abs(milliseconds) / 1000;
+  if (seconds < 0.1) {
+    return <Duration seconds={seconds} abbreviation />;
+  }
+
+  return `${seconds.toFixed(1)}s`;
+}
+
 const trendToColor = {
   [TrendType.IMPROVED]: TransactionColors.GREEN,
   [TrendType.REGRESSION]: TransactionColors.RED,
@@ -326,9 +335,9 @@ function TransactionItem(props: TransactionItemProps) {
             <TransactionLink {...props} />
           </ItemTransactionName>
           <ItemTransactionAbsoluteFaster>
-            {getAbsoluteSecondsString(transaction.aggregateRange_1)}
+            {transformAbsolute(transaction.aggregateRange_1)}
             &nbsp;→&nbsp;
-            {getAbsoluteSecondsString(transaction.aggregateRange_2)}
+            {transformAbsolute(transaction.aggregateRange_2)}
           </ItemTransactionAbsoluteFaster>
         </ItemTransactionNameContainer>
         <ItemTransactionPercentContainer>
