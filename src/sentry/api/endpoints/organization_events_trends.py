@@ -45,10 +45,11 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
             + [
                 "divide(aggregateRange_2,aggregateRange_1)",
                 "minus(aggregateRange_2,aggregateRange_1)",
+                "divide(count_2,count_1)",
             ],
             query="event.type:transaction " + request.GET.get("query"),
             params=params,
-            limit=5,
+            limit=50,
             auto_fields=True,
             use_aggregate_conditions=True,
             trend_function=trend_function,

@@ -567,6 +567,7 @@ def query(
     if trend_function:
         _, agg_additions = resolve_function(trend_function)
         range_format = "{aggregate}({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
+        count_format = "countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
         aggregate, column, _ = agg_additions[0]
         column = "duration"
         if "(" in aggregate:
@@ -594,6 +595,16 @@ def query(
                     ),
                     None,
                     "aggregateRange_2",
+                ],
+                [
+                    count_format.format(start=first_interval[0], end=first_interval[1],),
+                    None,
+                    "count_1",
+                ],
+                [
+                    count_format.format(start=second_interval[0], end=second_interval[1],),
+                    None,
+                    "count_2",
                 ],
             ]
         )
