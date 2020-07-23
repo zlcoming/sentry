@@ -91,7 +91,13 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
         for result in results["data"]:
             response.append(
                 {
-                    key: (value if not (isinstance(value, float) and math.isnan(value)) else None)
+                    key: (
+                        value
+                        if not (
+                            isinstance(value, float) and (math.isnan(value) or math.isinf(value))
+                        )
+                        else None
+                    )
                     for key, value in six.iteritems(result)
                 }
             )
