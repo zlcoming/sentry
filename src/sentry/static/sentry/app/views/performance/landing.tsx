@@ -83,6 +83,10 @@ export const TRENDS_FIELDS: TrendField[] = [
     field: 'p99()',
   },
   {
+    name: 'Average',
+    field: 'avg(transaction.duration)',
+  },
+  {
     name: 'Apdex',
     field: 'apdex(300)',
   },
