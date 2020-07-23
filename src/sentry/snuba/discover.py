@@ -16,6 +16,7 @@ from sentry.api.event_search import (
     get_function_alias,
     is_function,
     resolve_field_list,
+    resolve_function,
     InvalidSearchQuery,
     FIELD_ALIASES,
 )
@@ -451,6 +452,9 @@ def query(
     auto_fields=False,
     use_aggregate_conditions=False,
     conditions=None,
+    trend_function=None,
+    first_interval=None,
+    second_interval=None,
 ):
     """
     High-level API for doing arbitrary user queries against events.
@@ -559,6 +563,40 @@ def query(
 
         if conditions is not None:
             snuba_filter.conditions.extend(conditions)
+
+    if trend_function:
+        _, agg_additions = resolve_function(trend_function)
+        range_format = "{aggregate}({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
+        aggregate, column, _ = agg_additions[0]
+        column = "duration"
+        if "(" in aggregate:
+            aggregate = aggregate.replace("(", "If(")
+        else:
+            aggregate += "If"
+        snuba_filter.aggregations.extend(
+            [
+                [
+                    range_format.format(
+                        aggregate=aggregate,
+                        start=first_interval[0],
+                        end=first_interval[1],
+                        column=column,
+                    ),
+                    None,
+                    "aggregateRange_1",
+                ],
+                [
+                    range_format.format(
+                        aggregate=aggregate,
+                        start=second_interval[0],
+                        end=second_interval[1],
+                        column=column,
+                    ),
+                    None,
+                    "aggregateRange_2",
+                ],
+            ]
+        )
 
     with sentry_sdk.start_span(op="discover.discover", description="query.snuba_query"):
         result = raw_query(

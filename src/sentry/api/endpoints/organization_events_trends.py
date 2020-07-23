@@ -7,8 +7,7 @@ import six
 from rest_framework.response import Response
 
 from sentry.api.bases import OrganizationEventsEndpointBase, NoProjects
-from sentry.api.event_search import resolve_function
-from sentry.utils.snuba import raw_query, Dataset
+from sentry.snuba import discover
 
 
 class OrganizationEventsTrends(OrganizationEventsEndpointBase):
@@ -37,56 +36,57 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
             )
 
         trend_function = request.GET.get("trendFunction", "p50()")
+        results = discover.query(
+            orderby=request.GET.get(
+                "orderby", ["divide_aggregateRange_2_aggregateRange_1", "transaction"]
+            ),
+            referrer="api.trends.get_percentage_change",
+            selected_columns=request.GET.getlist("field")[:]
+            + [
+                "divide(aggregateRange_2,aggregateRange_1)",
+                "minus(aggregateRange_2,aggregateRange_1)",
+            ],
+            query="event.type:transaction " + request.GET.get("query"),
+            params=params,
+            limit=5,
+            auto_fields=True,
+            use_aggregate_conditions=True,
+            trend_function=trend_function,
+            first_interval=first_interval,
+            second_interval=second_interval,
+        )
+        """
+        snuba_filter = get_filter(request.GET.get("query"), params)
         # TODO: add params for epm/eps (or make the decision to exclude them)
-        _, agg_additions = resolve_function(trend_function)
-        range_format = "{aggregate}({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
-        aggregate, column, _ = agg_additions[0]
-        column = "duration"
-        if "(" in aggregate:
-            aggregate = aggregate.replace("(", "If(")
-        else:
-            aggregate += "If"
-        aggregations = [
-            [
-                range_format.format(
-                    aggregate=aggregate,
-                    start=first_interval[0],
-                    end=first_interval[1],
-                    column=column,
-                ),
-                None,
-                "aggregateRange_1",
-            ],
-            [
-                range_format.format(
-                    aggregate=aggregate,
-                    start=second_interval[0],
-                    end=second_interval[1],
-                    column=column,
-                ),
-                None,
-                "aggregateRange_2",
-            ],
-        ]
-        selected_columns = [
-            ["divide", ["aggregateRange_2", "aggregateRange_1"], "percentage"],
-            ["minus", ["aggregateRange_2", "aggregateRange_1"], "delta"],
-            "transaction",
-        ]
+        snuba_filter.update_with(
+            resolve_field_list(request.GET.getlist("field"), snuba_filter)
+        )
+        for having_clause in snuba_filter.having:
+            found = any(
+                having_clause[0] == agg_clause[-1] for agg_clause in snuba_filter.aggregations
+            )
+            if not found:
+                raise InvalidSearchQuery(
+                    u"Aggregate {} used in a condition but is not a selected column.".format(
+                        having_clause[0]
+                    )
+                )
 
         results = raw_query(
             filter_keys={"project_id": params.get("project_id")},
             start=params.get("start"),
             end=params.get("end"),
             dataset=Dataset.Discover,
-            aggregations=aggregations,
-            selected_columns=selected_columns,
-            groupby="transaction",
+            aggregations=snuba_filter.aggregations,
+            selected_columns=snuba_filter.selected_columns,
+            conditions=snuba_filter.conditions,
+            having=snuba_filter.having,
+            groupby=snuba_filter.groupby,
             limit=5,
-            conditions=[["type", "=", "transaction"]],
             orderby=request.GET.get("orderby", ["percentage", "transaction"]),
             referrer="api.trends.get_percentage_change",
         )
+        """
         response = []
         for result in results["data"]:
             response.append(
