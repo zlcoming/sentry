@@ -21,10 +21,12 @@ import {
   ONE_WEEK,
   TWO_WEEKS,
 } from 'app/components/charts/utils';
+import Link from 'app/components/links/link';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
 import {TrendField} from './landing';
+import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';
 
 export function getProjectID(
   eventData: EventData,
@@ -184,7 +186,6 @@ class TrendChartTable extends React.Component<
   render() {
     const {
       eventTrendsData,
-      trendType,
       isLoading,
       organization,
       eventView,
@@ -214,11 +215,10 @@ class TrendChartTable extends React.Component<
         </DurationContainer>
         {eventTrendsData ? (
           <TrendsTransactionList
-            trendType={trendType}
             selectedTransaction={selectedTransaction}
-            isLoading={isLoading}
             data={eventTrendsData}
             handleChangeTransaction={this.handleChangeTransaction}
+            {...this.props}
           />
         ) : (
           <EmptyTransactionList>
@@ -236,7 +236,7 @@ class TrendChartTable extends React.Component<
   }
 }
 
-type TransactionListProps = {
+type TransactionListProps = TrendsChartTableProps & {
   isLoading: boolean;
   data: TrendsTransaction[];
   selectedTransaction?: TrendsTransaction;
@@ -245,18 +245,17 @@ type TransactionListProps = {
 };
 
 function TrendsTransactionList(props: TransactionListProps) {
-  const {data, trendType, selectedTransaction, handleChangeTransaction} = props;
+  const {data, selectedTransaction} = props;
 
   return (
     <div>
       {data.map((transaction, index) => (
         <TransactionItem
-          trendType={trendType}
           selected={transaction === selectedTransaction}
           key={index}
           index={index}
           transaction={transaction}
-          handleChangeTransaction={handleChangeTransaction}
+          {...props}
         />
       ))}
     </div>
@@ -271,7 +270,7 @@ export type TrendsTransaction = {
   aggregateRange_2: number;
 };
 
-type TransactionItemProps = {
+type TransactionItemProps = TransactionListProps & {
   selected: boolean;
   index: number;
   transaction: TrendsTransaction;
@@ -324,7 +323,7 @@ function TransactionItem(props: TransactionItemProps) {
         </ItemRadioContainer>
         <ItemTransactionNameContainer>
           <ItemTransactionName>
-            <span>{transaction.transaction}</span>
+            <TransactionLink {...props} />
           </ItemTransactionName>
           <ItemTransactionAbsoluteFaster>
             {getAbsoluteSecondsString(transaction.aggregateRange_1)}
@@ -344,6 +343,21 @@ function TransactionItem(props: TransactionItemProps) {
     </StyledItem>
   );
 }
+
+type TransactionLinkProps = TransactionItemProps & {};
+
+const TransactionLink = (props: TransactionLinkProps) => {
+  const {organization, eventView, transaction} = props;
+
+  const summaryView = eventView.clone();
+  const target = transactionSummaryRouteWithQuery({
+    orgSlug: organization.slug,
+    transaction: String(transaction.transaction) || '',
+    query: summaryView.generateQueryStringObject(),
+  });
+
+  return <Link to={target}>{transaction.transaction}</Link>;
+};
 
 const radioColorMap = {
   [TransactionColors.GREEN]: '#4DC771', // TODO: Check theme colors
@@ -381,9 +395,7 @@ const ItemTransactionNameContainer = styled('div')`
   flex-grow: 1;
 `;
 
-const ItemTransactionName = styled('div')`
-  color: ${p => p.theme.blue400};
-`;
+const ItemTransactionName = styled('div')``;
 const ItemTransactionAbsoluteFaster = styled('div')`
   color: ${p => p.theme.gray500};
   font-size: 14px;
