@@ -254,12 +254,30 @@ type TransactionListProps = TrendsChartTableProps & {
   handleChangeTransaction: Function;
 };
 
+function rudimentaryTrendsTransactionFilter(data: TrendsTransaction[]) {
+  const filtered = data
+    .filter(
+      transaction =>
+        transaction.divide_count_2_count_1 < 4 ||
+        transaction.divide_count_2_count_1 > 0.25
+    )
+    .slice(0, 5);
+
+  if (filtered.length < 5) {
+    return data.slice(0, 5);
+  }
+
+  return filtered;
+}
+
 function TrendsTransactionList(props: TransactionListProps) {
   const {data, selectedTransaction} = props;
 
+  const filteredData = rudimentaryTrendsTransactionFilter(data);
+
   return (
     <div>
-      {data.map((transaction, index) => (
+      {filteredData.map((transaction, index) => (
         <TransactionItem
           selected={transaction === selectedTransaction}
           key={index}
@@ -285,6 +303,9 @@ export type TrendsTransaction = {
   p50?: number;
   user_misery_300?: number;
   apdex_300?: number;
+  count_1: number;
+  count_2: number;
+  divide_count_2_count_1: number;
 };
 
 type TransactionItemProps = TransactionListProps & {
