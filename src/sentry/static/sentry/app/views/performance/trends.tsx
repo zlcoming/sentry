@@ -199,7 +199,7 @@ function analyzeTransaction(transaction: TrendsTransaction): TrendTransactionGro
 
   if (_absThresholdFromStorage) {
     const threshold = parseFloat(_absThresholdFromStorage);
-    if (transaction.count_2 > threshold && transaction.count_1 > threshold) {
+    if (transaction.count_2 < threshold || transaction.count_1 < threshold) {
       return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
     }
   } else {
