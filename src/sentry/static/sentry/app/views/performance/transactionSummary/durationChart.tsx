@@ -50,6 +50,8 @@ type Props = ReactRouter.WithRouterProps &
     intervalFunction?: (dateTimeSelection: any) => string;
     useLineChart?: boolean;
     scopedTransaction?: TrendsTransaction;
+    hideTitle?: boolean;
+    forceLineColor?: string;
   };
 
 const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()'];
@@ -94,6 +96,8 @@ class DurationChart extends React.Component<Props> {
       intervalFunction,
       useLineChart,
       scopedTransaction,
+      hideTitle,
+      forceLineColor,
     } = this.props;
 
     const unselectedSeries = location.query.unselectedSeries ?? [];
@@ -146,17 +150,19 @@ class DurationChart extends React.Component<Props> {
 
     return (
       <React.Fragment>
-        <HeaderTitleLegend>
-          {t(chartTitle || 'Duration Breakdown')}
-          <QuestionTooltip
-            size="sm"
-            position="top"
-            title={t(
-              titleTooltipContent ||
-                `Duration Breakdown reflects transaction durations by percentile over time.`
-            )}
-          />
-        </HeaderTitleLegend>
+        {!hideTitle && (
+          <HeaderTitleLegend>
+            {t(chartTitle || 'Duration Breakdown')}
+            <QuestionTooltip
+              size="sm"
+              position="top"
+              title={t(
+                titleTooltipContent ||
+                  `Duration Breakdown reflects transaction durations by percentile over time.`
+              )}
+            />
+          </HeaderTitleLegend>
+        )}
         <ChartZoom
           router={router}
           period={statsPeriod}
@@ -200,7 +206,7 @@ class DurationChart extends React.Component<Props> {
                       .map((values, i: number) => {
                         return {
                           ...values,
-                          color: colors[i],
+                          color: forceLineColor || colors[i],
                           lineStyle: {
                             opacity: useLineChart ? 1 : 0,
                           },
@@ -240,7 +246,7 @@ class DurationChart extends React.Component<Props> {
                               grid={{
                                 left: '10px',
                                 right: '10px',
-                                top: '40px',
+                                top: hideTitle ? '12px' : '40px',
                                 bottom: '0px',
                               }}
                             />

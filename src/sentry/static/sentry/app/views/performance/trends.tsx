@@ -23,11 +23,39 @@ import {
 } from 'app/components/charts/utils';
 import Link from 'app/components/links/link';
 import {Field} from 'app/utils/discover/fields';
+import {HeaderTitle} from 'app/styles/organization';
+import QuestionTooltip from 'app/components/questionTooltip';
+import localStorage from 'app/utils/localStorage';
+import Count from 'app/components/count';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
 import {TrendField, TRENDS_FIELDS} from './landing';
 import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';
+import {HeaderContainer} from './styles';
+
+const DEFAULT_COUNT_RATIO_THRESHOLD = 2;
+const THRESHOLD_STORAGE_KEY = 'trends:event-count-ratio-∂threshold';
+
+enum TrendType {
+  IMPROVED = 'improved',
+  REGRESSION = 'regression',
+}
+
+enum TransactionColors {
+  RED = '#FA4747', // TODO: Replace with theme in radio override
+  GREEN = '#4DC771',
+}
+
+const trendToColor = {
+  [TrendType.IMPROVED]: TransactionColors.GREEN,
+  [TrendType.REGRESSION]: TransactionColors.RED,
+};
+
+const radioColorMap = {
+  [TransactionColors.GREEN]: '#4DC771', // TODO: Check theme colors
+  [TransactionColors.RED]: '#FA4747', // TODO: Check theme colors
+};
 
 export function getProjectID(
   eventData: EventData,
@@ -59,11 +87,6 @@ type Props = {
   projects: Project[];
 };
 
-enum TrendType {
-  IMPROVED = 'improved',
-  REGRESSION = 'regression',
-}
-
 type State = {
   widths: number[];
 };
@@ -89,11 +112,6 @@ class Trends extends React.Component<Props, State> {
       </PageContainer>
     );
   }
-}
-
-enum TransactionColors {
-  RED = '#FA4747', // TODO: Replace with theme in radio override
-  GREEN = '#4DC771',
 }
 
 type TrendsQueryWrapperProps = Props & {
@@ -143,7 +161,105 @@ type TrendsChartTableProps = Props &
 
 type TrendsChartTableState = {
   selectedTransaction?: TrendsTransaction;
+  nestedTransactions?: NestedTransactions;
 };
+
+enum TrendTransactionGroup {
+  EVENT_COUNT_DISPARITY,
+  SPIKE_ANOMALY,
+  NONE,
+}
+
+type NestedTransactionsGroup = {
+  type: TrendTransactionGroup;
+  transactions: TrendsTransaction[];
+  visible: boolean;
+};
+
+type NestedTransactions = NestedTransactionsGroup[];
+
+// TODO: Fix BE query to address this
+function filterIncorrectTransactions(
+  trendsTransactionData: TrendsTransaction[],
+  trendType: TrendType
+) {
+  return trendsTransactionData.filter(
+    txn =>
+      txn.divide_aggregateRange_2_aggregateRange_1 !== 0 &&
+      (trendType === TrendType.IMPROVED
+        ? txn.divide_aggregateRange_2_aggregateRange_1 < 1
+        : txn.divide_aggregateRange_2_aggregateRange_1 > 1)
+  );
+}
+
+function analyzeTransaction(transaction: TrendsTransaction): TrendTransactionGroup {
+  const _thresholdFromStorage = localStorage.getItem(THRESHOLD_STORAGE_KEY);
+  const threshold = _thresholdFromStorage
+    ? parseInt(_thresholdFromStorage, 0)
+    : DEFAULT_COUNT_RATIO_THRESHOLD;
+  if (
+    transaction.divide_aggregateRange_2_aggregateRange_1 > threshold ||
+    transaction.divide_aggregateRange_2_aggregateRange_1 < 1 / threshold
+  ) {
+    return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
+  }
+  return TrendTransactionGroup.NONE;
+}
+
+function walkDataForGrouping(trendsTransactionData: TrendsTransaction[]) {
+  const nestedTransaction: NestedTransactions = [];
+
+  let countVisible = 0;
+  let currentGroup: NestedTransactionsGroup | undefined;
+
+  for (const transaction of trendsTransactionData) {
+    const groupType = analyzeTransaction(transaction);
+    const visible = groupType === TrendTransactionGroup.NONE;
+    if (!currentGroup || groupType !== currentGroup.type) {
+      currentGroup = {
+        type: groupType,
+        transactions: [transaction],
+        visible,
+      };
+      nestedTransaction.push(currentGroup);
+    } else {
+      currentGroup.transactions.push(transaction);
+    }
+    if (visible) {
+      countVisible++;
+    }
+    if (countVisible >= 5) {
+      break;
+    }
+  }
+  return {
+    nestedTransaction,
+    countVisible,
+  };
+}
+
+function createNestedTransactions(
+  trendsTransactionData: TrendsTransaction[],
+  trendType: TrendType
+): NestedTransactions {
+  const data = filterIncorrectTransactions(trendsTransactionData, trendType);
+  const {countVisible, nestedTransaction} = walkDataForGrouping(data);
+  if (countVisible < 5) {
+    return [
+      {
+        type: TrendTransactionGroup.NONE,
+        transactions: data.slice(0, 5),
+        visible: true,
+      },
+    ];
+  }
+  return nestedTransaction;
+}
+
+function getFirstVisibleNestedTransaction(nestedTransactions: NestedTransactions) {
+  const visible = nestedTransactions.find(g => g.visible);
+  return visible?.transactions[0];
+}
 
 class TrendChartTable extends React.Component<
   TrendsChartTableProps,
@@ -154,8 +270,25 @@ class TrendChartTable extends React.Component<
   componentDidUpdate(prevProps: TrendsChartTableProps) {
     if (prevProps.eventTrendsData !== this.props.eventTrendsData) {
       // TODO: Double check a way to fix selection on reload of data
-      this.updateSelectedTransaction(this.props.eventTrendsData?.[0]);
+      this.updateNestedTransactions(this.props.eventTrendsData);
     }
+  }
+
+  // TODO: Fix this rendering hack later
+  handleUnhideGroup = (group: NestedTransactionsGroup) => {
+    group.visible = true;
+    this.setState({
+      nestedTransactions: [...this.state.nestedTransactions],
+    });
+  };
+
+  updateNestedTransactions(data) {
+    const nestedTransactions = createNestedTransactions(data, this.props.trendType);
+    this.updateSelectedTransaction(getFirstVisibleNestedTransaction(nestedTransactions));
+
+    this.setState({
+      nestedTransactions,
+    });
   }
 
   updateSelectedTransaction(transaction?: TrendsTransaction) {
@@ -202,10 +335,21 @@ class TrendChartTable extends React.Component<
       chartTitle,
       titleTooltipContent,
       currentTrendField,
+      trendType,
     } = this.props;
-    const {selectedTransaction} = this.state;
+    const {selectedTransaction, nestedTransactions} = this.state;
+    const color = trendToColor[trendType];
+    const colorHex = radioColorMap[color];
     return (
       <React.Fragment>
+        <TrendsHeaderContainer>
+          <div>
+            <HeaderTitle>
+              {chartTitle}{' '}
+              <QuestionTooltip position="top" size="sm" title={titleTooltipContent} />
+            </HeaderTitle>
+          </div>
+        </TrendsHeaderContainer>
         <DurationContainer>
           <DurationChart
             organization={organization}
@@ -220,7 +364,9 @@ class TrendChartTable extends React.Component<
             overrideYAxis={[currentTrendField.field]}
             intervalFunction={this.chartIntervalFunction}
             scopedTransaction={selectedTransaction}
+            forceLineColor={colorHex}
             useLineChart
+            hideTitle
           />
         </DurationContainer>
         {eventTrendsData && eventTrendsData.length ? (
@@ -228,6 +374,8 @@ class TrendChartTable extends React.Component<
             selectedTransaction={selectedTransaction}
             data={eventTrendsData}
             handleChangeTransaction={this.handleChangeTransaction}
+            nestedTransactions={nestedTransactions}
+            handleUnhideGroup={this.handleUnhideGroup}
             {...this.props}
           />
         ) : (
@@ -252,40 +400,46 @@ type TransactionListProps = TrendsChartTableProps & {
   selectedTransaction?: TrendsTransaction;
   trendType: TrendType;
   handleChangeTransaction: Function;
+  nestedTransactions?: NestedTransactions;
+  handleUnhideGroup: Function;
 };
 
-function rudimentaryTrendsTransactionFilter(data: TrendsTransaction[]) {
-  const filtered = data
-    .filter(
-      transaction =>
-        transaction.divide_count_2_count_1 < 4 ||
-        transaction.divide_count_2_count_1 > 0.25
-    )
-    .slice(0, 5);
+function TrendsTransactionList(props: TransactionListProps) {
+  const {selectedTransaction, nestedTransactions} = props;
+  let eventDisparityItems: TrendsTransaction[] = [];
 
-  if (filtered.length < 5) {
-    return data.slice(0, 5);
+  if (nestedTransactions) {
+    eventDisparityItems = ([] as TrendsTransaction[]).concat(
+      ...nestedTransactions
+        .filter(txn => txn.type === TrendTransactionGroup.EVENT_COUNT_DISPARITY)
+        .map(txn => txn.transactions)
+    );
   }
 
-  return filtered;
-}
+  const eventDisparityCount = eventDisparityItems.length;
 
-function TrendsTransactionList(props: TransactionListProps) {
-  const {data, selectedTransaction} = props;
-
-  const filteredData = rudimentaryTrendsTransactionFilter(data);
+  const visibleTransactions = nestedTransactions
+    ? nestedTransactions.filter(txn => txn.visible)
+    : [];
 
   return (
     <div>
-      {filteredData.map((transaction, index) => (
-        <TransactionItem
-          selected={transaction === selectedTransaction}
+      {visibleTransactions?.map((group, index) => (
+        <TransactionGroup
+          group={group}
+          selectedTransaction={selectedTransaction}
           key={index}
-          index={index}
-          transaction={transaction}
           {...props}
         />
       ))}
+      {eventDisparityCount > 0 && (
+        <ExpandGroupContainer>
+          <ExpandGroup>
+            <strong>{eventDisparityCount}</strong> Transactions with throughput changes
+            more than X have been hidden. <ExpandShowAll>Show all</ExpandShowAll>
+          </ExpandGroup>
+        </ExpandGroupContainer>
+      )}
     </div>
   );
 }
@@ -295,6 +449,7 @@ export type TrendsTransaction = {
   divide_aggregateRange_2_aggregateRange_1: number;
   minus_aggregateRange_2_aggregateRange_1: number;
   count: number;
+  project: string;
   aggregateRange_1: number;
   aggregateRange_2: number;
   p99?: number;
@@ -321,9 +476,9 @@ function getAbsoluteSecondsString(milliseconds) {
 }
 
 function transformDelta(milliseconds, trendType) {
-  let suffix = 'faster';
+  let prefix = '-';
   if (trendType === TrendType.REGRESSION) {
-    suffix = 'slower';
+    prefix = '+';
   }
 
   const seconds = Math.abs(milliseconds) / 1000;
@@ -331,27 +486,13 @@ function transformDelta(milliseconds, trendType) {
   if (seconds < 0.1) {
     return (
       <span>
+        {prefix}
         <Duration seconds={seconds} abbreviation />
-        <span>&nbsp;{suffix}</span>
       </span>
     );
   }
-  return `${getAbsoluteSecondsString(Math.abs(milliseconds))} ${suffix}`;
+  return `${prefix}${getAbsoluteSecondsString(Math.abs(milliseconds))}`;
 }
-
-function transformAbsolute(milliseconds) {
-  const seconds = Math.abs(milliseconds) / 1000;
-  if (seconds < 0.1) {
-    return <Duration seconds={seconds} abbreviation />;
-  }
-
-  return `${seconds.toFixed(1)}s`;
-}
-
-const trendToColor = {
-  [TrendType.IMPROVED]: TransactionColors.GREEN,
-  [TrendType.REGRESSION]: TransactionColors.RED,
-};
 
 function TransactionItem(props: TransactionItemProps) {
   const {index, selected, trendType, transaction, handleChangeTransaction} = props;
@@ -373,11 +514,17 @@ function TransactionItem(props: TransactionItemProps) {
             <TransactionLink {...props} />
           </ItemTransactionName>
           <ItemTransactionAbsoluteFaster>
-            {transformAbsolute(transaction.aggregateRange_1)}
-            &nbsp;→&nbsp;
-            {transformAbsolute(transaction.aggregateRange_2)}
+            {transaction.project}
           </ItemTransactionAbsoluteFaster>
         </ItemTransactionNameContainer>
+        <ItemTransactionCountContainer>
+          <ItemTransactionCountTotal>
+            <Count value={transaction.count} />
+          </ItemTransactionCountTotal>
+          <ItemTransactionCountChange>
+            <Count value={transaction.count_2 - transaction.count_1} />
+          </ItemTransactionCountChange>
+        </ItemTransactionCountContainer>
         <ItemTransactionPercentContainer>
           <ItemTransactionPercent>
             {(transaction.divide_aggregateRange_2_aggregateRange_1 * 100).toFixed(0)}%
@@ -409,10 +556,34 @@ const TransactionLink = (props: TransactionLinkProps) => {
   return <Link to={target}>{transaction.transaction}</Link>;
 };
 
-const radioColorMap = {
-  [TransactionColors.GREEN]: '#4DC771', // TODO: Check theme colors
-  [TransactionColors.RED]: '#FA4747', // TODO: Check theme colors
+type TransactionGroup = TransactionListProps & {
+  selectedTransaction?: TrendsTransaction;
+  group: NestedTransactionsGroup;
 };
+
+const TransactionGroup = (props: TransactionGroup) => {
+  const {group, selectedTransaction} = props;
+  return (
+    <React.Fragment>
+      {group.transactions.map((transaction, index) => (
+        <TransactionItem
+          selected={transaction === selectedTransaction}
+          key={index}
+          index={index}
+          transaction={transaction}
+          {...props}
+        />
+      ))}
+    </React.Fragment>
+  );
+};
+
+const TrendsHeaderContainer = styled(HeaderContainer)`
+  padding-left: ${space(2)};
+  padding-right: ${space(2)};
+  padding-bottom: ${space(2)};
+  padding-top: ${space(3)};
+`;
 
 // TODO: Check opacity
 const EmptyTransactionList = styled('div')`
@@ -429,8 +600,8 @@ const StyledItem = styled('div')`
 `;
 
 const ItemSplit = styled('div')`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: min-content 1fr 90px 90px;
 `;
 
 // TODO: Confirm customized width/height over rem
@@ -464,7 +635,35 @@ const ItemTransactionPercentContainer = styled('div')`
 `;
 
 const DurationContainer = styled('div')`
-  padding: ${space(4)} ${space(2)};
+  padding: 0 ${space(2)};
+  padding-bottom: ${space(4)};
+`;
+
+const ItemTransactionCountContainer = styled('div')`
+  text-align: right;
+`;
+const ItemTransactionCountTotal = styled('div')``;
+const ItemTransactionCountChange = styled('div')`
+  color: ${p => p.theme.gray500};
+  font-size: 14px;
+`;
+
+const ExpandGroupContainer = styled('div')`
+  width: 100%;
+  border-top: 1px solid ${p => p.theme.borderLight};
+  background-color: ${p => p.theme.gray200};
+  padding: ${space(1)} ${space(2)};
+  font-size: 14px;
+  margin-top: ${space(1)};
+`;
+
+const ExpandGroup = styled('div')`
+  color: ${p => p.theme.gray500};
+`;
+
+const ExpandShowAll = styled('span')`
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 // TODO: Check calc hack
