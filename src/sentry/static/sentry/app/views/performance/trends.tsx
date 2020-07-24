@@ -275,10 +275,15 @@ class TrendChartTable extends React.Component<
   }
 
   // TODO: Fix this rendering hack later
-  handleUnhideGroup = (group: NestedTransactionsGroup) => {
-    group.visible = true;
+  handleUnhideGroup = (groupType: TrendTransactionGroup) => {
+    const {nestedTransactions} = this.state;
+    nestedTransactions?.forEach(group => {
+      if (group.type === groupType) {
+        group.visible = true;
+      }
+    });
     this.setState({
-      nestedTransactions: [...this.state.nestedTransactions],
+      nestedTransactions: [...nestedTransactions],
     });
   };
 
@@ -405,13 +410,15 @@ type TransactionListProps = TrendsChartTableProps & {
 };
 
 function TrendsTransactionList(props: TransactionListProps) {
-  const {selectedTransaction, nestedTransactions} = props;
+  const {selectedTransaction, nestedTransactions, handleUnhideGroup} = props;
   let eventDisparityItems: TrendsTransaction[] = [];
 
   if (nestedTransactions) {
     eventDisparityItems = ([] as TrendsTransaction[]).concat(
       ...nestedTransactions
-        .filter(txn => txn.type === TrendTransactionGroup.EVENT_COUNT_DISPARITY)
+        .filter(
+          txn => !txn.visible && txn.type === TrendTransactionGroup.EVENT_COUNT_DISPARITY
+        )
         .map(txn => txn.transactions)
     );
   }
@@ -422,13 +429,18 @@ function TrendsTransactionList(props: TransactionListProps) {
     ? nestedTransactions.filter(txn => txn.visible)
     : [];
 
+  const expandedTransactions: TrendsTransaction[] = ([] as TrendsTransaction[])
+    .concat(...visibleTransactions.map(txn => txn.transactions))
+    .slice(0, 5);
+
   return (
     <div>
-      {visibleTransactions?.map((group, index) => (
-        <TransactionGroup
-          group={group}
-          selectedTransaction={selectedTransaction}
+      {expandedTransactions.map((transaction, index) => (
+        <TransactionItem
+          selected={transaction === selectedTransaction}
           key={index}
+          index={index}
+          transaction={transaction}
           {...props}
         />
       ))}
@@ -436,7 +448,14 @@ function TrendsTransactionList(props: TransactionListProps) {
         <ExpandGroupContainer>
           <ExpandGroup>
             <strong>{eventDisparityCount}</strong> Transactions with throughput changes
-            more than X have been hidden. <ExpandShowAll>Show all</ExpandShowAll>
+            more than X have been hidden.{' '}
+            <ExpandShowAll
+              onClick={() =>
+                handleUnhideGroup(TrendTransactionGroup.EVENT_COUNT_DISPARITY)
+              }
+            >
+              Show all
+            </ExpandShowAll>
           </ExpandGroup>
         </ExpandGroupContainer>
       )}
@@ -554,28 +573,6 @@ const TransactionLink = (props: TransactionLinkProps) => {
   });
 
   return <Link to={target}>{transaction.transaction}</Link>;
-};
-
-type TransactionGroup = TransactionListProps & {
-  selectedTransaction?: TrendsTransaction;
-  group: NestedTransactionsGroup;
-};
-
-const TransactionGroup = (props: TransactionGroup) => {
-  const {group, selectedTransaction} = props;
-  return (
-    <React.Fragment>
-      {group.transactions.map((transaction, index) => (
-        <TransactionItem
-          selected={transaction === selectedTransaction}
-          key={index}
-          index={index}
-          transaction={transaction}
-          {...props}
-        />
-      ))}
-    </React.Fragment>
-  );
 };
 
 const TrendsHeaderContainer = styled(HeaderContainer)`
