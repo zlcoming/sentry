@@ -26,8 +26,7 @@ import {Field} from 'app/utils/discover/fields';
 import {HeaderTitle} from 'app/styles/organization';
 import QuestionTooltip from 'app/components/questionTooltip';
 import localStorage from 'app/utils/localStorage';
-import Count from 'app/components/count';
-import {IconWarning} from 'app/icons';
+import theme from 'app/utils/theme';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
@@ -36,7 +35,8 @@ import {transactionSummaryRouteWithQuery} from './transactionSummary/utils';
 import {HeaderContainer} from './styles';
 
 const DEFAULT_COUNT_RATIO_THRESHOLD = 2;
-const THRESHOLD_STORAGE_KEY = 'trends:event-count-ratio-∂threshold';
+const THRESHOLD_STORAGE_KEY = 'trends:event-count-ratio-threshold';
+const THRESHOLD_ABSOLUTE_STORAGE_KEY = 'trends:event-count-ratio-absolute-threshold';
 
 enum TrendType {
   IMPROVED = 'improved',
@@ -195,14 +195,23 @@ function filterIncorrectTransactions(
 
 function analyzeTransaction(transaction: TrendsTransaction): TrendTransactionGroup {
   const _thresholdFromStorage = localStorage.getItem(THRESHOLD_STORAGE_KEY);
-  const threshold = _thresholdFromStorage
-    ? parseInt(_thresholdFromStorage, 0)
-    : DEFAULT_COUNT_RATIO_THRESHOLD;
-  if (
-    transaction.divide_count_2_count_1 > threshold ||
-    transaction.divide_count_2_count_1 < 1 / threshold
-  ) {
-    return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
+  const _absThresholdFromStorage = localStorage.getItem(THRESHOLD_ABSOLUTE_STORAGE_KEY);
+
+  if (_absThresholdFromStorage) {
+    const threshold = parseFloat(_absThresholdFromStorage);
+    if (transaction.count_2 > threshold && transaction.count_1 > threshold) {
+      return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
+    }
+  } else {
+    const threshold = _thresholdFromStorage
+      ? parseFloat(_thresholdFromStorage)
+      : DEFAULT_COUNT_RATIO_THRESHOLD;
+    if (
+      transaction.divide_count_2_count_1 > threshold ||
+      transaction.divide_count_2_count_1 < 1 / threshold
+    ) {
+      return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
+    }
   }
   return TrendTransactionGroup.NONE;
 }
@@ -335,6 +344,31 @@ class TrendChartTable extends React.Component<
     return '1m';
   }
 
+  generateMidwayForChart() {
+    return [
+      {
+        data: [],
+        markLine: {
+          data: [],
+          label: {show: false},
+          lineStyle: {
+            normal: {
+              color: theme.gray600,
+              opacity: 0.6,
+              type: 'dashed',
+              width: 2,
+            },
+          },
+          symbol: ['none', 'none'],
+          tooltip: {
+            show: false,
+          },
+        },
+        seriesName: 'Split',
+      },
+    ];
+  }
+
   render() {
     const {
       eventTrendsData,
@@ -349,6 +383,9 @@ class TrendChartTable extends React.Component<
     const {selectedTransaction, nestedTransactions} = this.state;
     const color = trendToColor[trendType];
     const colorHex = radioColorMap[color];
+
+    const midwayMark = this.generateMidwayForChart();
+
     return (
       <React.Fragment>
         <TrendsHeaderContainer>
@@ -374,6 +411,7 @@ class TrendChartTable extends React.Component<
             intervalFunction={this.chartIntervalFunction}
             scopedTransaction={selectedTransaction}
             forceLineColor={colorHex}
+            additionalSeries={midwayMark}
             useLineChart
             hideTitle
           />
@@ -448,21 +486,23 @@ function TrendsTransactionList(props: TransactionListProps) {
           {...props}
         />
       ))}
-      {eventDisparityCount > 0 && (
-        <ExpandGroupContainer>
-          <ExpandGroup>
-            <strong>{eventDisparityCount}</strong> Transactions with throughput changes
-            more than X have been hidden.{' '}
-            <ExpandShowAll
-              onClick={() =>
-                handleUnhideGroup(TrendTransactionGroup.EVENT_COUNT_DISPARITY)
-              }
-            >
-              Show all
-            </ExpandShowAll>
-          </ExpandGroup>
-        </ExpandGroupContainer>
-      )}
+      <NotShown>
+        {eventDisparityCount > 0 && (
+          <ExpandGroupContainer>
+            <ExpandGroup>
+              <strong>{eventDisparityCount}</strong> Transactions with throughput changes
+              more than X have been hidden.{' '}
+              <ExpandShowAll
+                onClick={() =>
+                  handleUnhideGroup(TrendTransactionGroup.EVENT_COUNT_DISPARITY)
+                }
+              >
+                Show all
+              </ExpandShowAll>
+            </ExpandGroup>
+          </ExpandGroupContainer>
+        )}
+      </NotShown>
     </div>
   );
 }
@@ -502,9 +542,9 @@ function getAbsoluteSecondsString(milliseconds) {
 }
 
 function transformDelta(milliseconds, trendType) {
-  let prefix = '-';
+  let suffix = 'faster';
   if (trendType === TrendType.REGRESSION) {
-    prefix = '+';
+    suffix = 'slower';
   }
 
   const seconds = Math.abs(milliseconds) / 1000;
@@ -512,12 +552,11 @@ function transformDelta(milliseconds, trendType) {
   if (seconds < 0.1) {
     return (
       <span>
-        {prefix}
-        <Duration seconds={seconds} abbreviation />
+        <Duration seconds={seconds} abbreviation /> {suffix}
       </span>
     );
   }
-  return `${prefix}${getAbsoluteSecondsString(Math.abs(milliseconds))}`;
+  return `${getAbsoluteSecondsString(Math.abs(milliseconds))} ${suffix}`;
 }
 
 function TransactionItem(props: TransactionItemProps) {
@@ -543,19 +582,6 @@ function TransactionItem(props: TransactionItemProps) {
             {transaction.project}
           </ItemTransactionAbsoluteFaster>
         </ItemTransactionNameContainer>
-        <ItemTransactionCountContainer>
-          <ItemTransactionCountTotal>
-            <Count value={transaction.count} />
-          </ItemTransactionCountTotal>
-          <ItemTransactionCountChange>
-            {transaction.groupType === TrendTransactionGroup.EVENT_COUNT_DISPARITY && (
-              <NotShown>
-                <AdjustedIconWarning color="yellow400" />
-              </NotShown>
-            )}
-            <Count value={transaction.count_2 - transaction.count_1} />
-          </ItemTransactionCountChange>
-        </ItemTransactionCountContainer>
         <ItemTransactionPercentContainer>
           <ItemTransactionPercent>
             {(transaction.divide_aggregateRange_2_aggregateRange_1 * 100).toFixed(0)}%
@@ -609,8 +635,7 @@ const StyledItem = styled('div')`
 `;
 
 const ItemSplit = styled('div')`
-  display: grid;
-  grid-template-columns: min-content 1fr 90px 90px;
+  display: flex;
 `;
 
 // TODO: Confirm customized width/height over rem
@@ -648,15 +673,6 @@ const DurationContainer = styled('div')`
   padding-bottom: ${space(4)};
 `;
 
-const ItemTransactionCountContainer = styled('div')`
-  text-align: right;
-`;
-const ItemTransactionCountTotal = styled('div')``;
-const ItemTransactionCountChange = styled('div')`
-  color: ${p => p.theme.gray500};
-  font-size: 14px;
-`;
-
 const ExpandGroupContainer = styled('div')`
   width: 100%;
   border-top: 1px solid ${p => p.theme.borderLight};
@@ -675,15 +691,9 @@ const ExpandShowAll = styled('span')`
   cursor: pointer;
 `;
 
-// TODO: Remove this
+// TODO: remove
 const NotShown = styled('span')`
   display: none;
-`;
-
-// TODO: Remove this
-const AdjustedIconWarning = styled(IconWarning)`
-  margin-bottom: -3px;
-  margin-right: ${space(0.5)};
 `;
 
 // TODO: Check calc hack

@@ -52,6 +52,7 @@ type Props = ReactRouter.WithRouterProps &
     scopedTransaction?: TrendsTransaction;
     hideTitle?: boolean;
     forceLineColor?: string;
+    additionalSeries?: any;
   };
 
 const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()'];
@@ -98,6 +99,7 @@ class DurationChart extends React.Component<Props> {
       scopedTransaction,
       hideTitle,
       forceLineColor,
+      additionalSeries: additionalLineSeries,
     } = this.props;
 
     const unselectedSeries = location.query.unselectedSeries ?? [];
@@ -215,6 +217,25 @@ class DurationChart extends React.Component<Props> {
                       .reverse()
                   : [];
 
+                // TODO: Replace all of this
+                if (series[0]) {
+                  const seriesStart = parseInt(series[0].data[0].name as string, 0);
+                  const seriesEnd = parseInt(
+                    series[0].data.slice(-1)[0].name as string,
+                    0
+                  );
+
+                  if (seriesEnd > seriesStart) {
+                    const seriesMid = (seriesEnd + seriesStart) / 2;
+                    additionalLineSeries[0].markLine.data = [
+                      {
+                        value: '50%',
+                        xAxis: seriesMid,
+                      },
+                    ];
+                  }
+                }
+
                 // Stack the toolbox under the legend.
                 // so all series names are clickable.
                 zoomRenderProps.toolBox.z = -1;
@@ -235,7 +256,11 @@ class DurationChart extends React.Component<Props> {
                             <LineChart
                               {...zoomRenderProps} // TODO: Removed legend for now to avoid issues with no timeseries being displayed
                               onLegendSelectChanged={this.handleLegendSelectChanged}
-                              series={[...series, ...releaseSeries]}
+                              series={[
+                                ...series,
+                                ...releaseSeries,
+                                ...(additionalLineSeries || []),
+                              ]}
                               seriesOptions={{
                                 showSymbol: false,
                               }}
