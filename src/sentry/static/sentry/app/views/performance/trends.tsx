@@ -353,8 +353,7 @@ class TrendChartTable extends React.Component<
           label: {show: false},
           lineStyle: {
             normal: {
-              color: theme.gray600,
-              opacity: 0.6,
+              color: theme.gray700,
               type: 'dashed',
               width: 2,
             },
