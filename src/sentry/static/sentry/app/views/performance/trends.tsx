@@ -27,6 +27,7 @@ import {HeaderTitle} from 'app/styles/organization';
 import QuestionTooltip from 'app/components/questionTooltip';
 import localStorage from 'app/utils/localStorage';
 import Count from 'app/components/count';
+import {IconWarning} from 'app/icons';
 
 import {RadioLineItem} from '../settings/components/forms/controls/radioGroup';
 import DurationChart from './transactionSummary/durationChart';
@@ -198,8 +199,8 @@ function analyzeTransaction(transaction: TrendsTransaction): TrendTransactionGro
     ? parseInt(_thresholdFromStorage, 0)
     : DEFAULT_COUNT_RATIO_THRESHOLD;
   if (
-    transaction.divide_aggregateRange_2_aggregateRange_1 > threshold ||
-    transaction.divide_aggregateRange_2_aggregateRange_1 < 1 / threshold
+    transaction.divide_count_2_count_1 > threshold ||
+    transaction.divide_count_2_count_1 < 1 / threshold
   ) {
     return TrendTransactionGroup.EVENT_COUNT_DISPARITY;
   }
@@ -225,6 +226,9 @@ function walkDataForGrouping(trendsTransactionData: TrendsTransaction[]) {
     } else {
       currentGroup.transactions.push(transaction);
     }
+
+    transaction.groupType = groupType;
+
     if (visible) {
       countVisible++;
     }
@@ -480,6 +484,9 @@ export type TrendsTransaction = {
   count_1: number;
   count_2: number;
   divide_count_2_count_1: number;
+
+  // TODO: The following shouldn't be on here as they aren't from the API
+  groupType?: TrendTransactionGroup;
 };
 
 type TransactionItemProps = TransactionListProps & {
@@ -541,6 +548,11 @@ function TransactionItem(props: TransactionItemProps) {
             <Count value={transaction.count} />
           </ItemTransactionCountTotal>
           <ItemTransactionCountChange>
+            {transaction.groupType === TrendTransactionGroup.EVENT_COUNT_DISPARITY && (
+              <NotShown>
+                <AdjustedIconWarning color="yellow400" />
+              </NotShown>
+            )}
             <Count value={transaction.count_2 - transaction.count_1} />
           </ItemTransactionCountChange>
         </ItemTransactionCountContainer>
@@ -661,6 +673,17 @@ const ExpandGroup = styled('div')`
 const ExpandShowAll = styled('span')`
   text-decoration: underline;
   cursor: pointer;
+`;
+
+// TODO: Remove this
+const NotShown = styled('span')`
+  display: none;
+`;
+
+// TODO: Remove this
+const AdjustedIconWarning = styled(IconWarning)`
+  margin-bottom: -3px;
+  margin-right: ${space(0.5)};
 `;
 
 // TODO: Check calc hack
