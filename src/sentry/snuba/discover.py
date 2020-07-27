@@ -570,7 +570,11 @@ def query(
         count_format = "countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
         aggregate, column, _ = agg_additions[0]
         column = "duration"
-        if "(" in aggregate:
+        if "apdex" in trend_function:
+            range_format = u"divide(plus(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),lessOrEquals(duration,300))),divide(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,300),lessOrEquals(duration,1200))),2)),countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))))"
+        elif "user_misery" in trend_function:
+            range_format = u"uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,1200)))"
+        elif "(" in aggregate:
             aggregate = aggregate.replace("(", "If(")
         else:
             aggregate += "If"

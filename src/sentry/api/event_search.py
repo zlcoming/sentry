@@ -1134,8 +1134,8 @@ FUNCTIONS = {
             FunctionArg("index"),
         ],
         "aggregate": [
-            u"quantileIf({percentile:.2f})"
-            u"({column},and(timestamp>=toDateTime('{start}'),timestamp<toDateTime('{end}')))",
+            u"quantileIf({percentile:.2f})({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+            None,
             u"percentileRange_{index}",
         ],
         "result_type": "duration",
@@ -1194,6 +1194,22 @@ FUNCTIONS = {
         "aggregate": ["argMax", ["id", "timestamp"], "latest_event"],
         "result_type": "string",
     },
+    "apdexIf": {
+        "name": "apdexIf",
+        "args": [
+            NumberRange("satisfaction", 0, None),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "aggregate": [
+            u"divide(plus(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),lessOrEquals(duration,{satisfaction:g}))),divide(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{satisfaction:g}),lessOrEquals(duration,{tolerated:g}))),2)),countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))))",
+            None,
+            u"aggregateRange_{index}",
+        ],
+        "result_type": "number",
+    },
     "apdex": {
         "name": "apdex",
         "args": [NumberRange("satisfaction", 0, None)],
@@ -1216,6 +1232,22 @@ FUNCTIONS = {
         "args": [NumberRange("satisfaction", 0, None)],
         "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
         "transform": u"uniqIf(user, greater(duration, {tolerated:g}))",
+        "result_type": "number",
+    },
+    "user_miseryIf": {
+        "name": "user_miseryIf",
+        "args": [
+            NumberRange("satisfaction", 0, None),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "aggregate": [
+            u"uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{tolerated:g})))",
+            None,
+            "miseryRange_{index}",
+        ],
         "result_type": "number",
     },
     "failure_rate": {
