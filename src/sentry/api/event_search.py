@@ -1352,6 +1352,12 @@ FUNCTIONS = {
         "transform": u"divide({column_1}, {column_2})",
         "result_type": "percentage",
     },
+    "multiply": {
+        "name": "multiply",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"multiply({column_1}, {column_2})",
+        "result_type": "percentage",
+    },
     "minus": {
         "name": "minus",
         "args": [FunctionArg("column_1"), FunctionArg("column_2")],
