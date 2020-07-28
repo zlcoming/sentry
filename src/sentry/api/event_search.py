@@ -1579,7 +1579,9 @@ def format_column_arguments(column, arguments):
 
 
 def resolve_function(field, match=None, params=None):
-    if field.startswith("aggregateRange_") or field.startswith("count_"):
+    if field.startswith("aggregateRange_") or (
+        field.startswith("count_") and not field.startswith("count_unique")
+    ):
         return ([], [[field.strip("()")]])
     if not match:
         match = FUNCTION_PATTERN.search(field)
