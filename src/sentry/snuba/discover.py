@@ -16,7 +16,6 @@ from sentry.api.event_search import (
     get_function_alias,
     is_function,
     resolve_field_list,
-    resolve_function,
     InvalidSearchQuery,
     FIELD_ALIASES,
 )
@@ -552,7 +551,8 @@ def query(
         # Make sure that any aggregate conditions are also in the selected columns
         for having_clause in snuba_filter.having:
             found = any(
-                having_clause[0] == agg_clause[-1] for agg_clause in snuba_filter.aggregations
+                having_clause[0].startswith("aggregateRange") or having_clause[0] == agg_clause[-1]
+                for agg_clause in snuba_filter.aggregations
             )
             if not found:
                 raise InvalidSearchQuery(
@@ -563,51 +563,6 @@ def query(
 
         if conditions is not None:
             snuba_filter.conditions.extend(conditions)
-
-    if trend_function:
-        _, agg_additions = resolve_function(trend_function)
-        range_format = "{aggregate}({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
-        count_format = "countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))"
-        aggregate, column, _ = agg_additions[0]
-        column = "duration"
-        if "(" in aggregate:
-            aggregate = aggregate.replace("(", "If(")
-        else:
-            aggregate += "If"
-        snuba_filter.aggregations.extend(
-            [
-                [
-                    range_format.format(
-                        aggregate=aggregate,
-                        start=first_interval[0],
-                        end=first_interval[1],
-                        column=column,
-                    ),
-                    None,
-                    "aggregateRange_1",
-                ],
-                [
-                    range_format.format(
-                        aggregate=aggregate,
-                        start=second_interval[0],
-                        end=second_interval[1],
-                        column=column,
-                    ),
-                    None,
-                    "aggregateRange_2",
-                ],
-                [
-                    count_format.format(start=first_interval[0], end=first_interval[1],),
-                    None,
-                    "count_1",
-                ],
-                [
-                    count_format.format(start=second_interval[0], end=second_interval[1],),
-                    None,
-                    "count_2",
-                ],
-            ]
-        )
 
     with sentry_sdk.start_span(op="discover.discover", description="query.snuba_query"):
         result = raw_query(

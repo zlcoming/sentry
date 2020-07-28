@@ -1134,9 +1134,9 @@ FUNCTIONS = {
             FunctionArg("index"),
         ],
         "aggregate": [
-            u"quantileIf({percentile:.2f})"
-            u"({column},and(timestamp>=toDateTime('{start}'),timestamp<toDateTime('{end}')))",
-            u"percentileRange_{index}",
+            u"quantileIf({percentile:.2f})({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+            None,
+            u"aggregateRange_{index}",
         ],
         "result_type": "duration",
     },
@@ -1194,6 +1194,22 @@ FUNCTIONS = {
         "aggregate": ["argMax", ["id", "timestamp"], "latest_event"],
         "result_type": "string",
     },
+    "apdexRange": {
+        "name": "apdexRange",
+        "args": [
+            NumberRange("satisfaction", 0, None),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "aggregate": [
+            u"divide(plus(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),lessOrEquals(duration,{satisfaction:g}))),divide(countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{satisfaction:g}),lessOrEquals(duration,{tolerated:g}))),2)),countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))))",
+            None,
+            u"aggregateRange_{index}",
+        ],
+        "result_type": "number",
+    },
     "apdex": {
         "name": "apdex",
         "args": [NumberRange("satisfaction", 0, None)],
@@ -1216,6 +1232,22 @@ FUNCTIONS = {
         "args": [NumberRange("satisfaction", 0, None)],
         "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
         "transform": u"uniqIf(user, greater(duration, {tolerated:g}))",
+        "result_type": "number",
+    },
+    "user_miseryRange": {
+        "name": "user_miseryRange",
+        "args": [
+            NumberRange("satisfaction", 0, None),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "aggregate": [
+            u"uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{tolerated:g})))",
+            None,
+            u"aggregateRange_{index}",
+        ],
         "result_type": "number",
     },
     "failure_rate": {
@@ -1260,6 +1292,16 @@ FUNCTIONS = {
         "aggregate": ["count", None, None],
         "result_type": "integer",
     },
+    "countIf": {
+        "name": "countIf",
+        "args": [DateColumn("start"), DateColumn("end"), FunctionArg("index")],
+        "aggregate": [
+            "countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+            None,
+            "count_{index}",
+        ],
+        "result_type": "integer",
+    },
     "min": {
         "name": "min",
         "args": [NumericColumnNoLookup("column")],
@@ -1274,6 +1316,21 @@ FUNCTIONS = {
         "name": "avg",
         "args": [DurationColumnNoLookup("column")],
         "aggregate": ["avg", u"{column}", None],
+        "result_type": "duration",
+    },
+    "avgRange": {
+        "name": "avg",
+        "args": [
+            DurationColumn("column"),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "aggregate": [
+            u"avgIf({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+            None,
+            "aggregateRange_{index}",
+        ],
         "result_type": "duration",
     },
     "sum": {
@@ -1295,10 +1352,28 @@ FUNCTIONS = {
         "transform": u"divide({column_1}, {column_2})",
         "result_type": "percentage",
     },
+    "abs": {
+        "name": "abs",
+        "args": [FunctionArg("column_1")],
+        "transform": u"abs({column_1})",
+        "result_type": "duration",
+    },
+    "multiply": {
+        "name": "multiply",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"multiply({column_1}, {column_2})",
+        "result_type": "percentage",
+    },
     "minus": {
         "name": "minus",
         "args": [FunctionArg("column_1"), FunctionArg("column_2")],
         "transform": u"minus({column_1}, {column_2})",
+        "result_type": "duration",
+    },
+    "plus": {
+        "name": "plus",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"plus({column_1}, {column_2})",
         "result_type": "duration",
     },
 }
@@ -1340,6 +1415,8 @@ def format_column_arguments(column, arguments):
 
 
 def resolve_function(field, match=None, params=None):
+    if field.startswith("aggregateRange_") or field.startswith("count_"):
+        return ([], [[field.strip("()")]])
     if not match:
         match = FUNCTION_PATTERN.search(field)
 
