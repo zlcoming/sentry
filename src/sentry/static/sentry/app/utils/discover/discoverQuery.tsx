@@ -117,7 +117,9 @@ class DiscoverQuery extends React.Component<Props, State> {
     this.setState({isLoading: true, tableFetchID});
 
     if (trendsEndpoint && isWorstTrends) {
-      apiPayload.orderby = '-divide_aggregateRange_2_aggregateRange_1';
+      const orderByFromLocalStorage = localStorage.getItem('trends:order-by');
+      apiPayload.orderby =
+        orderByFromLocalStorage || '-divide_aggregateRange_2_aggregateRange_1';
     }
 
     if (currentTrendField) {

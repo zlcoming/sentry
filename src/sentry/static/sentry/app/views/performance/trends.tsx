@@ -124,7 +124,15 @@ type TrendsQueryWrapperProps = Props & {
 function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
   const {eventView, organization, location, trendType, currentTrendField} = props;
   const trendsView = eventView.clone(); // TODO: fix hack
-  const additionalRequiredTrendFields = ['transaction', 'project', 'count()'];
+  const additionalRequiredTrendFields = [
+    'transaction',
+    'project',
+    'count()',
+    'multiply(aggregateRange_1,count_1)',
+    'abs(multiply_aggregateRange_1_count_1)',
+    'multiply(aggregateRange_2,count_2)',
+    'abs(multiply_aggregateRange_2_count_2)',
+  ];
   trendsView.fields = [
     ...additionalRequiredTrendFields.map(field => ({field})),
     ...TRENDS_FIELDS,
