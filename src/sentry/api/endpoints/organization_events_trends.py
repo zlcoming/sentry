@@ -4,6 +4,7 @@ import math
 import sentry_sdk
 import six
 
+from datetime import timedelta
 from rest_framework.response import Response
 
 from sentry.api.bases import OrganizationEventsEndpointBase, NoProjects
@@ -26,7 +27,10 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
 
             start = params["start"]
             end = params["end"]
-            middle = start + (end - start) / 2
+            middle = start + timedelta(
+                seconds=(end - start).total_seconds()
+                / (1 / float(request.GET.get("intervalRatio", 0.5)))
+            )
             first_interval = (
                 request.GET.get("firstStart", start).isoformat()[:19],
                 request.GET.get("firstEnd", middle).isoformat()[:19],
@@ -37,12 +41,22 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
             )
 
         trend_function = request.GET.get("trendFunction", "p50()")
-        _, agg_additions = resolve_function(trend_function)
-        aggregate, column, _ = agg_additions[0]
+        if "misery" not in trend_function:
+            _, agg_additions = resolve_function(trend_function)
+            aggregate, column, _ = agg_additions[0]
+        else:
+            aggregate = ""
+
         selected_columns = request.GET.getlist("field")[:]
         selected_columns += [
             "countIf({start},{end},1)".format(start=first_interval[0], end=first_interval[1],),
             "countIf({start},{end},2)".format(start=second_interval[0], end=second_interval[1],),
+            "count_uniqueIf({start},{end},1,user)".format(
+                start=first_interval[0], end=first_interval[1],
+            ),
+            "count_uniqueIf({start},{end},2,user)".format(
+                start=second_interval[0], end=second_interval[1],
+            ),
         ]
         if "quantile" in aggregate:
             quantile = aggregate.split("(")[1].strip(")")
@@ -84,6 +98,17 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
                     ),
                 ]
             )
+        elif "percent_user_misery" in trend_function:
+            selected_columns.extend(
+                [
+                    "user_misery_percentRange(300,{start},{end},1)".format(
+                        start=first_interval[0], end=first_interval[1],
+                    ),
+                    "user_misery_percentRange(300,{start},{end},2)".format(
+                        start=second_interval[0], end=second_interval[1],
+                    ),
+                ]
+            )
         elif "misery" in trend_function:
             selected_columns.extend(
                 [
@@ -95,7 +120,6 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
                     ),
                 ]
             )
-
         with self.handle_query_errors():
             results = discover.query(
                 orderby=request.GET.get(
@@ -107,6 +131,7 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
                     "divide(aggregateRange_2,aggregateRange_1)",
                     "minus(aggregateRange_2,aggregateRange_1)",
                     "divide(count_2,count_1)",
+                    "divide(count_unique_2,count_unique_1)",
                 ],
                 query="event.type:transaction " + request.GET.get("query"),
                 params=params,

@@ -1414,6 +1414,22 @@ FUNCTIONS = {
         ],
         "result_type": "number",
     },
+    "user_misery_percentRange": {
+        "name": "user_miserypercentRange",
+        "args": [
+            NumberRange("satisfaction", 0, None),
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+        ],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "aggregate": [
+            u"divide(uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{tolerated:g}))),uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))),)",
+            None,
+            u"aggregateRange_{index}",
+        ],
+        "result_type": "number",
+    },
     "failure_rate": {
         "name": "failure_rate",
         "args": [],
@@ -1463,6 +1479,21 @@ FUNCTIONS = {
             "countIf(and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
             None,
             "count_{index}",
+        ],
+        "result_type": "integer",
+    },
+    "count_uniqueIf": {
+        "name": "count_uniqueIf",
+        "args": [
+            DateColumn("start"),
+            DateColumn("end"),
+            FunctionArg("index"),
+            CountColumn("column"),
+        ],
+        "aggregate": [
+            "uniqIf({column}, and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+            None,
+            "count_unique_{index}",
         ],
         "result_type": "integer",
     },
