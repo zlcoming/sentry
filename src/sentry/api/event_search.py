@@ -1352,6 +1352,12 @@ FUNCTIONS = {
         "transform": u"divide({column_1}, {column_2})",
         "result_type": "percentage",
     },
+    "abs": {
+        "name": "abs",
+        "args": [FunctionArg("column_1")],
+        "transform": u"abs({column_1})",
+        "result_type": "duration",
+    },
     "multiply": {
         "name": "multiply",
         "args": [FunctionArg("column_1"), FunctionArg("column_2")],
@@ -1362,6 +1368,12 @@ FUNCTIONS = {
         "name": "minus",
         "args": [FunctionArg("column_1"), FunctionArg("column_2")],
         "transform": u"minus({column_1}, {column_2})",
+        "result_type": "duration",
+    },
+    "plus": {
+        "name": "plus",
+        "args": [FunctionArg("column_1"), FunctionArg("column_2")],
+        "transform": u"plus({column_1}, {column_2})",
         "result_type": "duration",
     },
 }
