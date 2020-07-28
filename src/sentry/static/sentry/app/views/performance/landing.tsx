@@ -86,6 +86,14 @@ export const TRENDS_FIELDS: TrendField[] = [
     name: 'Average',
     field: 'avg(transaction.duration)',
   },
+  {
+    name: 'Apdex',
+    field: 'apdex(300)',
+  },
+  {
+    name: 'User Misery',
+    field: 'user_misery(300)',
+  },
 ];
 
 class PerformanceLanding extends React.Component<Props, State> {
