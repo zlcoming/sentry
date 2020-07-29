@@ -1304,6 +1304,18 @@ FUNCTIONS = {
         ],
         "result_type": "duration",
     },
+    "stddev": {
+        "name": "stddev",
+        "args": [DurationColumnNoLookup("column")],
+        "aggregate": ["stddevPop", u"{column}", None],
+        "result_type": "duration",
+    },
+    "stddevRange": {
+        "name": "stddevRange",
+        "args": [DurationColumn("column"), DateColumn("start"), DateColumn("end")],
+        "transform": u"stddevPopIf({column},and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}'))))",
+        "result_type": "duration",
+    },
     "p50": {
         "name": "p50",
         "args": [],

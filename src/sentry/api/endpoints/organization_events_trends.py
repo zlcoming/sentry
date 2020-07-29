@@ -49,14 +49,14 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
 
         selected_columns = request.GET.getlist("field")[:]
         selected_columns += [
-            "countIf({start},{end},1)".format(start=first_interval[0], end=first_interval[1],),
-            "countIf({start},{end},2)".format(start=second_interval[0], end=second_interval[1],),
-            "count_uniqueIf({start},{end},1,user)".format(
+            "stddevRange(transaction.duration,{start},{end})".format(
                 start=first_interval[0], end=first_interval[1],
             ),
-            "count_uniqueIf({start},{end},2,user)".format(
+            "stddevRange(transaction.duration,{start},{end})".format(
                 start=second_interval[0], end=second_interval[1],
             ),
+            "countIf({start},{end},1)".format(start=first_interval[0], end=first_interval[1],),
+            "countIf({start},{end},2)".format(start=second_interval[0], end=second_interval[1],),
         ]
         if "quantile" in aggregate:
             quantile = aggregate.split("(")[1].strip(")")
@@ -131,7 +131,6 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
                     "divide(aggregateRange_2,aggregateRange_1)",
                     "minus(aggregateRange_2,aggregateRange_1)",
                     "divide(count_2,count_1)",
-                    "divide(count_unique_2,count_unique_1)",
                 ],
                 query="event.type:transaction " + request.GET.get("query"),
                 params=params,
