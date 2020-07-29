@@ -101,10 +101,10 @@ class OrganizationEventsTrends(OrganizationEventsEndpointBase):
         elif "percent_user_misery" in trend_function:
             selected_columns.extend(
                 [
-                    "user_misery_percentRange(300,{start},{end},1)".format(
+                    "percent_user_miseryRange(300,{start},{end},1)".format(
                         start=first_interval[0], end=first_interval[1],
                     ),
-                    "user_misery_percentRange(300,{start},{end},2)".format(
+                    "percent_user_miseryRange(300,{start},{end},2)".format(
                         start=second_interval[0], end=second_interval[1],
                     ),
                 ]

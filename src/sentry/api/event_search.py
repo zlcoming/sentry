@@ -1414,8 +1414,8 @@ FUNCTIONS = {
         ],
         "result_type": "number",
     },
-    "user_misery_percentRange": {
-        "name": "user_miserypercentRange",
+    "percent_user_miseryRange": {
+        "name": "user_misery_percentRange",
         "args": [
             NumberRange("satisfaction", 0, None),
             DateColumn("start"),
@@ -1424,11 +1424,18 @@ FUNCTIONS = {
         ],
         "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
         "aggregate": [
-            u"divide(uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{tolerated:g}))),uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))),)",
+            u"divide(uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')),greater(duration,{tolerated:g}))),uniqIf(user,and(greaterOrEquals(timestamp,toDateTime('{start}')),less(timestamp,toDateTime('{end}')))))",
             None,
             u"aggregateRange_{index}",
         ],
-        "result_type": "number",
+        "result_type": "percent",
+    },
+    "percent_user_misery": {
+        "name": "user_misery_percent",
+        "args": [NumberRange("satisfaction", 0, None)],
+        "calculated_args": [{"name": "tolerated", "fn": lambda args: args["satisfaction"] * 4.0}],
+        "transform": u"divide(uniqIf(user,greater(duration,{tolerated:g})),uniq(user))",
+        "result_type": "percent",
     },
     "failure_rate": {
         "name": "failure_rate",
