@@ -71,28 +71,16 @@ export const TRENDS_FIELDS: TrendField[] = [
     field: 'p50()',
   },
   {
-    name: 'Duration (p75)',
-    field: 'p75()',
-  },
-  {
-    name: 'Duration (p95)',
-    field: 'p95()',
-  },
-  {
-    name: 'Duration (p99)',
-    field: 'p99()',
-  },
-  {
     name: 'Average',
     field: 'avg(transaction.duration)',
   },
   {
-    name: 'Apdex',
-    field: 'apdex(300)',
-  },
-  {
     name: 'User Misery',
     field: 'user_misery(300)',
+  },
+  {
+    name: 'User Misery (%)',
+    field: 'percent_user_misery(300)',
   },
 ];
 
