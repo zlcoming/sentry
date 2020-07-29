@@ -32,6 +32,7 @@ type Props = {
   isWorstTrends?: boolean;
   limit?: number;
   currentTrendField?: TrendField;
+  intervalRatio?: number;
   children: (props: ChildrenProps) => React.ReactNode;
 };
 
@@ -95,6 +96,7 @@ class DiscoverQuery extends React.Component<Props, State> {
       trendsEndpoint,
       isWorstTrends,
       currentTrendField,
+      intervalRatio,
     } = this.props;
 
     if (!eventView.isValid()) {
@@ -112,14 +114,22 @@ class DiscoverQuery extends React.Component<Props, State> {
       EventQuery & {
         orderby?: string;
         trendFunction?: string;
+        intervalRatio?: number;
       } = eventView.getEventsAPIPayload(location);
 
     this.setState({isLoading: true, tableFetchID});
 
-    if (trendsEndpoint && isWorstTrends) {
+    if (trendsEndpoint) {
       const orderByFromLocalStorage = localStorage.getItem('trends:order-by');
-      apiPayload.orderby =
-        orderByFromLocalStorage || '-divide_aggregateRange_2_aggregateRange_1';
+
+      if (orderByFromLocalStorage || isWorstTrends) {
+        apiPayload.orderby =
+          orderByFromLocalStorage || '-divide_aggregateRange_2_aggregateRange_1';
+      }
+
+      if (intervalRatio) {
+        apiPayload.intervalRatio = intervalRatio;
+      }
     }
 
     if (currentTrendField) {

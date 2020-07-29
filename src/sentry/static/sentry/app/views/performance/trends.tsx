@@ -1,6 +1,7 @@
 import React from 'react';
 import {Location} from 'history';
 import styled from '@emotion/styled';
+import {InjectedRouter} from 'react-router';
 
 import {Organization, Project} from 'app/types';
 import {Panel} from 'app/components/panels';
@@ -86,6 +87,7 @@ type Props = {
   summaryConditions: string;
   currentTrendField: TrendField;
   projects: Project[];
+  router: InjectedRouter;
 };
 
 type State = {
@@ -122,7 +124,7 @@ type TrendsQueryWrapperProps = Props & {
 };
 
 function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
-  const {eventView, organization, location, trendType, currentTrendField} = props;
+  const {eventView, organization, location, trendType, currentTrendField, router} = props;
   const trendsView = eventView.clone(); // TODO: fix hack
   const additionalRequiredTrendFields = [
     'transaction',
@@ -134,9 +136,20 @@ function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
     'abs(multiply_aggregateRange_2_count_2)',
   ];
   trendsView.fields = [
-    ...additionalRequiredTrendFields.map(field => ({field})),
-    ...TRENDS_FIELDS,
+    ...additionalRequiredTrendFields
+      .map(field => ({field}))
+      .filter(
+        ({field}) =>
+          field !== 'percent_user_misery(300)' ||
+          currentTrendField.name === 'User Misery (%)'
+      ),
+    ...TRENDS_FIELDS.filter(({name}) => name === currentTrendField.name),
   ] as Readonly<Field[]>;
+
+  const intervalRatioFromQueryParam = parseFloat(
+    router?.location?.query?.intervalRatio || 0
+  );
+  const intervalRatio = intervalRatioFromQueryParam || 0.5;
 
   return (
     <Panel>
@@ -147,6 +160,7 @@ function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
         trendsEndpoint
         isWorstTrends={trendType === TrendType.REGRESSION}
         currentTrendField={currentTrendField}
+        intervalRatio={intervalRatio}
       >
         {({isLoading, eventTrendsData}) => (
           <TrendChartTable
@@ -386,12 +400,24 @@ class TrendChartTable extends React.Component<
       titleTooltipContent,
       currentTrendField,
       trendType,
+      router,
     } = this.props;
     const {selectedTransaction, nestedTransactions} = this.state;
     const color = trendToColor[trendType];
     const colorHex = radioColorMap[color];
 
     const midwayMark = this.generateMidwayForChart();
+
+    const intervalFromQueryParam = router?.location?.query?.interval;
+
+    const intervalFunction = intervalFromQueryParam
+      ? () => intervalFromQueryParam
+      : this.chartIntervalFunction;
+
+    const intervalRatioFromQueryParam = parseFloat(
+      router?.location?.query?.intervalRatio || 0
+    );
+    const intervalRatio = intervalRatioFromQueryParam || 0.5;
 
     return (
       <React.Fragment>
@@ -415,10 +441,11 @@ class TrendChartTable extends React.Component<
             chartTitle={chartTitle}
             titleTooltipContent={titleTooltipContent}
             overrideYAxis={[currentTrendField.field]}
-            intervalFunction={this.chartIntervalFunction}
+            intervalFunction={intervalFunction}
             scopedTransaction={selectedTransaction}
             forceLineColor={colorHex}
             additionalSeries={midwayMark}
+            intervalRatio={intervalRatio}
             useLineChart
             hideTitle
           />

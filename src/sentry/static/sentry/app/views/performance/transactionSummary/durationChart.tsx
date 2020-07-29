@@ -53,6 +53,7 @@ type Props = ReactRouter.WithRouterProps &
     hideTitle?: boolean;
     forceLineColor?: string;
     additionalSeries?: any;
+    intervalRatio?: number;
   };
 
 const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()'];
@@ -99,6 +100,7 @@ class DurationChart extends React.Component<Props> {
       scopedTransaction,
       hideTitle,
       forceLineColor,
+      intervalRatio,
       additionalSeries: additionalLineSeries,
     } = this.props;
 
@@ -226,11 +228,12 @@ class DurationChart extends React.Component<Props> {
                   );
 
                   if (seriesEnd > seriesStart) {
-                    const seriesMid = (seriesEnd + seriesStart) / 2;
+                    const seriesDiff = seriesEnd - seriesStart;
+                    const seriesLine = seriesDiff * (intervalRatio || 0.5) + seriesStart;
                     additionalLineSeries[0].markLine.data = [
                       {
-                        value: '50%',
-                        xAxis: seriesMid,
+                        value: 'Comparison line',
+                        xAxis: seriesLine,
                       },
                     ];
                   }

@@ -308,7 +308,8 @@ class PerformanceLanding extends React.Component<Props, State> {
     location,
     projects,
     summaryConditions,
-    currentTrendField
+    currentTrendField,
+    router
   ) {
     return (
       <div>
@@ -344,6 +345,7 @@ class PerformanceLanding extends React.Component<Props, State> {
           organization={organization}
           location={location}
           setError={this.setError}
+          router={router}
           summaryConditions={summaryConditions}
           currentTrendField={currentTrendField}
           keyTransactions
@@ -389,7 +391,8 @@ class PerformanceLanding extends React.Component<Props, State> {
                   location,
                   projects,
                   summaryConditions,
-                  currentTrendField
+                  currentTrendField,
+                  router
                 )
               ) : (
                 this.renderTransactionsPage(
