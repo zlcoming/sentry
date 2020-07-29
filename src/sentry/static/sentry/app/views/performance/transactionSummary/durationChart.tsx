@@ -227,7 +227,7 @@ class DurationChart extends React.Component<Props> {
                     0
                   );
 
-                  if (seriesEnd > seriesStart) {
+                  if (additionalLineSeries && seriesEnd > seriesStart) {
                     const seriesDiff = seriesEnd - seriesStart;
                     const seriesLine = seriesDiff * (intervalRatio || 0.5) + seriesStart;
                     additionalLineSeries[0].markLine.data = [
