@@ -136,13 +136,7 @@ function TrendsQueryWrapper(props: TrendsQueryWrapperProps) {
     'abs(multiply_aggregateRange_2_count_2)',
   ];
   trendsView.fields = [
-    ...additionalRequiredTrendFields
-      .map(field => ({field}))
-      .filter(
-        ({field}) =>
-          field !== 'percent_user_misery(300)' ||
-          currentTrendField.name === 'User Misery (%)'
-      ),
+    ...additionalRequiredTrendFields.map(field => ({field})),
     ...TRENDS_FIELDS.filter(({name}) => name === currentTrendField.name),
   ] as Readonly<Field[]>;
 
