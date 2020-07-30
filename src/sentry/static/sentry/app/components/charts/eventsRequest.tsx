@@ -258,6 +258,13 @@ class EventsRequest extends React.PureComponent<EventsRequestProps, EventsReques
     try {
       api.clear();
       timeseriesData = await doEventsRequest(api, props);
+      if (props.yAxis?.length === 1) {
+        // TODO: Remove this once backend has stabilized
+        const singleSeriesData: EventsStats = timeseriesData as EventsStats;
+        timeseriesData = {
+          [props.yAxis[0]]: singleSeriesData,
+        };
+      }
     } catch (resp) {
       if (resp && resp.responseJSON && resp.responseJSON.detail) {
         addErrorMessage(resp.responseJSON.detail);

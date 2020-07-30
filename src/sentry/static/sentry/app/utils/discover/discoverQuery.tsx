@@ -3,7 +3,14 @@ import {Location} from 'history';
 
 import {Client} from 'app/api';
 import withApi from 'app/utils/withApi';
-import EventView, {MetaType, isAPIPayloadSimilar} from 'app/utils/discover/eventView';
+import EventView, {
+  MetaType,
+  isAPIPayloadSimilar,
+  LocationQuery,
+} from 'app/utils/discover/eventView';
+import {EventQuery} from 'app/actionCreators/events';
+import {getCurrentTrendFunction} from 'app/views/performance/trends/utils';
+import {TrendChangeType} from 'app/views/performance/trends/types';
 
 /**
  * An individual row in a DiscoverQuery result
@@ -33,6 +40,7 @@ type Props = {
   eventView: EventView;
   orgSlug: string;
   keyTransactions?: boolean;
+  trendChangeType?: TrendChangeType;
   limit?: number;
 
   children: (props: ChildrenProps) => React.ReactNode;
@@ -41,6 +49,12 @@ type Props = {
 type State = {
   tableFetchID: symbol | undefined;
 } & ChildrenProps;
+
+type TrendsQuery = {
+  orderby?: string;
+  trendFunction?: string;
+  intervalRatio?: number;
+};
 
 class DiscoverQuery extends React.Component<Props, State> {
   static defaultProps = {
@@ -87,20 +101,60 @@ class DiscoverQuery extends React.Component<Props, State> {
     );
   };
 
+  getRoute(keyTransactions, trendsType) {
+    if (keyTransactions) {
+      return 'key-transactions';
+    }
+    if (trendsType) {
+      return 'events-trends';
+    }
+    return 'eventsv2';
+  }
+
+  /**
+   * TODO: This is a temporary function to get this working until trends are discover compatible
+   */
+  modifyPayloadForTrends(
+    apiPayload: TrendsQuery,
+    location: Location,
+    trendsType: TrendChangeType
+  ) {
+    const trendFunction = getCurrentTrendFunction(location);
+    if (trendFunction) {
+      apiPayload.trendFunction = trendFunction.field;
+    }
+    if (trendsType === TrendChangeType.REGRESSION) {
+      apiPayload.orderby = '-divide_aggregateRange_2_aggregateRange_1';
+    }
+  }
+
   fetchData = () => {
-    const {eventView, orgSlug, location, limit, keyTransactions} = this.props;
+    const {
+      eventView,
+      orgSlug,
+      location,
+      limit,
+      keyTransactions,
+      trendChangeType,
+    } = this.props;
 
     if (!eventView.isValid()) {
       return;
     }
 
-    const route = keyTransactions ? 'key-transactions' : 'eventsv2';
+    const route = this.getRoute(keyTransactions, trendChangeType);
 
     const url = `/organizations/${orgSlug}/${route}/`;
     const tableFetchID = Symbol('tableFetchID');
-    const apiPayload = eventView.getEventsAPIPayload(location);
+    const apiPayload: EventQuery &
+      LocationQuery &
+      TrendsQuery = eventView.getEventsAPIPayload(location);
 
     this.setState({isLoading: true, tableFetchID});
+
+    if (trendChangeType) {
+      this.modifyPayloadForTrends(apiPayload, location, trendChangeType);
+    }
 
     if (limit) {
       apiPayload.per_page = limit;
