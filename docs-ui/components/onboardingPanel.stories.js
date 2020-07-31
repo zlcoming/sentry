@@ -1,7 +1,7 @@
 import React from 'react';
-import { withInfo } from '@storybook/addon-info';
+import {withInfo} from '@storybook/addon-info';
 
-import { IconFire } from 'sentry/icons';
+import {IconFire} from 'sentry/icons';
 import OnboardingPanel from 'sentry/components/onboardingPanel';
 
 export default {
