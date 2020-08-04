@@ -1528,3 +1528,28 @@ export type ExceptionType = {
   module: string | null;
   threadId: string | null;
 };
+
+export type DashboardWidget = {
+  id: string;
+  order: string;
+  title: string;
+  displayType: WIDGET_DISPLAY;
+  displayOptions: {
+    width?: number;
+    yAxis?: string[];
+  };
+  dateCreated: string;
+  savedQuery: SavedQuery;
+  createdBy: User;
+};
+
+export type Dashboard = {
+  id: string;
+  title: string;
+  dateCreated: string;
+  createdBy: User;
+};
+
+export type DashbordDetailed = Dashboard & {
+  widgets: DashboardWidget[];
+};
