@@ -60,6 +60,7 @@ export const ICON_PATHS = {
   webhooks: sentry,
 
   'amazon-sqs': aws,
+  aws_lambda: aws,
   amixr,
   asana,
   asayer,

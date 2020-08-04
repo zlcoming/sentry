@@ -6,5 +6,5 @@ from .webhook import AwsLambdaWebhookEndpoint
 
 
 urlpatterns = [
-    url(r"^webhook/$", AwsLambdaWebhookEndpoint.as_view()),
+    url(r"^webhook/$", AwsLambdaWebhookEndpoint.as_view())
 ]

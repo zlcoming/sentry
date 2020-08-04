@@ -8,11 +8,6 @@ from sentry.api.base import Endpoint
 from sentry.utils.strings import gunzip
 from sentry.web.decorators import transaction_start
 
-  "trace": [
-    "TypeError: Cannot read property 'lol' of undefined",
-    "    at Runtime.exports.handler (/var/task/index.js:3:15)",
-    "    at Runtime.handleOnce (/var/runtime/Runtime.js:66:25)"
-  ]
 
 
 # Example error:
@@ -60,7 +55,7 @@ class AwsLambdaWebhookEndpoint(Endpoint):
             # decode and un-gzip data
             data = gunzip(b64decode(record["data"]))
             print("data", data)
-            
+
             session = http.build_session()
 
 
