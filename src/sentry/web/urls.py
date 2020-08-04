@@ -598,6 +598,7 @@ urlpatterns += [
                 url(r"^bitbucket-server/", include("sentry.integrations.bitbucket_server.urls")),
                 url(r"^vercel/", include("sentry.integrations.vercel.urls")),
                 url(r"^msteams/", include("sentry.integrations.msteams.urls")),
+                url(r"^aws-lambda/", include("sentry.integrations.aws_lambda.urls")),
             ]
         ),
     ),
