@@ -38,6 +38,7 @@ from sentry.models import (
     GroupSubscription,
     GroupSubscriptionReason,
     Integration,
+    IssueLabel,
     SentryAppInstallationToken,
     User,
     UserOption,
@@ -428,11 +429,15 @@ class GroupSerializerBase(Serializer):
             subscription_details = {"disabled": True}
         return is_subscribed, subscription_details
 
+    def _get_labels(self, obj):
+        return list(IssueLabel.objects.filter(issue=obj))
+
     def serialize(self, obj, attrs, user):
         status_details, status_label = self._get_status(attrs, obj)
         permalink = self._get_permalink(obj, user)
         is_subscribed, subscription_details = self._get_subscription(attrs)
         share_id = attrs["share_id"]
+        labels = self._get_labels(obj)
 
         return {
             "id": six.text_type(obj.id),
@@ -466,6 +471,7 @@ class GroupSerializerBase(Serializer):
             "subscriptionDetails": subscription_details,
             "hasSeen": attrs["has_seen"],
             "annotations": attrs["annotations"],
+            "labels": serialize(labels),
         }
 
 

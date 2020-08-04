@@ -165,6 +165,7 @@ from .endpoints.organization_user_issues import OrganizationUserIssuesEndpoint
 from .endpoints.organization_user_issues_search import OrganizationUserIssuesSearchEndpoint
 from .endpoints.organization_user_reports import OrganizationUserReportsEndpoint
 from .endpoints.organization_users import OrganizationUsersEndpoint
+from .endpoints.organization_labels import OrganizationLabelEndpoint
 from .endpoints.project_agnostic_rule_conditions import ProjectAgnosticRuleConditionsEndpoint
 from .endpoints.project_avatar import ProjectAvatarEndpoint
 from .endpoints.project_create_sample import ProjectCreateSampleEndpoint
@@ -1111,6 +1112,11 @@ urlpatterns = [
                     r"^(?P<organization_slug>[^\/]+)/join-request/$",
                     OrganizationJoinRequestEndpoint.as_view(),
                     name="sentry-api-0-organization-join-request",
+                ),
+                url(
+                    r"^(?P<organization_slug>[^\/]+)/labels/$",
+                    OrganizationLabelEndpoint.as_view(),
+                    name="sentry-api-0-organization-label",
                 ),
             ]
         ),
