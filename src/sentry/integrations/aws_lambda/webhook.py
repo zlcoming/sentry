@@ -11,7 +11,6 @@ from sentry.utils.strings import gunzip
 from sentry.web.decorators import transaction_start
 
 
-
 # Example error:
 # {
 #   "errorType": "TypeError",
@@ -49,17 +48,17 @@ class AwsLambdaWebhookEndpoint(Endpoint):
     def dispatch(self, request, *args, **kwargs):
         return super(AwsLambdaWebhookEndpoint, self).dispatch(request, *args, **kwargs)
 
-
     @transaction_start("AwsLambdaWebhookEndpoint")
     def post(self, request):
         print(request.body)
 
-        # TODO: differnet way of getting the projefct id
-        project = Project.objects.filter(organization_id=ORG_ID).first()
+        # TODO: differnet way of getting the project id
+        project = Project.objects.filter(organization_id=ORG_ID, status=0).first()
         project_key = ProjectKey.get_default(project=project)
-        endpoint = absolute_uri("/api/%d/store/?sentry_key=%s"%(project.id, project_key.public_key))
+        endpoint = absolute_uri(
+            "/api/%d/store/?sentry_key=%s" % (project.id, project_key.public_key)
+        )
         print("endpoint", endpoint)
-
 
         for record in request.data["records"]:
             # decode and un-gzip data
@@ -67,7 +66,5 @@ class AwsLambdaWebhookEndpoint(Endpoint):
             print("data", data)
 
             session = http.build_session()
-
-
 
         return self.respond(status=200)
