@@ -111,10 +111,5 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                         },
                         exc_info=True,
                     )
-                    # 400 probably isn't the right status code but oh well
-                    return self.respond(
-                        {"detail": "Error sending stacktrace from AWS Lamda to sentry: %s" % e},
-                        status=400,
-                    )
 
         return self.respond(status=200)
