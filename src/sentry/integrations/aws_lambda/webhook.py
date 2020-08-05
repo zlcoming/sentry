@@ -69,47 +69,56 @@ class AwsLambdaWebhookEndpoint(Endpoint):
 
         for record in request.data["records"]:
             # decode and un-gzip data
-            data = gunzip(b64decode(record["data"]))
-            print("data", data)
-            body = json.loads(data)
+            unzipped_data = gunzip(b64decode(record["data"]))
+            print("data", unzipped_data)
+            data = json.loads(unzipped_data)
             session = http.build_session()
 
-            for event in body["logEvents"]:
-                arr = [line.strip() for line in event["message"].splitlines()]
-                [message, exception_type] = arr[0].split(": ")
-                prev_index = arr.index("Traceback (most recent call last):")
-                frames = [line.strip() for line in arr[prev_index + 1].split(",")]
+            event = data["logEvents"][1]
+            event_message = [line.strip() for line in event["message"].splitlines()]
+            [message, exception_type] = event_message[0].split(": ")
+            prev_index = event_message.index("Traceback (most recent call last):")
+            frames = [line.strip() for line in event_message[prev_index + 1].split(",")]
 
-                payload = {
-                    "event_id": uuid.uuid4().hex,
-                    "message": {"message": message},
-                    "exception": {"type": exception_type},
-                    "stacktrace": {
-                        "frames": [
-                            {
-                                "filename": frames[0].lstrip("File").strip(),
-                                "lineno": frames[1].lstrip("line").strip(),
-                                "function": frames[2].lstrip("in").strip(),
-                            }
-                        ]
-                    },
-                }
-                print("payload", payload)
+            report = data["logEvents"][3]
+            report_message = [line.strip() for line in report["message"].split("\t")][1:]
 
-                try:
-                    resp = session.post(endpoint, json=payload)
-                    json_error = resp.json()
-                    resp.raise_for_status()
-                except RequestException as e:
-                    # errors here should be uncommon but we should be aware of them
-                    logger.error(
-                        "Error sending stacktrace from AWS Lambda to sentry: %s - %s"
-                        % (e, json_error),
-                        extra={
-                            "project_id": project.id,
-                            "project_public_key": project_key.public_key,
-                        },
-                        exc_info=True,
-                    )
+            contexts = {}
+            for elem in report_message:
+                items = elem.split(": ")
+                if len(items) == 2:
+                    contexts[items[0]] = items[1]
+
+            print(contexts)
+
+            payload = {
+                "event_id": uuid.uuid4().hex,
+                "message": {"message": message},
+                "exception": {"type": exception_type},
+                "stacktrace": {
+                    "frames": [
+                        {
+                            "filename": frames[0].lstrip("File").strip(),
+                            "lineno": frames[1].lstrip("line").strip(),
+                            "function": frames[2].lstrip("in").strip(),
+                        }
+                    ]
+                },
+                "contexts": {"AWS Lambda": contexts},
+            }
+
+            print("payload", payload)
+
+            try:
+                resp = session.post(endpoint, json=payload)
+                json_error = resp.json()
+                resp.raise_for_status()
+            except RequestException as e:
+                # errors here should be uncommon but we should be aware of them
+                logger.error(
+                    "Error sending stacktrace from AWS Lambda to sentry: %s - %s" % (e, json_error),
+                    extra={"project_id": project.id, "project_public_key": project_key.public_key,},
+                    exc_info=True,
+                )
 
         return self.respond(status=200)
