@@ -102,10 +102,15 @@ const SidebarDropdown = ({api, org, orientation, collapsed, config, user}: Props
                   )}
 
                   {hasTeamRead && (
-                    <SidebarMenuItem to={`/settings/${org.slug}/teams/`}>
+                    <SidebarMenuItem to={`/settings/${org.slug}/members/`}>
                       {t('Teams')}
                     </SidebarMenuItem>
                   )}
+
+                  {/* Badges Drop Down Menu Item */}
+                  <SidebarMenuItem to={`/organizations/${org.slug}/badges/`}>
+                      {t('Badges')}
+                  </SidebarMenuItem>
 
                   <Hook name="sidebar:organization-dropdown-menu" organization={org} />
 
