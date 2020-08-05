@@ -1551,6 +1551,6 @@ export type Dashboard = {
   createdBy: User;
 };
 
-export type DashbordDetailed = Dashboard & {
+export type DashboardDetailed = Dashboard & {
   widgets: DashboardWidget[];
 };
