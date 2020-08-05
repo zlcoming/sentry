@@ -99,7 +99,7 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                     "stacktrace": {
                         "frames": [
                             {
-                                "filename": frames[0].lstrip("File").strip(),
+                                "filename": frames[0].lstrip("File").strip().strip('\"'),
                                 "lineno": frames[1].lstrip("line").strip(),
                                 "function": frames[2].lstrip("in").strip(),
                             }
