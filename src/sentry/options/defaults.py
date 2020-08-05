@@ -156,6 +156,12 @@ register("vercel.integration-slug", default="sentry")
 register("msteams.client-id", flags=FLAG_PRIORITIZE_DISK)
 register("msteams.client-secret", flags=FLAG_PRIORITIZE_DISK)
 
+# Aws Lambda Integration
+register("aws-lambda.access-key-id", flags=FLAG_PRIORITIZE_DISK)
+register("aws-lambda.secret-access-key", flags=FLAG_PRIORITIZE_DISK)
+register("aws-lambda.assume-role-arn", default="arn:aws:iam::599817902985:role/root")
+register("aws-lambda.region", default="us-east-2")
+
 # Snuba
 register("snuba.search.pre-snuba-candidates-optimizer", type=Bool, default=False)
 register("snuba.search.pre-snuba-candidates-percentage", default=0.2)

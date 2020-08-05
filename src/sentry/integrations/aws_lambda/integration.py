@@ -1,11 +1,15 @@
 from __future__ import absolute_import
 
+import boto3
 import logging
 import uuid
+import os
 
+from botocore.config import Config
 from django.utils.translation import ugettext_lazy as _
 
 
+from sentry import options
 from sentry.integrations import (
     IntegrationInstallation,
     IntegrationFeatures,
@@ -96,7 +100,22 @@ class AwsLambdaIntegrationProvider(IntegrationProvider):
 
 class AwsLambdaPipelineView(PipelineView):
     def dispatch(self, request, pipeline):
-        # TODO: validate ARN
+
+        # this needs to either be done in a loop or in the SNS callback
+        client = boto3.client(
+            service_name="sts",
+            aws_access_key_id=options.get("aws-lambda.access-key-id"),
+            aws_secret_access_key=options.get("aws-lambda.secret-access-key"),
+            region_name=options.get("aws-lambda.region"),
+        )
+
+        assumed_role_object = client.assume_role(
+            RoleSessionName="MySession", RoleArn=options.get("aws-lambda.assume-role-arn"),
+        )
+
+        credentials = assumed_role_object["Credentials"]
+        print("credentials", credentials)
+
         if request.method == "POST":
             arn = request.POST["arn"]
             pipeline.bind_state("arn", arn)
