@@ -1,18 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import omit from 'lodash/omit';
 
 import {t} from 'app/locale';
 import SentryTypes from 'app/sentryTypes';
 import space from 'app/styles/space';
 import withOrganization from 'app/utils/withOrganization';
 import Button from 'app/components/button';
-import DropdownMenu from 'app/components/dropdownMenu';
-import {IconChevron, IconOpen, IconStack} from 'app/icons';
-import {
-  getDiscoverUrlPathFromDiscoverQuery,
-  getDiscover2UrlPathFromDiscoverQuery,
-} from 'app/views/dashboards/utils/getDiscoverUrlPathFromDiscoverQuery';
+import {IconChevron, IconStack, IconTelescope} from 'app/icons';
+import {getDiscover2UrlPathFromDiscoverQuery} from 'app/views/dashboards/utils/getDiscoverUrlPathFromDiscoverQuery';
 import {getEventsUrlPathFromDiscoverQuery} from 'app/views/dashboards/utils/getEventsUrlPathFromDiscoverQuery';
 
 class ExploreWidget extends React.Component {
@@ -22,116 +17,31 @@ class ExploreWidget extends React.Component {
     selection: SentryTypes.GlobalSelection,
   };
 
-  getExportToDiscover = query => {
+  getExportToDiscover(query) {
     const {selection, organization} = this.props;
     return getDiscover2UrlPathFromDiscoverQuery({organization, selection, query});
-  };
-
-  getExportToEvents = query => {
-    const {selection, organization} = this.props;
-    return getEventsUrlPathFromDiscoverQuery({
-      organization,
-      selection,
-      query,
-    });
-  };
-
-  // TODO(discover1): Can be removed when Discover1 is deprecated
-  // Copied from https://github.com/getsentry/sentry/blob/8d31f8651558b3f9a5f65dc45e0f439c5ac19d55/src/sentry/static/sentry/app/components/sidebar/index.jsx#L230-L278
-  getDiscoverFlags(organization) {
-    const flags = {
-      discover1: false,
-      discover2: false,
-      events: false,
-    };
-
-    // Bail as we can't do any more checks.
-    if (!organization || !organization.features) {
-      return flags;
-    }
-
-    // Localstorage returns either null, 1 or 2. Default to 2.
-    const version = String(localStorage.getItem('discover:version') || 2);
-    const features = organization.features;
-
-    if (features.includes('discover-basic')) {
-      // If there is no opt-out state show discover2
-      if (!version || version === '2') {
-        flags.discover2 = true;
-      }
-      // User wants discover1
-      if (version === '1') {
-        flags.discover1 = true;
-        flags.events = true;
-      }
-      return flags;
-    }
-
-    // If an account has the old features they continue to have
-    // access to them.
-    if (features.includes('discover')) {
-      flags.discover1 = true;
-    }
-    if (features.includes('events')) {
-      flags.events = true;
-    }
-
-    // If an organization doesn't have events, or discover-basic
-    // Enable the tab so we can show an upsell state in saas.
-    if (!flags.events) {
-      flags.discover2 = true;
-    }
-
-    return flags;
-  }
-
-  renderActionToDiscover(query) {
-    return (
-      <ExploreAction
-        to={this.getExportToDiscover(query)}
-        title={t('Explore data in Discover')}
-      >
-        <IconOpen />
-      </ExploreAction>
-    );
   }
 
   render() {
-    const {organization, widget} = this.props;
-    const savedQuery = widget.savedQuery;
-    const flags = this.getDiscoverFlags(organization);
+    const {widget} = this.props;
 
     return (
-      <DropdownMenu>
-        {({isOpen, getRootProps, getActorProps, getMenuProps}) => (
-          <ExploreRoot {...getRootProps()} isOpen={isOpen}>
-            <div {...getActorProps()}>
-              <ExploreButton isOpen={isOpen}>
-                {t('Explore Data')}
-                <Chevron
-                  isOpen={isOpen}
-                  direction={isOpen ? 'down' : 'right'}
-                  size="xs"
-                />
-              </ExploreButton>
-            </div>
-            <ExploreMenu {...getMenuProps({isOpen})}>
-              <ExploreRow key={savedQuery.name}>
-                <QueryName>{savedQuery.name}</QueryName>
-                {this.renderActionToDiscover(savedQuery, flags)}
-              </ExploreRow>
-            </ExploreMenu>
-          </ExploreRoot>
-        )}
-      </DropdownMenu>
+      <ExploreButton
+        borderless
+        size="zero"
+        to={this.getExportToDiscover(widget.savedQuery)}
+      >
+        {t('Explore Data')}
+        <Chevron direction="right" size="xs" />
+      </ExploreButton>
     );
   }
 }
 export default withOrganization(ExploreWidget);
 
-const ExploreRoot = styled('div')`
-  border-left: 1px solid ${p => p.theme.borderLight};
+const ExploreButton = styled(Button)`
   position: relative;
+<<<<<<< HEAD
   ${p => p.isOpen && 'filter: drop-shadow(-7px -7px 12px rgba(47, 40, 55, 0.04));'};
 `;
 
@@ -143,13 +53,16 @@ const ExploreButton = styled(props => {
 })`
   position: relative;
   color: ${p => (p.isOpen ? p.theme.purple400 : p.theme.gray500)};
+=======
+  color: ${p => p.theme.gray500};
+>>>>>>> Simplify explore action
   padding: ${space(1)} ${space(2)};
   border-radius: 0 0 ${p => p.theme.borderRadius} 0;
-  ${p => p.isOpen && `z-index: ${p.theme.zIndex.dropdownAutocomplete.actor}`};
 
   &:hover {
     color: ${p => p.theme.purple400};
   }
+<<<<<<< HEAD
 
   /* covers up borders to create a continous shape */
   ${p => (p.isOpen ? '&, &:hover, &:active { box-shadow: 0 -1px 0 #fff; }' : '')}
@@ -182,10 +95,10 @@ const QueryName = styled('span')`
   font-size: 0.9em;
   margin: ${space(1)};
   margin-right: ${space(2)};
+=======
+>>>>>>> Simplify explore action
 `;
 
-const Chevron = styled(IconChevron, {shouldForwardProp: prop => prop !== 'isOpen'})`
-  ${p => (p.isOpen ? 'transform: rotate(180deg);' : '')};
-  margin-left: ${p => (p.isOpen ? space(0.5) : space(0.25))};
-  transition: all 0.25s;
+const Chevron = styled(IconChevron)`
+  margin-left: ${space(0.25)};
 `;
