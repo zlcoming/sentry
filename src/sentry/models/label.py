@@ -12,4 +12,4 @@ class Label(Model):
     # label name
     name = models.CharField(max_length=100)
     # hexcode for color (maybe should have predefined set in future)
-    color = models.CharField(max_length=6)
+    color = models.CharField(max_length=10)
