@@ -74,51 +74,56 @@ class AwsLambdaWebhookEndpoint(Endpoint):
             data = json.loads(unzipped_data)
             session = http.build_session()
 
-            event = data["logEvents"][1]
-            event_message = [line.strip() for line in event["message"].splitlines()]
-            [message, exception_type] = event_message[0].split(": ")
-            prev_index = event_message.index("Traceback (most recent call last):")
-            frames = [line.strip() for line in event_message[prev_index + 1].split(",")]
+            if data["messageType"] == "DATA_MESSAGE":
+                event = data["logEvents"][1]
+                event_message = [line.strip() for line in event["message"].splitlines()]
+                [message, exception_type] = event_message[0].split(": ")
+                prev_index = event_message.index("Traceback (most recent call last):")
+                frames = [line.strip() for line in event_message[prev_index + 1].split(",")]
 
-            report = data["logEvents"][3]
-            report_message = [line.strip() for line in report["message"].split("\t")][1:]
+                report = data["logEvents"][3]
+                report_message = [line.strip() for line in report["message"].split("\t")][1:]
 
-            contexts = {}
-            for elem in report_message:
-                items = elem.split(": ")
-                if len(items) == 2:
-                    contexts[items[0]] = items[1]
+                contexts = {}
+                for elem in report_message:
+                    items = elem.split(": ")
+                    if len(items) == 2:
+                        contexts[items[0]] = items[1]
 
-            print(contexts)
+                print(contexts)
 
-            payload = {
-                "event_id": uuid.uuid4().hex,
-                "message": {"message": message},
-                "exception": {"type": exception_type},
-                "stacktrace": {
-                    "frames": [
-                        {
-                            "filename": frames[0].lstrip("File").strip(),
-                            "lineno": frames[1].lstrip("line").strip(),
-                            "function": frames[2].lstrip("in").strip(),
-                        }
-                    ]
-                },
-                "contexts": {"AWS Lambda": contexts},
-            }
+                payload = {
+                    "event_id": uuid.uuid4().hex,
+                    "message": {"message": message},
+                    "exception": {"type": exception_type},
+                    "stacktrace": {
+                        "frames": [
+                            {
+                                "filename": frames[0].lstrip("File").strip(),
+                                "lineno": frames[1].lstrip("line").strip(),
+                                "function": frames[2].lstrip("in").strip(),
+                            }
+                        ]
+                    },
+                    "contexts": {"AWS Lambda": contexts},
+                }
 
-            print("payload", payload)
+                print("payload", payload)
 
-            try:
-                resp = session.post(endpoint, json=payload)
-                json_error = resp.json()
-                resp.raise_for_status()
-            except RequestException as e:
-                # errors here should be uncommon but we should be aware of them
-                logger.error(
-                    "Error sending stacktrace from AWS Lambda to sentry: %s - %s" % (e, json_error),
-                    extra={"project_id": project.id, "project_public_key": project_key.public_key,},
-                    exc_info=True,
-                )
+                try:
+                    resp = session.post(endpoint, json=payload)
+                    json_error = resp.json()
+                    resp.raise_for_status()
+                except RequestException as e:
+                    # errors here should be uncommon but we should be aware of them
+                    logger.error(
+                        "Error sending stacktrace from AWS Lambda to sentry: %s - %s"
+                        % (e, json_error),
+                        extra={
+                            "project_id": project.id,
+                            "project_public_key": project_key.public_key,
+                        },
+                        exc_info=True,
+                    )
 
         return self.respond(status=200)
