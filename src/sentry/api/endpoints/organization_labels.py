@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from django.db import transaction
 
-from sentry.models import Label, IssueLabel
+from sentry.models import Label, IssueLabel, Group
 from sentry.api.paginator import OffsetPaginator
 from sentry.api.bases.organization import OrganizationEndpoint
 from sentry.api.serializers import serialize
@@ -57,12 +57,28 @@ class OrganizationLabelEndpoint(OrganizationEndpoint):
 
     def post(self, request, organization):
         """
-        Create a new label for the organization
+        Create/edit a label for the organization
 
+        :pparam int labelId: An optional id used to edit a label
         :pparam string name: The label's name
         :pparam string color: The color of the label
         """
         data = request.data
+
+        # If a label id is supplied, edit the label instead of creating a new one
+        if "labelId" in data:
+            try:
+                label = Label.objects.get(id=int(data["labelId"]))
+            except Label.DoesNotExist:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            if "name" in data:
+                label.name = data["name"]
+            if "color" in data:
+                label.color = data["color"]
+
+            label.save()
+            return Response(serialize(label, request.user), status=status.HTTP_200_OK)
 
         serializer = LabelSerializer(data=data, context={"organization": organization})
 
@@ -83,18 +99,47 @@ class OrganizationLabelEndpoint(OrganizationEndpoint):
         if "issueId" not in data or "labelId" not in data:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        issue_label_data = {"label": int(data["labelId"]), "issue": int(data["issueId"])}
+        issue_id = int(data["issueId"])
+        issue_label_data = {"label": int(data["labelId"]), "issue": issue_id}
+
+        # get the group to return back
+        try:
+            group = Group.objects.get(id=issue_id)
+        except Group.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         # if the label exists we remove it
         existing_label = IssueLabel.objects.filter(**issue_label_data)
         if existing_label:
             existing_label.delete()
-            return Response(status=status.HTTP_200_OK)
+            return Response(serialize(group, request.user), status=status.HTTP_200_OK)
 
         serializer = IssueLabelSerializer(data=issue_label_data)
 
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(serialize(group, request.user), status=status.HTTP_201_CREATED)
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, organization):
+        """
+        Edit a label's name and color
+
+        :pparam int labelId: the id of the label
+        :pparam string name: The new name of the label
+        :pparam string color: The new color of the label
+        """
+        data = request.data
+        if "labelId" not in data:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        label = Label.objects.get(id=int(data["labelId"]))
+
+        if "name" in data:
+            label.name = data["name"]
+        if "color" in data:
+            label.color = data["color"]
+
+        label.save()
+        return Response(serialize(label, request.user), status=status.HTTP_200_OK)
