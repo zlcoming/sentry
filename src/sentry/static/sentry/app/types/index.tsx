@@ -1542,7 +1542,7 @@ export type NewDashboardWidget = {
 
 export type DashboardWidget = NewDashboardWidget & {
   id: string;
-  order: string;
+  order: number;
   savedQuery: SavedQuery;
   dateCreated?: string;
   createdBy?: User;
