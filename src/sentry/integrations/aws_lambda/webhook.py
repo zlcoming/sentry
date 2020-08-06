@@ -92,15 +92,11 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                 #     "    }",
                 # ]
 
-                if len(data["logEvents"]) != 4:
+                if not data["logEvents"][1]:
                     return self.respond(status=200)
 
                 event = data["logEvents"][1]
-                event_message = [
-                    line.strip()
-                    for line in event["message"]
-                    .splitlines()
-                ]
+                event_message = [line.strip() for line in event["message"].splitlines()]
                 [message, exception_type] = event_message[0].split(": ", 1)
                 prev_index = event_message.index("Traceback (most recent call last):")
 
@@ -112,15 +108,9 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                                 "filename": formatted[0].lstrip("File").strip().strip('"'),
                                 "lineno": formatted[1].lstrip("line").strip(),
                                 "function": formatted[2].lstrip("in").strip(),
-                                "pre_context": [
-                                    "def foo():",
-                                    "  my_var = 'foo'",
-                                ],
+                                "pre_context": ["def foo():", "  my_var = 'foo'",],
                                 "context_line": "  raise ValueError()",
-                                "post_context": [
-                                    "",
-                                    "def main():"
-                                ],
+                                "post_context": ["", "def main():"],
                             }
                         )
 
