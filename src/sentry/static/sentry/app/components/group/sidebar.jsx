@@ -4,6 +4,7 @@ import isEqual from 'lodash/isEqual';
 import isObject from 'lodash/isObject';
 import keyBy from 'lodash/keyBy';
 import pickBy from 'lodash/pickBy';
+import styled from '@emotion/styled';
 
 import {addLoadingMessage, clearIndicators} from 'app/actionCreators/indicator';
 import {t} from 'app/locale';
@@ -208,6 +209,21 @@ class GroupSidebar extends React.Component {
 
         {this.renderPluginIssue()}
 
+        {group.labels && group.labels.length && (
+          <React.Fragment>
+            <h6>
+              <GuideAnchor target="labels" position="bottom">
+                <span>{t('Labels')}</span>
+              </GuideAnchor>
+            </h6>
+            <SidebarIssueLabels>
+              {group.labels.map((label, idx) => (
+                <SidebarIssueLabel key={idx} {...label} />
+              ))}
+            </SidebarIssueLabels>
+          </React.Fragment>
+        )}
+
         <h6>
           <GuideAnchor target="tags" position="bottom">
             <span>{t('Tags')}</span>
@@ -246,5 +262,20 @@ class GroupSidebar extends React.Component {
     );
   }
 }
+
+const SidebarIssueLabels = styled('div')`
+  margin: 0 0 15px;
+`;
+
+const SidebarIssueLabel = styled(({name, ...props}) => <div {...props}>{name}</div>)`
+  color: ${p => p.theme.white};
+  background-color: ${p => (p.color[0] === '#' ? p.color : '#' + p.color)};
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 900;
+  padding: 4px 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+`;
 
 export default withApi(GroupSidebar);

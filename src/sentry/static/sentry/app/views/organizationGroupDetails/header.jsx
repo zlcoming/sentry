@@ -230,6 +230,12 @@ class GroupHeader extends React.Component {
             {t('Tags')}
           </ListLink>
           <ListLink
+            to={`${baseUrl}${groupId}/labels/${location.search}`}
+            isActive={() => location.pathname.includes('/labels/')}
+          >
+            {t('Labels')}
+          </ListLink>
+          <ListLink
             to={eventRouteToObject}
             isActive={() => location.pathname.endsWith('/events/')}
           >

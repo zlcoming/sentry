@@ -29,6 +29,12 @@ class EventOrGroupExtraDetails extends React.Component {
     showAssignee: PropTypes.bool,
     shortId: PropTypes.string,
     project: SentryTypes.Project,
+    labels: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        color: PropTypes.string,
+      })
+    ),
   };
 
   render() {
@@ -45,6 +51,7 @@ class EventOrGroupExtraDetails extends React.Component {
       shortId,
       project,
       params,
+      labels,
     } = this.props;
 
     const issuesPath = `/organizations/${params.orgId}/issues/`;
@@ -60,6 +67,9 @@ class EventOrGroupExtraDetails extends React.Component {
           />
         )}
         <StyledTimes lastSeen={lastSeen} firstSeen={firstSeen} />
+        {labels &&
+          labels.length &&
+          labels.map((label, idx) => <IssueLabel key={idx} {...label} />)}
         {numComments > 0 && (
           <CommentsLink to={`${issuesPath}${id}/activity/`} className="comments">
             <IconChat
@@ -147,6 +157,16 @@ const AnnotationNoMargin = styled(EventAnnotation)`
 
 const LoggerAnnotation = styled(AnnotationNoMargin)`
   color: ${p => p.theme.gray700};
+`;
+
+const IssueLabel = styled(({name, ...props}) => <div {...props}>{name}</div>)`
+  color: ${p => p.theme.white};
+  background-color: ${p => (p.color[0] === '#' ? p.color : '#' + p.color)};
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
 `;
 
 export default withRouter(EventOrGroupExtraDetails);

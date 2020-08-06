@@ -1291,6 +1291,15 @@ function routes() {
               component={errorHandler(LazyLoad)}
             />
             <Route
+              path="/organizations/:orgId/issues/:groupId/labels/"
+              componentPromise={() =>
+                import(
+                  /* webpackChunkName: "OrganizationGroupLabels" */ 'app/views/organizationGroupDetails/groupLabels'
+                )
+              }
+              component={errorHandler(LazyLoad)}
+            />
+            <Route
               path="/organizations/:orgId/issues/:groupId/feedback/"
               componentPromise={() =>
                 import(
@@ -2194,6 +2203,10 @@ function routes() {
           <Redirect
             from=":projectId/issues/:groupId/tags/:tagKey/"
             to="/organizations/:orgId/issues/:groupId/tags/:tagKey/"
+          />
+          <Redirect
+            from=":projectId/issues/:groupId/labels/"
+            to="/organizations/:orgId/issues/:groupId/labels/"
           />
           <Redirect
             from=":projectId/issues/:groupId/feedback/"
