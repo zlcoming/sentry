@@ -78,21 +78,27 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                 contexts = {}
                 frames = []
 
-                if len(data["logEvents"]) != 4 or len(data["logEvents"]) != 1:
+                # pre_context = [
+                #     "import json",
+                #     "",
+                #     "def lambda_handler(event, context):",
+                #     "    # TODO implement",
+                # ]
+                # context_line = "    event.helloworldthree"
+                # post_context = [
+                #     "    return {",
+                #     "        'statusCode': 200,",
+                #     "        'body': json.dumps('Hello from Lambda!')",
+                #     "    }",
+                # ]
+
+                if len(data["logEvents"]) != 4:
                     return self.respond(status=200)
 
-                if len(data["logEvents"]) == 4:
-                    event = data["logEvents"][1]
-
-                if len(data["logEvents"]) == 1:
-                    event = data["logEvents"][0]
-
+                event = data["logEvents"][1]
                 event_message = [
                     line.strip()
                     for line in event["message"]
-                    .replace("\xc2\xa0", " ")
-                    .replace("\\n", "\n")
-                    .replace('\\"', '"')
                     .splitlines()
                 ]
                 [message, exception_type] = event_message[0].split(": ", 1)
@@ -106,6 +112,15 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                                 "filename": formatted[0].lstrip("File").strip().strip('"'),
                                 "lineno": formatted[1].lstrip("line").strip(),
                                 "function": formatted[2].lstrip("in").strip(),
+                                "pre_context": [
+                                    "def foo():",
+                                    "  my_var = 'foo'",
+                                ],
+                                "context_line": "  raise ValueError()",
+                                "post_context": [
+                                    "",
+                                    "def main():"
+                                ],
                             }
                         )
 
@@ -121,19 +136,6 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                             contexts[items[0]] = items[1]
 
                 print(contexts)
-                # pre_context = [
-                #     "import json",
-                #     "",
-                #     "def lambda_handler(event, context):",
-                #     "    # TODO implement",
-                # ]
-                # context_line = "    event.helloworldthree"
-                # post_context = [
-                #     "    return {",
-                #     "        'statusCode': 200,",
-                #     "        'body': json.dumps('Hello from Lambda!')",
-                #     "    }",
-                # ]
 
                 payload = {
                     "event_id": uuid.uuid4().hex,
