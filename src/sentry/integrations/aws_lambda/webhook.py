@@ -91,7 +91,19 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                         contexts[items[0]] = items[1]
 
                 print(contexts)
-
+                pre_context = [
+                    "import json",
+                    "",
+                    "def lambda_handler(event, context):",
+                    "    # TODO implement",
+                ]
+                context_line = "    event.helloworldthree"
+                post_context = [
+                    "    return {",
+                    "        'statusCode': 200,",
+                    "        'body': json.dumps('Hello from Lambda!')",
+                    "    }",
+                ]
                 payload = {
                     "event_id": uuid.uuid4().hex,
                     "message": {"message": message},
@@ -99,9 +111,12 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                     "stacktrace": {
                         "frames": [
                             {
-                                "filename": frames[0].lstrip("File").strip().strip('\"'),
+                                "filename": frames[0].lstrip("File").strip().strip('"'),
                                 "lineno": frames[1].lstrip("line").strip(),
                                 "function": frames[2].lstrip("in").strip(),
+                                "pre_context": pre_context,
+                                "context_line": context_line,
+                                "post_context": post_context,
                             }
                         ]
                     },
@@ -127,3 +142,40 @@ class AwsLambdaWebhookEndpoint(Endpoint):
                     )
 
         return self.respond(status=200)
+
+
+{
+    "event_id": "bc892670fe0f46e5a9a786076fcf57c7",
+    "stacktrace": {
+        "frames": [
+            {
+                "function": "lambda_handler",
+                "pre_context": [
+                    "import json",
+                    "",
+                    "def lambda_handler(event, context):",
+                    "    # TODO implement",
+                ],
+                "post_context": [
+                    "    return {",
+                    "        'statusCode': 200,",
+                    "        'body': json.dumps('Hello from Lambda!')",
+                    "    }",
+                ],
+                "filename": "/var/task/lambda_function.py",
+                "lineno": "5",
+                "context_line": "    event.helloworldthree",
+            }
+        ]
+    },
+    "message": {"message": "'dict' object has no attribute 'helloworldthree'"},
+    "contexts": {
+        "AWS Lambda": {
+            "Duration": "0.55 ms",
+            "Memory Size": "128 MB",
+            "Billed Duration": "100 ms",
+            "Max Memory Used": "43 MB",
+        }
+    },
+    "exception": {"type": "AttributeError"},
+}
