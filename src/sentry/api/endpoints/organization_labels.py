@@ -52,7 +52,7 @@ class OrganizationLabelEndpoint(OrganizationEndpoint):
             queryset=labels,
             paginator_cls=OffsetPaginator,
             on_results=lambda x: serialize(x, request.user),
-            default_per_page=25,
+            default_per_page=100,
         )
 
     def post(self, request, organization):
