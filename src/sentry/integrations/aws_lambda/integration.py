@@ -101,8 +101,11 @@ class AwsLambdaIntegrationProvider(IntegrationProvider):
 class AwsLambdaPipelineView(PipelineView):
     def dispatch(self, request, pipeline):
 
-        # arn = "arn:aws:cloudformation:us-west-2:610179610581:stack/Sentry-Monitoring-Stack-Filter/93124870-d800-11ea-b0e1-02b037911a52"
-        # external_id = "2d748e18-dcc3-403c-9f38-75d3aaf3b092"
+        # TODO: Unhardcode
+        # # arn = "arn:aws:cloudformation:us-west-2:610179610581:stack/Sentry-Monitoring-Stack-Filter/93124870-d800-11ea-b0e1-02b037911a52"
+        # arn = "arn:aws:cloudformation:us-east-2:021627703189:stack/Sentry-Monitoring-Stack-Filter/e4bf75c0-d81f-11ea-8f86-0a9fef599330"
+        # # external_id = "2d748e18-dcc3-403c-9f38-75d3aaf3b092"
+        # external_id = "be9804c3-0edd-488e-bd90-9df11b8ed254"
         # pipeline.bind_state("arn", arn)
         # pipeline.bind_state("external_id", external_id)
         # print("arn", arn)
@@ -115,7 +118,6 @@ class AwsLambdaPipelineView(PipelineView):
             pipeline.bind_state("external_id", external_id)
             print("arn", arn)
             return pipeline.next_step()
-
 
         template_url = (
             "https://sentry-cf-stack-template.s3-us-west-2.amazonaws.com/sentryCFStackFilter.json"
@@ -140,7 +142,6 @@ class SetupSubscriptionView(PipelineView):
     def dispatch(self, request, pipeline):
         arn = pipeline.fetch_state("arn")
 
-        # TODO: unhardcode
         external_id = pipeline.fetch_state("external_id")
 
         print("external_id", external_id)
@@ -176,32 +177,38 @@ class SetupSubscriptionView(PipelineView):
 
         labmda_client = boto3_session.client(service_name='lambda', region_name=region)
         log_client = boto3_session.client(service_name='logs', region_name=region)
+        iam_client = boto3_session.client(service_name='iam', region_name=region)
+
+        # hacky way to get role
+        role_list = iam_client.list_roles(PathPrefix="/")
+        role_arn = filter(lambda x: "SentryCWLtoKinesisRole" in x["RoleName"], role_list["Roles"])[0]["Arn"]
+        print("role_arn", role_arn)
 
         lambda_functions = labmda_client.list_functions()
         print("response", lambda_functions)
 
-
-
         for function in lambda_functions["Functions"]:
             name = function["FunctionName"]
             log_group = "/aws/lambda/%s"%(name)
-            # sub_filters = log_client.describe_subscription_filters(
-            #     logGroupName=log_group,
-            # )
-            # for sub_filter in sub_filters["subscriptionFilters"]:
-            #     response = log_client.delete_subscription_filter(
-            #         logGroupName=log_group,
-            #         filterName=
-            #     )
+            sub_filters = log_client.describe_subscription_filters(
+                logGroupName=log_group,
+            )
+            for sub_filter in sub_filters["subscriptionFilters"]:
+                delete_resp = log_client.delete_subscription_filter(
+                    logGroupName=sub_filter["logGroupName"],
+                    filterName=sub_filter["filterName"]
+                )
+                print("delete resp", delete_resp)
 
             print("log_group", log_group)
+            destination_arn = 'arn:aws:kinesis:%s:%s:stream/SentryKinesisStream'%(region, account_id)
 
-            # log_client.put_subscription_filter(
-            #     logGroupName=log_group,
-            #     filterName='SentryMasterStream',
-            #     filterPattern='',
-            #     destinationArn='arn:aws:logs:us-east-2:599817902985:destination:SteveDestinationMaster',
-            # )
-
+            log_client.put_subscription_filter(
+                logGroupName=log_group,
+                filterName='SentryMasterStream',
+                filterPattern='',
+                destinationArn=destination_arn,
+                roleArn=role_arn,
+            )
 
         return pipeline.next_step()
