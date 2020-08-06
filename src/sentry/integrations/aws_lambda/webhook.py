@@ -75,36 +75,71 @@ class AwsLambdaWebhookEndpoint(Endpoint):
             session = http.build_session()
 
             if data["messageType"] == "DATA_MESSAGE":
-                event = data["logEvents"][1]
-                event_message = [line.strip() for line in event["message"].splitlines()]
-                [message, exception_type] = event_message[0].split(": ")
-                prev_index = event_message.index("Traceback (most recent call last):")
-                frames = [line.strip() for line in event_message[prev_index + 1].split(",")]
-
-                report = data["logEvents"][3]
-                report_message = [line.strip() for line in report["message"].split("\t")][1:]
-
                 contexts = {}
-                for elem in report_message:
-                    items = elem.split(": ")
-                    if len(items) == 2:
-                        contexts[items[0]] = items[1]
+                frames = []
+
+                if len(data["logEvents"]) != 4 or len(data["logEvents"]) != 1:
+                    return self.respond(status=200)
+
+                if len(data["logEvents"]) == 4:
+                    event = data["logEvents"][1]
+
+                if len(data["logEvents"]) == 1:
+                    event = data["logEvents"][0]
+
+                event_message = [
+                    line.strip()
+                    for line in event["message"]
+                    .replace("\xc2\xa0", " ")
+                    .replace("\\n", "\n")
+                    .replace('\\"', '"')
+                    .splitlines()
+                ]
+                [message, exception_type] = event_message[0].split(": ", 1)
+                prev_index = event_message.index("Traceback (most recent call last):")
+
+                for frame in event_message[prev_index + 1 :]:
+                    formatted = [line.strip() for line in frame.split(", ")]
+                    if len(formatted) == 3:
+                        frames.append(
+                            {
+                                "filename": formatted[0].lstrip("File").strip().strip('"'),
+                                "lineno": formatted[1].lstrip("line").strip(),
+                                "function": formatted[2].lstrip("in").strip(),
+                            }
+                        )
+
+                print(frames)
+
+                if data["logEvents"][3]:
+                    report = data["logEvents"][3]
+                    report_message = [line.strip() for line in report["message"].split("\t")][1:]
+
+                    for elem in report_message:
+                        items = elem.split(": ")
+                        if len(items) == 2:
+                            contexts[items[0]] = items[1]
 
                 print(contexts)
+                # pre_context = [
+                #     "import json",
+                #     "",
+                #     "def lambda_handler(event, context):",
+                #     "    # TODO implement",
+                # ]
+                # context_line = "    event.helloworldthree"
+                # post_context = [
+                #     "    return {",
+                #     "        'statusCode': 200,",
+                #     "        'body': json.dumps('Hello from Lambda!')",
+                #     "    }",
+                # ]
 
                 payload = {
                     "event_id": uuid.uuid4().hex,
                     "message": {"message": message},
                     "exception": {"type": exception_type},
-                    "stacktrace": {
-                        "frames": [
-                            {
-                                "filename": frames[0].lstrip("File").strip().strip('\"'),
-                                "lineno": frames[1].lstrip("line").strip(),
-                                "function": frames[2].lstrip("in").strip(),
-                            }
-                        ]
-                    },
+                    "stacktrace": {"frames": frames},
                     "contexts": {"AWS Lambda": contexts},
                 }
 
