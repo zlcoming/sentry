@@ -225,6 +225,18 @@ class SnubaSearchBackendBase(SearchBackend):
             ]
         )
 
+        label_names = set(
+            [
+                lab_filter.value.raw_value
+                for lab_filter in search_filters
+                if lab_filter.key.name == "label"
+            ]
+        )
+        if label_names:
+            # a group must contain all specified labels to pass
+            for label_name in label_names:
+                group_queryset = group_queryset.filter(issuelabel__label__name=label_name)
+
         if retention_window_start:
             group_queryset = group_queryset.filter(last_seen__gte=retention_window_start)
 

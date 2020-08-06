@@ -228,6 +228,7 @@ class PostgresSnubaQueryExecutor(AbstractQueryExecutor):
             "active_at",
             "first_release",
             "first_seen",
+            "label",
         ]
     )
     sort_strategies = {
