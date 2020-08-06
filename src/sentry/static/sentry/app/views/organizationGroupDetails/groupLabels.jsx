@@ -21,10 +21,10 @@ class GroupLabels extends React.Component {
     environments: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      issueLabels: [],
+      issueLabels: props.group.labels,
       organizationLabels: [],
       // TODO: handle busy logic for the add label, show spinner, disable buttons during api requests
       labelBusy: false,
@@ -42,27 +42,10 @@ class GroupLabels extends React.Component {
   }
 
   fetchData = () => {
-    const {api, group, environments, organization} = this.props;
+    const {api, environments, organization} = this.props;
     this.setState({
       loading: true,
       error: false,
-    });
-
-    api.request(`/issues/${group.id}/labels/`, {
-      query: {environment: environments},
-      success: data => {
-        this.setState({
-          issueLabels: data,
-          error: false,
-          loading: false,
-        });
-      },
-      error: () => {
-        this.setState({
-          error: true,
-          loading: false,
-        });
-      },
     });
 
     api.request(`/organizations/${organization.slug}/labels/`, {
