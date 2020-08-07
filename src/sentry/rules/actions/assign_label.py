@@ -12,6 +12,11 @@ def get_label_choices(organization):
     return [(label.id, label.name) for label in labels]
 
 
+def get_label_options(organization):
+    labels = organization.label_set.all()
+    return [{"value": label.id, "label": label.name, "color": label.color} for label in labels]
+
+
 def assign_label(event, futures):
     from sentry.api.endpoints.organization_labels import IssueLabelSerializer
 
@@ -47,8 +52,8 @@ class LabelIssueAction(EventAction):
 
     def __init__(self, *args, **kwargs):
         super(LabelIssueAction, self).__init__(*args, **kwargs)
-        label_choices = get_label_choices(self.project.organization)
-        self.form_fields = {"label": {"type": "choice", "choices": label_choices}}
+        label_options = get_label_options(self.project.organization)
+        self.form_fields = {"label": {"type": "labelAction", "choices": label_options}}
 
     def after(self, event, state):
         label_id = self.get_option("label")

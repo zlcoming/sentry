@@ -48,6 +48,60 @@ class RuleNode extends React.Component<Props> {
     onPropertyChange(index, 'targetIdentifier', `${action.targetIdentifier}`);
   };
 
+  getLabelFields = (name: string, fieldConfig: FormField) => {
+    const {data, index, onPropertyChange} = this.props;
+    let initialVal;
+
+    if (data) {
+      if (data[name] === undefined && !!fieldConfig.choices.length) {
+        if (fieldConfig.initial) {
+          initialVal = fieldConfig.initial;
+        } else {
+          initialVal = fieldConfig.choices[0][0];
+        }
+      } else {
+        initialVal = data[name];
+      }
+    }
+
+    const stylesFromLabelData = labelData => ({
+      color: 'white',
+      borderRadius: '4px',
+      fontWeight: 700,
+      fontSize: '12px',
+      padding: '2px 4px',
+      display: 'inline-block',
+      backgroundColor: labelData.color,
+    });
+
+    return (
+      <InlineSelectControl
+        isClearable={false}
+        name={name}
+        value={initialVal}
+        styles={{
+          control: provided => ({
+            ...provided,
+            minHeight: '28px',
+            height: '28px',
+          }),
+          option: (_provided, {data: labelData}) => ({
+            ...stylesFromLabelData(labelData),
+            cursor: 'pointer',
+            margin: '5px',
+            float: 'left',
+            clear: 'left',
+          }),
+          singleValue: (_provided, {data: labelData}) => ({
+            ...stylesFromLabelData(labelData),
+          }),
+        }}
+        options={fieldConfig.choices}
+        onChange={({value}) => onPropertyChange(index, name, value)}
+      />
+    );
+  };
+
   getChoiceField = (name: string, fieldConfig: FormField) => {
     // Select the first item on this list
     // If it's not yet defined, call onPropertyChange to make sure the value is set on state
@@ -146,6 +200,7 @@ class RuleNode extends React.Component<Props> {
       number: this.getNumberField,
       string: this.getTextField,
       mailAction: this.getMailActionFields,
+      labelAction: this.getLabelFields,
     };
     return getFieldTypes[fieldConfig.type](name, fieldConfig);
   };

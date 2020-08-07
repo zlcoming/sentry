@@ -205,11 +205,11 @@ class GroupLabels extends React.Component {
 
     return (
       <div>
-        <Container>{children}</Container>
         <Alert type="info">
           {'Labels are what they are. Learn how to '}
           <a href={this.getLabelsDocsUrl()}>add labels to issues</a>
         </Alert>
+        <Container>{children}</Container>
         <IssueLabelModal
           show={this.state.showModal}
           onSubmit={this.onEditLabel}
