@@ -229,13 +229,6 @@ const Container = styled('div')`
   margin: 0 0 8px 0;
 `;
 
-const LabelItem = styled('ul')`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const IssueLabel = styled(props => <div {...props}>{props.children}</div>)`
   color: ${p => p.theme.white};
   background-color: ${p => (p.color[0] === '#' ? p.color : '#' + p.color)};
@@ -247,11 +240,24 @@ const IssueLabel = styled(props => <div {...props}>{props.children}</div>)`
 const StyledIconEdit = styled(IconEdit)`
   margin-left: 8px;
   cursor: pointer;
+  visibility: hidden;
 `;
 
 const StyledIconClose = styled(IconClose)`
   margin-left: 8px;
   cursor: pointer;
+`;
+
+const LabelItem = styled('ul')`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover ${StyledIconEdit} {
+    visibility: visible;
+  }
+  padding-left: 10px;
 `;
 
 export default withApi(withOrganization(GroupLabels));
