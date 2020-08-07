@@ -6,12 +6,13 @@ import styled from '@emotion/styled';
 import SentryTypes from 'app/sentryTypes';
 import LoadingError from 'app/components/loadingError';
 import LoadingIndicator from 'app/components/loadingIndicator';
-import {Panel, PanelBody} from 'app/components/panels';
 import Alert from 'app/components/alert';
 import withApi from 'app/utils/withApi';
-import space from 'app/styles/space';
 import withOrganization from 'app/utils/withOrganization';
 import AssignLabel from 'app/components/assignLabel';
+import {IconEdit, IconClose} from 'app/icons';
+import {t} from 'app/locale';
+import IssueLabelModal from 'app/components/issueLabelModal';
 
 class GroupLabels extends React.Component {
   static propTypes = {
@@ -28,6 +29,8 @@ class GroupLabels extends React.Component {
       organizationLabels: [],
       // TODO: handle busy logic for the add label, show spinner, disable buttons during api requests
       labelBusy: false,
+      showModal: false,
+      editingLabel: null,
     };
   }
 
@@ -94,7 +97,6 @@ class GroupLabels extends React.Component {
   };
 
   onAssignLabel = label => {
-    // TODO: unassign label from the issue
     const {api, environments, group, organization} = this.props;
 
     return api.request(`/organizations/${organization.slug}/labels/`, {
@@ -104,13 +106,47 @@ class GroupLabels extends React.Component {
         issueId: group.id,
         labelId: label.id,
       },
-      success: () => {
-        this.setState(prevState => ({issueLabels: [...prevState.issueLabels, label]}));
+      success: updatedGroup => {
+        this.setState({issueLabels: updatedGroup.labels});
       },
       error: () => {
         this.setState({
           error: true,
           loading: false,
+        });
+      },
+    });
+  };
+
+  onEditLabel = (name, color, labelId) => {
+    // TODO: delete label option? <- DO THIS IN ISSUE SETTINGS IN THE FUTURE
+    const {api, environments, organization} = this.props;
+
+    api.request(`/organizations/${organization.slug}/labels/`, {
+      method: 'POST',
+      query: {environment: environments},
+      data: {
+        name,
+        color,
+        labelId,
+      },
+      success: editedLabel => {
+        this.setState(prevState => ({
+          organizationLabels: prevState.organizationLabels.map(label =>
+            label.id === editedLabel.id ? editedLabel : label
+          ),
+          issueLabels: prevState.issueLabels.map(label =>
+            label.id === editedLabel.id ? editedLabel : label
+          ),
+          editingLabel: null,
+          showModal: false,
+        }));
+      },
+      error: () => {
+        this.setState({
+          error: true,
+          loading: false,
+          editingLabel: null,
         });
       },
     });
@@ -141,11 +177,14 @@ class GroupLabels extends React.Component {
       children = issueLabels.map((label, labelIdx) => {
         return (
           <LabelItem key={labelIdx}>
-            <Panel>
-              <PanelBody withPadding>
-                <IssueLabel {...label}>{label.name}</IssueLabel>
-              </PanelBody>
-            </Panel>
+            <IssueLabel {...label}>
+              {label.name}
+              <StyledIconClose size="xs" onClick={() => this.onAssignLabel(label)} />
+            </IssueLabel>
+            <StyledIconEdit
+              size="xs"
+              onClick={() => this.setState({showModal: true, editingLabel: label})}
+            />
           </LabelItem>
         );
       });
@@ -153,18 +192,14 @@ class GroupLabels extends React.Component {
 
     children.push(
       <LabelItem key={children.length}>
-        <Panel>
-          <PanelBody withPadding>
-            <div className="btn-group">
-              <AssignLabel
-                busy={this.state.labelBusy}
-                labels={filteredOrgLabels}
-                onAssignLabel={this.onAssignLabel}
-                onAddLabel={this.onAddLabel}
-              />
-            </div>
-          </PanelBody>
-        </Panel>
+        <div className="btn-group">
+          <AssignLabel
+            busy={this.state.labelBusy}
+            labels={filteredOrgLabels}
+            onAssignLabel={this.onAssignLabel}
+            onAddLabel={this.onAddLabel}
+          />
+        </div>
       </LabelItem>
     );
 
@@ -175,6 +210,14 @@ class GroupLabels extends React.Component {
           {'Labels are what they are. Learn how to '}
           <a href={this.getLabelsDocsUrl()}>add labels to issues</a>
         </Alert>
+        <IssueLabelModal
+          show={this.state.showModal}
+          onSubmit={this.onEditLabel}
+          onCanceled={() => this.setState({showModal: false})}
+          primaryButtonText={t('Save Label')}
+          title={t('Edit Label')}
+          label={this.state.editingLabel}
+        />
       </div>
     );
   }
@@ -183,19 +226,32 @@ class GroupLabels extends React.Component {
 const Container = styled('div')`
   display: flex;
   flex-wrap: wrap;
+  margin: 0 0 8px 0;
 `;
 
-const LabelItem = styled('div')`
-  padding: 0 ${space(1)};
-  width: 50%;
+const LabelItem = styled('ul')`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-const IssueLabel = styled(({name, ...props}) => <ul {...props}>{name}</ul>)`
+const IssueLabel = styled(props => <div {...props}>{props.children}</div>)`
   color: ${p => p.theme.white};
   background-color: ${p => (p.color[0] === '#' ? p.color : '#' + p.color)};
   font-weight: 700;
-  padding: 2px 4px;
+  padding: 2px 8px;
   border-radius: 4px;
+`;
+
+const StyledIconEdit = styled(IconEdit)`
+  margin-left: 8px;
+  cursor: pointer;
+`;
+
+const StyledIconClose = styled(IconClose)`
+  margin-left: 8px;
+  cursor: pointer;
 `;
 
 export default withApi(withOrganization(GroupLabels));

@@ -1,99 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Modal from 'react-bootstrap/lib/Modal';
 import styled from '@emotion/styled';
 
-import {t} from 'app/locale';
-import Button from 'app/components/button';
 import DropdownLink from 'app/components/dropdownLink';
 import FlowLayout from 'app/components/flowLayout';
 import MenuItem from 'app/components/menuItem';
-import InputField from 'app/views/settings/components/forms/inputField';
-import ButtonBar from 'app/components/buttonBar';
+import IssueLabelModal from 'app/components/issueLabelModal';
+import {t} from 'app/locale';
 
-class AddLabelModal extends React.Component {
-  // TODO: Edit label modal
-  static propTypes = {
-    onAddLabel: PropTypes.func,
-    onCanceled: PropTypes.func,
-    show: PropTypes.bool,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      color: '',
-    };
-  }
-
-  handleSubmit = () => {
-    const {name, color} = this.state;
-
-    this.props.onAddLabel(name, color);
-  };
-
-  handleChange = (name, value) => {
-    this.setState({[name]: value});
-  };
-
-  render() {
-    const {show, onCanceled} = this.props;
-    const {name, color} = this.state;
-    return (
-      <Modal show={show} animation={false} onHide={onCanceled}>
-        <Modal.Header>
-          <h4>Add Label</h4>
-        </Modal.Header>
-        <Modal.Body>
-          <InputField
-            inline={false}
-            flexibleControlStateSize
-            stacked
-            label="Name"
-            name="name"
-            type="text"
-            value={name}
-            onChange={val => this.handleChange('name', val)}
-            required
-            placeholder={t('e.g. TestLabel')}
-          />
-          <InputField
-            inline={false}
-            flexibleControlStateSize
-            stacked
-            label="Color"
-            name="color"
-            type="text"
-            value={color}
-            onChange={val => this.handleChange('color', val)}
-            required
-            placeholder={t('e.g. #ABCDEF')}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <ButtonBar gap={1}>
-            <Button type="button" onClick={onCanceled}>
-              {t('Cancel')}
-            </Button>
-            <Button type="button" priority="primary" onClick={this.handleSubmit}>
-              {t('Add Label')}
-            </Button>
-          </ButtonBar>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-}
-
-class AssignLabel extends React.Component {
+export default class AssignLabel extends React.Component {
   static propTypes = {
     onAssignLabel: PropTypes.func,
     onAddLabel: PropTypes.func,
     labels: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
-        color: PropTypes.string,
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
       })
     ),
   };
@@ -105,7 +28,7 @@ class AssignLabel extends React.Component {
     };
   }
 
-  handleAddLabel = (name, color) => {
+  onAddLabel = (name, color) => {
     // TODO: error handling when can't add label, show error
     this.props.onAddLabel(name, color);
     this.setState({showModal: false});
@@ -142,10 +65,12 @@ class AssignLabel extends React.Component {
             Add Label
           </Label>
         </MenuItem>
-        <AddLabelModal
+        <IssueLabelModal
           show={this.state.showModal}
-          onAddLabel={this.handleAddLabel}
+          onSubmit={this.onAddLabel}
           onCanceled={() => this.setState({showModal: false})}
+          primaryButtonText={t('Add Label')}
+          title={t('Add Label')}
         />
       </DropdownLink>
     );
@@ -164,5 +89,3 @@ const StyledLabel = styled(Label)`
   padding: 2px 4px;
   margin: 2px 0;
 `;
-
-export default AssignLabel;

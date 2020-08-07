@@ -31,8 +31,9 @@ class EventOrGroupExtraDetails extends React.Component {
     project: SentryTypes.Project,
     labels: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
-        color: PropTypes.string,
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
       })
     ),
   };
