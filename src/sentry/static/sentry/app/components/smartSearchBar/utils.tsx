@@ -22,6 +22,10 @@ export function removeSpace(query = '') {
 }
 
 function getTitleForType(type: ItemType) {
+  if (type === 'issue-label') {
+    return t('Issue Labels');
+  }
+
   if (type === 'tag-value') {
     return t('Tag Values');
   }

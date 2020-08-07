@@ -4,7 +4,8 @@ export type ItemType =
   | 'tag-value'
   | 'first-release'
   | 'invalid-tag'
-  | 'recent-search';
+  | 'recent-search'
+  | 'issue-label';
 
 export type SearchGroup = {
   type: ItemType | 'header';

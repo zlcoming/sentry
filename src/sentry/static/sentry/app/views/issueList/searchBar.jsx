@@ -17,6 +17,12 @@ const SEARCH_ITEMS = [
     type: 'default',
   },
   {
+    title: t('Label'),
+    desc: 'label:Santry',
+    value: 'label:',
+    type: 'default',
+  },
+  {
     title: t('Status'),
     desc: 'is:resolved, unresolved, ignored, assigned, unassigned',
     value: 'is:',
@@ -54,6 +60,7 @@ class IssueListSearchBar extends React.Component {
   state = {
     defaultSearchItems: [SEARCH_ITEMS, []],
     recentSearches: [],
+    organizationIssueLabels: [],
   };
 
   componentDidMount() {
@@ -63,21 +70,28 @@ class IssueListSearchBar extends React.Component {
   }
 
   fetchData = async () => {
-    this.props.api.clear();
+    const {api, organization} = this.props;
+    api.clear();
     const resp = await this.getRecentSearches();
 
-    this.setState({
-      defaultSearchItems: [
-        SEARCH_ITEMS,
-        resp
-          ? resp.map(query => ({
-              desc: query,
-              value: query,
-              type: 'recent-search',
-            }))
-          : [],
-      ],
-      recentSearches: resp,
+    api.request(`/organizations/${organization.slug}/labels/`, {
+      method: 'GET',
+      success: data => {
+        this.setState({
+          defaultSearchItems: [
+            SEARCH_ITEMS,
+            resp
+              ? resp.map(query => ({
+                  desc: query,
+                  value: query,
+                  type: 'recent-search',
+                }))
+              : [],
+          ],
+          recentSearches: resp,
+          organizationIssueLabels: data,
+        });
+      },
     });
   };
 
@@ -121,13 +135,14 @@ class IssueListSearchBar extends React.Component {
         hasRecentSearches
         hasSearchBuilder
         canCreateSavedSearch
-        maxSearchItems={5}
+        maxSearchItems={6}
         savedSearchType={SearchType.ISSUE}
         onGetTagValues={this.getTagValues}
         defaultSearchItems={this.state.defaultSearchItems}
         onSavedRecentSearch={this.handleSavedRecentSearch}
         onSidebarToggle={onSidebarToggle}
         pinnedSearch={savedSearch && savedSearch.isPinned ? savedSearch : null}
+        organizationIssueLabels={this.state.organizationIssueLabels}
         {...props}
       />
     );

@@ -215,6 +215,11 @@ type Props = {
    * such as the stream view where it is a top level concept
    */
   excludeEnvironment?: boolean;
+
+  /**
+   * TODO: make this a more sensible type
+   * */
+  organizationIssueLabels?: any[];
 };
 
 type State = {
@@ -620,6 +625,27 @@ class SmartSearchBar extends React.Component<Props, State> {
 
   /**
    * Returns array of tag values that substring match `query`; invokes `callback`
+   * with data when ready
+   */
+  getIssueLabels = debounce(
+    // TODO: label type
+    async (query: string) => {
+      return this.props.organizationIssueLabels
+        ? this.props.organizationIssueLabels
+            .filter(lbl => lbl.name.includes(query))
+            .map(lbl => ({
+              value: lbl.name,
+              desc: lbl.name,
+              type: 'issue-label',
+            }))
+        : [];
+    },
+    DEFAULT_DEBOUNCE_DURATION,
+    {leading: true}
+  );
+
+  /**
+   * Returns array of tag values that substring match `query`; invokes `callback`
    * with results
    */
   getPredefinedTagValues = (tag: Tag, query: string): SearchItem[] =>
@@ -832,6 +858,18 @@ class SmartSearchBar extends React.Component<Props, State> {
       searchTerm: query,
       searchGroups: filteredSearchGroups,
     });
+
+    if (tagName === 'label' && this.props.organizationIssueLabels) {
+      const [issueLabels, recentSearches] = await Promise.all([
+        this.getIssueLabels(preparedQuery),
+        this.getRecentSearches(),
+      ]);
+
+      // TODO: types for issueLabels
+      // @ts-ignore
+      this.updateAutoCompleteState(issueLabels, recentSearches, tagName, 'issue-label');
+      return;
+    }
 
     const tag = supportedTags[tagName];
 

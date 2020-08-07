@@ -36,6 +36,11 @@ describe('IssueListSearchBar', function() {
       method: 'GET',
       body: [],
     });
+
+    MockApiClient.addMockResponse({
+      url: '/organizations/org-slug/labels/',
+      body: [],
+    });
   });
 
   afterEach(function() {

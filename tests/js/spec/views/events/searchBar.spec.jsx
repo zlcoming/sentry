@@ -51,6 +51,11 @@ describe('SearchBar', function() {
     options = TestStubs.routerContext();
 
     MockApiClient.addMockResponse({
+      url: '/organizations/org-slug/labels/',
+      body: [],
+    });
+
+    MockApiClient.addMockResponse({
       url: '/organizations/org-slug/recent-searches/',
       method: 'POST',
       body: [],

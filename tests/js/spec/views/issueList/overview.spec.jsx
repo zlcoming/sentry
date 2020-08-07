@@ -60,6 +60,10 @@ describe('IssueList', function() {
 
     group = TestStubs.Group({project});
     MockApiClient.addMockResponse({
+      url: '/organizations/org-slug/labels/',
+      body: [],
+    });
+    MockApiClient.addMockResponse({
       url: '/organizations/org-slug/issues/',
       body: [group],
       headers: {
