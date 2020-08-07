@@ -264,6 +264,8 @@ class GroupSidebar extends React.Component {
 }
 
 const SidebarIssueLabels = styled('div')`
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 0 15px;
 `;
 
@@ -274,7 +276,7 @@ const SidebarIssueLabel = styled(({name, ...props}) => <div {...props}>{name}</d
   line-height: 12px;
   font-weight: 900;
   padding: 4px 8px;
-  margin: 4px 0;
+  margin: 0 4px 2px 0;
   border-radius: 4px;
 `;
 
