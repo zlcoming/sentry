@@ -42,12 +42,6 @@ FEATURES = [
 
 INSTALL_NOTICE_TEXT = "INSTALL TEXT"
 
-external_install = {
-    "url": u"https://google.com",  # TODO: set correct URL
-    "buttonText": _("Teams Marketplace"),
-    "noticeText": _(INSTALL_NOTICE_TEXT),
-}
-
 
 metadata = IntegrationMetadata(
     description=DESCRIPTION.strip(),
@@ -56,7 +50,7 @@ metadata = IntegrationMetadata(
     noun=_("Installation"),
     issue_url="https://github.com/getsentry/sentry/issues/new",
     source_url="https://github.com/getsentry/sentry/tree/master/src/sentry/integrations/msteams",
-    aspects={"externalInstall": external_install},
+    aspects={},
 )
 
 
