@@ -106,6 +106,8 @@ type Props = {
   /**
    * List of ids to look for summaries for, this can be from `props.projects`,
    * otherwise fetch from API
+   *
+   * @internal - please use projectsFromId component if you are not using slugs
    */
   ids?: string[];
 
