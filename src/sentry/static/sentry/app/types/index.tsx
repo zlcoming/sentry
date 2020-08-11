@@ -8,7 +8,9 @@ import {
   NOT_INSTALLED,
   PENDING,
 } from 'app/views/organizationIntegrations/constants';
+import {WIDGET_DISPLAY} from 'app/views/dashboards/constants';
 import {Props as AlertProps} from 'app/components/alert';
+import {Query as DiscoverQuery} from 'app/views/discover/types';
 
 declare global {
   interface Window {
@@ -43,6 +45,11 @@ declare global {
      */
     SentryRenderApp: () => void;
     sentryEmbedCallback?: ((embed: any) => void) | null;
+    /**
+     * Set to true if adblock could be installed.
+     * See sentry/js/ads.js for how this global is disabled.
+     */
+    adblockSuspected?: boolean;
   }
 }
 
@@ -88,6 +95,14 @@ export type OrganizationSummary = {
   slug: string;
 };
 
+export type Relay = {
+  publicKey: string;
+  name: string;
+  created?: string;
+  lastModified?: string;
+  description?: string;
+};
+
 /**
  * Detailed organization (e.g. when requesting details for a single org)
  *
@@ -120,9 +135,10 @@ export type LightWeightOrganization = OrganizationSummary & {
   allowSharedIssues: boolean;
   dataScrubberDefaults: boolean;
   dataScrubber: boolean;
-  role?: string;
+  apdexThreshold: number;
   onboardingTasks: OnboardingTaskStatus[];
-  trustedRelays: string[];
+  trustedRelays: Relay[];
+  role?: string;
 };
 
 /**
@@ -141,6 +157,7 @@ export type AvatarProject = {
 
 export type Project = {
   id: string;
+  dateCreated: string;
   isMember: boolean;
   teams: Team[];
   features: string[];
@@ -154,7 +171,10 @@ export type Project = {
   // XXX: These are part of the DetailedProject serializer
   plugins: Plugin[];
   processingIssues: number;
+  relayPiiConfig: string;
   builtinSymbolSources?: string[];
+  stats?: Array<[number, number]>;
+  latestDeploys: Record<string, Pick<Deploy, 'dateFinished' | 'version'>> | null;
 } & AvatarProject;
 
 export type MinimalProject = Pick<Project, 'id' | 'slug'>;
@@ -210,7 +230,7 @@ export type EventAttachment = {
   event_id: string;
 };
 
-export type EntryTypeData = {[key: string]: any | any[]};
+export type EntryTypeData = Record<string, any | Array<any>>;
 
 type EntryType = {
   data: EntryTypeData;
@@ -234,18 +254,9 @@ type RuntimeContext = {
   name?: string;
 };
 
-type TraceContext = {
-  type: 'trace';
-  op: string;
-  description: string;
-  parent_span_id: string;
-  span_id: string;
-  trace_id: string;
-};
-
 type EventContexts = {
   runtime?: RuntimeContext;
-  trace?: TraceContext;
+  trace?: TraceContextType;
 };
 
 type SentryEventBase = {
@@ -257,11 +268,13 @@ type SentryEventBase = {
   metadata: EventMetadata;
   contexts: EventContexts;
   context?: {[key: string]: any};
+  device?: {[key: string]: any};
   packages?: {[key: string]: string};
   user: EventUser;
   message: string;
   platform?: PlatformKey;
   dateCreated?: string;
+  dateReceived?: string;
   endTimestamp?: number;
   entries: EntryType[];
 
@@ -385,10 +398,31 @@ export type Environment = {
   id: string;
 };
 
-// TODO(ts): This type is incomplete
-export type SavedSearch = {
-  query?: string;
+export type RecentSearch = {
+  id: string;
+  organizationId: string;
+  type: SavedSearchType;
+  query: string;
+  lastSeen: string;
+  dateCreated: string;
 };
+
+// XXX: Deprecated Sentry 9 attributes are not included here.
+export type SavedSearch = {
+  id: string;
+  type: SavedSearchType;
+  name: string;
+  query: string;
+  isGlobal: boolean;
+  isPinned: boolean;
+  isOrgCustom: boolean;
+  dateCreated: string;
+};
+
+export enum SavedSearchType {
+  ISSUE = 0,
+  EVENT = 1,
+}
 
 export type PluginNoProject = {
   id: string;
@@ -607,6 +641,7 @@ export type Group = {
   type: EventOrGroupType;
   userCount: number;
   userReportCount: number;
+  subscriptionDetails: {disabled?: boolean; reason?: string} | null;
 };
 
 /**
@@ -680,6 +715,9 @@ type IntegrationAspects = {
     url: string;
     buttonText: string;
     noticeText: string;
+  };
+  configure_integration?: {
+    title: string;
   };
 };
 
@@ -953,6 +991,7 @@ export type Deploy = {
   environment: string;
   dateStarted: string;
   dateFinished: string;
+  version: string;
 };
 
 export type Commit = {
@@ -1034,6 +1073,7 @@ export type SavedQueryState = {
 export type SelectValue<T> = {
   label: string;
   value: T;
+  disabled?: boolean;
 };
 
 /**
@@ -1301,4 +1341,39 @@ export type Artifact = {
   headers: {'Content-Type': string};
 };
 
+export type Widget = {
+  queries: {
+    discover: DiscoverQuery[];
+  };
+  title: React.ReactNode;
+  type: WIDGET_DISPLAY;
+  fieldLabelMap?: object;
+  yAxisMapping?: [number[], number[]];
+  includeReleases?: boolean;
+  includePreviousPeriod?: boolean;
+};
+
 export type EventGroupInfo = Record<EventGroupVariantKey, EventGroupVariant>;
+
+export type PlatformType = 'java' | 'csharp' | 'other';
+
+export type Frame = {
+  filename: string;
+  module: string;
+  map: string;
+  preventCollapse: () => void;
+  errors: Array<any>;
+  context: Array<[number, string]>;
+  vars: {[key: string]: any};
+  inApp: boolean;
+  function?: string;
+  absPath?: string;
+  rawFunction?: string;
+  platform: PlatformType;
+  lineNo?: number;
+  colNo?: number;
+  package?: string;
+  origAbsPath?: string;
+  mapUrl?: string;
+  instructionAddr?: string;
+};

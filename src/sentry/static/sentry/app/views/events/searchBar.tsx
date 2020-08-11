@@ -11,20 +11,16 @@ import {NEGATION_OPERATOR, SEARCH_WILDCARD} from 'app/constants';
 import {defined} from 'app/utils';
 import {fetchTagValues} from 'app/actionCreators/tags';
 import SentryTypes from 'app/sentryTypes';
-import SmartSearchBar, {SearchType} from 'app/components/smartSearchBar';
-import {Field, FIELDS, TRACING_FIELDS} from 'app/utils/discover/fields';
+import {SavedSearchType, Organization, TagCollection} from 'app/types';
+import SmartSearchBar from 'app/components/smartSearchBar';
+import {Field, FIELD_TAGS, TRACING_FIELDS} from 'app/utils/discover/fields';
 import withApi from 'app/utils/withApi';
 import withTags from 'app/utils/withTags';
 import {Client} from 'app/api';
-import {Organization, TagCollection} from 'app/types';
 
 const SEARCH_SPECIAL_CHARS_REGEXP = new RegExp(
   `^${NEGATION_OPERATOR}|\\${SEARCH_WILDCARD}`,
   'g'
-);
-
-const FIELD_TAGS = Object.fromEntries(
-  Object.keys(FIELDS).map(item => [item, {key: item, name: item}])
 );
 
 type SearchBarProps = Omit<React.ComponentProps<typeof SmartSearchBar>, 'tags'> & {
@@ -73,7 +69,10 @@ class SearchBar extends React.PureComponent<SearchBarProps> {
         tag.key,
         query,
         projectIdStrings,
-        endpointParams
+        endpointParams,
+
+        // allows searching for tags on transactions as well
+        true
       ).then(
         results =>
           flatten(results.filter(({name}) => defined(name)).map(({name}) => name)),
@@ -101,7 +100,7 @@ class SearchBar extends React.PureComponent<SearchBarProps> {
       : {};
 
     const fieldTags = organization.features.includes('performance-view')
-      ? assign(FIELD_TAGS, functionTags)
+      ? Object.assign({}, FIELD_TAGS, functionTags)
       : omit(FIELD_TAGS, TRACING_FIELDS);
 
     const combined = assign({}, tags, fieldTags);
@@ -123,7 +122,7 @@ class SearchBar extends React.PureComponent<SearchBarProps> {
           <SmartSearchBar
             {...this.props}
             hasRecentSearches
-            savedSearchType={SearchType.EVENT}
+            savedSearchType={SavedSearchType.EVENT}
             onGetTagValues={this.getEventFieldValues}
             supportedTags={tags}
             prepareQuery={this.prepareQuery}

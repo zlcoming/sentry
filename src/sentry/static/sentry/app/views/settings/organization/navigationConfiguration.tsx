@@ -27,7 +27,6 @@ const organizationNavigation: NavigationSection[] = [
           'Configuration related to dealing with sensitive data and other security settings. (Data Scrubbing, Data Privacy, Data Scrubbing)'
         ),
         id: 'security-and-privacy',
-        show: ({features}) => !!features?.has('datascrubbers-v2'),
         badge: () => 'new',
       },
       {
@@ -42,6 +41,13 @@ const organizationNavigation: NavigationSection[] = [
         show: ({access}) => access!.has('member:read'),
         description: t('Manage user membership for an organization'),
         id: 'members',
+      },
+      {
+        path: `${pathPrefix}/performance/`,
+        title: t('Performance'),
+        show: ({features}) => features!.has('performance-view'),
+        description: t('Manage performance settings'),
+        id: 'performance',
       },
       {
         path: `${pathPrefix}/auth/`,
@@ -74,8 +80,7 @@ const organizationNavigation: NavigationSection[] = [
       {
         path: `${pathPrefix}/relays/`,
         title: t('Relays'),
-        show: ({access, features}) =>
-          features!.has('relay-config') && access!.has('org:write'),
+        show: ({access, features}) => features!.has('relay') && access!.has('org:write'),
         description: t('Manage relays connected to the organization'),
         id: 'relays',
         badge: () => 'new',

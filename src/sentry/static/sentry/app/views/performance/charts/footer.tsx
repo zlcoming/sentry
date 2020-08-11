@@ -1,7 +1,7 @@
 import React from 'react';
-import * as Sentry from '@sentry/browser';
 import {browserHistory} from 'react-router';
 import {Location} from 'history';
+import * as Sentry from '@sentry/react';
 
 import {Organization} from 'app/types';
 import {t} from 'app/locale';
@@ -17,7 +17,7 @@ import OptionSelector from 'app/components/charts/optionSelector';
 import {trackAnalyticsEvent} from 'app/utils/analytics';
 import EventView, {isAPIPayloadSimilar} from 'app/utils/discover/eventView';
 
-import {AXIS_OPTIONS} from '../constants';
+import {getAxisOptions} from '../data';
 
 type Props = {
   api: Client;
@@ -103,15 +103,17 @@ class ChartFooter extends React.Component<Props, State> {
   }
 
   render() {
-    const {leftAxis, rightAxis} = this.props;
+    const {leftAxis, organization, rightAxis} = this.props;
     const {totalValues} = this.state;
 
     const value = typeof totalValues === 'number' ? totalValues.toLocaleString() : '-';
-    const leftOptions = AXIS_OPTIONS.map(opt => ({
+
+    const options = getAxisOptions(organization);
+    const leftOptions = options.map(opt => ({
       ...opt,
       disabled: opt.value === rightAxis,
     }));
-    const rightOptions = AXIS_OPTIONS.map(opt => ({
+    const rightOptions = options.map(opt => ({
       ...opt,
       disabled: opt.value === leftAxis,
     }));

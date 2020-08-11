@@ -400,7 +400,7 @@ function routes() {
         component={errorHandler(LazyLoad)}
         componentPromise={() =>
           import(
-            /* webpackChunkName: "ProjectDataPrivacy" */ 'app/views/settings/projectDataPrivacy/projectDataPrivacy'
+            /* webpackChunkName: "ProjectSecurityAndPrivacy" */ 'app/views/settings/projectSecurityAndPrivacy'
           )
         }
       />
@@ -443,7 +443,7 @@ function routes() {
           component={errorHandler(LazyLoad)}
         />
         <Route
-          path=":version/"
+          path=":name/"
           name={t('Archive')}
           componentPromise={() =>
             import(
@@ -777,6 +777,17 @@ function routes() {
       />
 
       <Route
+        path="performance/"
+        name={t('Performance')}
+        componentPromise={() =>
+          import(
+            /* webpackChunkName: "OrganizationPerformance" */ 'app/views/settings/organizationPerformance'
+          )
+        }
+        component={errorHandler(LazyLoad)}
+      />
+
+      <Route
         path="settings/"
         componentPromise={() =>
           import(
@@ -791,7 +802,7 @@ function routes() {
         path="security-and-privacy/"
         componentPromise={() =>
           import(
-            /* webpackChunkName: "OrganizationSecurityAndPrivacy" */ 'app/views/settings/organizationSecurityAndPrivacy/organizationSecurityAndPrivacy'
+            /* webpackChunkName: "OrganizationSecurityAndPrivacy" */ 'app/views/settings/organizationSecurityAndPrivacy'
           )
         }
         component={errorHandler(LazyLoad)}
@@ -1026,10 +1037,10 @@ function routes() {
         />
 
         <Route
-          path="/extensions/vsts/link/"
+          path="/extensions/:integrationSlug/link/"
           getComponent={(_loc, cb) =>
             import(
-              /* webpackChunkName: "VSTSOrganizationLink" */ 'app/views/vstsOrganizationLink'
+              /* webpackChunkName: "IntegrationOrganizationLink" */ 'app/views/integrationOrganizationLink'
             ).then(lazyLoad(cb))
           }
         />

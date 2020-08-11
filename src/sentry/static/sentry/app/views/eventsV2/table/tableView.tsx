@@ -17,21 +17,22 @@ import Link from 'app/components/links/link';
 import Tooltip from 'app/components/tooltip';
 import EventView, {
   isFieldSortable,
-  MetaType,
   pickRelevantLocationQueryStrings,
 } from 'app/utils/discover/eventView';
 import {Column} from 'app/utils/discover/fields';
 import {getFieldRenderer} from 'app/utils/discover/fieldRenderers';
+import {TableData, TableDataRow} from 'app/utils/discover/discoverQuery';
 import {generateEventSlug, eventDetailsRouteWithEventView} from 'app/utils/discover/urls';
+import {TOP_N, DisplayModes} from 'app/utils/discover/types';
 import withProjects from 'app/utils/withProjects';
 import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
 import {transactionSummaryRouteWithQuery} from 'app/views/performance/transactionSummary/utils';
 
 import {getExpandedResults, pushEventViewToLocation} from '../utils';
 import ColumnEditModal, {modalCss} from './columnEditModal';
-import {TableColumn, TableData, TableDataRow} from './types';
+import {TableColumn} from './types';
 import HeaderCell from './headerCell';
-import CellAction, {Actions} from './cellAction';
+import CellAction, {Actions, updateQuery} from './cellAction';
 import TableActions from './tableActions';
 
 export type TableViewProps = {
@@ -193,23 +194,36 @@ class TableView extends React.Component<TableViewProps> {
 
   _renderGridBodyCell = (
     column: TableColumn<keyof TableDataRow>,
-    dataRow: TableDataRow
+    dataRow: TableDataRow,
+    rowIndex: number,
+    columnIndex: number
   ): React.ReactNode => {
-    const {location, organization, tableData} = this.props;
+    const {eventView, location, organization, tableData} = this.props;
 
     if (!tableData || !tableData.meta) {
       return dataRow[column.key];
     }
     const fieldRenderer = getFieldRenderer(String(column.key), tableData.meta);
 
+    const display = eventView.getDisplayMode();
+    const isTopEvents =
+      display === DisplayModes.TOP5 || display === DisplayModes.DAILYTOP5;
+
+    const count = Math.min(tableData?.data?.length ?? TOP_N, TOP_N);
+
     return (
-      <CellAction
-        column={column}
-        dataRow={dataRow}
-        handleCellAction={this.handleCellAction(dataRow, column, tableData.meta)}
-      >
-        {fieldRenderer(dataRow, {organization, location})}
-      </CellAction>
+      <React.Fragment>
+        {isTopEvents && rowIndex < TOP_N && columnIndex === 0 ? (
+          <TopResultsIndicator count={count} index={rowIndex} />
+        ) : null}
+        <CellAction
+          column={column}
+          dataRow={dataRow}
+          handleCellAction={this.handleCellAction(dataRow, column)}
+        >
+          {fieldRenderer(dataRow, {organization, location})}
+        </CellAction>
+      </React.Fragment>
     );
   };
 
@@ -230,11 +244,7 @@ class TableView extends React.Component<TableViewProps> {
     );
   };
 
-  handleCellAction = (
-    dataRow: TableDataRow,
-    column: TableColumn<keyof TableDataRow>,
-    tableMeta: MetaType
-  ) => {
+  handleCellAction = (dataRow: TableDataRow, column: TableColumn<keyof TableDataRow>) => {
     return (action: Actions, value: React.ReactText) => {
       const {eventView, organization, projects} = this.props;
 
@@ -250,43 +260,6 @@ class TableView extends React.Component<TableViewProps> {
       });
 
       switch (action) {
-        case Actions.ADD:
-          // Remove exclusion if it exists.
-          delete query[`!${column.name}`];
-          query[column.name] = [`${value}`];
-          break;
-        case Actions.EXCLUDE:
-          // Remove positive if it exists.
-          delete query[column.name];
-          // Negations should stack up.
-          const negation = `!${column.name}`;
-          if (!query.hasOwnProperty(negation)) {
-            query[negation] = [];
-          }
-          query[negation].push(`${value}`);
-          break;
-        case Actions.SHOW_GREATER_THAN: {
-          // Remove query token if it already exists
-          delete query[column.name];
-          query[column.name] = [`>${value}`];
-          const field = {field: column.name, width: column.width};
-
-          // sort descending order
-          nextView = nextView.sortOnField(field, tableMeta, 'desc');
-
-          break;
-        }
-        case Actions.SHOW_LESS_THAN: {
-          // Remove query token if it already exists
-          delete query[column.name];
-          query[column.name] = [`<${value}`];
-          const field = {field: column.name, width: column.width};
-
-          // sort ascending order
-          nextView = nextView.sortOnField(field, tableMeta, 'asc');
-
-          break;
-        }
         case Actions.TRANSACTION: {
           const maybeProject = projects.find(project => project.slug === dataRow.project);
 
@@ -296,7 +269,7 @@ class TableView extends React.Component<TableViewProps> {
             orgSlug: organization.slug,
             transaction: String(value),
             projectID,
-            query: {},
+            query: nextView.getGlobalSelectionQuery(),
           });
 
           browserHistory.push(next);
@@ -312,7 +285,7 @@ class TableView extends React.Component<TableViewProps> {
               value
             )}/`,
             query: {
-              ...nextView.getGlobalSelection(),
+              ...nextView.getGlobalSelectionQuery(),
 
               project: maybeProject ? maybeProject.id : undefined,
             },
@@ -340,7 +313,7 @@ class TableView extends React.Component<TableViewProps> {
           return;
         }
         default:
-          throw new Error(`Unknown action type. ${action}`);
+          updateQuery(query, action, column.name, value);
       }
       nextView.query = stringifyQueryObject(query);
 
@@ -434,6 +407,28 @@ const StyledLink = styled(Link)`
 
 const StyledIcon = styled(IconStack)`
   vertical-align: middle;
+`;
+
+type TopResultsIndicatorProps = {
+  count: number;
+  index: number;
+};
+
+const TopResultsIndicator = styled('div')<TopResultsIndicatorProps>`
+  position: absolute;
+  left: -1px;
+  margin-top: 4.5px;
+  width: 9px;
+  height: 15px;
+  border-radius: 0 3px 3px 0;
+
+  background-color: ${p => {
+    // this background color needs to match the colors used in
+    // app/components/charts/eventsChart so that the ordering matches
+
+    // the color pallete contains n + 2 colors, so we subtract 2 here
+    return p.theme.charts.getColorPalette(p.count - 2)[p.index];
+  }};
 `;
 
 export default withProjects(TableView);

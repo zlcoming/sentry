@@ -5,7 +5,7 @@ import ConfigStore from 'app/stores/configStore';
 import OrganizationStore from 'app/stores/organizationStore';
 import {trackAnalyticsEvent} from 'app/utils/analytics';
 import {Client} from 'app/api';
-import {stringifyQueryObject} from 'app/utils/tokenizeSearch';
+import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
 
 const RELEASES_VERSION_KEY = 'releases:version';
 
@@ -55,6 +55,10 @@ export const decideReleasesVersion = async hasNewReleases => {
   }
 };
 
+export const roundDuration = (seconds: number) => {
+  return round(seconds, seconds > 60 ? 0 : 3);
+};
+
 export const getCrashFreePercent = (
   percent: number,
   decimalThreshold = 95,
@@ -95,10 +99,7 @@ export const getReleaseNewIssuesUrl = (
     pathname: `/organizations/${orgSlug}/issues/`,
     query: {
       project: projectId,
-      query: stringifyQueryObject({
-        query: [],
-        firstRelease: [version],
-      }),
+      query: stringifyQueryObject(new QueryResults([`firstRelease:${version}`])),
     },
   };
 };

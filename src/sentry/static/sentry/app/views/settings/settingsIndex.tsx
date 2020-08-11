@@ -25,9 +25,9 @@ import {Organization} from 'app/types';
 const LINKS = {
   DOCUMENTATION: 'https://docs.sentry.io/',
   DOCUMENTATION_PLATFORMS: 'https://docs.sentry.io/clients/',
-  DOCUMENATATION_QUICKSTART: 'https://docs.sentry.io/quickstart/',
-  DOCUMENTATION_CLI: 'https://docs.sentry.io/learn/cli/',
-  DOCUMENTATION_API: 'https://docs.sentry.io/hosted/api/',
+  DOCUMENATATION_QUICKSTART: 'https://docs.sentry.io/error-reporting/quickstart/',
+  DOCUMENTATION_CLI: 'https://docs.sentry.io/cli/',
+  DOCUMENTATION_API: 'https://docs.sentry.io/api/',
   API: '/settings/account/api/',
   MANAGE: '/manage/',
   FORUM: 'https://forum.sentry.io/',
@@ -131,7 +131,7 @@ class SettingsIndex extends React.Component<Props> {
                       />
                     </AvatarContainer>
                   ) : (
-                    <HomeIcon color="green">
+                    <HomeIcon color="green400">
                       <IconStack size="lg" />
                     </HomeIcon>
                   )}
@@ -165,7 +165,7 @@ class SettingsIndex extends React.Component<Props> {
             <GridPanel>
               <HomePanelHeader>
                 <ExternalHomeLink isCentered href={LINKS.DOCUMENTATION}>
-                  <HomeIcon color="orange">
+                  <HomeIcon color="orange400">
                     <IconDocs size="lg" />
                   </HomeIcon>
                 </ExternalHomeLink>
@@ -199,7 +199,7 @@ class SettingsIndex extends React.Component<Props> {
             <GridPanel>
               <HomePanelHeader>
                 <SupportLinkComponent isCentered {...supportLinkProps}>
-                  <HomeIcon color="purple">
+                  <HomeIcon color="purple400">
                     <IconSupport size="lg" />
                   </HomeIcon>
                   {t('Support')}
@@ -311,10 +311,10 @@ type CenterableProps = {
 };
 
 const HomeLink = styled(Link)`
-  color: ${p => p.theme.purple};
+  color: ${p => p.theme.purple400};
 
   &:hover {
-    color: ${p => p.theme.purpleDark};
+    color: ${p => p.theme.purple400};
   }
 `;
 
@@ -329,10 +329,10 @@ const ExternalHomeLink = styled(
     <ExternalLink {...omit(props, 'isCentered')} />
   )
 )<CenterableProps>`
-  color: ${p => p.theme.purple};
+  color: ${p => p.theme.purple400};
 
   &:hover {
-    color: ${p => p.theme.purpleDark};
+    color: ${p => p.theme.purple400};
   }
 
   ${p => p.isCentered && flexCenter};

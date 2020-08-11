@@ -4,13 +4,14 @@ import {browserHistory} from 'react-router';
 
 import {tokenizeSearch, stringifyQueryObject} from 'app/utils/tokenizeSearch';
 import {t} from 'app/locale';
-import {Event, Organization, OrganizationSummary, SelectValue} from 'app/types';
+import {Event, LightWeightOrganization, SelectValue} from 'app/types';
 import {getTitle} from 'app/utils/events';
 import {getUtcDateString} from 'app/utils/dates';
 import {URL_PARAM} from 'app/constants/globalSelectionHeader';
 import {disableMacros} from 'app/views/discover/result/utils';
 import {COL_WIDTH_UNDEFINED} from 'app/components/gridEditable';
 import EventView from 'app/utils/discover/eventView';
+import {TableDataRow} from 'app/utils/discover/discoverQuery';
 import {
   Field,
   Column,
@@ -24,7 +25,7 @@ import {
 } from 'app/utils/discover/fields';
 
 import {ALL_VIEWS, TRANSACTION_VIEWS} from './data';
-import {TableColumn, TableDataRow, FieldValue, FieldValueKind} from './table/types';
+import {TableColumn, FieldValue, FieldValueKind} from './table/types';
 
 export type QueryWithColumnState =
   | Query
@@ -120,7 +121,7 @@ export function generateTitle({eventView, event}: {eventView: EventView; event?:
   return titles.join(' - ');
 }
 
-export function getPrebuiltQueries(organization: Organization) {
+export function getPrebuiltQueries(organization: LightWeightOrganization) {
   let views = ALL_VIEWS;
   if (organization.features.includes('performance-view')) {
     // insert transactions queries at index 2
@@ -174,7 +175,7 @@ export function downloadAsCsv(tableData, columnOrder, filename) {
 // A map between aggregate function names and its un-aggregated form
 const TRANSFORM_AGGREGATES = {
   last_seen: 'timestamp',
-  latest_event: 'id',
+  latest_event: '',
   apdex: '',
   impact: '',
   user_misery: '',
@@ -226,7 +227,8 @@ export function getExpandedResults(
     let fieldNameAlias: string = '';
     if (exploded.kind === 'function' && isTransformAggregate(exploded.function[0])) {
       fieldNameAlias = exploded.function[0];
-    } else if (exploded.kind === 'field') {
+    } else if (exploded.kind === 'field' && exploded.field !== 'id') {
+      // Skip id fields as they are implicitly part of all non-aggregate results.
       fieldNameAlias = exploded.field;
     }
 
@@ -259,18 +261,27 @@ export function getExpandedResults(
     }
 
     if (exploded.kind === 'function') {
-      let field = exploded.function[1];
-      // edge case: transform count() into id
-      if (exploded.function[0] === 'count') {
-        field = 'id';
-      }
+      const field = exploded.function[1];
 
-      if (!field) {
-        // This is a function with no field alias. We delete this column as it'll add a blank column in the drilldown.
+      // Remove count an aggregates on id, as results have an implicit id in them.
+      if (exploded.function[0] === 'count' || field === 'id') {
         fieldsToDelete.push(indexToUpdate);
         return;
       }
 
+      // if at least one of the parameters to the function is an available column,
+      // then we should proceed to replace it with the column, however, for functions
+      // like apdex that takes a number as its parameter we should delete it
+      const {parameters = []} = AGGREGATIONS[exploded.function[0]] ?? {};
+      if (
+        !field ||
+        (parameters.length > 0 &&
+          parameters.every(parameter => parameter.kind !== 'column'))
+      ) {
+        // This is a function with no field alias. We delete this column as it'll add a blank column in the drilldown.
+        fieldsToDelete.push(indexToUpdate);
+        return;
+      }
       transformedFields.add(field);
 
       const updatedColumn: Column = {
@@ -321,7 +332,18 @@ function generateAdditionalConditions(
     // match their name.
     if (dataRow.hasOwnProperty(dataKey)) {
       const value = dataRow[dataKey];
-      const nextValue = value === null || value === undefined ? '' : String(value).trim();
+      // if the value will be quoted, then do not trim it as the whitespaces
+      // may be important to the query and should not be trimmed
+      const shouldQuote =
+        value === null || value === undefined
+          ? false
+          : /[\s\(\)\\"]/g.test(String(value).trim());
+      const nextValue =
+        value === null || value === undefined
+          ? ''
+          : shouldQuote
+          ? String(value)
+          : String(value).trim();
 
       switch (column.field) {
         case 'timestamp':
@@ -370,10 +392,10 @@ function generateExpandedConditions(
 
   // Remove any aggregates from the search conditions.
   // otherwise, it'll lead to an invalid query result.
-  for (const key in parsedQuery) {
+  for (const key in parsedQuery.tagValues) {
     const column = explodeFieldString(key);
     if (column.kind === 'function') {
-      delete parsedQuery[key];
+      parsedQuery.removeTag(key);
     }
   }
 
@@ -385,18 +407,20 @@ function generateExpandedConditions(
 
   // Add additional conditions provided and generated.
   for (const key in conditions) {
-    const value = additionalConditions[key];
+    const value = conditions[key];
     if (key === 'project.id') {
       eventView.project = [...eventView.project, parseInt(value, 10)];
       continue;
     }
     if (key === 'environment') {
-      eventView.environment = [...eventView.environment, value];
+      if (!eventView.environment.includes(value)) {
+        eventView.environment = [...eventView.environment, value];
+      }
       continue;
     }
     if (key === 'user' && typeof value === 'string') {
       const normalized = normalizeUserTag(key, value);
-      parsedQuery[normalized[0]] = [normalized[1]];
+      parsedQuery.setTag(normalized[0], [normalized[1]]);
       continue;
     }
     const column = explodeFieldString(key);
@@ -404,21 +428,15 @@ function generateExpandedConditions(
     if (column.kind === 'function') {
       continue;
     }
-    parsedQuery[key] = [conditions[key]];
+
+    parsedQuery.setTag(key, [conditions[key]]);
   }
 
   return stringifyQueryObject(parsedQuery);
 }
 
-export function getDiscoverLandingUrl(organization: OrganizationSummary): string {
-  if (organization.features.includes('discover-query')) {
-    return `/organizations/${organization.slug}/discover/queries/`;
-  }
-  return `/organizations/${organization.slug}/discover/results/`;
-}
-
 type FieldGeneratorOpts = {
-  organization: OrganizationSummary;
+  organization: LightWeightOrganization;
   tagKeys?: string[] | null;
   aggregations?: Record<string, Aggregation>;
   fields?: Record<string, ColumnType>;
@@ -445,13 +463,24 @@ export function generateFieldOptions({
   // later as well.
   functions.forEach(func => {
     const ellipsis = aggregations[func].parameters.length ? '\u2026' : '';
+    const parameters = aggregations[func].parameters.map(param => {
+      const generator = aggregations[func].generateDefaultValue;
+      if (typeof generator === 'undefined') {
+        return param;
+      }
+      return {
+        ...param,
+        defaultValue: generator({parameter: param, organization}),
+      };
+    });
+
     fieldOptions[`function:${func}`] = {
       label: `${func}(${ellipsis})`,
       value: {
         kind: FieldValueKind.FUNCTION,
         meta: {
           name: func,
-          parameters: [...aggregations[func].parameters],
+          parameters,
         },
       },
     };

@@ -5,12 +5,13 @@ import * as PopperJS from 'popper.js';
 import {Manager, Reference, Popper} from 'react-popper';
 
 import {t} from 'app/locale';
-import {defined} from 'app/utils';
 import {IconEllipsis} from 'app/icons';
 import space from 'app/styles/space';
 import {getAggregateAlias} from 'app/utils/discover/fields';
+import {TableDataRow} from 'app/utils/discover/discoverQuery';
+import {QueryResults} from 'app/utils/tokenizeSearch';
 
-import {TableColumn, TableDataRow} from './types';
+import {TableColumn} from './types';
 
 export enum Actions {
   ADD = 'add',
@@ -20,6 +21,60 @@ export enum Actions {
   TRANSACTION = 'transaction',
   RELEASE = 'release',
   DRILLDOWN = 'drilldown',
+}
+
+export function updateQuery(
+  results: QueryResults,
+  action: Actions,
+  key: string,
+  value: React.ReactText
+) {
+  switch (action) {
+    case Actions.ADD:
+      // If the value is null/undefined create a has !has condition.
+      if (value === null || value === undefined) {
+        // Adding a null value is the same as excluding truthy values.
+        // Remove inclusion if it exists.
+        results.removeTagValue('has', key);
+        results.addTag('!has', [key]);
+      } else {
+        // Remove exclusion if it exists.
+        results.removeTag(`!${key}`).setTag(key, [`${value}`]);
+      }
+      break;
+    case Actions.EXCLUDE:
+      if (value === null || value === undefined) {
+        // Excluding a null value is the same as including truthy values.
+        // Remove exclusion if it exists.
+        results.removeTagValue('!has', key);
+        results.addTag('has', [key]);
+      } else {
+        // Remove positive if it exists.
+        results.removeTag(key);
+        // Negations should stack up.
+        const negation = `!${key}`;
+        results.addTag(negation, [`${value}`]);
+      }
+      break;
+    case Actions.SHOW_GREATER_THAN: {
+      // Remove query token if it already exists
+      results.setTag(key, [`>${value}`]);
+      break;
+    }
+    case Actions.SHOW_LESS_THAN: {
+      // Remove query token if it already exists
+      results.setTag(key, [`<${value}`]);
+      break;
+    }
+    // these actions do not modify the query in any way,
+    // instead they have side effects
+    case Actions.TRANSACTION:
+    case Actions.RELEASE:
+    case Actions.DRILLDOWN:
+      break;
+    default:
+      throw new Error(`Unknown action type. ${action}`);
+  }
 }
 
 type Props = {
@@ -120,7 +175,11 @@ class CellAction extends React.Component<Props, State> {
       }
     }
 
-    if (column.type !== 'duration') {
+    if (
+      column.type !== 'duration' &&
+      column.type !== 'number' &&
+      column.type !== 'percentage'
+    ) {
       addMenuItem(
         Actions.ADD,
         <ActionItem
@@ -132,19 +191,21 @@ class CellAction extends React.Component<Props, State> {
         </ActionItem>
       );
 
-      addMenuItem(
-        Actions.EXCLUDE,
-        <ActionItem
-          key="exclude-from-filter"
-          data-test-id="exclude-from-filter"
-          onClick={() => handleCellAction(Actions.EXCLUDE, value)}
-        >
-          {t('Exclude from filter')}
-        </ActionItem>
-      );
+      if (column.type !== 'date') {
+        addMenuItem(
+          Actions.EXCLUDE,
+          <ActionItem
+            key="exclude-from-filter"
+            data-test-id="exclude-from-filter"
+            onClick={() => handleCellAction(Actions.EXCLUDE, value)}
+          >
+            {t('Exclude from filter')}
+          </ActionItem>
+        );
+      }
     }
 
-    if (column.type !== 'string' && column.type !== 'boolean') {
+    if (['date', 'duration', 'integer', 'number', 'percentage'].includes(column.type)) {
       addMenuItem(
         Actions.SHOW_GREATER_THAN,
         <ActionItem
@@ -181,7 +242,7 @@ class CellAction extends React.Component<Props, State> {
       );
     }
 
-    if (column.column.kind === 'field' && column.column.field === 'release') {
+    if (column.column.kind === 'field' && column.column.field === 'release' && value) {
       addMenuItem(
         Actions.RELEASE,
         <ActionItem
@@ -291,15 +352,6 @@ class CellAction extends React.Component<Props, State> {
   render() {
     const {children} = this.props;
     const {isHovering} = this.state;
-
-    const {dataRow, column} = this.props;
-    const fieldAlias = getAggregateAlias(column.name);
-    const value = dataRow[fieldAlias];
-
-    if (!defined(value)) {
-      // per cell actions do not apply to values that are null
-      return <React.Fragment>{children}</React.Fragment>;
-    }
 
     return (
       <Container
