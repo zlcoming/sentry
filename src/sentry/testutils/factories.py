@@ -531,6 +531,9 @@ class Factories(object):
         event = manager.save(project_id)
         if event.group:
             event.group.save()
+        import pdb
+
+        pdb.set_trace()
         return event
 
     @staticmethod

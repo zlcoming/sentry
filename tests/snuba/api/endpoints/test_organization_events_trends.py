@@ -33,6 +33,14 @@ class OrganizationEventsTrendsEndpointTest(APITestCase, SnubaTestCase):
             data["user"] = {"email": "foo{}@example.com".format(i)}
             self.store_event(data, project_id=self.project.id)
 
+    def test_save_more_events(self):
+        for i in range(10):
+            data = self.prototype.copy()
+            data["start_timestamp"] = iso_format(self.day_ago + timedelta(hours=1, minutes=30))
+            data["timestamp"] = iso_format(self.day_ago + timedelta(hours=1, minutes=30, seconds=i))
+            data["user"] = {"email": "foo{}@example.com".format(i)}
+            self.store_event(data, project_id=self.project.id)
+
     def test_simple(self):
         with self.feature("organizations:internal-catchall"):
             url = reverse(
