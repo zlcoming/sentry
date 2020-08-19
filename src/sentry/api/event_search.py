@@ -1513,7 +1513,7 @@ FUNCTIONS = {
             NumberRange("num_buckets", 1, 500),
             NumberRange("bucket_size", 0, None),
             NumberRange("start_offset", 0, None),
-            AliasColumn("measures_key_alias"),
+            FunctionArg("measures_key_alias"),
         ],
         "column": [
             "multiply",
