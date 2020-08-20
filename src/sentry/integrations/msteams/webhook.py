@@ -31,7 +31,7 @@ from .client import (
     CLOCK_SKEW,
 )
 from .link_identity import build_linking_url
-from .utils import build_welcome_card, build_linking_card
+from .utils import build_welcome_card, build_linking_card  # , parse_url, unfurl_issue
 
 logger = logging.getLogger("sentry.integrations.msteams.webhooks")
 

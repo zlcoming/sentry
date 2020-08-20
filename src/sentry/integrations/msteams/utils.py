@@ -1,14 +1,18 @@
 from __future__ import absolute_import
 
+import re
+
 from django.http import Http404
 
-from sentry.models import Integration, Project, GroupStatus, Organization, IdentityProvider
+from sentry.models import Integration, Project, GroupStatus, Organization, IdentityProvider, Group
 from sentry.utils.compat import filter
 from sentry.utils.http import absolute_uri
 from .client import MsTeamsClient
 
 MSTEAMS_MAX_ITERS = 100
 ME = "ME"
+
+link_regexp = re.compile(r"^https?\://[^/]+/[^/]+/[^/]+/(issues|incidents)/(\d+)")
 
 
 def channel_filter(channel, name):
@@ -508,3 +512,23 @@ def get_identity(user, organization_id, integration_id):
         raise Http404
 
     return organization, integration, idp
+
+
+def parse_url(url):
+    match = link_regexp.match(url)
+    if not match:
+        return None, None
+    try:
+        return match.group(1), int(match.group(2))
+    except (TypeError, ValueError):
+        return None, None
+
+
+def unfurl_issue(integration, id):
+    group = Group.objects.filter(
+        id=id, project__in=Project.objects.filter(organization__in=integration.organizations.all())
+    )
+    if not group:
+        return {}
+
+    return build_group_card(group, None, None)
