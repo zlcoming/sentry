@@ -1,6 +1,6 @@
 ---
 relay:
-  upstream: 'http://host.docker.internal:8000/'
+  upstream: 'http://dev.getsentry.net:8000/'
   host: 0.0.0.0
   port: 7899
 logging:
@@ -11,8 +11,8 @@ limits:
 processing:
   enabled: true
   kafka_config:
-    - {name: 'bootstrap.servers', value: 'sentry_kafka:9093'}
+    - {name: 'bootstrap.servers', value: '127.0.0.1:9092'}
     # The maximum attachment chunk size is 1MB. Together with some meta data,
     # messages will never get larger than 2MB in total.
     - {name: 'message.max.bytes', value: 2097176}
-  redis: redis://sentry_redis:6379
+  redis: redis://127.0.0.1:6379
