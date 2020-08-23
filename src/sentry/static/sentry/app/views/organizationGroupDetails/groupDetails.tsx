@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as ReactRouter from 'react-router';
 import * as Sentry from '@sentry/react';
-import uniqBy from 'lodash/uniqBy';
-import moment from 'moment-timezone';
 
 import {Client} from 'app/api';
 import {Group, Organization, Project, Event, AvatarProject} from 'app/types';
@@ -19,10 +17,6 @@ import Projects from 'app/utils/projects';
 import SentryTypes from 'app/sentryTypes';
 import recreateRoute from 'app/utils/recreateRoute';
 import withApi from 'app/utils/withApi';
-import DiscoverQuery, {TableDataRow} from 'app/utils/discover/discoverQuery';
-import EventView from 'app/utils/discover/eventView';
-import {ALL_ACCESS_PROJECTS} from 'app/constants/globalSelectionHeader';
-import {getTraceDateTimeRange} from 'app/components/events/interfaces/spans/utils';
 import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
 
 import {ERROR_TYPES} from './constants';
@@ -32,7 +26,6 @@ import GroupHeader from './header';
 // TODO(ts): Move this enum to the GroupHeader component as soon as it is converted to ts
 enum TAB {
   DETAILS = 'details',
-  RELATED_EVENTS = 'related_events',
   COMMENTS = 'comments',
   USER_FEEDBACK = 'user_feedback',
   ATTACHMENTS = 'attachments',
@@ -159,8 +152,6 @@ class GroupDetails extends React.Component<Props, State> {
         return TAB.COMMENTS;
       case '/organizations/:orgId/issues/:groupId/events/':
         return TAB.EVENTS;
-      case '/organizations/:orgId/issues/:groupId/related-events/':
-        return TAB.RELATED_EVENTS;
       default:
         return TAB.DETAILS;
     }
@@ -296,115 +287,29 @@ class GroupDetails extends React.Component<Props, State> {
     }
   }
 
-  getEventView() {
-    const {event} = this.state;
-
-    if (!event) {
-      return undefined;
-    }
-
-    const traceID = event.contexts?.trace?.trace_id;
-
-    if (!traceID) {
-      return undefined;
-    }
-
-    const {organization} = this.props;
-    const orgFeatures = organization.features;
-    const dateCreated = moment(event.dateCreated).valueOf() / 1000;
-    const pointInTime = event?.dateReceived
-      ? moment(event.dateReceived).valueOf() / 1000
-      : dateCreated;
-
-    const {start, end} = getTraceDateTimeRange({
-      start: pointInTime,
-      end: pointInTime,
-    });
-
-    return EventView.fromSavedQuery({
-      id: undefined,
-      name: `Events with Trace ID ${traceID}`,
-      fields: [
-        'title',
-        'event.type',
-        'project',
-        'project.id',
-        'trace.span',
-        'timestamp',
-        'lastSeen',
-        'issue',
-      ],
-      orderby: '-timestamp',
-      query: `trace:${traceID}`,
-      projects: orgFeatures.includes('global-views')
-        ? [ALL_ACCESS_PROJECTS]
-        : [Number(event?.projectID)],
-      version: 2,
-      start,
-      end,
-    });
-  }
-
-  renderInnerContent(
-    project: AvatarProject,
-    relatedEvents: Array<TableDataRow>,
-    eventView?: EventView
-  ) {
-    const {children, environments, location} = this.props;
+  renderContent(project: AvatarProject) {
+    const {organization, location, children, environments} = this.props;
     const {group, event} = this.state;
 
     const activeTab = this.getCurrentTab();
 
-    let childProps: Record<string, any> = {environments, group, project};
+    let childProps: Record<string, any> = {environments, group, project, organization};
 
     if (activeTab === TAB.DETAILS) {
       childProps = {...childProps, event};
     }
 
-    if (activeTab === TAB.RELATED_EVENTS) {
-      childProps = {...childProps, relatedEvents, event, location, eventView};
+    if (activeTab === TAB.SIMILAR_ISSUES) {
+      childProps = {...childProps, event, location};
     }
 
     return (
       <React.Fragment>
-        <GroupHeader
-          project={project}
-          group={group}
-          relatedEventsQuantity={relatedEvents.length}
-          activeTab={activeTab}
-        />
+        <GroupHeader project={project} group={group} activeTab={activeTab} />
         {React.isValidElement(children)
           ? React.cloneElement(children, childProps)
           : children}
       </React.Fragment>
-    );
-  }
-
-  renderContent(project: AvatarProject) {
-    const eventView = this.getEventView();
-    const {organization, location} = this.props;
-    const orgFeatures = organization.features;
-    // the related-events feature flag is going to be removed
-    if (!eventView || !orgFeatures.includes('related-events')) {
-      return this.renderInnerContent(project, []);
-    }
-    const {event} = this.state;
-    return (
-      <DiscoverQuery
-        location={location}
-        eventView={eventView}
-        orgSlug={organization.slug}
-      >
-        {discoverData => {
-          if (discoverData.isLoading) {
-            return <LoadingIndicator />;
-          }
-          const relatedEvents = uniqBy(discoverData.tableData?.data, 'id').filter(
-            evt => evt.id !== event?.id
-          );
-          return this.renderInnerContent(project, relatedEvents, eventView);
-        }}
-      </DiscoverQuery>
     );
   }
 

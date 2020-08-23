@@ -10,8 +10,8 @@ import SpreadLayout from 'app/components/spreadLayout';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
 import {Panel} from 'app/components/panels';
 
-import SimilarItem from './similarItem';
-import SimilarToolbar from './similarToolbar';
+import Item from './item';
+import SimilarToolbar from './toolbar';
 
 const SimilarItemPropType = PropTypes.shape({
   issue: Group,
@@ -20,7 +20,7 @@ const SimilarItemPropType = PropTypes.shape({
   isBelowThreshold: PropTypes.bool,
 });
 
-class SimilarList extends React.Component {
+class List extends React.Component {
   static propTypes = {
     orgId: PropTypes.string.isRequired,
     groupId: PropTypes.string.isRequired,
@@ -78,7 +78,7 @@ class SimilarList extends React.Component {
 
         <div className="similar-list">
           {itemsWithFiltered.map(item => (
-            <SimilarItem key={item.issue.id} orgId={orgId} groupId={groupId} {...item} />
+            <Item key={item.issue.id} orgId={orgId} groupId={groupId} {...item} />
           ))}
 
           {hasHiddenItems && !this.state.showAllItems && (
@@ -95,4 +95,4 @@ class SimilarList extends React.Component {
   }
 }
 
-export default SimilarList;
+export default List;
