@@ -1256,7 +1256,7 @@ function routes() {
               path="/organizations/:orgId/issues/:groupId/similar/"
               componentPromise={() =>
                 import(
-                  /* webpackChunkName: "GroupSimilarView" */ 'app/views/organizationGroupDetails/groupSimilar'
+                  /* webpackChunkName: "GroupSimilarView" */ 'app/views/organizationGroupDetails/groupSimilarIssues'
                 )
               }
               component={errorHandler(LazyLoad)}

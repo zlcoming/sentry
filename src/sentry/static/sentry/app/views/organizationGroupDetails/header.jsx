@@ -30,6 +30,7 @@ class GroupHeader extends React.Component {
     api: PropTypes.object,
     group: SentryTypes.Group.isRequired,
     project: SentryTypes.Project,
+    activeTab: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
@@ -63,7 +64,7 @@ class GroupHeader extends React.Component {
   }
 
   render() {
-    const {project, group} = this.props;
+    const {project, group, activeTab} = this.props;
     const {organization, location} = this.context;
     const projectFeatures = new Set(project ? project.features : []);
     const organizationFeatures = new Set(organization ? organization.features : []);
@@ -86,7 +87,7 @@ class GroupHeader extends React.Component {
     const orgId = organization.slug;
     const message = this.getMessage();
 
-    const hasSimilarView = projectFeatures.has('similarity-view');
+    const hasSimilarView = true;
     const hasEventAttachments = organizationFeatures.has('event-attachments');
 
     const baseUrl = `/organizations/${orgId}/issues/`;
@@ -193,58 +194,49 @@ class GroupHeader extends React.Component {
         <NavTabs>
           <ListLink
             to={`${baseUrl}${groupId}/${location.search}`}
-            isActive={() => {
-              const rootGroupPath = `${baseUrl}${groupId}/`;
-              const pathname = location.pathname;
-
-              // Because react-router 1.0 removes router.isActive(route)
-              return pathname === rootGroupPath || /events\/\w+\/$/.test(pathname);
-            }}
+            isActive={() => activeTab === 'details'}
           >
             {t('Details')}
           </ListLink>
           <ListLink
             to={`${baseUrl}${groupId}/activity/${location.search}`}
-            isActive={() => location.pathname.includes('/activity/')}
+            isActive={() => activeTab === 'comments'}
           >
             {t('Activity')} <Badge text={group.numComments} />
           </ListLink>
           <ListLink
             to={`${baseUrl}${groupId}/feedback/${location.search}`}
-            isActive={() => location.pathname.includes('/feedback/')}
+            isActive={() => activeTab === 'user_feedback'}
           >
             {t('User Feedback')} <Badge text={group.userReportCount} />
           </ListLink>
           {hasEventAttachments && (
             <ListLink
               to={`${baseUrl}${groupId}/attachments/${location.search}`}
-              isActive={() => location.pathname.includes('/attachments/')}
+              isActive={() => activeTab === 'attachments'}
             >
               {t('Attachments')}
             </ListLink>
           )}
           <ListLink
             to={`${baseUrl}${groupId}/tags/${location.search}`}
-            isActive={() => location.pathname.includes('/tags/')}
+            isActive={() => activeTab === 'tags'}
           >
             {t('Tags')}
           </ListLink>
-          <ListLink
-            to={eventRouteToObject}
-            isActive={() => location.pathname.endsWith('/events/')}
-          >
+          <ListLink to={eventRouteToObject} isActive={() => activeTab === 'events'}>
             {t('Events')}
           </ListLink>
           <ListLink
             to={`${baseUrl}${groupId}/merged/${location.search}`}
-            isActive={() => location.pathname.includes('/merged/')}
+            isActive={() => activeTab === 'merged'}
           >
             {t('Merged')}
           </ListLink>
           {hasSimilarView && (
             <ListLink
               to={`${baseUrl}${groupId}/similar/${location.search}`}
-              isActive={() => location.pathname.includes('/similar/')}
+              isActive={() => activeTab === 'similar_issues'}
             >
               {t('Similar Issues')}
             </ListLink>

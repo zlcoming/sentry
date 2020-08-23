@@ -408,6 +408,14 @@ const GroupingStore = Reflux.createStore({
     this.trigger(state);
     return state;
   },
+
+  getSimilar() {
+    return {
+      similarItems: this.similarItems,
+      filteredSimilarItems: this.filteredSimilarItems,
+      similarLinks: this.similarLinks,
+    };
+  },
 });
 
 export default GroupingStore;
