@@ -2,7 +2,7 @@ import React from 'react';
 import {Location} from 'history';
 
 import Feature from 'app/components/acl/feature';
-import {Project, Organization, Group, Event} from 'app/types';
+import {Project, Organization, Event} from 'app/types';
 
 import SimilarStackTrace from './similarStackTrace';
 import SimilarTraceID from './similarTraceID';
@@ -11,21 +11,17 @@ type Props = {
   project: Project;
   location: Location;
   organization: Organization;
-  group: Group;
   event: Event;
 };
 
-const GroupSimilarIssues = ({event, organization, location, ...props}: Props) => (
+const GroupSimilarIssues = ({event, organization, location, project}: Props) => (
   <div>
-    <Feature features={['similarity-view']}>
-      <SimilarStackTrace
-        event={event}
-        organization={organization}
-        location={location}
-        {...props}
-      />
-    </Feature>
-    <Feature features={['discover-basic', 'performance-view']} requireAll={false}>
+    <SimilarStackTrace project={project} query={location.query.query} />
+    <Feature
+      features={['discover-basic', 'performance-view']}
+      organization={organization}
+      requireAll={false}
+    >
       <SimilarTraceID event={event} organization={organization} location={location} />
     </Feature>
   </div>
