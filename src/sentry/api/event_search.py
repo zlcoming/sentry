@@ -1246,11 +1246,6 @@ class FunctionArg(object):
         raise InvalidFunctionArgument(u"{} has no defaults".format(self.name))
 
 
-class AliasColumn(FunctionArg):
-    def normalize(self, value):
-        return value
-
-
 class NullColumn(FunctionArg):
     """
     Convert the provided column to null so that we
@@ -1258,7 +1253,10 @@ class NullColumn(FunctionArg):
     required argument that we ignore.
     """
 
-    def has_default(self, params):
+    def __init__(self, name):
+        super(NullColumn, self).__init__(name, has_default=True)
+
+    def get_default(self, params):
         return None
 
     def normalize(self, value):

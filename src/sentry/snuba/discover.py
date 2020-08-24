@@ -731,19 +731,23 @@ def query(
 
                 orderby = histogram_alias
 
-                # TODO(tonyx): move this to the front end
                 if conditions is None:
                     conditions = []
+                # TODO(tonyx): consider moving this to the front end?
                 conditions.append([
                     ["isNotNull", [get_function_alias(measures_histogram_column)]],
                     "=",
                     1,
                 ])
 
+                # TODO(tonyx): need to add min/max conditions if they exist
+
                 # the existing limit is not good enough as we have N histograms stacked in the results
                 # which means we need to multiply it by N to get the number of results we want
                 # a better way to do this will probably be to parse the last argument of measureHistogram
                 # and use that to determine the new limit
+                #
+                # also something to consider is to raise the page limit on eventsv2 to 200
                 limit *= col.count(",")
             break
         idx += 1

@@ -103,7 +103,8 @@ class VitalsQuery extends React.Component<Props> {
 
     (durationHistogramResults?.tableData?.data ?? []).forEach(row => {
       const histogramColumn = getMeasuresHistogramFunction(DURATION_VITALS, {
-        max: 1000,
+        // min: 0,
+        max: 5000,
         buckets: NUM_BUCKETS,
       });
       const key = getAggregateAlias(histogramColumn);
@@ -149,7 +150,8 @@ class VitalsQuery extends React.Component<Props> {
               location={location}
               orgSlug={organization.slug}
               eventView={this.generateHistogramEventView(DURATION_VITALS, {
-                max: 1000,
+                // min: 0,
+                max: 5000,
               })}
               limit={100}
             >
