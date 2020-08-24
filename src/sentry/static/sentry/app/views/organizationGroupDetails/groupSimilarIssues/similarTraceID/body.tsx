@@ -64,7 +64,7 @@ const Body = ({traceID, event, organization, location}: Props) => {
         }
 
         const stackTraces = uniqBy(discoverData.tableData?.data, 'id').filter(
-          evt => evt.id !== event.id
+          evt => evt.id !== event.eventID
         );
 
         return <List stackTraces={stackTraces} organization={organization} />;

@@ -23,7 +23,7 @@ const SimilarStackTrace = createReactClass({
 
   propTypes: {
     project: SentryTypes.Project,
-    query: PropTypes.string,
+    location: PropTypes.object,
   },
 
   mixins: [Reflux.listenTo(GroupingStore, 'onGroupingUpdate')],
@@ -124,7 +124,8 @@ const SimilarStackTrace = createReactClass({
   },
 
   handleMerge() {
-    const {query, params} = this.props;
+    const {params} = this.props;
+    const query = this.props.location.query;
 
     if (params) {
       // You need at least 1 similarItem OR filteredSimilarItems to be able to merge,

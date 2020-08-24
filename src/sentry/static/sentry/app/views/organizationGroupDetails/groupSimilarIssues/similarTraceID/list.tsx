@@ -7,6 +7,7 @@ import {Panel, PanelBody} from 'app/components/panels';
 import StreamGroup from 'app/components/stream/group';
 import GroupListHeader from 'app/components/issues/groupListHeader';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
+import GroupStore from 'app/stores/groupStore';
 
 type Stacktrace = {
   id: string;
@@ -27,6 +28,10 @@ const List = ({organization, ...props}: Props) => {
   const orgSlug = organization.slug;
   const stackTraces = props.stackTraces as Array<Stacktrace>;
 
+  const all = GroupStore.getAll();
+
+  console.log('all', all);
+
   return (
     <Panel>
       <PanelBody>
@@ -42,6 +47,7 @@ const List = ({organization, ...props}: Props) => {
               id={String(stackTrace['issue.id'])}
               orgId={orgSlug}
               withChart={false}
+              canSelect={false}
             />
           ))
         )}
