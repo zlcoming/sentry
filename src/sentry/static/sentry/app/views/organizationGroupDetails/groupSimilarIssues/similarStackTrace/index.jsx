@@ -167,6 +167,8 @@ const SimilarStackTrace = createReactClass({
           )}
         </div>
 
+        <Title>{t('Issues with a similar stack trace')}</Title>
+
         {hasV2 && (
           <SwitchContainer>
             💩
@@ -221,4 +223,11 @@ const SwitchContainer = styled('div')`
     vertical-align: middle;
     margin: ${space(1)};
   }
+`;
+
+const Title = styled('h4')`
+  font-size: ${p => p.theme.headerFontSize};
+  color: ${p => p.theme.gray700};
+  font-weight: normal;
+  margin-bottom: 0;
 `;

@@ -181,7 +181,6 @@ class GroupHeader extends React.Component {
               </div>
               <div className="assigned-to m-l-1">
                 <h6 className="nav-header">{t('Assignee')}</h6>
-                <AssigneeSelector id={group.id} memberList={memberList} />
               </div>
             </div>
           </div>

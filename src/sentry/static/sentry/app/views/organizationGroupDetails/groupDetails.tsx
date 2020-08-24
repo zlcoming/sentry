@@ -293,14 +293,14 @@ class GroupDetails extends React.Component<Props, State> {
 
     const activeTab = this.getCurrentTab();
 
-    let childProps: Record<string, any> = {environments, group, project, organization};
+    let childProps: Record<string, any> = {environments, group, project};
 
     if (activeTab === TAB.DETAILS) {
       childProps = {...childProps, event};
     }
 
     if (activeTab === TAB.SIMILAR_ISSUES) {
-      childProps = {...childProps, event, location};
+      childProps = {...childProps, event, organization, location};
     }
 
     return (

@@ -1,19 +1,13 @@
 import React from 'react';
-import {Location} from 'history';
 import styled from '@emotion/styled';
 
 import SentryTypes from 'app/sentryTypes';
-import {Organization, Event} from 'app/types';
 import space from 'app/styles/space';
 
 import Body from './body';
 import Header from './header';
 
-type Props = {
-  event: Event;
-  organization: Organization;
-  location: Location;
-};
+type Props = React.ComponentProps<typeof Body>;
 
 const SimilarTraceID = ({event, ...props}: Props) => {
   const traceID = event.contexts?.trace?.trace_id;

@@ -1,17 +1,15 @@
 import React from 'react';
 import {Location} from 'history';
-import moment from 'moment-timezone';
-import uniqBy from 'lodash/uniqBy';
+import pick from 'lodash/pick';
 
-import EventView from 'app/utils/discover/eventView';
-import {ALL_ACCESS_PROJECTS} from 'app/constants/globalSelectionHeader';
-import {getTraceDateTimeRange} from 'app/components/events/interfaces/spans/utils';
-import DiscoverQuery from 'app/utils/discover/discoverQuery';
-import LoadingIndicator from 'app/components/loadingIndicator';
+import {t} from 'app/locale';
+import {DEFAULT_RELATIVE_PERIODS} from 'app/constants';
+import {URL_PARAM} from 'app/constants/globalSelectionHeader';
 import {Organization, Event} from 'app/types';
+import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
+import GroupList from 'app/components/issues/groupList';
 
-import NoTraceFound from './noTraceFound';
-import List from './list';
+import EmptyState from './emptyState';
 
 type Props = {
   event: Event;
@@ -20,56 +18,67 @@ type Props = {
   traceID?: string;
 };
 
-const Body = ({traceID, event, organization, location}: Props) => {
+const Body = ({traceID, organization, location}: Props) => {
   if (!traceID) {
-    return <NoTraceFound />;
+    return (
+      <EmptyState
+        message={t(
+          'This event has no trace context, therefore it was not possible to fetch similar issues by trace ID.'
+        )}
+      />
+    );
   }
 
-  const orgFeatures = organization.features;
   const orgSlug = organization.slug;
 
-  const getEventView = () => {
-    const dateCreated = moment(event.dateCreated).valueOf() / 1000;
-    const pointInTime = event.dateReceived
-      ? moment(event.dateReceived).valueOf() / 1000
-      : dateCreated;
-
-    const {start, end} = getTraceDateTimeRange({
-      start: pointInTime,
-      end: pointInTime,
-    });
-
-    return EventView.fromSavedQuery({
-      id: undefined,
-      name: `Events with Trace ID ${traceID}`,
-      fields: ['title', 'project', 'issue', 'timestamp'],
-      orderby: '-timestamp',
-      query: `event.type:error  trace:${traceID}`,
-      projects: orgFeatures.includes('global-views')
-        ? [ALL_ACCESS_PROJECTS]
-        : [Number(event.projectID)],
-      version: 2,
-      start,
-      end,
-    });
+  const getIssuesEndpoint = () => {
+    const queryParams = {
+      sort: 'new',
+      ...pick(location.query, [...Object.values(URL_PARAM), 'cursor']),
+    };
+    return {
+      path: `/organizations/${orgSlug}/issues/`,
+      queryParams: {
+        ...queryParams,
+        query: stringifyQueryObject(new QueryResults([`trace:${traceID}`])),
+      },
+    };
   };
 
-  const eventView = getEventView();
+  const renderEmptyMessage = () => {
+    const {statsPeriod} = location.query;
+
+    const selectedTimePeriod =
+      statsPeriod &&
+      typeof statsPeriod === 'string' &&
+      DEFAULT_RELATIVE_PERIODS[statsPeriod];
+    const displayedPeriod = selectedTimePeriod
+      ? selectedTimePeriod.toLowerCase()
+      : t('given timeframe');
+
+    return (
+      <EmptyState
+        message={t(
+          'No issues with the same trace ID have been found for the %s.',
+          displayedPeriod
+        )}
+      />
+    );
+  };
+
+  const {path, queryParams} = getIssuesEndpoint();
 
   return (
-    <DiscoverQuery location={location} eventView={eventView} orgSlug={orgSlug}>
-      {discoverData => {
-        if (discoverData.isLoading) {
-          return <LoadingIndicator />;
-        }
-
-        const stackTraces = uniqBy(discoverData.tableData?.data, 'id').filter(
-          evt => evt.id !== event.eventID
-        );
-
-        return <List stackTraces={stackTraces} organization={organization} />;
-      }}
-    </DiscoverQuery>
+    <GroupList
+      orgId={orgSlug}
+      endpointPath={path}
+      queryParams={queryParams}
+      query=""
+      renderEmptyMessage={renderEmptyMessage}
+      canSelectGroups={false}
+      withChart={false}
+      withPagination={false}
+    />
   );
 };
 
