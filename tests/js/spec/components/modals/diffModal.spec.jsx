@@ -15,6 +15,7 @@ describe('DiffModal', function() {
         Body={({children}) => <div>{children}</div>}
       />
     );
+    console.log(wrapper.debug());
     expect(wrapper).toSnapshot();
   });
 });
