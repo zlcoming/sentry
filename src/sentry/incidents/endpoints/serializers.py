@@ -8,6 +8,7 @@ from rest_framework import serializers
 
 from django.db import transaction
 from django.utils import timezone
+from django.utils.encoding import force_text
 
 from sentry.api.event_search import InvalidSearchQuery
 from sentry.api.serializers.rest_framework.base import CamelSnakeModelSerializer
@@ -54,6 +55,7 @@ action_target_type_to_string = {
     AlertRuleTriggerAction.TargetType.USER: "user",
     AlertRuleTriggerAction.TargetType.TEAM: "team",
     AlertRuleTriggerAction.TargetType.SPECIFIC: "specific",
+    AlertRuleTriggerAction.TargetType.SENTRY_APP: "sentry_app",
 }
 string_to_action_target_type = {v: k for (k, v) in action_target_type_to_string.items()}
 
@@ -76,7 +78,13 @@ class AlertRuleTriggerActionSerializer(CamelSnakeModelSerializer):
 
     class Meta:
         model = AlertRuleTriggerAction
-        fields = ["id", "type", "target_type", "target_identifier", "integration"]
+        fields = [
+            "id",
+            "type",
+            "target_type",
+            "target_identifier",
+            "integration",
+        ]
         extra_kwargs = {
             "target_identifier": {"required": True},
             "target_display": {"required": False},
@@ -156,7 +164,7 @@ class AlertRuleTriggerActionSerializer(CamelSnakeModelSerializer):
                 trigger=self.context["trigger"], **validated_data
             )
         except InvalidTriggerActionError as e:
-            raise serializers.ValidationError(e.message)
+            raise serializers.ValidationError(force_text(e))
 
     def update(self, instance, validated_data):
         if "id" in validated_data:
@@ -164,7 +172,7 @@ class AlertRuleTriggerActionSerializer(CamelSnakeModelSerializer):
         try:
             return update_alert_rule_trigger_action(instance, **validated_data)
         except InvalidTriggerActionError as e:
-            raise serializers.ValidationError(e.message)
+            raise serializers.ValidationError(force_text(e))
 
 
 class AlertRuleTriggerSerializer(CamelSnakeModelSerializer):
@@ -305,7 +313,7 @@ class AlertRuleSerializer(CamelSnakeModelSerializer):
                     "Invalid Metric: We do not currently support this field."
                 )
         except InvalidSearchQuery as e:
-            raise serializers.ValidationError("Invalid Metric: {}".format(e.message))
+            raise serializers.ValidationError("Invalid Metric: {}".format(force_text(e)))
         return translate_aggregate_field(aggregate)
 
     def validate_dataset(self, dataset):
@@ -350,7 +358,7 @@ class AlertRuleSerializer(CamelSnakeModelSerializer):
                 },
             )
         except (InvalidSearchQuery, ValueError) as e:
-            raise serializers.ValidationError("Invalid Query or Metric: {}".format(e.message))
+            raise serializers.ValidationError("Invalid Query or Metric: {}".format(force_text(e)))
         else:
             if not snuba_filter.aggregations:
                 raise serializers.ValidationError(

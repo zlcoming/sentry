@@ -145,6 +145,14 @@ class GroupListTest(APITestCase, SnubaTestCase):
         assert response.status_code == 400
         assert "Invalid format for numeric search" in response.data["detail"]
 
+    def test_invalid_sort_key(self):
+        now = timezone.now()
+        self.create_group(checksum="a" * 32, last_seen=now - timedelta(seconds=1))
+        self.login_as(user=self.user)
+
+        response = self.get_response(sort="meow", query="is:unresolved")
+        assert response.status_code == 400
+
     def test_simple_pagination(self):
         event1 = self.store_event(
             data={"timestamp": iso_format(before_now(seconds=2)), "fingerprint": ["group-1"]},
@@ -1154,7 +1162,7 @@ class GroupUpdateTest(APITestCase, SnubaTestCase):
             event = self.store_event(
                 data={
                     "fingerprint": ["put-me-in-group-1"],
-                    "user": {"id": six.binary_type(i)},
+                    "user": {"id": six.text_type(i).encode("utf-8")},
                     "timestamp": iso_format(self.min_ago + timedelta(seconds=i)),
                 },
                 project_id=self.project.id,
@@ -1518,7 +1526,7 @@ class GroupDeleteTest(APITestCase, SnubaTestCase):
             groups.append(
                 self.create_group(
                     project=self.project,
-                    checksum=six.binary_type(i) * 16,
+                    checksum=six.text_type(i).encode("utf-8") * 16,
                     status=GroupStatus.RESOLVED,
                 )
             )

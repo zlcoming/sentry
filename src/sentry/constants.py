@@ -151,6 +151,7 @@ RESERVED_ORGANIZATION_SLUGS = frozenset(
         "careers",
         "_experiment",
         "sentry-apps",
+        "resources",
     )
 )
 
@@ -227,6 +228,9 @@ SENTRY_RULES = (
     "sentry.rules.conditions.event_frequency.EventUniqueUserFrequencyCondition",
     "sentry.rules.conditions.event_attribute.EventAttributeCondition",
     "sentry.rules.conditions.level.LevelCondition",
+    "sentry.rules.filters.age_comparison.AgeComparisonFilter",
+    "sentry.rules.filters.issue_occurrences.IssueOccurrencesFilter",
+    "sentry.rules.filters.assigned_to.AssignedToFilter",
 )
 
 # methods as defined by http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html + PATCH

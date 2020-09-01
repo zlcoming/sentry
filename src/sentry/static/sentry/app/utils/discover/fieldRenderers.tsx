@@ -16,11 +16,11 @@ import getDynamicText from 'app/utils/getDynamicText';
 import {formatFloat, formatPercentage} from 'app/utils/formatters';
 import {getAggregateAlias, AGGREGATIONS} from 'app/utils/discover/fields';
 import Projects from 'app/utils/projects';
+import {getShortEventId} from 'app/utils/events';
 
 import {
   BarContainer,
   Container,
-  EventId,
   NumberContainer,
   OverflowLink,
   StyledDateTime,
@@ -162,6 +162,7 @@ type SpecialFields = {
   id: SpecialField;
   project: SpecialField;
   user: SpecialField;
+  'user.display': SpecialField;
   'issue.id': SpecialField;
   issue: SpecialField;
   release: SpecialField;
@@ -179,11 +180,8 @@ const SPECIAL_FIELDS: SpecialFields = {
       if (typeof id !== 'string') {
         return null;
       }
-      return (
-        <Container>
-          <EventId value={id} />
-        </Container>
-      );
+
+      return <Container>{getShortEventId(id)}</Container>;
     },
   },
   'issue.id': {
@@ -243,17 +241,38 @@ const SPECIAL_FIELDS: SpecialFields = {
     },
   },
   user: {
-    sortField: 'user.id',
+    sortField: 'user',
     renderFunc: data => {
-      const userObj = {
-        id: data.user,
-        name: data.user,
-        email: data.user,
-        username: data.user,
-        ip_address: '',
-      };
-
       if (data.user) {
+        const [key, value] = data.user.split(':');
+        const userObj = {
+          id: '',
+          name: '',
+          email: '',
+          username: '',
+          ip_address: '',
+        };
+        userObj[key] = value;
+
+        const badge = <UserBadge user={userObj} hideEmail avatarSize={16} />;
+        return <Container>{badge}</Container>;
+      }
+
+      return <Container>{emptyValue}</Container>;
+    },
+  },
+  'user.display': {
+    sortField: 'user.display',
+    renderFunc: data => {
+      if (data['user.display']) {
+        const userObj = {
+          id: '',
+          name: data['user.display'],
+          email: '',
+          username: '',
+          ip_address: '',
+        };
+
         const badge = <UserBadge user={userObj} hideEmail avatarSize={16} />;
         return <Container>{badge}</Container>;
       }

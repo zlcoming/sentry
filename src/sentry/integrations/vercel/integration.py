@@ -16,6 +16,7 @@ from sentry.integrations import (
     FeatureDescription,
 )
 from sentry import options
+from sentry.constants import ObjectStatus
 from sentry.pipeline import NestedPipelineView
 from sentry.identity.pipeline import IdentityProviderPipeline
 from sentry.utils.http import absolute_uri
@@ -147,7 +148,9 @@ class VercelIntegration(IntegrationInstallation):
         sentry_projects = map(
             lambda proj: {key: proj[key] for key in proj_fields},
             (
-                Project.objects.filter(organization_id=self.organization_id)
+                Project.objects.filter(
+                    organization_id=self.organization_id, status=ObjectStatus.VISIBLE
+                )
                 .order_by("slug")
                 .values(*proj_fields)
             ),
@@ -260,9 +263,9 @@ class VercelIntegration(IntegrationInstallation):
     def create_env_var(self, client, vercel_project_id, key, value):
         if not self.env_var_already_exists(client, vercel_project_id, key):
             return client.create_env_variable(vercel_project_id, key, value)
-        self.delete_env_variable(client, vercel_project_id, key, value)
+        self.update_env_variable(client, vercel_project_id, key, value)
 
-    def delete_env_variable(self, client, vercel_project_id, key, value):
+    def update_env_variable(self, client, vercel_project_id, key, value):
         return client.update_env_variable(vercel_project_id, key, value)
 
 
