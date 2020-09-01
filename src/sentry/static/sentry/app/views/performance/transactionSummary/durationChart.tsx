@@ -47,11 +47,24 @@ type Props = ReactRouter.WithRouterProps &
 
 const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()', 'epm()'];
 
+type State = {
+  throughputGridLeftOffset: string;
+};
+
 /**
  * Fetch and render a stacked area chart that shows duration
  * percentiles over the past 7 days
  */
-class DurationChart extends React.Component<Props> {
+class DurationChart extends React.Component<Props, State> {
+  chartValues = {
+    durationGridWidth: 0,
+    throughputGridWidth: 0,
+  };
+
+  state: State = {
+    throughputGridLeftOffset: '10px',
+  };
+
   handleLegendSelectChanged = legendChange => {
     const {location} = this.props;
     const {selected} = legendChange;
@@ -67,6 +80,47 @@ class DurationChart extends React.Component<Props> {
     browserHistory.push(to);
   };
 
+  handleInternalGridResize = (axesList, gridModel, estimateLabelUnionRect) => {
+    let {durationGridWidth, throughputGridWidth} = this.chartValues;
+    let newDurationGridWidth = durationGridWidth;
+    let newThroughputGridWidth = throughputGridWidth;
+    const index = gridModel.componentIndex;
+    axesList.forEach(axis => {
+      const {dim} = axis;
+      if (index === 0 && dim === 'y') {
+        const labelUnionRect = estimateLabelUnionRect(axis);
+        if (labelUnionRect) {
+          newDurationGridWidth = labelUnionRect.width;
+        }
+      } else if (index === 1 && dim === 'y') {
+        const labelUnionRect = estimateLabelUnionRect(axis);
+        if (labelUnionRect) {
+          newThroughputGridWidth = labelUnionRect.width;
+        }
+      }
+    });
+
+    this.chartValues.durationGridWidth = newDurationGridWidth;
+    this.chartValues.throughputGridWidth = newThroughputGridWidth;
+
+    if (
+      newThroughputGridWidth === 0 ||
+      newDurationGridWidth === 0 ||
+      (newThroughputGridWidth === throughputGridWidth &&
+        newDurationGridWidth === durationGridWidth)
+    ) {
+      return;
+    }
+
+    this.setState({
+      throughputGridLeftOffset: `${(
+        newDurationGridWidth -
+        newThroughputGridWidth +
+        10
+      ).toFixed(0)}px`,
+    });
+  };
+
   render() {
     const {
       api,
@@ -78,6 +132,7 @@ class DurationChart extends React.Component<Props> {
       statsPeriod,
       router,
     } = this.props;
+    const {throughputGridLeftOffset} = this.state;
 
     const unselectedSeries = location.query.unselectedSeries ?? [];
     const unselectedMetrics = Array.isArray(unselectedSeries)
@@ -184,11 +239,12 @@ class DurationChart extends React.Component<Props> {
           height: '170px',
         },
         {
-          left: '10px',
+          left: throughputGridLeftOffset,
           right: '10px',
           top: '225px',
           bottom: '0px',
           height: '55px',
+          containLabel: true,
         },
       ],
     };
@@ -281,6 +337,8 @@ class DurationChart extends React.Component<Props> {
                               {...zoomRenderProps}
                               onLegendSelectChanged={this.handleLegendSelectChanged}
                               series={[...series, ...releaseSeries]}
+                              isExtended
+                              onInternalGridResize={this.handleInternalGridResize}
                             />
                           ),
                           fixed: 'Duration Chart',
