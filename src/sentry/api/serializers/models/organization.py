@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import six
 from rest_framework import serializers
 
+import sentry_sdk
 from sentry_relay.auth import PublicKey
 from sentry_relay.exceptions import RelayError
 
@@ -121,15 +122,25 @@ class OrganizationSerializer(Serializer):
         status = OrganizationStatus(obj.status)
 
         # Retrieve all registered organization features
-        org_features = features.all(feature_type=OrganizationFeature).keys()
+        org_features = [
+            feature
+            for feature in features.all(feature_type=OrganizationFeature).keys()
+            if feature.startswith("organizations:")
+        ]
         feature_list = set()
 
+        bulk_features = features.bulk_has(org_features, obj, actor=user)
+        if bulk_features:
+            for feature_name, active in six.iteritems(bulk_features):
+                if active:
+                    feature_list.add(feature_name[len("organizations:") :])
+                org_features.remove(feature_name)
+
         for feature_name in org_features:
-            if not feature_name.startswith("organizations:"):
-                continue
-            if features.has(feature_name, obj, actor=user):
-                # Remove the organization scope prefix
-                feature_list.add(feature_name[len("organizations:") :])
+            with sentry_sdk.start_span(op="org.check_feature", description=feature_name):
+                if features.has(feature_name, obj, actor=user):
+                    # Remove the organization scope prefix
+                    feature_list.add(feature_name[len("organizations:") :])
 
         # Do not include the onboarding feature if OrganizationOptions exist
         if (

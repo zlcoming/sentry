@@ -109,6 +109,14 @@ class FeatureManager(object):
         # Features are by default disabled if no plugin or default enables them
         return False
 
+    def bulk_has(self, names, *args, **kwargs):
+        if self._entity_handler:
+            actor = kwargs.pop("actor", None)
+            features = [self.get(name, *args, **kwargs) for name in names]
+            return self._entity_handler.bulk_has(features, actor)
+        else:
+            return None
+
     def _get_handler(self, feature, actor):
         for handler in self._handler_registry[feature.name]:
             rv = handler(feature, actor)
