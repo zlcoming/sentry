@@ -4,12 +4,10 @@ import isObject from 'lodash/isObject';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
-import {css} from '@emotion/core';
 
 import space from 'app/styles/space';
 import Pills from 'app/components/pills';
 import Pill from 'app/components/pill';
-import ExternalLink from 'app/components/links/externalLink';
 import Hovercard from 'app/components/hovercard';
 import {t} from 'app/locale';
 import {IconInfo, IconOpen} from 'app/icons';
@@ -50,21 +48,22 @@ class ExceptionMechanism extends React.Component {
     const {errno, signal, mach_exception} = meta;
 
     const linkElement = help_link && isUrl(help_link) && (
-      <StyledExternalLink href={help_link}>
+      <a href={help_link} className="external-icon">
         <IconOpen size="xs" />
-      </StyledExternalLink>
+      </a>
     );
 
     const descriptionElement = description && (
       <Hovercard
         header={
           <span>
-            <Details>{t('Details')}</Details> {linkElement}
+            {t('Details')} {linkElement}
           </span>
         }
         body={description}
+        containerClassName="pill-icon"
       >
-        <StyledIconInfo size="14px" />
+        <IconInfo size="14px" />
       </Hovercard>
     );
 
@@ -113,26 +112,4 @@ export default ExceptionMechanism;
 
 const Wrapper = styled('div')`
   margin: ${space(2)} 0;
-`;
-
-const iconStyle = p => css`
-  transition: 0.1s linear color;
-  color: ${p.theme.gray500};
-  :hover {
-    color: ${p.theme.gray700};
-  }
-`;
-
-const StyledExternalLink = styled(ExternalLink)`
-  display: inline-flex !important;
-  ${iconStyle};
-`;
-
-const Details = styled('span')`
-  margin-right: ${space(1)};
-`;
-
-const StyledIconInfo = styled(IconInfo)`
-  display: flex;
-  ${iconStyle};
 `;

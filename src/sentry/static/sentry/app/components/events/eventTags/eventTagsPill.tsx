@@ -13,7 +13,6 @@ import VersionHoverCard from 'app/components/versionHoverCard';
 import TraceHoverCard from 'app/utils/discover/traceHoverCard';
 import Version from 'app/components/version';
 import {IconOpen, IconInfo} from 'app/icons';
-import ExternalLink from 'app/components/links/externalLink';
 
 type Props = {
   tag: EventTag;
@@ -58,9 +57,9 @@ const EventTagsPill = ({
         )}
       </Link>
       {isUrl(tag.value) && (
-        <ExternalLink href={tag.value} className="external-icon">
+        <a href={tag.value} className="external-icon">
           <StyledIconOpen size="xs" />
-        </ExternalLink>
+        </a>
       )}
       {isRelease && (
         <div className="pill-icon">
