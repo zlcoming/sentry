@@ -9,30 +9,12 @@ import GroupDetails from 'app/views/organizationGroupDetails';
 import ProjectsStore from 'app/stores/projectsStore';
 import GroupStore from 'app/stores/groupStore';
 
+jest.mock('app/views/organizationGroupDetails/header', () => jest.fn(() => null));
 jest.unmock('app/utils/recreateRoute');
 
 describe('groupDetails', function() {
   let wrapper;
   const group = TestStubs.Group();
-  const event = TestStubs.Event();
-
-  const routes = [
-    {path: '/', childRoutes: [], component: null},
-    {childRoutes: [], component: null},
-    {
-      path: '/organizations/:orgId/issues/:groupId/',
-      indexRoute: null,
-      childRoutes: [],
-      componentPromise: () => {},
-      component: null,
-    },
-    {
-      componentPromise: null,
-      component: null,
-      props: {currentTab: 'details', isEventRoute: false},
-    },
-  ];
-
   const {organization, project, router, routerContext} = initializeOrg({
     project: TestStubs.Project(),
     router: {
@@ -45,7 +27,18 @@ describe('groupDetails', function() {
       params: {
         groupId: group.id,
       },
-      routes,
+      routes: [
+        {path: '/', childRoutes: [], component: null},
+        {childRoutes: [], component: null},
+        {
+          path: '/organizations/:orgId/issues/:groupId/',
+          indexRoute: null,
+          childRoutes: [],
+          componentPromise: () => {},
+          component: null,
+        },
+        {componentPromise: null, component: null},
+      ],
     },
   });
   let MockComponent;
@@ -72,20 +65,6 @@ describe('groupDetails', function() {
     issueDetailsMock = MockApiClient.addMockResponse({
       url: `/issues/${group.id}/`,
       body: {...group},
-    });
-    MockApiClient.addMockResponse({
-      url: `/issues/${group.id}/events/latest/`,
-      statusCode: 200,
-      body: {
-        ...event,
-      },
-    });
-    MockApiClient.addMockResponse({
-      url: `/projects/org-slug/${project.slug}/issues/`,
-      method: 'PUT',
-      body: {
-        hasSeen: false,
-      },
     });
     MockApiClient.addMockResponse({
       url: '/organizations/org-slug/projects/',
@@ -122,7 +101,6 @@ describe('groupDetails', function() {
 
     ProjectsStore.loadInitialData(organization.projects);
     await tick();
-    await tick();
 
     expect(MockComponent).toHaveBeenLastCalledWith(
       {
@@ -132,7 +110,6 @@ describe('groupDetails', function() {
           id: project.id,
           slug: project.slug,
         }),
-        event,
       },
       {}
     );
@@ -145,7 +122,6 @@ describe('groupDetails', function() {
       url: `/issues/${group.id}/`,
       statusCode: 404,
     });
-
     wrapper = createWrapper();
 
     await tick();
@@ -192,7 +168,6 @@ describe('groupDetails', function() {
         params: {
           groupId: group.id,
         },
-        routes,
       },
     });
 
@@ -224,7 +199,6 @@ describe('groupDetails', function() {
           id: project.id,
           slug: project.slug,
         }),
-        event,
       },
       {}
     );

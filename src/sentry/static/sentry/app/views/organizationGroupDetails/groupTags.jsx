@@ -14,12 +14,13 @@ import {Panel, PanelBody, PanelHeader} from 'app/components/panels';
 import Alert from 'app/components/alert';
 import withApi from 'app/utils/withApi';
 import space from 'app/styles/space';
+import withOrganization from 'app/utils/withOrganization';
 import GlobalSelectionLink from 'app/components/globalSelectionLink';
 import Version from 'app/components/version';
 
 class GroupTags extends React.Component {
   static propTypes = {
-    baseUrl: PropTypes.string.isRequired,
+    organization: SentryTypes.Organization.isRequired,
     group: SentryTypes.Group.isRequired,
     api: PropTypes.object.isRequired,
     environments: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -50,7 +51,6 @@ class GroupTags extends React.Component {
       loading: true,
       error: false,
     });
-
     api.request(`/issues/${group.id}/tags/`, {
       query: {environment: environments},
       success: data => {
@@ -74,9 +74,11 @@ class GroupTags extends React.Component {
   }
 
   render() {
-    const {baseUrl} = this.props;
+    const {group, organization} = this.props;
 
     let children = [];
+
+    const baseUrl = `/organizations/${organization.slug}/issues/`;
 
     if (this.state.loading) {
       return <LoadingIndicator />;
@@ -104,7 +106,7 @@ class GroupTags extends React.Component {
               <GlobalSelectionLink
                 className="tag-bar"
                 to={{
-                  pathname: `${baseUrl}events/`,
+                  pathname: `${baseUrl}${group.id}/events/`,
                   query: {query},
                 }}
               >
@@ -126,7 +128,7 @@ class GroupTags extends React.Component {
                 <DetailsLinkWrapper>
                   <GlobalSelectionLink
                     className="btn btn-default btn-sm"
-                    to={`${baseUrl}tags/${tag.key}/`}
+                    to={`${baseUrl}${group.id}/tags/${tag.key}/`}
                   >
                     {t('More Details')}
                   </GlobalSelectionLink>
@@ -173,4 +175,4 @@ const TagItem = styled('div')`
   width: 50%;
 `;
 
-export default withApi(GroupTags);
+export default withApi(withOrganization(GroupTags));

@@ -173,6 +173,7 @@ const GroupList = createReactClass<Props, State>({
 
   onGroupChange() {
     const groups = this._streamManager.getAllItems();
+
     if (!isEqual(groups, this.state.groups)) {
       this.setState({
         groups,

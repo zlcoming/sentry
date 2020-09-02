@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from '@emotion/styled';
 
 import {Group} from 'app/sentryTypes';
 import {t} from 'app/locale';
 import Pagination from 'app/components/pagination';
+import QueryCount from 'app/components/queryCount';
 import SimilarSpectrum from 'app/components/similarSpectrum';
+import SpreadLayout from 'app/components/spreadLayout';
 import EmptyStateWarning from 'app/components/emptyStateWarning';
-import {Panel, PanelBody} from 'app/components/panels';
-import space from 'app/styles/space';
+import {Panel} from 'app/components/panels';
 
-import Item from './item';
-import SimilarToolbar from './toolbar';
+import SimilarItem from './similarItem';
+import SimilarToolbar from './similarToolbar';
 
 const SimilarItemPropType = PropTypes.shape({
   issue: Group,
@@ -20,7 +20,7 @@ const SimilarItemPropType = PropTypes.shape({
   isBelowThreshold: PropTypes.bool,
 });
 
-class List extends React.Component {
+class SimilarList extends React.Component {
   static propTypes = {
     orgId: PropTypes.string.isRequired,
     groupId: PropTypes.string.isRequired,
@@ -43,11 +43,9 @@ class List extends React.Component {
 
   renderEmpty = () => (
     <Panel>
-      <PanelBody>
-        <EmptyStateWarning small withIcon={false}>
-          {t('No issues with a similar stack trace have been found.')}
-        </EmptyStateWarning>
-      </PanelBody>
+      <EmptyStateWarning>
+        <p>{t('There are no similar issues.')}</p>
+      </EmptyStateWarning>
     </Panel>
   );
 
@@ -68,14 +66,19 @@ class List extends React.Component {
     }
 
     return (
-      <Wrapper className="similar-list-container">
-        <Header>
+      <div className="similar-list-container">
+        <SpreadLayout className="similar-list-header">
+          <h2>
+            <span>{t('Similar Issues')}</span>
+            <QueryCount count={items.length + filteredItems.length} />
+          </h2>
           <SimilarSpectrum />
-        </Header>
+        </SpreadLayout>
         <SimilarToolbar onMerge={onMerge} />
+
         <div className="similar-list">
           {itemsWithFiltered.map(item => (
-            <Item key={item.issue.id} orgId={orgId} groupId={groupId} {...item} />
+            <SimilarItem key={item.issue.id} orgId={orgId} groupId={groupId} {...item} />
           ))}
 
           {hasHiddenItems && !this.state.showAllItems && (
@@ -87,19 +90,9 @@ class List extends React.Component {
           )}
         </div>
         <Pagination pageLinks={pageLinks} />
-      </Wrapper>
+      </div>
     );
   }
 }
 
-export default List;
-
-const Wrapper = styled('div')`
-  margin-bottom: ${space(2)};
-`;
-
-const Header = styled('div')`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: ${space(1)};
-`;
+export default SimilarList;

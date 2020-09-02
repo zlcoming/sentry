@@ -41,5 +41,4 @@ const withTeams = <P extends InjectedTeamsProps>(
       );
     },
   });
-
 export default withTeams;

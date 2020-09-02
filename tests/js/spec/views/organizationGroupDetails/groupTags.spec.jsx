@@ -6,7 +6,7 @@ import {mountWithTheme} from 'sentry-test/enzyme';
 import GroupTags from 'app/views/organizationGroupDetails/groupTags';
 
 describe('GroupTags', function() {
-  const {routerContext, router, organization} = initializeOrg();
+  const {routerContext, router} = initializeOrg();
   const group = TestStubs.Group();
   let tagsMock;
   beforeEach(function() {
@@ -23,7 +23,6 @@ describe('GroupTags', function() {
         query={{}}
         environments={['dev']}
         params={{orgId: 'org-slug', groupId: group.id}}
-        baseUrl={`/organizations/${organization.slug}/issues/${group.id}/`}
       />,
       routerContext
     );
