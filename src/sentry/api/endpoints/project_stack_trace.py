@@ -13,6 +13,8 @@ def get_repo_and_relative_path_from_project(project, file):
             "scefali/sentry-demo-react",
             file.replace("/Users/scefali/Work/sentry-demo-react/", ""),
         )
+    if project.slug == "xc-prod":
+        return ("picmonkey/picmonkey", file.replace("./src", "xc/src"))
     raise Exception("Not handled")
 
 
