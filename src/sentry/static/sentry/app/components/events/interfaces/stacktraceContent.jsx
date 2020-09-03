@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import withApi from 'app/utils/withApi';
+import withOrganization from 'app/utils/withOrganization';
 import Frame from 'app/components/events/interfaces/frame/frame';
 import {t} from 'app/locale';
 import SentryTypes from 'app/sentryTypes';
 import {parseAddress, getImageRange} from 'app/components/events/interfaces/utils';
 
-export default class StacktraceContent extends React.Component {
+export class StacktraceContent extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     includeSystemFrames: PropTypes.bool,
@@ -14,6 +16,8 @@ export default class StacktraceContent extends React.Component {
     platform: PropTypes.string,
     newestFirst: PropTypes.bool,
     event: SentryTypes.Event.isRequired,
+    organization: SentryTypes.Organization.isRequired,
+    api: PropTypes.object,
   };
 
   static defaultProps = {
@@ -23,6 +27,37 @@ export default class StacktraceContent extends React.Component {
 
   state = {
     showingAbsoluteAddresses: false,
+  };
+
+  componentDidMount() {
+    this.loadStackTrace();
+  }
+
+  loadStackTrace = async () => {
+    const {
+      data,
+      organization,
+      api,
+      event: {projectID},
+    } = this.props;
+
+    //TODO different way of getting project slug
+    const projects = await api.requestPromise(
+      `/organizations/${organization.slug}/projects/`,
+      {query: {query: `id:${projectID}`}}
+    );
+    const project = projects[0];
+
+    //TODO: filter frames
+    const allFiles = data.frames.map(frame => frame.filename);
+    const projectSlug = project.slug;
+    await Promise.all(
+      allFiles.map(file =>
+        api.requestPromise(`/projects/${organization.slug}/${projectSlug}/stack-trace/`, {
+          query: {file},
+        })
+      )
+    );
   };
 
   renderOmittedFrames = (firstFrameOmitted, lastFrameOmitted) => {
@@ -180,3 +215,5 @@ export default class StacktraceContent extends React.Component {
     );
   }
 }
+
+export default withOrganization(withApi(StacktraceContent));

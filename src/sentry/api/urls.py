@@ -225,6 +225,7 @@ from .endpoints.project_user_details import ProjectUserDetailsEndpoint
 from .endpoints.project_user_reports import ProjectUserReportsEndpoint
 from .endpoints.project_user_stats import ProjectUserStatsEndpoint
 from .endpoints.project_users import ProjectUsersEndpoint
+from .endpoints.project_stack_trace import ProjectStackTraceEndpoint
 from .endpoints.prompts_activity import PromptsActivityEndpoint
 from .endpoints.relay_details import RelayDetailsEndpoint
 from .endpoints.relay_index import RelayIndexEndpoint
@@ -1550,6 +1551,11 @@ urlpatterns = [
                     r"^(?P<organization_slug>[^\/]+)/(?P<project_slug>[^\/]+)/tombstones/(?P<tombstone_id>\d+)/$",
                     GroupTombstoneDetailsEndpoint.as_view(),
                     name="sentry-api-0-group-tombstone-details",
+                ),
+                url(
+                    r"^(?P<organization_slug>[^\/]+)/(?P<project_slug>[^\/]+)/stack-trace/$",
+                    ProjectStackTraceEndpoint.as_view(),
+                    name="sentry-api-0-projet-stack-trace",
                 ),
             ]
         ),

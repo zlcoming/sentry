@@ -69,14 +69,14 @@ class GitHubClientMixin(ApiClient):
     def get_user(self, gh_username):
         return self.get(u"/users/{}".format(gh_username))
 
-    def request(self, method, path, headers=None, data=None, params=None):
+    def request(self, method, path, headers=None, data=None, params=None, **kwargs):
         if headers is None:
             headers = {
                 "Authorization": "token %s" % self.get_token(),
                 # TODO(jess): remove this whenever it's out of preview
                 "Accept": "application/vnd.github.machine-man-preview+json",
             }
-        return self._request(method, path, headers=headers, data=data, params=params)
+        return self._request(method, path, headers=headers, data=data, params=params, **kwargs)
 
     def get_token(self, force_refresh=False):
         """
@@ -99,7 +99,6 @@ class GitHubClientMixin(ApiClient):
                 {"access_token": token, "expires_at": expires_at.isoformat()}
             )
             self.integration.save()
-
         return token
 
     def create_token(self):

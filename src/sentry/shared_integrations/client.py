@@ -293,3 +293,6 @@ class BaseApiClient(object):
 
     def put(self, *args, **kwargs):
         return self.request("PUT", *args, **kwargs)
+
+    def head(self, *args, **kwargs):
+        return self.request("HEAD", *args, **kwargs)
