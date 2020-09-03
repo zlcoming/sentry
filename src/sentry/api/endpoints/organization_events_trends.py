@@ -72,6 +72,7 @@ class OrganizationEventsTrendsEndpoint(OrganizationEventsV2EndpointBase):
         selected_columns = request.GET.getlist("field")[:]
         query = request.GET.get("query")
         orderby = self.get_orderby(request)
+        query += " regression():>0" if orderby[0].startswith("-") else " regression():<0"
 
         def data_fn(offset, limit):
             return discover.query(
@@ -84,6 +85,7 @@ class OrganizationEventsTrendsEndpoint(OrganizationEventsV2EndpointBase):
                     count_column["format"].format(start=start, end=middle, index="1"),
                     count_column["format"].format(start=middle, end=end, index="2"),
                     percentage_column["format"].format(alias=count_column["alias"]),
+                    "regression()",
                 ],
                 query=query,
                 params=params,

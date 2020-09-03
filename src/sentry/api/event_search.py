@@ -1489,6 +1489,15 @@ FUNCTIONS = {
     # These range functions for performance trends, these aren't If functions
     # to avoid allowing arbitrary if statements
     # Not yet supported in Discover, and shouldn't be added to fields.tsx
+    "regression": {
+        "name": "regression",
+        "args": [],
+        "aggregate": [
+            "tupleElement(simpleLinearRegression(toUnixTimestamp(finish_ts),duration),1)",
+            None,
+            None,
+        ],
+    },
     "percentile_range": {
         "name": "percentile_range",
         "args": [
