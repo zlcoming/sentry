@@ -40,6 +40,7 @@ export class Frame extends React.Component {
     onAddressToggle: PropTypes.func,
     image: PropTypes.object,
     maxLengthOfRelativeAddress: PropTypes.number,
+    hasExternalTrace: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -244,6 +245,7 @@ export class Frame extends React.Component {
             <div>
               {this.renderLeadHint()}
               <FrameDefaultTitle frame={this.props.data} platform={this.props.platform} />
+              {this.props.hasExternalTrace && <OpenInDummy>Found Match</OpenInDummy>}
             </div>
             {this.renderRepeats()}
           </VertCenterWrapper>
@@ -442,6 +444,11 @@ const StyledIconRefresh = styled(IconRefresh)`
 const LeadHint = styled('div')`
   ${overflowEllipsis}
   width: 67px;
+`;
+
+const OpenInDummy = styled('span')`
+  color: red;
+  margin-left: 5px;
 `;
 
 export default withSentryAppComponents(Frame, {componentType: 'stacktrace-link'});

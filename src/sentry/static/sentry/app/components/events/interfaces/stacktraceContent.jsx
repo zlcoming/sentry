@@ -27,6 +27,7 @@ export class StacktraceContent extends React.Component {
 
   state = {
     showingAbsoluteAddresses: false,
+    hasStackTraceMap: {},
   };
 
   componentDidMount() {
@@ -47,17 +48,22 @@ export class StacktraceContent extends React.Component {
       {query: {query: `id:${projectID}`}}
     );
     const project = projects[0];
+    const projectSlug = project.slug;
 
     //TODO: filter frames
-    const allFiles = data.frames.map(frame => frame.filename);
-    const projectSlug = project.slug;
-    await Promise.all(
+    const allFiles = Array.from(new Set(data.frames.map(frame => frame.filename)));
+    const hasStackTraceArr = await Promise.all(
       allFiles.map(file =>
         api.requestPromise(`/projects/${organization.slug}/${projectSlug}/stack-trace/`, {
           query: {file},
         })
       )
     );
+    const hasStackTraceMap = allFiles.reduce((accum, file, idx) => {
+      accum[file] = hasStackTraceArr[idx].value;
+      return accum;
+    }, {});
+    this.setState({hasStackTraceMap});
   };
 
   renderOmittedFrames = (firstFrameOmitted, lastFrameOmitted) => {
@@ -158,6 +164,8 @@ export class StacktraceContent extends React.Component {
         nRepeats++;
       }
 
+      const hasExternalTrace = this.state.hasStackTraceMap[frame.filename];
+
       if (this.frameIsVisible(frame, nextFrame) && !repeatedFrame) {
         const image = this.findImageForAddress(frame.instructionAddr);
 
@@ -176,6 +184,7 @@ export class StacktraceContent extends React.Component {
             onAddressToggle={this.handleToggleAddresses}
             image={image}
             maxLengthOfRelativeAddress={maxLengthOfAllRelativeAddresses}
+            hasExternalTrace={hasExternalTrace}
           />
         );
       }
