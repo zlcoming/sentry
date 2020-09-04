@@ -53,6 +53,8 @@ def get_repo_and_relative_path_from_project(project, file):
         return ("waveaccounting/next-wave", fix_webpack_path(file).replace("./src", "src"))
     if project.slug == "spirit":
         return ("Getaround/getaround-web", fix_webpack_path(file).replace("./", "spirit/"))
+    if project.slug == "billboard":
+        return ("themotleyfool/billboard", file)
     raise Exception("Not handled")
 
 
@@ -69,11 +71,9 @@ class ProjectStackTraceEndpoint(ProjectEndpoint):
             url__contains=repo,
             provider__startswith="integrations:",
         )
-        provider = respository.provider.replace("integrations:", "")
 
-        integration = Integration.objects.filter(
-            organizations=organization, status=0, provider=provider
-        )[0]
+        provider = respository.provider.replace("integrations:", "")
+        integration = Integration.objects.get(id=respository.integration_id)
 
         try:
             if provider == "github":
