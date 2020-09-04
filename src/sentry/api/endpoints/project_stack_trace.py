@@ -23,7 +23,7 @@ def fix_webpack_path(file):
 
 
 def get_repo_and_relative_path_from_project(project, file):
-    # organization = project.organization
+    organization = project.organization
     # local
     if project.slug == "react":
         return (
@@ -37,6 +37,17 @@ def get_repo_and_relative_path_from_project(project, file):
         )
 
     # prod
+    # sentry
+    if organization.slug == "sentry":
+        if project.slug == "sentry":
+            if file.startswith("getsentry/"):
+                return ("getsentry/getsentry", file)
+            else:
+                return ("getsentry/sentry", file.replace("sentry/", "src/sentry/"))
+        if project.slug == "javascript":
+            return ("getsentry/sentry", file.replace("./app", "src/sentry/static/sentry/app"))
+
+    # others
     if project.slug == "xc-prod":
         return ("picmonkey/picmonkey", file.replace("./src", "xc/src"))
     if project.slug == "api-production":
