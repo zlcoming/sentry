@@ -39,8 +39,10 @@ export class StacktraceContent extends React.Component {
       data,
       organization,
       api,
-      event: {projectID},
+      event: {projectID, release},
     } = this.props;
+
+    const commitId = release?.lastCommit?.id;
 
     //TODO different way of getting project slug
     const projects = await api.requestPromise(
@@ -50,12 +52,11 @@ export class StacktraceContent extends React.Component {
     const project = projects[0];
     const projectSlug = project.slug;
 
-    //TODO: filter frames
     const allFiles = Array.from(new Set(data.frames.map(frame => frame.filename)));
     const hasStackTraceArr = await Promise.all(
       allFiles.map(file =>
         api.requestPromise(`/projects/${organization.slug}/${projectSlug}/stack-trace/`, {
-          query: {file},
+          query: {file, commitId},
         })
       )
     );

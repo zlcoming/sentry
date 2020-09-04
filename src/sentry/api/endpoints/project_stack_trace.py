@@ -41,12 +41,18 @@ def get_repo_and_relative_path_from_project(project, file):
         return ("Zegocover/tego", u"zego-backend/{}".format(file))
     if project.slug == "reviewpush-dashboard":
         return ("reviewpush/php/ReviewPushDashboard", file.rstrip("/"))
+    if project.slug == "frontend":
+        return ("flywheel-io/product/frontend/frontend", file.replace("./src", "app/src"))
+    if project.slug == "m-v4-production":
+        return ("wertsolutions/manusis-v4", file)
     raise Exception("Not handled")
 
 
 class ProjectStackTraceEndpoint(ProjectEndpoint):
     def get(self, request, project):
         file = request.GET.get("file")
+        ref = request.GET.get("commitId") or "master"
+
         organization = project.organization
 
         repo, relative_path = get_repo_and_relative_path_from_project(project, file)
@@ -60,8 +66,6 @@ class ProjectStackTraceEndpoint(ProjectEndpoint):
         integration = Integration.objects.filter(
             organizations=organization, status=0, provider=provider
         )[0]
-
-        ref = "master"
 
         try:
             if provider == "github":
@@ -81,7 +85,7 @@ class ProjectStackTraceEndpoint(ProjectEndpoint):
                 if e.code == 400:
                     return self.respond({"value": False, "relative_path": relative_path})
             # other providers give us a 404
-            elif e.code != 404:
+            if e.code != 404:
                 raise
 
             return self.respond({"value": False, "relative_path": relative_path})
