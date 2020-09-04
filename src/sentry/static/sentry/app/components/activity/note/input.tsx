@@ -1,5 +1,4 @@
-import {MentionsInput, Mention} from 'react-mentions';
-import PropTypes from 'prop-types';
+import {MentionsInput, Mention, MentionItem} from 'react-mentions';
 import React from 'react';
 import styled from '@emotion/styled';
 
@@ -22,11 +21,7 @@ const defaultProps = {
   busy: false,
 };
 
-type Mention = {
-  display: string;
-  email: string;
-  id: string;
-};
+type Mention = [React.ReactText, string];
 
 type State = {
   preview: boolean;
@@ -35,9 +30,9 @@ type State = {
   teamMentions: Mention[];
 };
 
-type Props = {
-  teams: Mention[];
-  memberList: Mention[];
+type NoteInputProps = {
+  teams: MentionItem[];
+  memberList: MentionItem[];
 
   /**
    * This is the id of the note object from the server
@@ -84,10 +79,10 @@ type Props = {
   onEditFinish: () => void;
   onUpdate: (note: Note) => void;
   onCreate: (note: Note) => void;
-  onChange: () => void;
+  onChange: (e: {target: {value: string}}, {updating: boolean}) => void;
 } & typeof defaultProps;
 
-class NoteInput extends React.Component<Props, State> {
+class NoteInput extends React.Component<NoteInputProps, State> {
   static defaultProps = defaultProps;
 
   state = {
@@ -154,12 +149,12 @@ class NoteInput extends React.Component<Props, State> {
     this.setState({preview: true});
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.submitForm();
   };
 
-  handleChange = e => {
+  handleChange = (e: {target: {value: string}}) => {
     this.setState({value: e.target.value});
 
     if (this.props.onChange) {
@@ -167,25 +162,27 @@ class NoteInput extends React.Component<Props, State> {
     }
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (
+    e: React.KeyboardEvent<HTMLTextAreaElement> | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     // Auto submit the form on [meta] + Enter
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       this.submitForm();
     }
   };
 
-  handleCancel = e => {
+  handleCancel = (e: React.MouseEvent<Element>) => {
     e.preventDefault();
     this.finish();
   };
 
-  handleAddMember = (id, display) => {
+  handleAddMember = (id: React.ReactText, display: string) => {
     this.setState(({memberMentions}) => ({
       memberMentions: [...memberMentions, [id, display]],
     }));
   };
 
-  handleAddTeam = (id, display) => {
+  handleAddTeam = (id: React.ReactText, display: string) => {
     this.setState(({teamMentions}) => ({
       teamMentions: [...teamMentions, [id, display]],
     }));
@@ -282,7 +279,7 @@ class NoteInput extends React.Component<Props, State> {
                 {t('Cancel')}
               </FooterButton>
             )}
-            <FooterButton error={errorMessage} type="submit" disabled={busy}>
+            <FooterButton error={!!errorMessage} type="submit" disabled={busy}>
               {btnText}
             </FooterButton>
           </div>
@@ -292,29 +289,23 @@ class NoteInput extends React.Component<Props, State> {
   }
 }
 
-class NoteInputContainer extends React.Component {
-  static propTypes = {
-    projectSlugs: PropTypes.arrayOf(PropTypes.string),
-  };
+type NoteInputContainerProps = {
+  projectSlugs: string[];
+  members: Mention[];
+} & Exclude<NoteInputProps, 'memberList' | 'teams'>;
 
-  renderInput = ({members, teams}) => {
-    const {projectSlugs: _, ...props} = this.props;
-    return <NoteInput memberList={members} teams={teams} {...props} />;
-  };
+export default function NoteInputContainer({
+  projectSlugs,
+  ...props
+}: NoteInputContainerProps) {
+  const me = ConfigStore.get('user');
 
-  render() {
-    const {projectSlugs} = this.props;
-    const me = ConfigStore.get('user');
-
-    return (
-      <Mentionables me={me} projectSlugs={projectSlugs}>
-        {this.renderInput}
-      </Mentionables>
-    );
-  }
+  return (
+    <Mentionables me={me} projectSlugs={projectSlugs}>
+      {({members, teams}) => <NoteInput memberList={members} teams={teams} {...props} />}
+    </Mentionables>
+  );
 }
-
-export default NoteInputContainer;
 
 // This styles both the note preview and the note editor input
 const getNotePreviewCss = p => {
@@ -369,7 +360,7 @@ const getNoteInputErrorStyles = p => {
   `;
 };
 
-const NoteInputForm = styled('form')`
+const NoteInputForm = styled('form')<{error: boolean}>`
   font-size: 15px;
   line-height: 22px;
   transition: padding 0.2s ease-in-out;
@@ -389,7 +380,7 @@ const Footer = styled('div')`
   padding-left: ${space(1.5)};
 `;
 
-const FooterButton = styled(Button)`
+const FooterButton = styled(Button)<{error?: boolean}>`
   font-size: 13px;
   margin: -1px -1px -1px;
   border-radius: 0 0 ${p => p.theme.borderRadius};
@@ -444,7 +435,7 @@ const MarkdownSupported = styled('span')`
   font-size: 14px;
 `;
 
-const NotePreview = styled('div')`
+const NotePreview = styled('div')<{minHeight: number}>`
   ${getNotePreviewCss};
   padding-bottom: ${space(1)};
 `;
