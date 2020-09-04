@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from '@emotion/styled';
 
+import {Note} from 'app/types';
 import {t} from 'app/locale';
 import Button from 'app/components/button';
 import ConfigStore from 'app/stores/configStore';
@@ -15,66 +16,88 @@ import textStyles from 'app/styles/text';
 import Mentionables from './mentionables';
 import mentionStyle from './mentionStyle';
 
-const mentionShape = PropTypes.shape({
-  display: PropTypes.string,
-  email: PropTypes.string,
-  id: PropTypes.string,
-});
+const defaultProps = {
+  placeholder: t('Add a comment.\nTag users with @, or teams with #'),
+  minHeight: 140,
+  busy: false,
+};
 
-class NoteInput extends React.Component {
-  static propTypes = {
-    teams: PropTypes.arrayOf(mentionShape).isRequired,
-    memberList: PropTypes.arrayOf(mentionShape).isRequired,
+type Mention = {
+  display: string;
+  email: string;
+  id: string;
+};
 
-    // This is the id of the note object from the server
-    // This is to indicate you are editing an existing item
-    modelId: PropTypes.string,
+type State = {
+  preview: boolean;
+  value: string;
+  memberMentions: Mention[];
+  teamMentions: Mention[];
+};
 
-    // The note text itself
-    text: PropTypes.string,
-    error: PropTypes.bool,
-    errorJSON: PropTypes.shape({
-      detail: PropTypes.shape({
-        message: PropTypes.string,
-        code: PropTypes.number,
-        extra: PropTypes.any,
-      }),
-    }),
-    placeholder: PropTypes.string,
-    busy: PropTypes.bool,
+type Props = {
+  teams: Mention[];
+  memberList: Mention[];
 
-    /**
-     * minimum height of the textarea
-     */
-    minHeight: PropTypes.number,
+  /**
+   * This is the id of the note object from the server
+   * This is to indicate you are editing an existing item
+   */
+  modelId: string;
 
-    onEditFinish: PropTypes.func,
-    onUpdate: PropTypes.func,
-    onCreate: PropTypes.func,
-    onChange: PropTypes.func,
-  };
+  /**
+   * The note text itself
+   */
+  text: string;
 
-  static defaultProps = {
-    placeholder: t('Add a comment.\nTag users with @, or teams with #'),
-    minHeight: 140,
-    busy: false,
-  };
+  /**
+   * Error?
+   */
+  error: boolean;
 
-  constructor(props) {
-    super(props);
-
-    const {text} = props;
-    const defaultText = text || '';
-
-    this.state = {
-      preview: false,
-      value: defaultText,
-      memberMentions: [],
-      teamMentions: [],
+  /**
+   * Error object
+   */
+  errorJSON: {
+    detail: {
+      message: string;
+      code: number;
+      extra: any;
     };
-  }
+  };
 
-  cleanMarkdown(text) {
+  /**
+   * Input placeholder text
+   */
+  placeholder: string;
+
+  /**
+   * Is input busy
+   */
+  busy: boolean;
+
+  /**
+   * minimum height of the textarea
+   */
+  minHeight: number;
+
+  onEditFinish: () => void;
+  onUpdate: (note: Note) => void;
+  onCreate: (note: Note) => void;
+  onChange: () => void;
+} & typeof defaultProps;
+
+class NoteInput extends React.Component<Props, State> {
+  static defaultProps = defaultProps;
+
+  state = {
+    preview: false,
+    value: this.props.text || '',
+    memberMentions: [],
+    teamMentions: [],
+  };
+
+  cleanMarkdown(text: string) {
     return text
       .replace(/\[sentry\.strip:member\]/g, '@')
       .replace(/\[sentry\.strip:team\]/g, '');
