@@ -18,6 +18,10 @@ def percent_encode(val):
     return quote(val.encode("utf8", errors="replace")).replace("%7E", "~").replace("/", "%2F")
 
 
+def fix_webpack_path(file):
+    return file.replace("webpack-internal:///", "")
+
+
 def get_repo_and_relative_path_from_project(project, file):
     # organization = project.organization
     # local
@@ -40,11 +44,15 @@ def get_repo_and_relative_path_from_project(project, file):
     if project.slug == "tego-production":
         return ("Zegocover/tego", u"zego-backend/{}".format(file))
     if project.slug == "reviewpush-dashboard":
-        return ("reviewpush/php/ReviewPushDashboard", file.rstrip("/"))
+        return ("reviewpush/php/ReviewPushDashboard", file.lstrip("/"))
     if project.slug == "frontend":
         return ("flywheel-io/product/frontend/frontend", file.replace("./src", "app/src"))
     if project.slug == "m-v4-production":
         return ("wertsolutions/manusis-v4", file)
+    if project.slug == "scylla-next-wave":
+        return ("waveaccounting/next-wave", fix_webpack_path(file).replace("./src", "src"))
+    if project.slug == "spirit":
+        return ("Getaround/getaround-web", fix_webpack_path(file).replace("./", "spirit/"))
     raise Exception("Not handled")
 
 
