@@ -28,6 +28,7 @@ class GitLabApiClientPath(object):
     project_hooks = u"/projects/{project}/hooks"
     project_hook = u"/projects/{project}/hooks/{hook_id}"
     user = u"/user"
+    files = u"/projects/{project}/repository/files/{file_path}"
 
     @staticmethod
     def build_api_url(base_url, path):
@@ -239,3 +240,12 @@ class GitLabApiClient(ApiClient):
         """
         path = GitLabApiClientPath.diff.format(project=project_id, sha=sha)
         return self.get(path)
+
+    def get_file(self, project_id, file_path, ref):
+        """Get the diff for a commit
+
+        See https://docs.gitlab.com/ee/api/repository_files.html
+        """
+        path = GitLabApiClientPath.files.format(project=project_id, file_path=file_path)
+        # TODO: Fix how build_url works for Gitlab so we can use caching
+        return self.get(path, params={"ref": ref})

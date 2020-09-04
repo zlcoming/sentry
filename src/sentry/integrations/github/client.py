@@ -69,6 +69,11 @@ class GitHubClientMixin(ApiClient):
     def get_user(self, gh_username):
         return self.get(u"/users/{}".format(gh_username))
 
+    def get_file(self, repo, file):
+        url = u"/repos/{}/contents/{}".format(repo, file)
+        # TODO: convert to head request
+        return self.get_cached(url)
+
     def request(self, method, path, headers=None, data=None, params=None, **kwargs):
         if headers is None:
             headers = {

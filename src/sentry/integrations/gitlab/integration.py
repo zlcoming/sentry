@@ -101,6 +101,10 @@ class GitlabIntegration(IntegrationInstallation, GitlabIssueBasic, RepositoryMix
         client = self.get_client()
         return client.search_project_issues(project_id, query, iids)
 
+    def get_file(self, project_id, file_path, ref):
+        client = self.get_client()
+        return client.get_file(project_id, file_path, ref)
+
     def error_message_from_json(self, data):
         """
         Extract error messages from gitlab API errors.
