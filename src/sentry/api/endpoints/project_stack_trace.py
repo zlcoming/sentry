@@ -68,7 +68,7 @@ class ProjectStackTraceEndpoint(ProjectEndpoint):
         repo, relative_path = get_repo_and_relative_path_from_project(project, file)
         respository = Repository.objects.get(
             organization_id=project.organization_id,
-            url__contains=repo,
+            url__endswith=repo,
             provider__startswith="integrations:",
         )
 
