@@ -306,7 +306,7 @@ class SnubaTSResultSerializer(BaseSnubaSerializer):
     Serializer for time-series Snuba data.
     """
 
-    def serialize(self, result, column="count", order=None):
+    def serialize(self, result, column="count", order=None, moving_average=False):
         data = [
             (key, list(group))
             for key, group in itertools.groupby(result.data["data"], key=lambda r: r["time"])
@@ -316,15 +316,50 @@ class SnubaTSResultSerializer(BaseSnubaSerializer):
                 [value_from_row(r, self.lookup.columns) for _, v in data for r in v]
             )
         rv = []
-        for k, v in data:
-            row = []
-            for r in v:
-                item = {"count": r.get(column, 0)}
-                if self.lookup:
-                    value = value_from_row(r, self.lookup.columns)
-                    item[self.lookup.name] = (attrs.get(value),)
-                row.append(item)
-            rv.append((k, row))
+        previous = []
+        limit = 3
+        count = -1
+        if True:
+            for k, v in data:
+                count += 1
+                row = []
+                for r in v:
+                    if self.lookup:
+                        value = value_from_row(r, self.lookup.columns)
+                    else:
+                        value = r.get(column, 0)
+
+                    previous.append((k, value))
+                    if count % (limit + 1) < limit:
+                        break
+                    if count % (limit + 1) == limit:
+                        value = sum(p[1] for p in previous) / len(previous)
+
+                    if self.lookup:
+                        item = {self.lookup_name: value}
+                    else:
+                        item = {"count": value}
+                    row.append(item)
+                if count % (limit + 1) < limit:
+                    continue
+                for p in previous:
+                    rv.append((p[0], row))
+                previous = []
+        else:
+            for k, v in data:
+                row = []
+                for r in v:
+                    if self.lookup:
+                        value = value_from_row(r, self.lookup.columns)
+                    else:
+                        value = r.get(column, 0)
+
+                    if self.lookup:
+                        item = {self.lookup_name: value}
+                    else:
+                        item = {"count": value}
+                    row.append(item)
+                rv.append((k, row))
 
         res = {"data": zerofill(rv, result.start, result.end, result.rollup)}
 

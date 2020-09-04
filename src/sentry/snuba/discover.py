@@ -873,6 +873,7 @@ def top_events_timeseries(
                         item["data"], snuba_filter.start, snuba_filter.end, rollup, "time"
                     ),
                     "order": item["order"],
+                    "moving_average": True,
                 },
                 snuba_filter.start,
                 snuba_filter.end,
