@@ -45,7 +45,10 @@ def get_repo_and_relative_path_from_project(project, file):
             else:
                 return ("getsentry/sentry", file.replace("sentry/", "src/sentry/"))
         if project.slug == "javascript":
-            return ("getsentry/sentry", file.replace("./app", "src/sentry/static/sentry/app"))
+            if file.startswith("./app"):
+                return ("getsentry/sentry", file.replace("./app", "src/sentry/static/sentry/app"))
+            elif file.startswith("/usr/src/getsentry"):
+                return ("getsentry/sentry", file.replace("/usr/src/getsentry", ""))
 
     # others
     if project.slug == "xc-prod":
@@ -66,6 +69,8 @@ def get_repo_and_relative_path_from_project(project, file):
         return ("Getaround/getaround-web", fix_webpack_path(file).replace("./", "spirit/"))
     if project.slug == "billboard":
         return ("themotleyfool/billboard", file)
+    if project.slug == "ticketswap":
+        return ("TicketSwap/Website", file.lstrip("/"))
     raise Exception("Not handled")
 
 
