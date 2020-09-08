@@ -71,6 +71,10 @@ def get_repo_and_relative_path_from_project(project, file):
         return ("themotleyfool/billboard", file)
     if project.slug == "ticketswap":
         return ("TicketSwap/Website", file.lstrip("/"))
+    if project.slug == "textmaster":
+        return ("textmaster/textmaster.com", file)
+    if project.slug == "fashionphile":
+        return ("fashionphile/web-app", file)
     raise Exception("Not handled")
 
 
