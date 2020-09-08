@@ -48,7 +48,9 @@ def get_repo_and_relative_path_from_project(project, file):
             if file.startswith("./app"):
                 return ("getsentry/sentry", file.replace("./app", "src/sentry/static/sentry/app"))
             elif file.startswith("/usr/src/getsentry"):
-                return ("getsentry/sentry", file.replace("/usr/src/getsentry", ""))
+                return ("getsentry/getsentry", file.replace("/usr/src/getsentry", ""))
+            else:
+                return ("getsentry/sentry", file)
 
     # others
     if project.slug == "xc-prod":
@@ -69,12 +71,21 @@ def get_repo_and_relative_path_from_project(project, file):
         return ("Getaround/getaround-web", fix_webpack_path(file).replace("./", "spirit/"))
     if project.slug == "billboard":
         return ("themotleyfool/billboard", file)
-    if project.slug == "ticketswap":
+    if project.slug == "website":
         return ("TicketSwap/Website", file.lstrip("/"))
     if project.slug == "textmaster":
         return ("textmaster/textmaster.com", file)
     if project.slug == "fashionphile":
         return ("fashionphile/web-app", file)
+    if project.slug == "connect":
+        return ("fashionphile/web-app", file)
+    if project.slug == "busbud-grandcentral-prod":
+        return ("busbud/napi", file.lstrip("/"))
+    if project.slug == "sls-images":
+        return (
+            "LightmakerCanada/lmpm-lambda-images",
+            file.replace("/var/task/handlers/webpack:/", ""),
+        )
     raise Exception("Not handled")
 
 
