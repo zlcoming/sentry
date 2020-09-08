@@ -12,6 +12,9 @@ from sentry.mediators import project_rules
 from sentry.models import AuditLogEntryEvent, Rule, RuleActivity, RuleActivityType, RuleStatus
 from sentry.signals import alert_rule_created
 from sentry.web.decorators import transaction_start
+from sentry.utils import metrics
+from sentry import features
+from sentry.constants import SENTRY_NEW_FILTERS
 
 
 class ProjectRulesEndpoint(ProjectEndpoint):
@@ -96,6 +99,20 @@ class ProjectRulesEndpoint(ProjectEndpoint):
             alert_rule_created.send_robust(
                 user=request.user, project=project, rule=rule, rule_type="issue", sender=self
             )
+            # record if the user created a rule and has alert filters enabled
+            if features.has(
+                "organizations:alert-filters", project.organization, actor=request.user
+            ):
+                metrics.incr("alert.filters.rule-created", sample_rate=1.0)
+                new_filters = [
+                    condition.id for condition in conditions if condition.id in SENTRY_NEW_FILTERS
+                ]
+                # record if the user used any of the new filters
+                if new_filters:
+                    tags = {new_filter: True for new_filter in new_filters}
+                    metrics.incr(
+                        "alert.filters.new-filter-rule-created", tags=tags, sample_rate=1.0
+                    )
 
             return Response(serialize(rule, request.user))
 

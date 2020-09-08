@@ -362,6 +362,7 @@ class MailAdapter(object):
             "X-Sentry-Logger-Level": group.get_level_display(),
             "X-Sentry-Project": project.slug,
             "X-Sentry-Reply-To": group_id_to_email(group.id),
+            "category": "alert_email",
         }
 
         for user_id in self.get_send_to(

@@ -233,6 +233,14 @@ SENTRY_RULES = (
     "sentry.rules.filters.assigned_to.AssignedToFilter",
 )
 
+SENTRY_NEW_FILTERS = frozenset(
+    [
+        "sentry.rules.filters.age_comparison.AgeComparisonFilter",
+        "sentry.rules.filters.issue_occurrences.IssueOccurrencesFilter",
+        "sentry.rules.filters.assigned_to.AssignedToFilter",
+    ]
+)
+
 # methods as defined by http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html + PATCH
 HTTP_METHODS = ("GET", "POST", "PUT", "OPTIONS", "HEAD", "DELETE", "TRACE", "CONNECT", "PATCH")
 

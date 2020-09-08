@@ -11,6 +11,9 @@ from sentry.integrations.slack import tasks
 from sentry.mediators import project_rules
 from sentry.models import AuditLogEntryEvent, Rule, RuleActivity, RuleActivityType, RuleStatus
 from sentry.web.decorators import transaction_start
+from sentry.utils import metrics
+from sentry import features
+from sentry.constants import SENTRY_NEW_FILTERS
 
 
 class ProjectRuleDetailsEndpoint(ProjectEndpoint):
@@ -106,6 +109,18 @@ class ProjectRuleDetailsEndpoint(ProjectEndpoint):
                 event=AuditLogEntryEvent.RULE_EDIT,
                 data=updated_rule.get_audit_log_data(),
             )
+            if features.has(
+                "organizations:alert-filters", project.organization, actor=request.user
+            ):
+                new_filters = [
+                    condition.id for condition in conditions if condition.id in SENTRY_NEW_FILTERS
+                ]
+                # record if the user used any of the new filters
+                if new_filters:
+                    tags = {new_filter: True for new_filter in new_filters}
+                    metrics.incr(
+                        "alert.filters.new-filter-rule-editted", tags=tags, sample_rate=1.0
+                    )
 
             return Response(serialize(updated_rule, request.user))
 
