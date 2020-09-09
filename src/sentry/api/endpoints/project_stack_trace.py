@@ -78,9 +78,9 @@ def get_repo_and_relative_path_from_project(project, file):
     if project.slug == "fashionphile":
         return ("fashionphile/web-app", file)
     if project.slug == "connect":
-        return ("fashionphile/web-app", file)
+        return ("stellaservice/connect", file)
     if project.slug == "busbud-grandcentral-prod":
-        return ("busbud/napi", file.lstrip("/"))
+        return ("busbud/napi", file.replace("/app/"))
     if project.slug == "sls-images":
         return (
             "LightmakerCanada/lmpm-lambda-images",
