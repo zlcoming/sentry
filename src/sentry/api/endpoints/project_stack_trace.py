@@ -80,7 +80,7 @@ def get_repo_and_relative_path_from_project(project, file):
     if project.slug == "connect":
         return ("stellaservice/connect", file)
     if project.slug == "busbud-grandcentral-prod":
-        return ("busbud/napi", file.replace("/app/"))
+        return ("busbud/napi", file.replace("/app/", ""))
     if project.slug == "sls-images":
         return (
             "LightmakerCanada/lmpm-lambda-images",
