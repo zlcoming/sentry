@@ -126,6 +126,7 @@ def post_process_group(
     from sentry.eventstore.processing import event_processing_store
     from sentry.utils import snuba
     from sentry.reprocessing2 import is_reprocessed_event
+    from sentry.utils.cache import cache_key_for_event
 
     with snuba.options_override({"consistent": True}):
         # The event parameter will be removed after transitioning to
@@ -251,9 +252,15 @@ def post_process_group(
             event=event,
             primary_hash=kwargs.get("primary_hash"),
         )
-        if cache_key:
-            with metrics.timer("tasks.post_process.delete_event_cache"):
-                event_processing_store.delete_by_key(cache_key)
+
+        # Finally, delete the event from cache even if we didn't read it from cache.
+        if not cache_key:
+            cache_key = cache_key_for_event(
+                {"project": event.project_id, "event_id": event.event_id}
+            )
+
+        with metrics.timer("tasks.post_process.delete_event_cache"):
+            event_processing_store.delete_by_key(cache_key)
 
 
 def process_snoozes(group):
