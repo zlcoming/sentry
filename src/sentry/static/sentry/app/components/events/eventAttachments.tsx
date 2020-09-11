@@ -62,6 +62,7 @@ class EventAttachments extends React.Component<Props, State> {
   }
 
   // TODO(dcramer): this API request happens twice, and we need a store for it
+  // The other instance of this API call comes from <RRWebIntegration/>
   async fetchData() {
     const {event} = this.props;
 
