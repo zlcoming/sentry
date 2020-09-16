@@ -361,6 +361,7 @@ export type SentryTransactionEvent = {
   contexts?: {
     trace?: TraceContextType;
   };
+  measurements?: Record<string, {value: number}>;
 } & SentryEventBase;
 
 // This type is incomplete

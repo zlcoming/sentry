@@ -275,6 +275,83 @@ class SpanBar extends React.Component<SpanBarProps, SpanBarState> {
     );
   }
 
+  getMeasurementsBounds(): Array<{
+    warning: undefined | string;
+    left: undefined | number;
+    width: undefined | number;
+    isSpanVisibleInView: boolean;
+  }> {
+    const {event, generateBounds} = this.props;
+
+    const {measurements} = event;
+
+    if (!measurements) {
+      return [];
+    }
+
+    const measurementNames = Object.keys(measurements).filter(name => {
+      return name.startsWith('mark.');
+    });
+
+    return measurementNames.map(name => {
+      const measurementName = name.split('mark.')[1];
+
+      const timestamp = measurements[name].value;
+
+      const bounds = generateBounds({
+        startTimestamp: timestamp,
+        endTimestamp: timestamp,
+      });
+
+      switch (bounds.type) {
+        case 'TRACE_TIMESTAMPS_EQUAL': {
+          return {
+            warning: t('Trace times are equal'),
+            left: void 0,
+            width: void 0,
+            isSpanVisibleInView: bounds.isSpanVisibleInView,
+          };
+        }
+        case 'INVALID_VIEW_WINDOW': {
+          return {
+            warning: t('Invalid view window'),
+            left: void 0,
+            width: void 0,
+            isSpanVisibleInView: bounds.isSpanVisibleInView,
+          };
+        }
+        case 'TIMESTAMPS_EQUAL': {
+          return {
+            warning: measurementName,
+            left: bounds.start,
+            width: 0.00001,
+            isSpanVisibleInView: bounds.isSpanVisibleInView,
+          };
+        }
+        case 'TIMESTAMPS_REVERSED': {
+          return {
+            warning: measurementName,
+            left: bounds.start,
+            width: bounds.end - bounds.start,
+            isSpanVisibleInView: bounds.isSpanVisibleInView,
+          };
+        }
+        case 'TIMESTAMPS_STABLE': {
+          return {
+            warning: measurementName,
+            left: bounds.start,
+            width: bounds.end - bounds.start,
+            isSpanVisibleInView: bounds.isSpanVisibleInView,
+          };
+        }
+        default: {
+          const _exhaustiveCheck: never = bounds;
+          return _exhaustiveCheck;
+        }
+      }
+    });
+  }
+
   getBounds(): {
     warning: undefined | string;
     left: undefined | number;
@@ -756,6 +833,8 @@ class SpanBar extends React.Component<SpanBarProps, SpanBarState> {
     const displaySpanBar = defined(bounds.left) && defined(bounds.width);
     const durationDisplay = getDurationDisplay(bounds);
 
+    const measurementBounds = this.getMeasurementsBounds();
+
     return (
       <SpanRowCellContainer showDetail={this.state.showDetail}>
         <SpanRowCell
@@ -801,6 +880,58 @@ class SpanBar extends React.Component<SpanBarProps, SpanBarState> {
               </DurationPill>
             </SpanBarRectangle>
           )}
+          {measurementBounds.map((measurementMarker, index) => {
+            if (!measurementMarker.isSpanVisibleInView) {
+              return null;
+            }
+
+            return (
+              <React.Fragment key={String(index)}>
+                <SpanBarRectangle
+                  spanBarHatch={false}
+                  style={{
+                    backgroundColor: 'magenta',
+                    left: toPercent(measurementMarker.left || 0),
+                    top: 0,
+                    width: '1px',
+                    zIndex: 2,
+                    height: `${SPAN_ROW_HEIGHT}px`,
+                    position: 'absolute',
+                  }}
+                >
+                  <Tooltip containerDisplayMode="flex" title={measurementMarker.warning}>
+                    <SpanBarRectangle
+                      key={String(index)}
+                      spanBarHatch={false}
+                      style={{
+                        backgroundColor: 'magenta',
+                        left: toPercent(measurementMarker.left || 0),
+                        top: 0,
+                        width: '1px',
+                        height: `${SPAN_ROW_HEIGHT}px`,
+                        position: 'absolute',
+                      }}
+                    />
+                  </Tooltip>
+                </SpanBarRectangle>
+                {spanNumber === 1 && (
+                  <div
+                    style={{
+                      left: toPercent(measurementMarker.left || 0),
+                      top: 0,
+                      height: `${SPAN_ROW_HEIGHT}px`,
+                      position: 'absolute',
+                      backgroundColor: 'white',
+                      zIndex: 2,
+                      border: '1px solid magenta',
+                    }}
+                  >
+                    {measurementMarker.warning}
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
           {this.renderCursorGuide()}
         </SpanRowCell>
         {!this.state.showDetail && (
