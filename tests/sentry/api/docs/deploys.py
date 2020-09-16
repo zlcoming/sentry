@@ -45,7 +45,6 @@ class ReleaseDeploysDocs(APITestCase):
         self.login_as(user=self.user)
 
         response = self.client.get(url)
-        self.validate(response)
 
         spec = create_doc_schema()
         openapi_response = DjangoOpenAPIResponse.create(response)
@@ -56,4 +55,3 @@ class ReleaseDeploysDocs(APITestCase):
         result = validator.validate(openapi_request, openapi_response)
         result.raise_for_errors()
         assert result.errors == []
-        assert False
