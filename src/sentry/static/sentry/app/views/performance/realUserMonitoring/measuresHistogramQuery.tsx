@@ -55,36 +55,30 @@ class MeasuresQuery extends AsyncComponent<Props, State> {
   getEndpoints(): ReturnType<AsyncComponent['getEndpoints']> {
     const {organization, location, measures} = this.props;
 
-    const selectMeasures = measures.map(name => {
-      return `histogram(${name},${NUM_BUCKETS})`;
+    return measures.map(name => {
+      let orderBy = 'count';
+
+      if (measures.length > 0) {
+        orderBy = `histogram_${name.replace('.', '_')}_${NUM_BUCKETS}`;
+      }
+
+      const fooSavedQuery = this.props.eventView.toNewQuery();
+
+      const eventView = EventView.fromSavedQuery({
+        ...fooSavedQuery,
+
+        id: '',
+        name: '',
+        version: 2,
+        fields: [`histogram(${name},${NUM_BUCKETS})`, 'count()'],
+        orderby: orderBy,
+        query: `transaction.op:pageload ${fooSavedQuery.query ?? ''}`,
+      });
+      const apiPayload = eventView.getEventsAPIPayload(location);
+      apiPayload.referrer = 'api.performance.latencychart';
+
+      return [name, `/organizations/${organization.slug}/eventsv2/`, {query: apiPayload}];
     });
-
-    let orderBy = 'count';
-
-    if (measures.length > 0) {
-      orderBy = `histogram_${measures[0].replace('.', '_')}_50`;
-    }
-
-    const eventView = EventView.fromSavedQuery({
-      ...this.props.eventView.toNewQuery(),
-
-      id: '',
-      name: '',
-      version: 2,
-      fields: [selectMeasures[0], 'count()'],
-      orderby: orderBy,
-      query: '',
-    });
-    const apiPayload = eventView.getEventsAPIPayload(location);
-    apiPayload.referrer = 'api.performance.latencychart';
-
-    return [
-      [
-        'histograms',
-        `/organizations/${organization.slug}/eventsv2/`,
-        {query: apiPayload},
-      ],
-    ];
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -98,6 +92,29 @@ class MeasuresQuery extends AsyncComponent<Props, State> {
       return false;
     }
     return !isEqual(pick(prevProps, QUERY_KEYS), pick(this.props, QUERY_KEYS));
+  }
+
+  getActualHistograms() {
+    return this.props.measures.reduce((histogram, measureName) => {
+      const measurementHistogram = this.state[measureName];
+
+      const fieldName = `histogram_${measureName.replace('.', '_')}_${NUM_BUCKETS}`;
+
+      if (measurementHistogram) {
+        histogram[measureName] = measurementHistogram.data.map(dataPoint => {
+          return {
+            count: dataPoint.count,
+            histogram: dataPoint[fieldName],
+          };
+        });
+
+        return histogram;
+      }
+
+      histogram[measureName] = [];
+
+      return histogram;
+    }, {});
   }
 
   getHistograms(_x) {
@@ -122,12 +139,12 @@ class MeasuresQuery extends AsyncComponent<Props, State> {
   render() {
     const {children} = this.props;
 
-    const histogramResults = null;
+    // const histogramResults = null;
 
     return children({
       isLoading: false,
       errors: [],
-      histogram: this.getHistograms(histogramResults),
+      histogram: this.getActualHistograms(),
     });
   }
 }
