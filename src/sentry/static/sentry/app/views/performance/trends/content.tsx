@@ -15,6 +15,7 @@ import {getTransactionSearchQuery} from '../utils';
 import {TrendChangeType, TrendView, TrendFunctionField} from './types';
 import {TRENDS_FUNCTIONS, getCurrentTrendFunction, getSelectedQueryKey} from './utils';
 import ChangedTransactions from './changedTransactions';
+import ChangedProjects from './changedProjects';
 
 type Props = {
   organization: Organization;
@@ -73,7 +74,7 @@ class TrendsContent extends React.Component<Props, State> {
 
     const query = getTransactionSearchQuery(location);
     return (
-      <Feature features={['trends']}>
+      <Feature features={['trends', 'internal-catchall']} requireAll={false}>
         <StyledSearchContainer>
           <StyledSearchBar
             organization={organization}
@@ -101,7 +102,19 @@ class TrendsContent extends React.Component<Props, State> {
             </DropdownControl>
           </TrendsDropdown>
         </StyledSearchContainer>
-        <ChangedTransactionContainer>
+        <TrendsLayoutContainer>
+          <ChangedProjects
+            trendChangeType={TrendChangeType.IMPROVED}
+            previousTrendFunction={previousTrendFunction}
+            trendView={trendView}
+            location={location}
+          />
+          <ChangedProjects
+            trendChangeType={TrendChangeType.REGRESSION}
+            previousTrendFunction={previousTrendFunction}
+            trendView={trendView}
+            location={location}
+          />
           <ChangedTransactions
             trendChangeType={TrendChangeType.IMPROVED}
             previousTrendFunction={previousTrendFunction}
@@ -114,7 +127,7 @@ class TrendsContent extends React.Component<Props, State> {
             trendView={trendView}
             location={location}
           />
-        </ChangedTransactionContainer>
+        </TrendsLayoutContainer>
       </Feature>
     );
   }
@@ -134,15 +147,13 @@ const StyledSearchContainer = styled('div')`
   display: flex;
 `;
 
-const ChangedTransactionContainer = styled('div')`
-  @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    display: block;
-  }
+const TrendsLayoutContainer = styled('div')`
+  display: grid;
+  grid-gap: ${space(2)};
+
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    display: grid;
-    column-gap: ${space(2)};
-    width: calc(100% - ${space(2)});
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
   }
 `;
 
