@@ -501,8 +501,7 @@ class GroupListTest(APITestCase, SnubaTestCase):
         old_sample_size = options.get("snuba.search.hits-sample-size")
         assert options.set("snuba.search.hits-sample-size", 1)
 
-        days = range(4)
-        days.reverse()
+        days = reversed(range(4))
 
         self.login_as(user=self.user)
         groups = []
@@ -602,6 +601,9 @@ class GroupListTest(APITestCase, SnubaTestCase):
             assert int(response.data[0]["id"]) == group2.id
             assert response.data[0]["lifetime"] is not None
             assert response.data[0]["filtered"] is not None
+            assert response.data[0]["filtered"]["stats"] is not None
+            assert response.data[0]["lifetime"]["stats"] is None
+            assert response.data[0]["filtered"]["stats"] != response.data[0]["stats"]
 
             assert response.data[0]["lifetime"]["count"] == "4"
             assert response.data[0]["lifetime"]["firstSeen"] == parse_datetime(
@@ -617,6 +619,25 @@ class GroupListTest(APITestCase, SnubaTestCase):
             ).replace(tzinfo=timezone.utc)
             assert response.data[0]["filtered"]["lastSeen"] == parse_datetime(
                 before_now_150_seconds
+            ).replace(tzinfo=timezone.utc)
+
+            # Empty filter test:
+            response = self.get_response(sort_by="date", limit=10, query="")
+            assert response.status_code == 200
+            assert len(response.data) == 2
+            assert int(response.data[0]["id"]) == group2.id
+            assert response.data[0]["lifetime"] is not None
+            assert response.data[0]["filtered"] is not None
+            assert response.data[0]["lifetime"]["stats"] is None
+            assert response.data[0]["filtered"]["stats"] is not None
+            assert response.data[0]["filtered"]["stats"] == response.data[0]["stats"]
+
+            assert response.data[0]["lifetime"]["count"] == "4"
+            assert response.data[0]["lifetime"]["firstSeen"] == parse_datetime(
+                before_now_300_seconds
+            ).replace(tzinfo=timezone.utc)
+            assert response.data[0]["lifetime"]["lastSeen"] == parse_datetime(
+                before_now_100_seconds
             ).replace(tzinfo=timezone.utc)
 
     def test_skipped_fields(self):
@@ -649,7 +670,7 @@ class GroupListTest(APITestCase, SnubaTestCase):
             assert response.data[0]["filtered"] is not None
 
     @patch(
-        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True,
+        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True
     )
     def test_ratelimit(self, is_limited):
         self.login_as(user=self.user)
@@ -1271,7 +1292,7 @@ class GroupUpdateTest(APITestCase, SnubaTestCase):
             event = self.store_event(
                 data={
                     "fingerprint": ["put-me-in-group-1"],
-                    "user": {"id": six.text_type(i).encode("utf-8")},
+                    "user": {"id": six.text_type(i)},
                     "timestamp": iso_format(self.min_ago + timedelta(seconds=i)),
                 },
                 project_id=self.project.id,
@@ -1549,7 +1570,7 @@ class GroupUpdateTest(APITestCase, SnubaTestCase):
         assert tombstone.data == group1.data
 
     @patch(
-        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True,
+        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True
     )
     def test_ratelimit(self, is_limited):
         self.login_as(user=self.user)
@@ -1677,7 +1698,7 @@ class GroupDeleteTest(APITestCase, SnubaTestCase):
             assert not GroupHash.objects.filter(group_id=group.id).exists()
 
     @patch(
-        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True,
+        "sentry.api.helpers.group_index.ratelimiter.is_limited", autospec=True, return_value=True
     )
     def test_ratelimit(self, is_limited):
         self.login_as(user=self.user)

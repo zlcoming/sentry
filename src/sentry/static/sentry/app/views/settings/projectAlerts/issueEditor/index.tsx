@@ -59,6 +59,11 @@ const ACTION_MATCH_CHOICES: Array<[IssueAlertRule['actionMatch'], string]> = [
   ['none', t('none')],
 ];
 
+const ACTION_MATCH_CHOICES_MIGRATED: Array<[IssueAlertRule['actionMatch'], string]> = [
+  ['all', t('all')],
+  ['any', t('any')],
+];
+
 const defaultRule: UnsavedIssueAlertRule = {
   actionMatch: 'all',
   filterMatch: 'all',
@@ -184,7 +189,7 @@ class IssueRuleEditor extends AsyncView<Props, State> {
   }
 
   handleRuleSuccess = (isNew: boolean, rule: IssueAlertRule) => {
-    const {organization} = this.props;
+    const {organization, router} = this.props;
     this.setState({detailedError: null, loading: false, rule});
 
     // The onboarding task will be completed on the server side when the alert
@@ -194,7 +199,7 @@ class IssueRuleEditor extends AsyncView<Props, State> {
       status: 'complete',
     });
 
-    browserHistory.replace(recreateRoute('rules/', {...this.props, stepBack: -2}));
+    router.push(`/organizations/${organization.slug}/alerts/rules/`);
     addSuccessMessage(isNew ? t('Created alert rule') : t('Updated alert rule'));
   };
 
@@ -267,9 +272,9 @@ class IssueRuleEditor extends AsyncView<Props, State> {
   };
 
   handleCancel = () => {
-    const {router} = this.props;
+    const {organization, router} = this.props;
 
-    router.push(recreateRoute('rules/', {...this.props, stepBack: -2}));
+    router.push(`/organizations/${organization.slug}/alerts/rules/`);
   };
 
   hasError = (field: string) => {
@@ -512,29 +517,42 @@ class IssueRuleEditor extends AsyncView<Props, State> {
                           {
                             when: <Badge />,
                             selector: (
-                              <EmbeddedWrapper>
-                                <EmbeddedSelectField
-                                  className={classNames({
-                                    error: this.hasError('actionMatch'),
-                                  })}
-                                  inline={false}
-                                  styles={{
-                                    control: provided => ({
-                                      ...provided,
-                                      minHeight: '20px',
-                                      height: '20px',
-                                    }),
-                                  }}
-                                  isSearchable={false}
-                                  isClearable={false}
-                                  name="actionMatch"
-                                  required
-                                  flexibleControlStateSize
-                                  choices={ACTION_MATCH_CHOICES}
-                                  onChange={val => this.handleChange('actionMatch', val)}
-                                  disabled={!hasAccess}
-                                />
-                              </EmbeddedWrapper>
+                              <Feature
+                                features={['projects:alert-filters']}
+                                project={project}
+                              >
+                                {({hasFeature}) => (
+                                  <EmbeddedWrapper>
+                                    <EmbeddedSelectField
+                                      className={classNames({
+                                        error: this.hasError('actionMatch'),
+                                      })}
+                                      inline={false}
+                                      styles={{
+                                        control: provided => ({
+                                          ...provided,
+                                          minHeight: '20px',
+                                          height: '20px',
+                                        }),
+                                      }}
+                                      isSearchable={false}
+                                      isClearable={false}
+                                      name="actionMatch"
+                                      required
+                                      flexibleControlStateSize
+                                      choices={
+                                        hasFeature
+                                          ? ACTION_MATCH_CHOICES_MIGRATED
+                                          : ACTION_MATCH_CHOICES
+                                      }
+                                      onChange={val =>
+                                        this.handleChange('actionMatch', val)
+                                      }
+                                      disabled={!hasAccess}
+                                    />
+                                  </EmbeddedWrapper>
+                                )}
+                              </Feature>
                             ),
                           }
                         )}
@@ -561,7 +579,12 @@ class IssueRuleEditor extends AsyncView<Props, State> {
                   </StepContainer>
                 </Step>
 
-                <Feature features={['alert-filters']} organization={organization}>
+                <Feature
+                  features={['organizations:alert-filters', 'projects:alert-filters']}
+                  organization={organization}
+                  project={project}
+                  requireAll={false}
+                >
                   <Step>
                     <StepConnector />
 

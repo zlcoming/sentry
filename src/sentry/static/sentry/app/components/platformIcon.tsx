@@ -2,13 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const PLATFORM_TO_ICON = {
+  android: 'android',
   apple: 'apple',
-  cocoa: 'apple',
-  'cocoa-objc': 'apple',
-  'cocoa-swift': 'swift',
+  'apple-ios': 'apple',
+  'apple-macos': 'apple',
   cordova: 'cordova',
-  csharp: 'csharp',
-  'csharp-aspnetcore': 'dotnet',
+  dotnet: 'dotnet',
+  'dotnet-aspnetcore': 'dotnet',
   elixir: 'elixir',
   electron: 'electron',
   go: 'go',
@@ -24,6 +24,8 @@ const PLATFORM_TO_ICON = {
   'javascript-angularjs': 'angularjs',
   'javascript-backbone': 'backbone',
   'javascript-browser': 'javascript',
+  'javascript-cordova': 'cordova',
+  'javascript-electron': 'electron',
   'javascript-ember': 'ember',
   'javascript-react': 'react',
   'javascript-vue': 'vue',
