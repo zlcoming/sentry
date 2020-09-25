@@ -18,7 +18,7 @@ import {
 import {PluginNoProject, PluginProjectItem, Organization, AvatarProject} from 'app/types';
 import {SingleIntegrationEvent} from 'app/utils/integrationUtil';
 import space from 'app/styles/space';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 
 export type Props = {
   api: Client;

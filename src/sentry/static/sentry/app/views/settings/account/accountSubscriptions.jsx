@@ -8,7 +8,7 @@ import AsyncView from 'app/views/asyncView';
 import DateTime from 'app/components/dateTime';
 import EmptyMessage from 'app/views/settings/components/emptyMessage';
 import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 import space from 'app/styles/space';
 import TextBlock from 'app/views/settings/components/text/textBlock';
 

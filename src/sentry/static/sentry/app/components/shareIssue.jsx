@@ -13,7 +13,7 @@ import DropdownLink from 'app/components/dropdownLink';
 import FlowLayout from 'app/components/flowLayout';
 import LoadingIndicator from 'app/components/loadingIndicator';
 import SpreadLayout from 'app/components/spreadLayout';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 import {IconCopy, IconRefresh} from 'app/icons';
 
 const BORDER_COLOR = '#dad5df';

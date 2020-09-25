@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import InputField from 'app/views/settings/components/forms/inputField';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 import Confirm from 'app/components/confirm';
 
 export default class BooleanField extends InputField {

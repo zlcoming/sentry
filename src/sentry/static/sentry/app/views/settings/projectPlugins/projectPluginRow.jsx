@@ -9,7 +9,7 @@ import ExternalLink from 'app/components/links/externalLink';
 import Access from 'app/components/acl/access';
 import PluginIcon from 'app/plugins/components/pluginIcon';
 import SentryTypes from 'app/sentryTypes';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 import getDynamicText from 'app/utils/getDynamicText';
 import recreateRoute from 'app/utils/recreateRoute';
 import withOrganization from 'app/utils/withOrganization';

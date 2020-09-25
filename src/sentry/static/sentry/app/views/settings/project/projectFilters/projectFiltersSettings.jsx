@@ -20,7 +20,7 @@ import FormField from 'app/views/settings/components/forms/formField';
 import HookStore from 'app/stores/hookStore';
 import JsonForm from 'app/views/settings/components/forms/jsonForm';
 import SentryTypes from 'app/sentryTypes';
-import Switch from 'app/components/switch';
+import Switch from 'app/components/switchButton';
 import filterGroups, {customFilterFields} from 'app/data/forms/inboundFilters';
 
 const LEGACY_BROWSER_SUBFILTERS = {
