@@ -129,7 +129,7 @@ class OrganizationSerializer(Serializer):
         ]
         feature_list = set()
 
-        bulk_features = features.bulk_has(org_features, organizations=[obj], actor=user)
+        bulk_features = features.bulk_has(org_features, actor=user, organization=obj)
         if bulk_features:
             for feature_name, active in six.iteritems(bulk_features):
                 if active:

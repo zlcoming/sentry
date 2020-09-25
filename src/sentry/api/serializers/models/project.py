@@ -193,21 +193,24 @@ class ProjectSerializer(Serializer):
             if feature.startswith(_PROJECT_SCOPE_PREFIX)
         ]
 
-        bulk_features = features.bulk_has(project_features, projects=all_projects, actor=user)
+        bulk_features = features.bulk_has(
+            project_features, actor=user, projects=all_projects, organization=project.organization
+        )
 
-        for feature_name in features.all(feature_type=ProjectFeature).keys():
-            if not feature_name.startswith(_PROJECT_SCOPE_PREFIX):
-                continue
-            abbreviated_feature = feature_name[len(_PROJECT_SCOPE_PREFIX) :]
-            for (organization, projects) in projects_by_org.items():
-                result = features.has_for_batch(feature_name, organization, projects, user)
-                for (project, flag) in result.items():
-                    if flag:
-                        features_by_project[project].append(abbreviated_feature)
+        with sentry_sdk.start_span(op="oldschoool.features"):
+            for feature_name in features.all(feature_type=ProjectFeature).keys():
+                if not feature_name.startswith(_PROJECT_SCOPE_PREFIX):
+                    continue
+                abbreviated_feature = feature_name[len(_PROJECT_SCOPE_PREFIX) :]
+                for (organization, projects) in projects_by_org.items():
+                    result = features.has_for_batch(feature_name, organization, projects, user)
+                    for (project, flag) in result.items():
+                        if flag:
+                            features_by_project[project].append(abbreviated_feature)
 
-        for project in all_projects:
-            if project.flags.has_releases:
-                features_by_project[project].append("releases")
+            for project in all_projects:
+                if project.flags.has_releases:
+                    features_by_project[project].append("releases")
 
         return features_by_project
 

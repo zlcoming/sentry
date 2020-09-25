@@ -7,7 +7,7 @@ from django.conf import settings
 
 import sentry_sdk
 
-from .base import Feature, OrganizationFeature, ProjectFeature
+from .base import Feature
 from .exceptions import FeatureNotRegistered
 
 
@@ -192,30 +192,9 @@ class FeatureManager(RegisteredFeatureManager):
         # Features are by default disabled if no plugin or default enables them
         return False
 
-    def bulk_has(self, names, projects=None, organizations=None, *args, **kwargs):
+    def bulk_has(self, names, actor, projects=None, organization=None):
         if self._entity_handler:
-            actor = kwargs.pop("actor", None)
-            features = []
-
-            for name in names:
-                feature = self._get_feature_class(name)
-                if feature == OrganizationFeature:
-                    features += (
-                        [
-                            self.get(name, organization=organization, *args, **kwargs)
-                            for organization in organizations
-                        ]
-                        if organizations
-                        else []
-                    )
-                elif feature == ProjectFeature:
-                    features += (
-                        [self.get(name, project=project, *args, **kwargs) for project in projects]
-                        if projects
-                        else []
-                    )
-
-            return self._entity_handler.bulk_has(features, actor)
+            return self._entity_handler.bulk_has(names, projects, organization, actor)
         else:
             return None
 
