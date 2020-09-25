@@ -471,7 +471,11 @@ def browser(request, live_server):
         if chromedriver_path:
             chrome_args["executable_path"] = chromedriver_path
 
-        driver = start_chrome(**chrome_args)
+        try:
+            driver = start_chrome(**chrome_args)
+        except Exception as e:
+            print(e)
+            raise e
     elif driver_type == "firefox":
         driver = webdriver.Firefox()
     elif driver_type == "phantomjs":
