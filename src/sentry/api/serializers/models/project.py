@@ -187,6 +187,14 @@ class ProjectSerializer(Serializer):
             projects_by_org[project.organization].append(project)
 
         features_by_project = defaultdict(list)
+        project_features = [
+            feature
+            for feature in features.all(feature_type=ProjectFeature).keys()
+            if feature.startswith(_PROJECT_SCOPE_PREFIX)
+        ]
+
+        bulk_features = features.bulk_has(project_features, projects=all_projects, actor=user)
+
         for feature_name in features.all(feature_type=ProjectFeature).keys():
             if not feature_name.startswith(_PROJECT_SCOPE_PREFIX):
                 continue

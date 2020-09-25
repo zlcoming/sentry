@@ -157,7 +157,7 @@ class RelayRegisterResponseEndpoint(Endpoint):
             )
 
         relay_id = six.text_type(validated["relay_id"])
-        version = six.text_type(validated["version"])
+        version = six.text_type(validated.get("version"))
         public_key = validated["public_key"]
 
         if relay_id != get_header_relay_id(request):
