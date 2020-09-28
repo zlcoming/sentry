@@ -276,7 +276,7 @@ describe('Performance > Trends', function() {
     wrapper.update();
 
     const mostImprovedProject = wrapper.find('TrendsProjectPanel').first();
-    const viewTransactions = mostImprovedProject.find('Button').first();
+    const viewTransactions = mostImprovedProject.find('StyledProjectButton').first();
     viewTransactions.simulate('click');
 
     expect(browserHistory.push).toHaveBeenCalledWith({
@@ -284,6 +284,28 @@ describe('Performance > Trends', function() {
         project: [projectId],
       }),
     });
+  });
+
+  it('viewing a single project will hide the changed project widgets', async function() {
+    const projectId = 42;
+    const projects = [TestStubs.Project({id: projectId, slug: 'internal'})];
+    const data = initializeData(projects, {project: ['42']});
+    const wrapper = mountWithTheme(
+      <PerformanceLanding
+        organization={data.organization}
+        location={data.router.location}
+      />,
+      data.routerContext
+    );
+
+    await tick();
+    wrapper.update();
+
+    const changedProjects = wrapper.find('ChangedProjects');
+    const changedTransactions = wrapper.find('ChangedTransactions');
+
+    expect(changedProjects).toHaveLength(0);
+    expect(changedTransactions).toHaveLength(2);
   });
 
   it('trend functions in location make api calls', async function() {
