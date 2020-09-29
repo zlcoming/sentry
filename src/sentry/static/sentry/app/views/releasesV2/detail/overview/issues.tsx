@@ -5,12 +5,12 @@ import {Location} from 'history';
 
 import {t, tct} from 'app/locale';
 import DropdownControl, {DropdownItem} from 'app/components/dropdownControl';
+import DropdownButton from 'app/components/dropdownButton';
 import Button from 'app/components/button';
 import DiscoverButton from 'app/components/discoverButton';
 import GroupList from 'app/components/issues/groupList';
 import space from 'app/styles/space';
-import {Panel, PanelBody} from 'app/components/panels';
-import EmptyStateWarning from 'app/components/emptyStateWarning';
+import {Panel} from 'app/components/panels';
 import {DEFAULT_RELATIVE_PERIODS} from 'app/constants';
 import {GlobalSelection} from 'app/types';
 import Feature from 'app/components/acl/feature';
@@ -19,9 +19,11 @@ import ButtonBar from 'app/components/buttonBar';
 import {stringifyQueryObject, QueryResults} from 'app/utils/tokenizeSearch';
 
 import {getReleaseEventView} from './chart/utils';
+import EmptyState from '../emptyState';
 
 enum IssuesType {
   NEW = 'new',
+  UNHANDLED = 'unhandled',
   RESOLVED = 'resolved',
   ALL = 'all',
 }
@@ -61,10 +63,18 @@ class Issues extends React.Component<Props, State> {
     const {queryParams} = this.getIssuesEndpoint();
     const query = new QueryResults([]);
 
-    if (issuesType === IssuesType.NEW) {
-      query.setTag('firstRelease', [version]);
-    } else {
-      query.setTag('release', [version]);
+    switch (issuesType) {
+      case IssuesType.NEW:
+        query.setTag('firstRelease', [version]);
+        break;
+      case IssuesType.UNHANDLED:
+        query.setTag('release', [version]);
+        query.setTag('error.handled', ['0']);
+        break;
+      case IssuesType.RESOLVED:
+      case IssuesType.ALL:
+      default:
+        query.setTag('release', [version]);
     }
 
     return {
@@ -89,18 +99,34 @@ class Issues extends React.Component<Props, State> {
       case IssuesType.ALL:
         return {
           path: `/organizations/${orgId}/issues/`,
-          queryParams: {...queryParams, query: `release:"${version}"`},
+          queryParams: {
+            ...queryParams,
+            query: stringifyQueryObject(new QueryResults([`release:${version}`])),
+          },
         };
       case IssuesType.RESOLVED:
         return {
           path: `/organizations/${orgId}/releases/${version}/resolved/`,
           queryParams: {...queryParams, query: ''},
         };
+      case IssuesType.UNHANDLED:
+        return {
+          path: `/organizations/${orgId}/issues/`,
+          queryParams: {
+            ...queryParams,
+            query: stringifyQueryObject(
+              new QueryResults([`release:${version}`, 'error.handled:0'])
+            ),
+          },
+        };
       case IssuesType.NEW:
       default:
         return {
           path: `/organizations/${orgId}/issues/`,
-          queryParams: {...queryParams, query: `first-release:"${version}"`},
+          queryParams: {
+            ...queryParams,
+            query: stringifyQueryObject(new QueryResults([`first-release:${version}`])),
+          },
         };
     }
   }
@@ -119,22 +145,23 @@ class Issues extends React.Component<Props, State> {
       : t('given timeframe');
 
     return (
-      <Panel>
-        <PanelBody>
-          <EmptyStateWarning small withIcon={false}>
-            {issuesType === IssuesType.NEW &&
-              tct('No new issues in this release for the [timePeriod].', {
-                timePeriod: displayedPeriod,
-              })}
-            {issuesType === IssuesType.RESOLVED &&
-              t('No resolved issues in this release.')}
-            {issuesType === IssuesType.ALL &&
-              tct('No issues in this release for the [timePeriod].', {
-                timePeriod: displayedPeriod,
-              })}
-          </EmptyStateWarning>
-        </PanelBody>
-      </Panel>
+      <EmptyState withIcon={false}>
+        <React.Fragment>
+          {issuesType === IssuesType.NEW &&
+            tct('No new issues in this release for the [timePeriod].', {
+              timePeriod: displayedPeriod,
+            })}
+          {issuesType === IssuesType.UNHANDLED &&
+            tct('No unhandled issues in this release for the [timePeriod].', {
+              timePeriod: displayedPeriod,
+            })}
+          {issuesType === IssuesType.RESOLVED && t('No resolved issues in this release.')}
+          {issuesType === IssuesType.ALL &&
+            tct('No issues in this release for the [timePeriod].', {
+              timePeriod: displayedPeriod,
+            })}
+        </React.Fragment>
+      </EmptyState>
     );
   };
 
@@ -143,22 +170,32 @@ class Issues extends React.Component<Props, State> {
     const {orgId} = this.props;
     const {path, queryParams} = this.getIssuesEndpoint();
     const issuesTypes = [
-      {value: 'new', label: t('New Issues')},
-      {value: 'resolved', label: t('Resolved Issues')},
-      {value: 'all', label: t('All Issues')},
+      {value: IssuesType.NEW, label: t('New Issues')},
+      {value: IssuesType.RESOLVED, label: t('Resolved Issues')},
+      {value: IssuesType.UNHANDLED, label: t('Unhandled Issues')},
+      {value: IssuesType.ALL, label: t('All Issues')},
     ];
 
     return (
       <React.Fragment>
         <ControlsWrapper>
           <DropdownControl
-            buttonProps={{prefix: t('Filter'), size: 'small'}}
-            label={issuesTypes.find(i => i.value === issuesType)?.label}
+            button={({isOpen, getActorProps}) => (
+              <StyledDropdownButton
+                {...getActorProps()}
+                isOpen={isOpen}
+                prefix={t('Filter')}
+                size="small"
+              >
+                {issuesTypes.find(i => i.value === issuesType)?.label}
+              </StyledDropdownButton>
+            )}
           >
             {issuesTypes.map(({value, label}) => (
               <StyledDropdownItem
                 key={value}
                 onSelect={this.handleIssuesTypeSelection}
+                data-test-id={`filter-${value}`}
                 eventKey={value}
                 isActive={value === issuesType}
               >
@@ -169,12 +206,16 @@ class Issues extends React.Component<Props, State> {
 
           <OpenInButtonBar gap={1}>
             <Feature features={['discover-basic']}>
-              <DiscoverButton to={this.getDiscoverUrl()} size="small">
+              <DiscoverButton
+                to={this.getDiscoverUrl()}
+                size="small"
+                data-test-id="discover-button"
+              >
                 {t('Open in Discover')}
               </DiscoverButton>
             </Feature>
 
-            <Button to={this.getIssuesUrl()} size="small">
+            <Button to={this.getIssuesUrl()} size="small" data-test-id="issues-button">
               {t('Open in Issues')}
             </Button>
           </OpenInButtonBar>
@@ -209,6 +250,10 @@ const OpenInButtonBar = styled(ButtonBar)`
   @media (max-width: ${p => p.theme.breakpoints[0]}) {
     margin-top: ${space(1)};
   }
+`;
+
+const StyledDropdownButton = styled(DropdownButton)`
+  min-width: 145px;
 `;
 
 const StyledDropdownItem = styled(DropdownItem)`

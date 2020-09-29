@@ -8,6 +8,7 @@ from sentry.utils.compat.mock import patch
 from datetime import timedelta
 
 from six.moves.urllib.parse import urlencode
+from selenium.webdriver.common.keys import Keys
 
 from sentry.discover.models import DiscoverSavedQuery
 from sentry.testutils import AcceptanceTestCase, SnubaTestCase
@@ -89,7 +90,7 @@ def generate_transaction():
     }
 
     def build_span_tree(span_tree, spans, parent_span_id):
-        for span_id, child in span_tree.items():
+        for span_id, child in sorted(span_tree.items(), key=lambda item: item[0]):
             span = copy.deepcopy(reference_span)
             # non-leaf node span
             span["parent_span_id"] = parent_span_id.ljust(16, "0")
@@ -356,7 +357,7 @@ class OrganizationEventsV2Test(AcceptanceTestCase, SnubaTestCase):
         # of traversal buttons.
         child_event = generate_transaction()
         child_event["event_id"] = "b" * 32
-        child_event["contexts"]["trace"]["parent_span_id"] = event_data["spans"][5]["span_id"]
+        child_event["contexts"]["trace"]["parent_span_id"] = event_data["spans"][4]["span_id"]
         child_event["transaction"] = "z-child-transaction"
         child_event["spans"] = child_event["spans"][0:3]
         self.store_event(data=child_event, project_id=self.project.id, assert_no_errors=True)
@@ -432,7 +433,7 @@ class OrganizationEventsV2Test(AcceptanceTestCase, SnubaTestCase):
 
             input = self.browser.element('div[name="discover2-query-name"]')
             input.click()
-            input.send_keys("updated!")
+            input.send_keys(Keys.END + "updated!")
 
             # Move focus somewhere else to trigger a blur and update the query
             self.browser.element("table").click()

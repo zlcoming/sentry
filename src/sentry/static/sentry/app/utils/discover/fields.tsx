@@ -299,6 +299,7 @@ enum FieldKey {
   GEO_COUNTRY_CODE = 'geo.country_code',
   GEO_REGION = 'geo.region',
   HTTP_METHOD = 'http.method',
+  HTTP_REFERER = 'http.referer',
   HTTP_URL = 'http.url',
   ID = 'id',
   ISSUE = 'issue',
@@ -330,12 +331,11 @@ enum FieldKey {
   TRANSACTION_DURATION = 'transaction.duration',
   TRANSACTION_OP = 'transaction.op',
   TRANSACTION_STATUS = 'transaction.status',
-  // user.display is intentionally not here as
-  // it isn't stable and ready for customers to use just yet.
   USER_EMAIL = 'user.email',
   USER_ID = 'user.id',
   USER_IP = 'user.ip',
   USER_USERNAME = 'user.username',
+  USER_DISPLAY = 'user.display',
 }
 
 /**
@@ -367,6 +367,7 @@ export const FIELDS: Readonly<Record<FieldKey, ColumnType>> = {
   [FieldKey.SDK_NAME]: 'string',
   [FieldKey.SDK_VERSION]: 'string',
   [FieldKey.HTTP_METHOD]: 'string',
+  [FieldKey.HTTP_REFERER]: 'string',
   [FieldKey.HTTP_URL]: 'string',
   [FieldKey.OS_BUILD]: 'string',
   [FieldKey.OS_KERNEL_VERSION]: 'string',
@@ -410,6 +411,7 @@ export const FIELDS: Readonly<Record<FieldKey, ColumnType>> = {
   // Field alises defined in src/sentry/api/event_search.py
   [FieldKey.PROJECT]: 'string',
   [FieldKey.ISSUE]: 'string',
+  [FieldKey.USER_DISPLAY]: 'string',
 };
 
 export type FieldTag = {

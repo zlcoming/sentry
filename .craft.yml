@@ -9,10 +9,11 @@ statusProvider:
   name: github
   config:
     contexts:
-      - 'Trigger: 7973c658-e248-4a14-8552-7a66caa7fc0c'
+      - 'onpremise-builder (sentryio)'
 targets:
   - name: github
-  - name: pypi
+# Skip publishing to PyPI until we get the 2.1.0 release for https://github.com/Grokzen/redis-py-cluster/
+#  - name: pypi
   - name: docker
     source: us.gcr.io/sentryio/sentry
     target: getsentry/sentry

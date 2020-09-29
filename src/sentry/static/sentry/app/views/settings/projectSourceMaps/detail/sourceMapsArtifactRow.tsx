@@ -12,8 +12,7 @@ import {Artifact} from 'app/types';
 import Confirm from 'app/components/confirm';
 import Access from 'app/components/acl/access';
 import Tooltip from 'app/components/tooltip';
-
-import Tag from '../../components/tag';
+import Tag from 'app/components/tag';
 
 type Props = {
   artifact: Artifact;
@@ -71,6 +70,7 @@ const SourceMapsArtifactRow = ({artifact, onDelete, downloadUrl}: Props) => {
               size="small"
               icon={<IconDelete size="sm" />}
               title={t('Remove Artifact')}
+              label={t('Remove Artifact')}
             />
           </Confirm>
         </ButtonBar>

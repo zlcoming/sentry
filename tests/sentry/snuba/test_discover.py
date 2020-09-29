@@ -436,54 +436,6 @@ class QueryIntegrationTest(SnubaTestCase, TestCase):
                 use_aggregate_conditions=True,
             )
 
-    def test_reference_event(self):
-        two_minutes = before_now(minutes=2)
-        five_minutes = before_now(minutes=5)
-        self.store_event(
-            data={"event_id": "a" * 32, "message": "oh no", "timestamp": iso_format(two_minutes)},
-            project_id=self.project.id,
-        )
-        self.store_event(
-            data={
-                "event_id": "b" * 32,
-                "message": "no match",
-                "timestamp": iso_format(two_minutes),
-            },
-            project_id=self.project.id,
-        )
-        ref = discover.ReferenceEvent(
-            self.organization,
-            "{}:{}".format(self.project.slug, "a" * 32),
-            ["message", "count()"],
-            two_minutes,
-            two_minutes,
-        )
-        result = discover.query(
-            selected_columns=["id", "message"],
-            query="",
-            reference_event=ref,
-            params={"project_id": [self.project.id]},
-        )
-        assert len(result["data"]) == 2
-        for row in result["data"]:
-            assert row["message"] == "oh no"
-
-        # make an invalid reference with old dates
-        ref = discover.ReferenceEvent(
-            self.organization,
-            "{}:{}".format(self.project.slug, "a" * 32),
-            ["message", "count()"],
-            five_minutes,
-            five_minutes,
-        )
-        with pytest.raises(InvalidSearchQuery):
-            discover.query(
-                selected_columns=["id", "message"],
-                query="",
-                reference_event=ref,
-                params={"project_id": [self.project.id]},
-            )
-
 
 class QueryTransformTest(TestCase):
     """
@@ -787,6 +739,117 @@ class QueryTransformTest(TestCase):
         )
 
     @patch("sentry.snuba.discover.raw_query")
+    def test_selected_columns_percentile_range_function(self, mock_query):
+        mock_query.return_value = {
+            "meta": [{"name": "transaction"}, {"name": "firstPercentile"}],
+            "data": [{"transaction": "api.do_things", "firstPercentile": 15}],
+        }
+        discover.query(
+            selected_columns=[
+                "transaction",
+                "percentile_range(transaction.duration, 0.5, 2020-05-02T13:45:01, 2020-05-02T14:45:01, 1)",
+            ],
+            query="",
+            params={"project_id": [self.project.id]},
+            auto_fields=True,
+        )
+        mock_query.assert_called_with(
+            selected_columns=["transaction"],
+            aggregations=[
+                [
+                    "quantileIf(0.50)(duration,and(greaterOrEquals(timestamp,toDateTime('2020-05-02T13:45:01')),less(timestamp,toDateTime('2020-05-02T14:45:01'))))",
+                    None,
+                    "percentile_range_1",
+                ]
+            ],
+            filter_keys={"project_id": [self.project.id]},
+            dataset=Dataset.Discover,
+            groupby=["transaction"],
+            conditions=[],
+            end=None,
+            start=None,
+            orderby=None,
+            having=[],
+            limit=50,
+            offset=None,
+            referrer=None,
+        )
+
+    @patch("sentry.snuba.discover.raw_query")
+    def test_selected_columns_avg_range_function(self, mock_query):
+        mock_query.return_value = {
+            "meta": [{"name": "transaction"}, {"name": "firstAverage"}],
+            "data": [{"transaction": "api.do_things", "firstAverage": 15}],
+        }
+        discover.query(
+            selected_columns=[
+                "transaction",
+                "avg_range(transaction.duration, 2020-05-02T13:45:01, 2020-05-02T14:45:01, 1)",
+            ],
+            query="",
+            params={"project_id": [self.project.id]},
+            auto_fields=True,
+        )
+        mock_query.assert_called_with(
+            selected_columns=["transaction"],
+            aggregations=[
+                [
+                    "avgIf(duration,and(greaterOrEquals(timestamp,toDateTime('2020-05-02T13:45:01')),less(timestamp,toDateTime('2020-05-02T14:45:01'))))",
+                    None,
+                    "avg_range_1",
+                ]
+            ],
+            filter_keys={"project_id": [self.project.id]},
+            dataset=Dataset.Discover,
+            groupby=["transaction"],
+            conditions=[],
+            end=None,
+            start=None,
+            orderby=None,
+            having=[],
+            limit=50,
+            offset=None,
+            referrer=None,
+        )
+
+    @patch("sentry.snuba.discover.raw_query")
+    def test_selected_columns_user_misery_range_function(self, mock_query):
+        mock_query.return_value = {
+            "meta": [{"name": "transaction"}, {"name": "firstUserMisery"}],
+            "data": [{"transaction": "api.do_things", "firstUserMisery": 15}],
+        }
+        discover.query(
+            selected_columns=[
+                "transaction",
+                "user_misery_range(300, 2020-05-02T13:45:01, 2020-05-02T14:45:01, 1)",
+            ],
+            query="",
+            params={"project_id": [self.project.id]},
+            auto_fields=True,
+        )
+        mock_query.assert_called_with(
+            selected_columns=["transaction"],
+            aggregations=[
+                [
+                    "uniqIf(user,and(greater(duration,1200),and(greaterOrEquals(timestamp,toDateTime('2020-05-02T13:45:01')),less(timestamp,toDateTime('2020-05-02T14:45:01')))))",
+                    None,
+                    "user_misery_range_1",
+                ]
+            ],
+            filter_keys={"project_id": [self.project.id]},
+            dataset=Dataset.Discover,
+            groupby=["transaction"],
+            conditions=[],
+            end=None,
+            start=None,
+            orderby=None,
+            having=[],
+            limit=50,
+            offset=None,
+            referrer=None,
+        )
+
+    @patch("sentry.snuba.discover.raw_query")
     def test_percentile_function(self, mock_query):
         mock_query.return_value = {
             "meta": [{"name": "transaction"}, {"name": "percentile_transaction_duration_0_75"}],
@@ -962,7 +1025,7 @@ class QueryTransformTest(TestCase):
         )
         mock_query.assert_called_with(
             selected_columns=["transaction", "duration"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=[],
             dataset=Dataset.Discover,
@@ -1051,7 +1114,7 @@ class QueryTransformTest(TestCase):
         )
         mock_query.assert_called_with(
             selected_columns=["transaction", "duration"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=[],
             dataset=Dataset.Discover,
@@ -1081,7 +1144,7 @@ class QueryTransformTest(TestCase):
         )
         mock_query.assert_called_with(
             selected_columns=["transaction"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=["transaction"],
             dataset=Dataset.Discover,
@@ -1112,7 +1175,7 @@ class QueryTransformTest(TestCase):
 
         mock_query.assert_called_with(
             selected_columns=["transaction"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=["transaction"],
             dataset=Dataset.Discover,
@@ -1154,7 +1217,7 @@ class QueryTransformTest(TestCase):
 
             mock_query.assert_called_with(
                 selected_columns=["transaction"],
-                conditions=[["contexts[http.method]", "=", "GET"]],
+                conditions=[["http_method", "=", "GET"]],
                 filter_keys={"project_id": [self.project.id]},
                 groupby=["transaction"],
                 dataset=Dataset.Discover,
@@ -1185,7 +1248,7 @@ class QueryTransformTest(TestCase):
 
         mock_query.assert_called_with(
             selected_columns=["transaction"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=["transaction"],
             dataset=Dataset.Discover,
@@ -1216,7 +1279,7 @@ class QueryTransformTest(TestCase):
         )
         mock_query.assert_called_with(
             selected_columns=["transaction"],
-            conditions=[["contexts[http.method]", "=", "GET"]],
+            conditions=[["http_method", "=", "GET"]],
             filter_keys={"project_id": [self.project.id]},
             groupby=["transaction"],
             dataset=Dataset.Discover,
@@ -1257,7 +1320,7 @@ class QueryTransformTest(TestCase):
             )
             mock_query.assert_called_with(
                 selected_columns=["transaction"],
-                conditions=[["contexts[http.method]", "=", "GET"]],
+                conditions=[["http_method", "=", "GET"]],
                 filter_keys={"project_id": [self.project.id]},
                 groupby=["transaction"],
                 dataset=Dataset.Discover,
@@ -1541,7 +1604,7 @@ class QueryTransformTest(TestCase):
 
     @patch("sentry.snuba.discover.raw_query")
     def test_histogram_zerofill_missing_results_desc_sort(self, mock_query):
-        seed = range(0, 11, 2)
+        seed = list(range(0, 11, 2))
         seed.reverse()
         mock_query.side_effect = [
             {"data": [{"max_transaction.duration": 10000, "min_transaction.duration": 0}]},
@@ -1889,207 +1952,6 @@ class TimeseriesQueryTest(SnubaTestCase, TestCase):
         for d in data:
             if "count" in d:
                 assert d["count"] == 2
-
-    def test_reference_event(self):
-        ref = discover.ReferenceEvent(
-            self.organization,
-            "{}:{}".format(self.project.slug, "a" * 32),
-            ["message", "count()", "last_seen"],
-        )
-        result = discover.timeseries_query(
-            selected_columns=["count()"],
-            query="",
-            params={
-                "start": self.day_ago,
-                "end": self.day_ago + timedelta(hours=3),
-                "project_id": [self.project.id],
-            },
-            reference_event=ref,
-            rollup=3600,
-        )
-        assert len(result.data["data"]) == 4
-        assert [1, 1] == [val["count"] for val in result.data["data"] if "count" in val]
-
-
-class CreateReferenceEventConditionsTest(SnubaTestCase, TestCase):
-    def test_bad_slug_format(self):
-        ref = discover.ReferenceEvent(self.organization, "lol", ["title"])
-        with pytest.raises(InvalidSearchQuery):
-            discover.create_reference_event_conditions(ref)
-
-    def test_unknown_project(self):
-        event = self.store_event(
-            data={"message": "oh no!", "timestamp": iso_format(before_now(seconds=1))},
-            project_id=self.project.id,
-        )
-        ref = discover.ReferenceEvent(
-            self.organization, "nope:{}".format(event.event_id), ["title"]
-        )
-        with pytest.raises(InvalidSearchQuery):
-            discover.create_reference_event_conditions(ref)
-
-    def test_unknown_event(self):
-        with pytest.raises(InvalidSearchQuery):
-            slug = "{}:deadbeef".format(self.project.slug)
-            ref = discover.ReferenceEvent(self.organization, slug, ["message"])
-            discover.create_reference_event_conditions(ref)
-
-    def test_unknown_event_and_no_fields(self):
-        slug = "{}:deadbeef".format(self.project.slug)
-        ref = discover.ReferenceEvent(self.organization, slug, [])
-        result = discover.create_reference_event_conditions(ref)
-        assert len(result) == 0
-
-    def test_no_fields(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "transaction": "/issues/{issue_id}",
-                "timestamp": iso_format(before_now(seconds=1)),
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, [])
-        result = discover.create_reference_event_conditions(ref)
-        assert len(result) == 0
-
-    def test_basic_fields(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "transaction": "/issues/{issue_id}",
-                "timestamp": iso_format(before_now(seconds=1)),
-            },
-            project_id=self.project.id,
-        )
-
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(
-            self.organization, slug, ["message", "transaction", "unknown-field"]
-        )
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [
-            ["message", "=", "oh no! /issues/{issue_id}"],
-            ["transaction", "=", "/issues/{issue_id}"],
-        ]
-
-    def test_geo_field(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "transaction": "/issues/{issue_id}",
-                "user": {
-                    "id": 1,
-                    "geo": {"country_code": "US", "region": "CA", "city": "San Francisco"},
-                },
-                "timestamp": iso_format(before_now(seconds=1)),
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(
-            self.organization, slug, ["geo.city", "geo.region", "geo.country_code"]
-        )
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [
-            ["geo.city", "=", "San Francisco"],
-            ["geo.region", "=", "CA"],
-            ["geo.country_code", "=", "US"],
-        ]
-
-    def test_sdk_field(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "transaction": "/issues/{issue_id}",
-                "sdk": {"name": "sentry-python", "version": "5.0.12"},
-                "timestamp": iso_format(before_now(seconds=1)),
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, ["sdk.version", "sdk.name"])
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [["sdk.version", "=", "5.0.12"], ["sdk.name", "=", "sentry-python"]]
-
-    def test_error_field(self):
-        data = load_data("php")
-        data["timestamp"] = iso_format(before_now(seconds=1))
-        event = self.store_event(data=data, project_id=self.project.id)
-
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(
-            self.organization, slug, ["error.value", "error.type", "error.handled"]
-        )
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [
-            ["error.value", "=", "This is a test exception sent from the Raven CLI."],
-            ["error.type", "=", "Exception"],
-        ]
-
-    def test_stack_field(self):
-        data = load_data("php")
-        data["timestamp"] = iso_format(before_now(seconds=1))
-        event = self.store_event(data=data, project_id=self.project.id)
-
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, ["stack.filename", "stack.function"])
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [
-            ["stack.filename", "=", "/Users/example/Development/raven-php/bin/raven"],
-            ["stack.function", "=", "raven_cli_test"],
-        ]
-
-    def test_tag_value(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "timestamp": iso_format(before_now(seconds=1)),
-                "tags": {"customer_id": 1, "color": "red"},
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, ["nope", "color", "customer_id"])
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [["color", "=", "red"], ["customer_id", "=", "1"]]
-
-    def test_context_value(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "timestamp": iso_format(before_now(seconds=1)),
-                "contexts": {
-                    "os": {"version": "10.14.6", "type": "os", "name": "Mac OS X"},
-                    "browser": {"type": "browser", "name": "Firefox", "version": "69"},
-                    "gpu": {"type": "gpu", "name": "nvidia 8600", "vendor": "nvidia"},
-                },
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, ["gpu.name", "browser.name"])
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [["gpu.name", "=", "nvidia 8600"], ["browser.name", "=", "Firefox"]]
-
-    def test_issue_field(self):
-        event = self.store_event(
-            data={
-                "message": "oh no!",
-                "timestamp": iso_format(before_now(seconds=1)),
-                "contexts": {
-                    "os": {"version": "10.14.6", "type": "os", "name": "Mac OS X"},
-                    "browser": {"type": "browser", "name": "Firefox", "version": "69"},
-                    "gpu": {"type": "gpu", "name": "nvidia 8600", "vendor": "nvidia"},
-                },
-            },
-            project_id=self.project.id,
-        )
-        slug = "{}:{}".format(self.project.slug, event.event_id)
-        ref = discover.ReferenceEvent(self.organization, slug, ["issue.id"])
-        result = discover.create_reference_event_conditions(ref)
-        assert result == [["issue.id", "=", event.group_id]]
 
 
 def format_project_event(project_slug, event_id):

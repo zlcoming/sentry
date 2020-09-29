@@ -1,6 +1,8 @@
 import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
+import styled from '@emotion/styled';
 
+import space from 'app/styles/space';
 import {t} from 'app/locale';
 import AsyncView from 'app/views/asyncView';
 import withOrganization from 'app/utils/withOrganization';
@@ -10,7 +12,7 @@ import {Client} from 'app/api';
 import withApi from 'app/utils/withApi';
 import {formatVersion} from 'app/utils/formatters';
 import routeTitleGen from 'app/utils/routeTitle';
-import {Main, Side} from 'app/components/layouts/thirds';
+import {Body, Main, Side} from 'app/components/layouts/thirds';
 
 import ReleaseChart from './chart/';
 import Issues from './issues';
@@ -21,7 +23,6 @@ import TotalCrashFreeUsers from './totalCrashFreeUsers';
 import Deploys from './deploys';
 import ReleaseStatsRequest from './releaseStatsRequest';
 import {YAxis} from './chart/releaseChartControls';
-import SwitchReleasesButton from '../../utils/switchReleasesButton';
 import {ReleaseContext} from '..';
 
 type RouteParams = {
@@ -92,7 +93,7 @@ class ReleaseOverview extends AsyncView<Props> {
               hasDiscover={hasDiscover}
             >
               {({crashFreeTimeBreakdown, ...releaseStatsProps}) => (
-                <React.Fragment>
+                <StyledBody>
                   <Main>
                     {(hasDiscover || hasHealthData) && (
                       <ReleaseChart
@@ -153,9 +154,7 @@ class ReleaseOverview extends AsyncView<Props> {
                       />
                     )}
                   </Side>
-
-                  <SwitchReleasesButton version="1" orgId={organization.id} />
-                </React.Fragment>
+                </StyledBody>
               )}
             </ReleaseStatsRequest>
           );
@@ -166,3 +165,7 @@ class ReleaseOverview extends AsyncView<Props> {
 }
 
 export default withApi(withGlobalSelection(withOrganization(ReleaseOverview)));
+
+const StyledBody = styled(Body)`
+  margin: -${space(2)} -${space(4)};
+`;

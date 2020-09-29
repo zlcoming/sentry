@@ -315,19 +315,32 @@ class Browser(object):
             self.wait_for_images_loaded()
             self.wait_for_fonts_loaded()
 
+            snapshot_dir = os.environ.get(
+                "PYTEST_SNAPSHOTS_DIR", ".artifacts/visual-snapshots/acceptance"
+            )
             # Note: below will fail if these directories do not exist
 
             if not mobile_only:
                 # This will make sure we resize viewport height to fit contents
                 with self.full_viewport():
                     self.driver.find_element_by_tag_name("body").screenshot(
-                        u".artifacts/visual-snapshots/acceptance/{}.png".format(slugify(name))
+                        u"{}/{}.png".format(snapshot_dir, slugify(name))
                     )
+                    has_tooltips = self.driver.execute_script(
+                        "return window.__openAllTooltips && window.__openAllTooltips()"
+                    )
+                    if has_tooltips:
+                        self.driver.find_element_by_tag_name("body").screenshot(
+                            u"{}-tooltips/{}.png".format(snapshot_dir, slugify(name))
+                        )
+                        self.driver.execute_script(
+                            "window.__closeAllTooltips && window.__closeAllTooltips()"
+                        )
 
             with self.mobile_viewport():
                 # switch to a mobile sized viewport
                 self.driver.find_element_by_tag_name("body").screenshot(
-                    u".artifacts/visual-snapshots/acceptance-mobile/{}.png".format(slugify(name))
+                    u"{}-mobile/{}.png".format(snapshot_dir, slugify(name))
                 )
 
         return self
@@ -446,6 +459,7 @@ def browser(request, live_server):
         options = webdriver.ChromeOptions()
         options.add_argument("no-sandbox")
         options.add_argument("disable-gpu")
+        options.add_argument("disable-dev-shm-usage")
         options.add_argument(u"window-size={}".format(window_size))
         if headless:
             options.add_argument("headless")

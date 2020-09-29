@@ -245,7 +245,38 @@ describe('utils/tokenizeSearch', function() {
       expect(results.formatString()).toEqual('x a:a y OR z ( b:b AND c:c )');
     });
 
-    it('remove tags from query object', function() {
+    it('adds tags to query', function() {
+      const results = new QueryResults(['tag:value']);
+
+      results.addStringTag('new:too');
+      expect(results.formatString()).toEqual('tag:value new:too');
+    });
+
+    it('setTag() replaces tags', function() {
+      const results = new QueryResults(['tag:value']);
+
+      results.setTag('tag', ['too']);
+      expect(results.formatString()).toEqual('tag:too');
+    });
+
+    it('setTag() replaces tags in OR', function() {
+      let results = new QueryResults([
+        '(',
+        'transaction:xyz',
+        'OR',
+        'transaction:abc',
+        ')',
+      ]);
+
+      results.setTag('transaction', ['def']);
+      expect(results.formatString()).toEqual('transaction:def');
+
+      results = new QueryResults(['(transaction:xyz', 'OR', 'transaction:abc)']);
+      results.setTag('transaction', ['def']);
+      expect(results.formatString()).toEqual('transaction:def');
+    });
+
+    it('removes tags from query object', function() {
       let results = new QueryResults(['x', 'a:a', 'b:b']);
       results.removeTag('a');
       expect(results.formatString()).toEqual('x b:b');
@@ -328,9 +359,12 @@ describe('utils/tokenizeSearch', function() {
         string: 'bad things repository_id:"UUID(\'long-value\')"',
       },
       {
-        name: 'should quote tags with colon',
+        // values with quotes do not need to be quoted
+        // furthermore, timestamps contain colons
+        // but the backend currently does not support quoted date formats
+        name: 'should not quote tags with colon',
         object: new QueryResults(['bad', 'things', 'user:"id:123"']),
-        string: 'bad things user:"id:123"',
+        string: 'bad things user:id:123',
       },
       {
         name: 'should escape quote tags with double quotes',

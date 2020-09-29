@@ -82,7 +82,7 @@ SENTRY_APP_SLUG_MAX_LENGTH = 64
 
 # Maximum number of results we are willing to fetch when calculating rollup
 # Clients should adapt the interval width based on their display width.
-MAX_ROLLUP_POINTS = 4500
+MAX_ROLLUP_POINTS = 10000
 
 
 # Team slugs which may not be used. Generally these are top level URL patterns
@@ -151,6 +151,8 @@ RESERVED_ORGANIZATION_SLUGS = frozenset(
         "careers",
         "_experiment",
         "sentry-apps",
+        "resources",
+        "integration-platform",
     )
 )
 
@@ -229,6 +231,20 @@ SENTRY_RULES = (
     "sentry.rules.conditions.level.LevelCondition",
     "sentry.rules.filters.age_comparison.AgeComparisonFilter",
     "sentry.rules.filters.issue_occurrences.IssueOccurrencesFilter",
+    "sentry.rules.filters.assigned_to.AssignedToFilter",
+    "sentry.rules.filters.latest_release.LatestReleaseFilter",
+    # The following filters are duplicates of their respective conditions and are conditionally shown if the user has issue alert-filters
+    "sentry.rules.filters.event_attribute.EventAttributeFilter",
+    "sentry.rules.filters.tagged_event.TaggedEventFilter",
+    "sentry.rules.filters.level.LevelFilter",
+)
+
+MIGRATED_CONDITIONS = frozenset(
+    [
+        "sentry.rules.conditions.tagged_event.TaggedEventCondition",
+        "sentry.rules.conditions.event_attribute.EventAttributeCondition",
+        "sentry.rules.conditions.level.LevelCondition",
+    ]
 )
 
 # methods as defined by http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html + PATCH
