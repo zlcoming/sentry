@@ -22,6 +22,7 @@ import {TRENDS_FUNCTIONS, getCurrentTrendFunction, getSelectedQueryKey} from './
 import ChangedTransactions from './changedTransactions';
 import ChangedProjects from './changedProjects';
 import {FilterViews} from '../landing';
+import BubbleChart from './bubbleChart';
 
 type Props = {
   organization: Organization;
@@ -127,6 +128,14 @@ class TrendsContent extends React.Component<Props, State> {
             </TrendsDropdown>
           </StyledSearchContainer>
           <TrendsLayoutContainer>
+            <StyledBubbleChart>
+              <BubbleChart
+                trendChangeType={TrendChangeType.IMPROVED}
+                previousTrendFunction={previousTrendFunction}
+                trendView={trendView}
+                location={location}
+              />
+            </StyledBubbleChart>
             {showChangedProjects && (
               <ChangedProjects
                 trendChangeType={TrendChangeType.IMPROVED}
@@ -213,6 +222,11 @@ const TrendsDropdown = styled('div')`
 
 const StyledSearchContainer = styled('div')`
   display: flex;
+`;
+
+const StyledBubbleChart = styled('div')`
+  grid-column: span 2;
+  min-height: 400px;
 `;
 
 const TrendsLayoutContainer = styled('div')`

@@ -175,7 +175,8 @@ export function modifyTrendView(
   trendView: TrendView,
   location: Location,
   trendsType: TrendChangeType,
-  isProjectOnly?: boolean
+  isProjectOnly?: boolean,
+  adjustLimitsForBubble?: boolean
 ) {
   const trendFunction = getCurrentTrendFunction(location);
 
@@ -204,11 +205,18 @@ export function modifyTrendView(
     trendView.trendFunction = trendFunction.field;
   }
   const limitTrendResult = getLimitTransactionItems(trendFunction, trendsType);
-  trendView.query += ' ' + limitTrendResult;
+
+  if (!adjustLimitsForBubble) {
+    trendView.query += ' ' + limitTrendResult;
+  }
 
   trendView.interval = getQueryInterval(location, trendView);
 
-  trendView.sorts = [trendSort];
+  if (!adjustLimitsForBubble) {
+    trendView.sorts = [trendSort];
+  } else {
+    trendView.sorts = [];
+  }
   trendView.fields = fields;
 }
 
@@ -355,6 +363,7 @@ export function normalizeTrends(
       count_range_1,
       count_range_2,
       percentage_count_range_2_count_range_1,
+      count,
     } = row;
 
     const aliasedFields = {} as NormalizedTrendsTransaction;
@@ -372,7 +381,7 @@ export function normalizeTrends(
     const normalized = {
       ...aliasedFields,
       project,
-
+      count,
       count_range_1,
       count_range_2,
       percentage_count_range_2_count_range_1,
