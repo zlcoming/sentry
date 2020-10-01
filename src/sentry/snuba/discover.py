@@ -1107,9 +1107,9 @@ def find_measurements_min_max(measurements, min_value, max_value, user_query, pa
         min_value = min(min_values) if min_values else None
 
     if max_value is None:
-        original_max_values = [row[get_function_alias("max(measurements.{})".format(measurement))] for measurement in measurements]
-        original_max_values = list(filter(lambda v: v is not None, original_max_values))
-        original_max_value = max(original_max_values) if original_max_values else None
+        max_values = [row[get_function_alias("max(measurements.{})".format(measurement))] for measurement in measurements]
+        max_values = list(filter(lambda v: v is not None, max_values))
+        max_value = max(max_values) if max_values else None
 
         fences = []
         for measurement in measurements:
@@ -1120,25 +1120,21 @@ def find_measurements_min_max(measurements, min_value, max_value, user_query, pa
             Q3 = row[Q3_column_name]
             IQR = abs(Q3 - Q1)
             upper_inner_fence = Q3 + 1.5 * IQR
-            upper_outer_fence = Q3 + 3 * IQR
+            # upper_outer_fence = Q3 + 3 * IQR
 
-            if upper_inner_fence <= original_max_value:
-                fences.append(upper_inner_fence)
-
-            if upper_outer_fence <= original_max_value:
-                fences.append(upper_outer_fence)
+            fences.append(upper_inner_fence)
 
         fences = list(filter(lambda v: v is not None, fences))
-        if len(fences) > 0:
-            max_value = max(fences)
-        else:
-            max_value = original_max_value
+        max_fence_value = max(fences) if fences else None
+
+        candidates = [max_fence_value, max_value]
+        candidates = list(filter(lambda v: v is not None, max_values))
+        max_value = min(candidates) if candidates else None
 
         with sentry_sdk.start_span(
             op="find_measurements_min_max", description="find max values"
         ) as span:
-            span.set_data("original_max_value", original_max_value)
-            span.set_data("original_max_values", original_max_values)
+            span.set_data("max_values", max_values)
             span.set_data("fences", fences)
             span.set_data("max(fences)", max(fences))
             span.set_data("max_value", max_value)
