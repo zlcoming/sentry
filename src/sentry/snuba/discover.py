@@ -1128,7 +1128,7 @@ def find_measurements_min_max(measurements, min_value, max_value, user_query, pa
         max_fence_value = max(fences) if fences else None
 
         candidates = [max_fence_value, max_value]
-        candidates = list(filter(lambda v: v is not None, max_values))
+        candidates = list(filter(lambda v: v is not None, candidates))
         max_value = min(candidates) if candidates else None
 
         with sentry_sdk.start_span(
