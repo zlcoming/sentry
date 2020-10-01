@@ -1074,6 +1074,8 @@ def find_measurements_min_max(measurements, min_value, max_value, user_query, pa
             min_columns.append("min(measurements.{})".format(measurement))
         if max_value is None:
             max_columns.append("max(measurements.{})".format(measurement))
+            max_columns.append("percentile(measurements.{}, 0.25)".format(measurement))
+            max_columns.append("percentile(measurements.{}, 0.75)".format(measurement))
 
     results = query(
         selected_columns=min_columns + max_columns,
@@ -1094,15 +1096,52 @@ def find_measurements_min_max(measurements, min_value, max_value, user_query, pa
 
     row = data[0]
 
+    with sentry_sdk.start_span(
+        op="find_measurements_min_max", description="row"
+    ) as span:
+        span.set_data("row", row)
+
     if min_value is None:
         min_values = [row[get_function_alias(column)] for column in min_columns]
         min_values = list(filter(lambda v: v is not None, min_values))
         min_value = min(min_values) if min_values else None
 
     if max_value is None:
-        max_values = [row[get_function_alias(column)] for column in max_columns]
-        max_values = list(filter(lambda v: v is not None, max_values))
-        max_value = max(max_values) if max_values else None
+        original_max_values = [row[get_function_alias("max(measurements.{})".format(measurement))] for measurement in measurements]
+        original_max_values = list(filter(lambda v: v is not None, original_max_values))
+        original_max_value = max(original_max_values) if original_max_values else None
+
+        fences = []
+        for measurement in measurements:
+            Q1_column_name = get_function_alias("percentile(measurements.{}, 0.25)".format(measurement))
+            Q3_column_name = get_function_alias("percentile(measurements.{}, 0.75)".format(measurement))
+
+            Q1 = row[Q1_column_name]
+            Q3 = row[Q3_column_name]
+            IQR = abs(Q3 - Q1)
+            upper_inner_fence = Q3 + 1.5 * IQR
+            upper_outer_fence = Q3 + 3 * IQR
+
+            if upper_inner_fence <= original_max_value:
+                fences.append(upper_inner_fence)
+
+            if upper_outer_fence <= original_max_value:
+                fences.append(upper_outer_fence)
+
+        fences = list(filter(lambda v: v is not None, fences))
+        if len(fences) > 0:
+            max_value = max(fences)
+        else:
+            max_value = original_max_value
+
+        with sentry_sdk.start_span(
+            op="find_measurements_min_max", description="find max values"
+        ) as span:
+            span.set_data("original_max_value", original_max_value)
+            span.set_data("original_max_values", original_max_values)
+            span.set_data("fences", fences)
+            span.set_data("max(fences)", max(fences))
+            span.set_data("max_value", max_value)
 
     return min_value, max_value
 
