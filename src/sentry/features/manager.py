@@ -203,7 +203,7 @@ class FeatureManager(RegisteredFeatureManager):
     def bulk_has(self, names, actor, projects=None, organization=None):
         """
         Determine if multiple features are enabled. The result will simply not have
-        the flag if it cannot be handled yet
+        the flag if it cannot be handled
 
         The entity handler will check a flag across all of the entities, so the feature names
         should not be a mix of different Feature types
