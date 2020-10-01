@@ -181,7 +181,15 @@ class FeatureManager(RegisteredFeatureManager):
             return rv
 
         if self._entity_handler:
-            rv = self._entity_handler(feature, actor)
+            organization = feature.organization if hasattr(feature, "organization") else None
+
+            if hasattr(feature, "project"):
+                projects = [feature.project]
+                organization = feature.organization
+            else:
+                projects = None
+
+            rv = self._entity_handler([name], actor, projects=projects, organization=organization)
             if rv is not None:
                 return rv
 
@@ -193,8 +201,15 @@ class FeatureManager(RegisteredFeatureManager):
         return False
 
     def bulk_has(self, names, actor, projects=None, organization=None):
+        """
+        Determine if multiple features are enabled. The result will simply not have
+        the flag if it cannot be handled yet
+
+        The entity handler will check a flag across all of the entities, so the feature names
+        should not be a mix of different Feature types
+        """
         if self._entity_handler:
-            return self._entity_handler.bulk_has(names, projects, organization, actor)
+            return self._entity_handler(names, actor, projects=projects, organization=organization)
         else:
             return None
 

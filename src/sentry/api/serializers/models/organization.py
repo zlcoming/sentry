@@ -130,17 +130,23 @@ class OrganizationSerializer(Serializer):
         feature_list = set()
 
         bulk_features = features.bulk_has(org_features, actor=user, organization=obj)
+
+        # bulk_has has found some of the features
         if bulk_features:
-            for feature_name, active in six.iteritems(bulk_features):
+            entity_features = bulk_features.get("organization:{}".format(obj.id), {})
+            for feature_name, active in entity_features.items():
                 if active:
                     feature_list.add(feature_name[len("organizations:") :])
+
+                # This feature was found with bulk_has, don't check it again
                 org_features.remove(feature_name)
 
-        for feature_name in org_features:
-            with sentry_sdk.start_span(op="org.check_feature", description=feature_name):
-                if features.has(feature_name, obj, actor=user):
-                    # Remove the organization scope prefix
-                    feature_list.add(feature_name[len("organizations:") :])
+        with sentry_sdk.start_span(op="org.individual_feature_checks"):
+            for feature_name in org_features:
+                with sentry_sdk.start_span(op="org.check_feature", description=feature_name):
+                    if features.has(feature_name, obj, actor=user):
+                        # Remove the organization scope prefix
+                        feature_list.add(feature_name[len("organizations:") :])
 
         # Do not include the onboarding feature if OrganizationOptions exist
         if (

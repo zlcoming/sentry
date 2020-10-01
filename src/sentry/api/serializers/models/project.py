@@ -197,10 +197,21 @@ class ProjectSerializer(Serializer):
             project_features, actor=user, projects=all_projects, organization=project.organization
         )
 
-        with sentry_sdk.start_span(op="oldschoool.features"):
-            for feature_name in features.all(feature_type=ProjectFeature).keys():
-                if not feature_name.startswith(_PROJECT_SCOPE_PREFIX):
-                    continue
+        # bulk_has has found some of the features
+        if bulk_features:
+            for project in all_projects:
+                entity_features = bulk_features.get("project:{}".format(project.id), {})
+                for feature, active in entity_features.items():
+                    if active:
+                        abbreviated_feature = feature[len(_PROJECT_SCOPE_PREFIX) :]
+                        features_by_project[project].append(abbreviated_feature)
+
+                    # The feature was found with bulk_has, don't check it again
+                    if feature in project_features:
+                        project_features.remove(feature)
+
+        with sentry_sdk.start_span(op="project.individual_feature_checks"):
+            for feature_name in project_features:
                 abbreviated_feature = feature_name[len(_PROJECT_SCOPE_PREFIX) :]
                 for (organization, projects) in projects_by_org.items():
                     result = features.has_for_batch(feature_name, organization, projects, user)
