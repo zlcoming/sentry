@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
 
 
     dependencies = [
-        ('sentry', '0094_cleanup_unreferenced_event_files'),
+        ('sentry', '0108_update_fileblob_action'),
     ]
 
     operations = [
