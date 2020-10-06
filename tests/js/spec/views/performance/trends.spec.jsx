@@ -474,7 +474,7 @@ describe('Performance > Trends', function () {
       ];
       const projectFields = [...trendFunctionFields, ...defaultTrendsFields];
 
-      expect(transactionFields).toHaveLength(8);
+      expect(transactionFields).toHaveLength(11);
       expect(projectFields).toHaveLength(transactionFields.length - 1);
 
       // Improved projects call

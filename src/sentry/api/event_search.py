@@ -1335,6 +1335,9 @@ class NumericColumnNoLookup(NumericColumn):
 class DurationColumn(FunctionArg):
     def normalize(self, value):
         snuba_column = SEARCH_MAP.get(value)
+        if is_duration_measurement(value):
+            measure = value.split(".")[1]
+            return "arrayElement(measurements.value, indexOf(measurements.key, '%s'))" % measure
         if not snuba_column and is_duration_measurement(value):
             return value
         if not snuba_column:

@@ -22,6 +22,9 @@ export enum TrendChangeType {
 }
 
 export enum TrendFunctionField {
+  P50LCP = 'lcp_p50()',
+  P50FCP = 'fcp_p50()',
+  P50FP = 'fp_p50()',
   P50 = 'p50()',
   P75 = 'p75()',
   P95 = 'p95()',

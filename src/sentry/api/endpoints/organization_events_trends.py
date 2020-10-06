@@ -19,6 +19,18 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
             "format": "percentile_range(transaction.duration, 0.5, {start}, {end}, {index})",
             "alias": "percentile_range_",
         },
+        "lcp_p50": {
+            "format": "percentile_range(measurements.lcp, 0.5, {start}, {end}, {index})",
+            "alias": "percentile_range_",
+        },
+        "fcp_p50": {
+            "format": "percentile_range(measurements.fcp, 0.5, {start}, {end}, {index})",
+            "alias": "percentile_range_",
+        },
+        "fp_p50": {
+            "format": "percentile_range(measurements.fp, 0.5, {start}, {end}, {index})",
+            "alias": "percentile_range_",
+        },
         "p75": {
             "format": "percentile_range(transaction.duration, 0.75, {start}, {end}, {index})",
             "alias": "percentile_range_",
@@ -66,14 +78,26 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
             )
 
         trend_function = request.GET.get("trendFunction", "p50()")
+        measure = None
+        if trend_function[:3] in ["fp_", "lcp", "fcp"]:
+            measure, trend_function = trend_function.split("_")
+
         function, columns = parse_function(trend_function)
-        trend_column = self.trend_columns.get(function)
+
+        trend_column = self.trend_columns.get(
+            function if measure is None else measure + "_" + function
+        )
         if trend_column is None:
             raise ParseError(detail=u"{} is not a supported trend function".format(trend_function))
 
         count_column = self.trend_columns.get("count_range")
         percentage_column = self.trend_columns["percentage"]
         selected_columns = request.GET.getlist("field")[:]
+        selected_columns = [
+            column
+            for column in selected_columns
+            if column not in ["lcp_p50()", "fcp_p50()", "fp_p50()"]
+        ]
         query = request.GET.get("query")
         orderby = self.get_orderby(request)
 
@@ -88,7 +112,6 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
                     count_column["format"].format(start=start, end=middle, index="1"),
                     count_column["format"].format(start=middle, end=end, index="2"),
                     percentage_column["format"].format(alias=count_column["alias"]),
-                    "absolute_correlation()",
                 ],
                 query=query,
                 params=params,
@@ -105,7 +128,7 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
                 request=request,
                 paginator=GenericOffsetPaginator(data_fn=data_fn),
                 on_results=self.build_result_handler(
-                    request, organization, params, trend_function, selected_columns, orderby
+                    request, organization, params, function, selected_columns, orderby
                 ),
                 default_per_page=5,
                 max_per_page=5,
