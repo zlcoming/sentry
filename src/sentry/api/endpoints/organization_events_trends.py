@@ -98,7 +98,7 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
             for column in selected_columns
             if column not in ["lcp_p50()", "fcp_p50()", "fp_p50()"]
         ]
-        query = request.GET.get("query")
+        query = "event.type:transaction"  # request.GET.get("query")
         orderby = self.get_orderby(request)
 
         def data_fn(offset, limit):
@@ -123,12 +123,15 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
                 use_aggregate_conditions=True,
             )
 
+        if measure:
+            trend_function = "percentile(measurements." + measure + ",0.5)"
+
         with self.handle_query_errors():
             return self.paginate(
                 request=request,
                 paginator=GenericOffsetPaginator(data_fn=data_fn),
                 on_results=self.build_result_handler(
-                    request, organization, params, function, selected_columns, orderby
+                    request, organization, params, trend_function, selected_columns, orderby
                 ),
                 default_per_page=5,
                 max_per_page=5,

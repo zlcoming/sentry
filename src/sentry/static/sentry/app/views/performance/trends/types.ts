@@ -101,8 +101,6 @@ export type TrendsTransaction =
 export type ProjectTrend = Omit<TrendsTransaction, 'transaction'>;
 
 export type NormalizedTrendsTransaction = BaseTrendsTransaction & {
-  p50: number;
-
   aggregate_range_1: number;
   aggregate_range_2: number;
   percentage_aggregate_range_2_aggregate_range_1: number;

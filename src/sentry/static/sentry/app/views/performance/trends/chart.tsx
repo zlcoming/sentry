@@ -209,9 +209,7 @@ class Chart extends React.Component<Props> {
 
     const events =
       statsData && transaction?.project && transaction?.transaction
-        ? statsData[
-            [transaction.p50, transaction.project, transaction.transaction].join(',')
-          ]
+        ? statsData[[transaction.project, transaction.transaction].join(',')]
         : undefined;
     const data = events?.data ?? [];
 
