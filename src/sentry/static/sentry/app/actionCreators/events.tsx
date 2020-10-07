@@ -48,7 +48,7 @@ type Options = {
  * @param {String[]} options.environment List of environments to query for
  * @param {String} options.period Time period to query for, in the format: <integer><units> where units are "d" or "h"
  * @param {String} options.interval Time interval to group results in, in the format: <integer><units> where units are "d", "h", "m", "s"
- * @param {Boolean} options.includePrevious Should request also return reqsults for previous period?
+ * @param {Boolean} options.includePrevious Should request also return results for previous period?
  * @param {Number} options.limit The number of rows to return
  * @param {String} options.query Search query
  */

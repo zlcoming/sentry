@@ -303,7 +303,7 @@ class SlackReAuthChannels(PipelineView):
         2. removed
         3. unauthorized
 
-        Any private channels in alert rules will also be binded
+        Any private channels in alert rules will also be bound
         to the pipeline state to be used later.
 
     """
@@ -350,7 +350,7 @@ def _request_channel_info(pipeline):
         try:
             resp = client.post("/conversations.info", data=payload)
             # TODO(meredith): subclass the ApiError and make a SlackApiError so we can
-            # reraise the other errors
+            # re-raise the other errors
         except ApiError as e:
             logger.info(
                 "slack.request_channel_info.response-error",

@@ -50,11 +50,11 @@ class ExternalIssueForm extends AsyncComponent<Props, State> {
   };
 
   shouldRenderBadRequests = true;
-  loadTransasaction?: ReturnType<typeof Sentry.startTransaction>;
+  loadTransaction?: ReturnType<typeof Sentry.startTransaction>;
   submitTransaction?: ReturnType<typeof Sentry.startTransaction>;
 
   componentDidMount() {
-    this.loadTransasaction = this.startTransaction('load');
+    this.loadTransaction = this.startTransaction('load');
   }
 
   getEndpoints(): [string, string][] {
@@ -101,11 +101,11 @@ class ExternalIssueForm extends AsyncComponent<Props, State> {
   }
 
   onLoadAllEndpointsSuccess() {
-    this.loadTransasaction?.finish();
+    this.loadTransaction?.finish();
   }
 
   onRequestError = () => {
-    this.loadTransasaction?.finish();
+    this.loadTransaction?.finish();
   };
 
   refetchConfig = () => {
