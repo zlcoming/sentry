@@ -98,7 +98,7 @@ class OrganizationEventsTrendsEndpointBase(OrganizationEventsV2EndpointBase):
             for column in selected_columns
             if column not in ["lcp_p50()", "fcp_p50()", "fp_p50()"]
         ]
-        query = "event.type:transaction"  # request.GET.get("query")
+        query = request.GET.get("query")
         orderby = self.get_orderby(request)
 
         def data_fn(offset, limit):
