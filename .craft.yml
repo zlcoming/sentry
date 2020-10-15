@@ -1,4 +1,4 @@
-minVersion: "0.12.0"
+minVersion: '0.12.0'
 github:
   owner: getsentry
   repo: sentry
@@ -12,7 +12,8 @@ statusProvider:
       - 'onpremise-builder (sentryio)'
 targets:
   - name: github
-  - name: pypi
+  # NOTE: Skipped because of openapi-core dev dependency
+  # - name: pypi
   - id: py2-release
     name: docker
     source: us.gcr.io/sentryio/sentry
