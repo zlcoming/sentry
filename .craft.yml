@@ -11,7 +11,7 @@ statusProvider:
     contexts:
       - 'onpremise-builder (sentryio)'
 targets:
-  - name: github
+  # - name: github
   # NOTE: Skipped because of openapi-core dev dependency
   # - name: pypi
   - id: py2-release
