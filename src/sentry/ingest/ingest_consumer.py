@@ -41,7 +41,11 @@ class IngestConsumerWorker(AbstractBatchWorker):
     def flush_batch(self, batch):
         mark_scope_as_unsafe()
         with metrics.timer("ingest_consumer.flush_batch"):
-            return self._flush_batch(batch)
+            try:
+                return self._flush_batch(batch)
+            except Exception:
+                metrics.incr("ingest_consumer.flush_batch.failed")
+                raise
 
     def _flush_batch(self, batch):
         attachment_chunks = []
