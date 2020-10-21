@@ -232,10 +232,6 @@ def _start_service(client, name, containers, project, fast=False, always_start=F
             get_or_create(client, "volume", project + "_" + mount)
             options["volumes"][project + "_" + mount] = options["volumes"].pop(mount)
 
-    listening = ""
-    if options["ports"]:
-        listening = "(listening: %s)" % ", ".join(map(text_type, options["ports"].values()))
-
     # If a service is associated with the devserver, then do not run the created container.
     # This was mainly added since it was not desirable for nginx to occupy port 8000 on the
     # first "devservices up".
@@ -275,13 +271,17 @@ def _start_service(client, name, containers, project, fast=False, always_start=F
 
         if should_reuse_container:
             click.secho(
-                "> Starting EXISTING container '%s' %s" % (container.name, listening),
+                "> Starting EXISTING container '%s'" % container.name,
                 err=True,
                 fg="yellow",
             )
             # Note that if the container is already running, this will noop.
             # This makes repeated `devservices up` quite fast.
             container.start()
+            # Note, this requires docker 4.0.0.
+            # TODO why is there a list here? see https://github.com/docker/docker-py/pull/1882/files
+            # (Pdb) container.ports
+            # {'6379/tcp': [{'HostIp': '127.0.0.1', 'HostPort': '6379'}]}
             return container
 
         click.secho("> Stopping container '%s'" % container.name, err=True, fg="yellow")
@@ -293,6 +293,7 @@ def _start_service(client, name, containers, project, fast=False, always_start=F
     container = client.containers.create(**options)
     click.secho("> Starting container '%s' %s" % (container.name, listening), err=True, fg="yellow")
     container.start()
+    # Also need to do the same here.
     return container
 
 
