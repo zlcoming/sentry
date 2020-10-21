@@ -14,6 +14,7 @@ from sentry.utils.compat import filter
 logger = logging.getLogger("sentry.integrations.issues")
 
 
+# TODO MARCOS
 class IssueBasicMixin(object):
     def should_sync(self, attribute):
         return False

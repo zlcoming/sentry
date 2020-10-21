@@ -64,6 +64,7 @@ class ProjectRulesEndpoint(ProjectEndpoint):
             if "filters" in data:
                 conditions.extend(data["filters"])
 
+            # TODO MARCOS is this our schema?
             kwargs = {
                 "name": data["name"],
                 "environment": data.get("environment"),

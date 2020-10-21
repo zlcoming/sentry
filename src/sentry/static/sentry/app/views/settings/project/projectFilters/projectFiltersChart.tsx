@@ -99,6 +99,7 @@ class ProjectFiltersChart extends React.Component<Props, State> {
     const {project} = this.props;
     const {orgId} = this.props.params;
     const statEndpoint = `/projects/${orgId}/${project.slug}/stats/`;
+    // TODO MARCOS front end bug?
     const query = {
       since: this.state.querySince,
       until: this.state.queryUntil,
