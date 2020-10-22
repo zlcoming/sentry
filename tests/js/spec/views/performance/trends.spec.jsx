@@ -8,6 +8,7 @@ import PerformanceLanding from 'app/views/performance/landing';
 import ProjectsStore from 'app/stores/projectsStore';
 import {
   TRENDS_FUNCTIONS,
+  CONFIDENCE_LEVELS,
   getTrendAliasedFieldPercentage,
   getTrendAliasedMinus,
 } from 'app/views/performance/trends/utils';
@@ -27,10 +28,22 @@ jest.mock('moment', () => {
 
 function selectTrendFunction(wrapper, field) {
   const menu = wrapper.find('TrendsDropdown DropdownMenu');
-  expect(menu).toHaveLength(1);
-  menu.find('DropdownButton').simulate('click');
+  expect(menu).toHaveLength(2);
+  menu.find('DropdownButton').at(1).simulate('click');
 
   const option = menu.find(`DropdownItem[data-test-id="${field}"] span`);
+  expect(option).toHaveLength(1);
+  option.simulate('click');
+
+  wrapper.update();
+}
+
+function selectConfidenceLevel(wrapper, label) {
+  const menu = wrapper.find('TrendsDropdown DropdownMenu');
+  expect(menu).toHaveLength(2);
+  menu.find('DropdownButton').first().simulate('click');
+
+  const option = menu.find(`DropdownItem[data-test-id="${label}"] span`);
   expect(option).toHaveLength(1);
   option.simulate('click');
 
@@ -206,7 +219,7 @@ describe('Performance > Trends', function () {
     wrapper.update();
 
     // Trends dropdown and transaction widgets should render.
-    expect(wrapper.find('TrendsDropdown')).toHaveLength(1);
+    expect(wrapper.find('TrendsDropdown')).toHaveLength(2);
     expect(wrapper.find('ChangedTransactions')).toHaveLength(2);
   });
 
@@ -476,6 +489,29 @@ describe('Performance > Trends', function () {
       expect(browserHistory.push).toHaveBeenCalledWith({
         query: expect.objectContaining({
           trendFunction: trendFunction.field,
+        }),
+      });
+    }
+  });
+
+  it('choosing a confidence level changes location', async function () {
+    const projects = [TestStubs.Project()];
+    const data = initializeData(projects, {project: ['-1']});
+    const wrapper = mountWithTheme(
+      <PerformanceLanding
+        organization={data.organization}
+        location={data.router.location}
+      />,
+      data.routerContext
+    );
+
+    for (const confidenceLevel of CONFIDENCE_LEVELS) {
+      selectConfidenceLevel(wrapper, confidenceLevel.label);
+      await tick();
+
+      expect(browserHistory.push).toHaveBeenCalledWith({
+        query: expect.objectContaining({
+          confidenceLevel: confidenceLevel.label,
         }),
       });
     }
