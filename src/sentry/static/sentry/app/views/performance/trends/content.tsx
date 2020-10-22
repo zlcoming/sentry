@@ -28,6 +28,7 @@ import {
   getCurrentTrendFunction,
   getCurrentConfidenceLevel,
   getSelectedQueryKey,
+  trendCursorNames,
 } from './utils';
 import ChangedTransactions from './changedTransactions';
 import ChangedProjects from './changedProjects';
@@ -56,11 +57,14 @@ class TrendsContent extends React.Component<Props, State> {
   handleSearch = (searchQuery: string) => {
     const {location} = this.props;
 
+    const cursors = {};
+    Object.values(trendCursorNames).forEach(cursor => (cursors[cursor] = undefined)); // Resets both cursors
+
     browserHistory.push({
       pathname: location.pathname,
       query: {
         ...location.query,
-        cursor: undefined,
+        ...cursors,
         query: String(searchQuery).trim() || undefined,
       },
     });
@@ -87,11 +91,15 @@ class TrendsContent extends React.Component<Props, State> {
       previousTrendFunction: getCurrentTrendFunction(location).field,
     });
 
+    const cursors = {};
+    Object.values(trendCursorNames).forEach(cursor => (cursors[cursor] = undefined)); // Resets both cursors
+
     browserHistory.push({
       pathname: location.pathname,
       query: {
         ...location.query,
         ...offsets,
+        ...cursors,
         trendFunction: field,
       },
     });
