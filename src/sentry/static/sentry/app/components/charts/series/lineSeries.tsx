@@ -8,7 +8,7 @@ export default function LineSeries(
   return {
     showSymbol: false,
     symbolSize: theme.charts.symbolSize,
-    ...props,
     type: 'line',
+    ...props,
   };
 }

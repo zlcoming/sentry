@@ -22,6 +22,7 @@ import withApi from 'app/utils/withApi';
 import {decodeScalar} from 'app/utils/queryString';
 import theme from 'app/utils/theme';
 import {tooltipFormatter, axisLabelFormatter} from 'app/utils/discover/charts';
+import {getDuration, formatAbbreviatedNumber} from 'app/utils/formatters';
 import getDynamicText from 'app/utils/getDynamicText';
 
 import {HeaderTitleLegend} from '../styles';
@@ -44,13 +45,26 @@ type Props = ReactRouter.WithRouterProps &
     organization: OrganizationSummary;
   };
 
-const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()'];
+const YAXIS_VALUES = ['p50()', 'p75()', 'p95()', 'p99()', 'p100()', 'epm()'];
+
+type State = {
+  throughputGridLeftOffset: string;
+};
 
 /**
  * Fetch and render a stacked area chart that shows duration
  * percentiles over the past 7 days
  */
-class DurationChart extends React.Component<Props> {
+class DurationChart extends React.Component<Props, State> {
+  chartValues = {
+    durationGridWidth: 0,
+    throughputGridWidth: 0,
+  };
+
+  state: State = {
+    throughputGridLeftOffset: '10px',
+  };
+
   handleLegendSelectChanged = legendChange => {
     const {location} = this.props;
     const {selected} = legendChange;
@@ -66,6 +80,47 @@ class DurationChart extends React.Component<Props> {
     browserHistory.push(to);
   };
 
+  handleInternalGridResize = (axesList, gridModel, estimateLabelUnionRect) => {
+    const {durationGridWidth, throughputGridWidth} = this.chartValues;
+    let newDurationGridWidth = durationGridWidth;
+    let newThroughputGridWidth = throughputGridWidth;
+    const index = gridModel.componentIndex;
+    axesList.forEach(axis => {
+      const {dim} = axis;
+      if (index === 0 && dim === 'y') {
+        const labelUnionRect = estimateLabelUnionRect(axis);
+        if (labelUnionRect) {
+          newDurationGridWidth = labelUnionRect.width;
+        }
+      } else if (index === 1 && dim === 'y') {
+        const labelUnionRect = estimateLabelUnionRect(axis);
+        if (labelUnionRect) {
+          newThroughputGridWidth = labelUnionRect.width;
+        }
+      }
+    });
+
+    this.chartValues.durationGridWidth = newDurationGridWidth;
+    this.chartValues.throughputGridWidth = newThroughputGridWidth;
+
+    if (
+      newThroughputGridWidth === 0 ||
+      newDurationGridWidth === 0 ||
+      (newThroughputGridWidth === throughputGridWidth &&
+        newDurationGridWidth === durationGridWidth)
+    ) {
+      return;
+    }
+
+    this.setState({
+      throughputGridLeftOffset: `${(
+        newDurationGridWidth -
+        newThroughputGridWidth +
+        10
+      ).toFixed(0)}px`,
+    });
+  };
+
   render() {
     const {
       api,
@@ -77,6 +132,7 @@ class DurationChart extends React.Component<Props> {
       statsPeriod,
       router,
     } = this.props;
+    const {throughputGridLeftOffset} = this.state;
 
     const unselectedSeries = location.query.unselectedSeries ?? [];
     const unselectedMetrics = Array.isArray(unselectedSeries)
@@ -94,34 +150,35 @@ class DurationChart extends React.Component<Props> {
     const end = this.props.end ? getUtcToLocalDateObject(this.props.end) : undefined;
     const utc = decodeScalar(router.location.query.utc);
 
-    const legend = {
-      right: 10,
-      top: 0,
-      icon: 'circle',
-      itemHeight: 8,
-      itemWidth: 8,
-      itemGap: 12,
-      align: 'left',
-      textStyle: {
-        verticalAlign: 'top',
-        fontSize: 11,
-        fontFamily: 'Rubik',
-      },
-      selected: seriesSelection,
-    };
-
     const datetimeSelection = {
       start: start || null,
       end: end || null,
       period: statsPeriod,
     };
 
-    const chartOptions = {
-      grid: {
-        left: '10px',
-        right: '10px',
-        top: '40px',
-        bottom: '0px',
+    const axisLineConfig = {
+      scale: true,
+      splitLine: {
+        show: false,
+      },
+    };
+
+    const areaChartProps = {
+      height: 280,
+      legend: {
+        right: 10,
+        top: 0,
+        icon: 'circle',
+        itemHeight: 8,
+        itemWidth: 8,
+        itemGap: 12,
+        align: 'left',
+        textStyle: {
+          verticalAlign: 'top',
+          fontSize: 11,
+          fontFamily: 'Rubik',
+        },
+        selected: seriesSelection,
       },
       seriesOptions: {
         showSymbol: false,
@@ -136,7 +193,69 @@ class DurationChart extends React.Component<Props> {
           // p50() coerces the axis to be time based
           formatter: (value: number) => axisLabelFormatter(value, 'p50()'),
         },
+        valueFormatter(value: number, seriesName: string) {
+          if (seriesName === 'epm()') {
+            return value.toLocaleString();
+          }
+          return getDuration(value / 1000, 2);
+        },
       },
+      axisPointer: {
+        // Link the two series x-axis together.
+        link: [{xAxisIndex: [0, 1]}],
+      },
+      xAxes: [
+        {
+          gridIndex: 0,
+          type: 'time',
+          axisLabel: {show: false},
+          axisTick: {show: false},
+        },
+        {
+          gridIndex: 1,
+          type: 'time',
+        },
+      ],
+      yAxes: [
+        // durations
+        {
+          gridIndex: 0,
+          scale: true,
+          axisLabel: {
+            color: theme.gray400,
+            // p50 coerces the axis to be time based
+            formatter: (value: number) => axisLabelFormatter(value, 'p50()'),
+          },
+          ...axisLineConfig,
+        },
+        // throughput
+        {
+          gridIndex: 1,
+          scale: true,
+          axisLabel: {
+            color: theme.gray400,
+            formatter: (value: number) => axisLabelFormatter(value, 'count()'),
+          },
+          ...axisLineConfig,
+        },
+      ],
+      grid: [
+        {
+          left: '10px',
+          right: '10px',
+          top: '40px',
+          bottom: '20px',
+          height: '170px',
+        },
+        {
+          left: throughputGridLeftOffset,
+          right: '10px',
+          top: '225px',
+          bottom: '0px',
+          height: '55px',
+          containLabel: true,
+        },
+      ],
     };
 
     return (
@@ -188,8 +307,14 @@ class DurationChart extends React.Component<Props> {
                 const series = results
                   ? results
                       .map((values, i: number) => {
+                        // Count should be in a smaller chart below the timeseries.
+                        const axisIndex = values.seriesName === 'epm()' ? 1 : 0;
+                        const type = values.seriesName === 'epm()' ? 'bar' : 'line';
                         return {
                           ...values,
+                          yAxisIndex: axisIndex,
+                          xAxisIndex: axisIndex,
+                          type,
                           color: colors[i],
                           lineStyle: {
                             opacity: 0,
@@ -218,11 +343,12 @@ class DurationChart extends React.Component<Props> {
                         {getDynamicText({
                           value: (
                             <AreaChart
+                              {...areaChartProps}
                               {...zoomRenderProps}
-                              {...chartOptions}
-                              legend={legend}
                               onLegendSelectChanged={this.handleLegendSelectChanged}
                               series={[...series, ...releaseSeries]}
+                              isExtended
+                              onInternalGridResize={this.handleInternalGridResize}
                             />
                           ),
                           fixed: 'Duration Chart',

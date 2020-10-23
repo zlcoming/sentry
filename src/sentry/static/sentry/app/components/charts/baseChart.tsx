@@ -203,10 +203,21 @@ type Props = {
    * Inline styles
    */
   style?: React.CSSProperties;
+
+  isExtended: boolean;
+  /**
+   * Optional callback to receive the axis group containing the axis labels
+   */
+  onInternalGridResize?: (
+    axesList: any,
+    gridModel: any,
+    estimateLabelUnionRect: any
+  ) => void;
 };
 
 type State = {
   chartDeps: any;
+  axisGroup: any;
 };
 
 class BaseChart extends React.Component<Props, State> {
@@ -223,10 +234,12 @@ class BaseChart extends React.Component<Props, State> {
     xAxis: {},
     yAxis: {},
     isGroupedByDate: false,
+    isExtended: false,
   };
 
   state: State = {
     chartDeps: undefined,
+    axisGroup: undefined,
   };
 
   componentDidMount() {
@@ -242,8 +255,14 @@ class BaseChart extends React.Component<Props, State> {
     const chartDeps = await import(
       /* webpackChunkName: "echarts" */ 'app/components/charts/libs'
     );
+    const extensions = await import(
+      /* webpackChunkName: "echarts-extensions" */ 'app/utils/echartExtensions'
+    );
     if (this._isMounted) {
       this.setState({chartDeps});
+      if (this.props.isExtended) {
+        extensions.extendAxisView(chartDeps.echarts, this.props.onInternalGridResize);
+      }
     }
   }
 
