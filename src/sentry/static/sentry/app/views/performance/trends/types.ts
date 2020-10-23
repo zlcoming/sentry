@@ -81,6 +81,8 @@ type BaseTrendsTransaction = {
   count_range_1: number;
   count_range_2: number;
   percentage_count_range_2_count_range_1: number;
+
+  count_unique_user: number;
 };
 
 export type TrendsPercentileTransaction = BaseTrendsTransaction & {

@@ -184,7 +184,7 @@ export function modifyTrendView(
   const confidenceLevel = getCurrentConfidenceLevel(location);
 
   const transactionField = isProjectOnly ? [] : ['transaction'];
-  const fields = [...transactionField, 'project'].map(field => ({
+  const fields = [...transactionField, 'project', 'count_unique(user)'].map(field => ({
     field,
   })) as Field[];
 
@@ -361,6 +361,7 @@ export function normalizeTrends(
       count_range_1,
       count_range_2,
       percentage_count_range_2_count_range_1,
+      count_unique_user,
     } = row;
 
     const aliasedFields = {} as NormalizedTrendsTransaction;
@@ -379,6 +380,7 @@ export function normalizeTrends(
       count_range_1,
       count_range_2,
       percentage_count_range_2_count_range_1,
+      count_unique_user,
       received_at,
     };
 

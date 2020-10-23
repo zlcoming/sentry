@@ -22,7 +22,7 @@ import EmptyStateWarning from 'app/components/emptyStateWarning';
 import {t} from 'app/locale';
 import {trackAnalyticsEvent} from 'app/utils/analytics';
 import withProjects from 'app/utils/withProjects';
-import {IconEllipsis} from 'app/icons';
+import {IconEllipsis, IconUser} from 'app/icons';
 import MenuItem from 'app/components/menuItem';
 import DropdownLink from 'app/components/dropdownLink';
 import ProjectAvatar from 'app/components/avatar/projectAvatar';
@@ -505,6 +505,10 @@ function TrendsListItem(props: TrendsListItemProps) {
           </Tooltip>
         )}
         <CompareDurations {...props} />
+        <UniqueUsers>
+          <StyledUser size="11px" />
+          <Count value={transaction.count_unique_user} />
+        </UniqueUsers>
       </ItemTransactionDurationChange>
       <ItemTransactionStatus color={color}>
         {currentTrendFunction === TrendFunctionField.USER_MISERY ? (
@@ -599,6 +603,16 @@ const TransactionSummaryLink = (props: TransactionSummaryLinkProps) => {
     </ItemTransactionName>
   );
 };
+
+const UniqueUsers = styled('div')`
+  color: ${p => p.theme.gray500};
+`;
+
+const StyledUser = styled(IconUser)`
+  margin-bottom: 0px;
+  margin-left: ${space(0.5)};
+  margin-right: ${space(0.5)};
+`;
 
 const TransactionsListContainer = styled('div')`
   display: flex;
