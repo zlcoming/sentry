@@ -407,14 +407,29 @@ export function getSelectedQueryKey(trendChangeType: TrendChangeType) {
   return trendSelectedQueryKeys[trendChangeType];
 }
 
-export function movingAverage(data, index, size) {
-  return (
-    data
-      .slice(index - size, index)
-      .map(a => a.value)
-      .reduce((a, b) => a + b, 0) / size
+export const getExponentialMovingAverage = (a, r) =>
+  a.reduce(
+    (p, n, i) =>
+      i ? p.concat((2 * n) / (r + 1) + (p[p.length - 1] * (r - 1)) / (r + 1)) : p,
+    [a[0]]
   );
-}
+
+// export function exponentialMovingAverage(data, index, mRange, previousValue) {
+//   // data
+//   //   .slice(index - size, index)
+//   //   .map(a => a.value)
+//   //   .reduce((a, b) => a + b, previousValue) / size
+
+//   const k = 2 / (mRange + 1);
+//   // first item is just the same as the first item in the input
+//   const emaArray = [mArray[0]];
+//   // for the rest of the items, they are computed with the previous one
+//   for (let i = 1; i < mArray.length; i++) {
+//     emaArray.push(mArray[i] * k + emaArray[i - 1] * (1 - k));
+//   }
+//   return emaArray;
+//   //return (data[index - 1].value - previousValue) / (size + 1);
+// }
 
 /**
  * This function applies a query to limit the results based on the trend type to being greater or less than 100% (depending on the type)

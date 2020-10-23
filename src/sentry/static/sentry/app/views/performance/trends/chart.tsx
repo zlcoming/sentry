@@ -17,14 +17,16 @@ import ChartZoom from 'app/components/charts/chartZoom';
 import {Series, SeriesDataUnit} from 'app/types/echarts';
 import theme from 'app/utils/theme';
 import {axisLabelFormatter, tooltipFormatter} from 'app/utils/discover/charts';
+import YAxis from 'app/components/charts/components/yAxis';
 
 import {
   getCurrentTrendFunction,
   getIntervalRatio,
-  movingAverage,
   trendToColor,
+  getExponentialMovingAverage,
 } from './utils';
 import {TrendChangeType, TrendsStats, NormalizedTrendsTransaction} from './types';
+import {smooth} from './asap';
 
 const QUERY_KEYS = [
   'environment',
@@ -61,31 +63,97 @@ function transformEventStats(data: EventsStatsData, seriesName?: string): Series
   ];
 }
 
-function transformEventStatsSmoothed(data: Series[], seriesName?: string): Series[] {
+function transformEventStatsASAP(
+  data: Series[],
+  seriesName?: string,
+  resolution?: number
+) {
+  let minValue = Number.MAX_SAFE_INTEGER;
+  let maxValue = 0;
   const currentData = data[0].data;
   const resultData: SeriesDataUnit[] = [];
-  resultData.push(currentData[0]);
 
-  // Start at 1 so we don't get NaN from the movingAverage
-  for (let i = 1; i < currentData.length; i++) {
-    let value;
-    if (i < AVERAGE_WINDOW) {
-      // A rougher movingAverage for these points, but this way there isn't a gap
-      value = movingAverage(currentData, i, i);
-    } else {
-      value = movingAverage(currentData, i, AVERAGE_WINDOW);
-    }
+  const {smoothedData} = smooth(
+    currentData.map(d => d.value),
+    resolution || 700,
+    AVERAGE_WINDOW
+  );
+
+  //const size = i < AVERAGE_WINDOW ? i : AVERAGE_WINDOW;
+
+  const currentPoints = currentData.length;
+  const smoothedPoints = smoothedData.length;
+
+  const start = parseInt(currentData[0].name as string, 10);
+
+  const ratio = currentPoints / smoothedPoints;
+
+  for (let i = 0; i < smoothedData.length; i++) {
+    const value = smoothedData[i];
+
+    const current = parseInt(currentData[i].name as string, 10);
+    const diff = current - start;
+    const adjusted = Math.floor(diff * ratio) + start;
+
+    resultData.push({
+      name: adjusted,
+      value,
+    });
+    minValue = isNaN(value) ? minValue : Math.min(Math.round(value), minValue);
+    maxValue = isNaN(value) ? maxValue : Math.max(Math.round(value), maxValue);
+  }
+
+  return {
+    minValue,
+    maxValue,
+    ASAPResults: [
+      {
+        seriesName: 'smoothed ' + seriesName || 'Current',
+        data: resultData,
+      },
+    ],
+  };
+}
+
+type SmoothedData = {
+  smoothedResults: Series[];
+  minValue: number;
+  maxValue: number;
+};
+
+function transformEventStatsSmoothed(data: Series[], seriesName?: string): SmoothedData {
+  let minValue = Number.MAX_SAFE_INTEGER;
+  let maxValue = 0;
+  const currentData = data[0].data;
+  const resultData: SeriesDataUnit[] = [];
+
+  const movingAverageData = getExponentialMovingAverage(
+    currentData.map(d => d.value),
+    AVERAGE_WINDOW
+  );
+
+  //const size = i < AVERAGE_WINDOW ? i : AVERAGE_WINDOW;
+
+  for (let i = 0; i < currentData.length; i++) {
+    const value = movingAverageData[i];
     resultData.push({
       name: currentData[i].name,
       value,
     });
+    minValue = isNaN(value) ? minValue : Math.min(Math.round(value), minValue);
+    maxValue = isNaN(value) ? maxValue : Math.max(Math.round(value), maxValue);
   }
-  return [
-    {
-      seriesName: 'smoothed ' + seriesName || 'Current',
-      data: resultData,
-    },
-  ];
+
+  return {
+    minValue,
+    maxValue,
+    smoothedResults: [
+      {
+        seriesName: 'smoothed ' + seriesName || 'Current',
+        data: resultData,
+      },
+    ],
+  };
 }
 
 function getLegend(trendFunction: string) {
@@ -228,6 +296,8 @@ function getIntervalLine(
 }
 
 class Chart extends React.Component<Props> {
+  chartRef = React.createRef<HTMLDivElement>();
+
   render() {
     const props = this.props;
 
@@ -252,9 +322,14 @@ class Chart extends React.Component<Props> {
 
     const trendFunction = getCurrentTrendFunction(location);
     const results = transformEventStats(data, trendFunction.chartLabel);
-    const smoothedResults = transformEventStatsSmoothed(
+    // const {minValue, maxValue, smoothedResults} = transformEventStatsSmoothed(
+    //   results,
+    //   trendFunction.chartLabel
+    // );
+    const {ASAPResults, minValue, maxValue} = transformEventStatsASAP(
       results,
-      trendFunction.chartLabel
+      trendFunction.chartLabel,
+      this.chartRef.current?.offsetWidth
     );
 
     const start = props.start ? getUtcToLocalDateObject(props.start) : undefined;
@@ -275,6 +350,15 @@ class Chart extends React.Component<Props> {
         },
       },
       yAxis: {
+        min: Math.min(
+          Math.min(minValue, transaction?.aggregate_range_1 || Number.MAX_SAFE_INTEGER),
+          transaction?.aggregate_range_2 || Number.MAX_SAFE_INTEGER
+        ),
+        max:
+          Math.max(
+            Math.max(maxValue, transaction?.aggregate_range_2 || 0),
+            transaction?.aggregate_range_1 || 0
+          ) * 1.2,
         axisLabel: {
           color: theme.gray400,
           // p50() coerces the axis to be time based
@@ -292,18 +376,16 @@ class Chart extends React.Component<Props> {
           environments={environment}
         >
           {zoomRenderProps => {
-            const smoothedSeries = smoothedResults
-              ? smoothedResults
-                  .map(values => {
-                    return {
-                      ...values,
-                      color: lineColor.default,
-                      lineStyle: {
-                        opacity: 1,
-                      },
-                    };
-                  })
-                  .reverse()
+            const smoothedSeries = ASAPResults
+              ? ASAPResults.map(values => {
+                  return {
+                    ...values,
+                    color: lineColor.default,
+                    lineStyle: {
+                      opacity: 1,
+                    },
+                  };
+                }).reverse()
               : [];
 
             const series = results
@@ -337,6 +419,7 @@ class Chart extends React.Component<Props> {
                     {getDynamicText({
                       value: (
                         <LineChart
+                          ref={this.chartRef}
                           {...zoomRenderProps}
                           {...chartOptions}
                           series={[
