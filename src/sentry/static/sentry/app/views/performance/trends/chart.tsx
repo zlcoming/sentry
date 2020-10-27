@@ -318,10 +318,15 @@ class Chart extends React.Component<Props> {
       statsData && transaction?.project && transaction?.transaction
         ? statsData[[transaction.project, transaction.transaction].join(',')]
         : undefined;
-    const data = events?.data ?? [];
+    const data = events?.['avg(transaction.duration)'].data ?? [];
+    const countData = events?.['epm()'].data ?? [];
 
     const trendFunction = getCurrentTrendFunction(location);
     const results = transformEventStats(data, trendFunction.chartLabel);
+
+    const countResults = transformEventStats(countData, 'epm()');
+    results.push(countResults[0]);
+
     // const {minValue, maxValue, smoothedResults} = transformEventStatsSmoothed(
     //   results,
     //   trendFunction.chartLabel
@@ -342,6 +347,12 @@ class Chart extends React.Component<Props> {
 
     const loading = isLoading;
     const reloading = isLoading;
+    const axisLineConfig = {
+      scale: true,
+      splitLine: {
+        show: false,
+      },
+    };
 
     const chartOptions = {
       tooltip: {
@@ -349,22 +360,76 @@ class Chart extends React.Component<Props> {
           return tooltipFormatter(value, seriesName.replace('smoothed ', ''));
         },
       },
-      yAxis: {
-        min: Math.min(
-          Math.min(minValue, transaction?.aggregate_range_1 || Number.MAX_SAFE_INTEGER),
-          transaction?.aggregate_range_2 || Number.MAX_SAFE_INTEGER
-        ),
-        max:
-          Math.max(
-            Math.max(maxValue, transaction?.aggregate_range_2 || 0),
-            transaction?.aggregate_range_1 || 0
-          ) * 1.2,
-        axisLabel: {
-          color: theme.gray400,
-          // p50() coerces the axis to be time based
-          formatter: (value: number) => axisLabelFormatter(value, 'p50()'),
+      xAxes: [
+        {
+          gridIndex: 0,
+          type: 'time',
+          axisLabel: {show: false},
+          axisTick: {show: false},
         },
-      },
+        {
+          gridIndex: 1,
+          type: 'time',
+        },
+      ],
+      yAxes: [
+        {
+          min:
+            Math.min(
+              Math.min(
+                minValue,
+                transaction?.aggregate_range_1 || Number.MAX_SAFE_INTEGER
+              ),
+              transaction?.aggregate_range_2 || Number.MAX_SAFE_INTEGER
+            ) * 0.8,
+          max:
+            Math.max(
+              Math.max(maxValue, transaction?.aggregate_range_2 || 0),
+              transaction?.aggregate_range_1 || 0
+            ) * 1.2,
+          axisLabel: {
+            rich: {
+              a: {
+                width: '30px',
+              },
+            },
+            color: theme.gray400,
+            // p50() coerces the axis to be time based
+            formatter: (value: number) => axisLabelFormatter(value, 'p50()'),
+          },
+          ...axisLineConfig,
+        },
+        {
+          gridIndex: 1,
+          minorTick: {
+            show: false,
+          },
+          interval: Number.POSITIVE_INFINITY,
+          axisLabel: {
+            color: theme.gray400,
+            formatter: (value: number) => axisLabelFormatter(value, 'count()'),
+          },
+          ...axisLineConfig,
+        },
+      ],
+      grid: [
+        {
+          left: '20px',
+          right: '10px',
+          top: '40px',
+          bottom: '20px',
+          height: '170px',
+          containLabel: true,
+        },
+        {
+          left: '20px',
+          right: '10px',
+          top: '225px',
+          bottom: '0px',
+          height: '55px',
+          containLabel: true,
+        },
+      ],
     };
 
     return (
@@ -391,12 +456,18 @@ class Chart extends React.Component<Props> {
             const series = results
               ? results
                   .map(values => {
+                    const axisIndex = values.seriesName === 'epm()' ? 1 : 0;
+                    const type = values.seriesName === 'epm()' ? 'bar' : 'line';
                     return {
                       ...values,
                       color: lineColor.lighter,
                       lineStyle: {
+                        width: 1,
                         opacity: 0.25,
                       },
+                      yAxisIndex: axisIndex,
+                      xAxisIndex: axisIndex,
+                      type,
                     };
                   })
                   .reverse()
@@ -419,6 +490,7 @@ class Chart extends React.Component<Props> {
                     {getDynamicText({
                       value: (
                         <LineChart
+                          height={280}
                           ref={this.chartRef}
                           {...zoomRenderProps}
                           {...chartOptions}
@@ -434,12 +506,6 @@ class Chart extends React.Component<Props> {
                           legend={legend}
                           toolBox={{
                             show: false,
-                          }}
-                          grid={{
-                            left: '10px',
-                            right: '10px',
-                            top: '40px',
-                            bottom: '0px',
                           }}
                         />
                       ),

@@ -33,7 +33,8 @@ function getTrendsRequestPayload(props: RequestProps) {
   const apiPayload: TrendsQuery = eventView?.getEventsAPIPayload(props.location);
   const trendFunction = getCurrentTrendFunction(props.location);
   apiPayload.trendFunction = trendFunction.field;
-  apiPayload.interval = eventView?.interval;
+  apiPayload.interval = '60m';
+  apiPayload.yAxis = ['avg(transaction.duration)', 'epm()'];
   return apiPayload;
 }
 

@@ -14,6 +14,7 @@ export type TrendsQuery = EventQuery &
     trendFunction?: string;
     intervalRatio?: number;
     interval?: string;
+    yAxis?: string[];
   };
 
 export type TrendFunction = {
