@@ -1,59 +1,62 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import createReactClass from 'create-react-class';
-import $ from 'jquery';
 import {browserHistory} from 'react-router';
+import {Location} from 'history';
 
 import withApi from 'app/utils/withApi';
 import DropdownLink from 'app/components/dropdownLink';
 import MenuItem from 'app/components/menuItem';
 import Pagination from 'app/components/pagination';
 import {IconSearch} from 'app/icons';
+import {Client, RequestOptions} from 'app/api';
 
-class Filter extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    queryKey: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired,
-    path: PropTypes.string.isRequired,
-    value: PropTypes.any,
-  };
+type Option = [string, string];
 
-  getCurrentLabel = () => {
+type FilterProps = {
+  name: string;
+  queryKey: string;
+  options: Option[];
+  path: string;
+  value: string;
+  location: Location;
+};
+
+class Filter extends React.Component<FilterProps> {
+  getCurrentLabel() {
     const selected = this.props.options.filter(
-      item => item[0] === (this.props.value || '')
+      item => item[0] === (this.props.value ?? '')
     )[0];
     if (selected) {
       return this.props.name + ': ' + selected[1];
     }
     return this.props.name + ': ' + 'Any';
-  };
+  }
 
-  getDefaultItem = () => {
-    const query = $.extend({}, this.props.location.query, {
-      cursor: '',
-    });
+  getDefaultItem() {
+    const query = Object.assign({}, this.props.location.query, {cursor: ''});
     delete query[this.props.queryKey];
 
     return (
       <MenuItem
         key=""
-        isActive={this.props.value === '' || !this.props.value}
+        isActive={this.props.value === '' ?? !this.props.value}
         to={{pathname: this.props.path, query}}
       >
         Any
       </MenuItem>
     );
-  };
+  }
 
   getSelector = () => (
     <DropdownLink title={this.getCurrentLabel()}>
       {this.getDefaultItem()}
       {this.props.options.map(item => {
-        const filterQuery = {};
-        filterQuery[this.props.queryKey] = item[0];
-        filterQuery.cursor = '';
-        const query = $.extend({}, this.props.location.query, filterQuery);
+        const filterQuery = {
+          [this.props.queryKey]: item[0],
+          cursor: '',
+        };
+
+        const query = Object.assign({}, this.props.location.query, filterQuery);
         return (
           <MenuItem
             key={item[0]}
@@ -80,7 +83,14 @@ class Filter extends React.Component {
   }
 }
 
-class SortBy extends React.Component {
+type SortByProps = {
+  options: Option[];
+  path: string;
+  location: Location;
+  value: string;
+};
+
+class SortBy extends React.Component<SortByProps> {
   static propTypes = {
     options: PropTypes.array.isRequired,
     path: PropTypes.string.isRequired,
@@ -88,28 +98,31 @@ class SortBy extends React.Component {
     value: PropTypes.any,
   };
 
-  getCurrentSortLabel = () =>
-    this.props.options.filter(item => item[0] === this.props.value)[0][1];
+  getCurrentSortLabel() {
+    return this.props.options.filter(item => item[0] === this.props.value)[0][1];
+  }
 
-  getSortBySelector = () => (
-    <DropdownLink title={this.getCurrentSortLabel()} className="sorted-by">
-      {this.props.options.map(item => {
-        const query = $.extend({}, this.props.location.query, {
-          sortBy: item[0],
-          cursor: '',
-        });
-        return (
-          <MenuItem
-            isActive={this.props.value === item[0]}
-            key={item[0]}
-            to={{pathname: this.props.path, query}}
-          >
-            {item[1]}
-          </MenuItem>
-        );
-      })}
-    </DropdownLink>
-  );
+  getSortBySelector() {
+    return (
+      <DropdownLink title={this.getCurrentSortLabel()} className="sorted-by">
+        {this.props.options.map(item => {
+          const query = Object.assign({}, this.props.location.query, {
+            sortBy: item[0],
+            cursor: '',
+          });
+          return (
+            <MenuItem
+              isActive={this.props.value === item[0]}
+              key={item[0]}
+              to={{pathname: this.props.path, query}}
+            >
+              {item[1]}
+            </MenuItem>
+          );
+        })}
+      </DropdownLink>
+    );
+  }
 
   render() {
     if (this.props.options.length === 0) {
@@ -129,74 +142,71 @@ class SortBy extends React.Component {
   }
 }
 
-const ResultGrid = createReactClass({
-  displayName: 'ResultGrid',
+type FilterConfig = {
+  name: string;
+  options: Option[];
+};
 
-  propTypes: {
-    api: PropTypes.object,
-    columns: PropTypes.array,
-    columnsForRow: PropTypes.func,
-    defaultSort: PropTypes.string,
-    defaultParams: PropTypes.object,
-    endpoint: PropTypes.string,
-    filters: PropTypes.object,
-    hasPagination: PropTypes.bool,
-    hasSearch: PropTypes.bool,
-    keyForRow: PropTypes.func,
-    location: PropTypes.object,
-    method: PropTypes.string,
-    options: PropTypes.array,
-    path: PropTypes.string,
-    sortOptions: PropTypes.array,
-  },
+type Props = {
+  api: Client;
+  location: Location;
+} & DefaultProps;
 
-  getDefaultProps() {
-    return {
-      path: '',
-      endpoint: '',
-      method: 'GET',
-      columns: [],
-      sortOptions: [],
-      filters: {},
-      defaultSort: '',
-      keyForRow: function (row) {
-        return row.id;
-      },
-      columnsForRow: function () {
-        return [];
-      },
-      defaultParams: {
-        per_page: 50,
-      },
-      hasPagination: true,
-      hasSearch: false,
-    };
-  },
+type DefaultProps = {
+  columns: React.ReactNode[];
+  columnsForRow: (row: any) => React.ReactNode[];
+  defaultSort: string;
+  defaultParams: {[k: string]: any};
+  filters: {[k: string]: FilterConfig};
+  endpoint: string;
+  hasPagination: boolean;
+  hasSearch: boolean;
+  keyForRow: (row: any) => string;
+  method: RequestOptions['method'];
+  path: string;
+  sortOptions: Option[];
+};
 
-  getInitialState() {
-    const queryParams = (this.props.location || {}).query || {};
+type State = {
+  rows: any[];
+  loading: boolean;
+  error: string | boolean;
+  pageLinks: null | string;
+  query: string;
+  sortBy: string;
+  filters: {[x: string]: string};
+};
 
-    return {
-      rows: [],
-      loading: true,
-      error: false,
-      pageLinks: null,
-      query: queryParams.query || '',
-      sortBy: queryParams.sortBy || this.props.defaultSort,
-      filters: Object.assign({}, queryParams),
-    };
-  },
+class ResultGrid extends React.Component<Props, State> {
+  static defaultProps: DefaultProps = {
+    path: '',
+    endpoint: '',
+    method: 'GET',
+    columns: [],
+    sortOptions: [],
+    filters: {},
+    defaultSort: '',
+    keyForRow: row => row.id,
+    columnsForRow: () => [],
+    defaultParams: {
+      per_page: 50,
+    },
+    hasPagination: true,
+    hasSearch: false,
+  };
+
+  state: State = this.defaultState;
 
   componentWillMount() {
     this.fetchData();
-  },
+  }
 
-  componentWillReceiveProps(nextProps) {
-    const queryParams = (nextProps.location || {}).query || {};
+  componentWillReceiveProps() {
+    const queryParams = this.query;
     this.setState(
       {
-        query: queryParams.query || '',
-        sortBy: queryParams.sortBy || this.props.defaultSort,
+        query: queryParams.query ?? '',
+        sortBy: queryParams.sortBy ?? this.props.defaultSort,
         filters: Object.assign({}, queryParams),
         pageLinks: null,
         loading: true,
@@ -204,28 +214,41 @@ const ResultGrid = createReactClass({
       },
       this.fetchData
     );
-  },
+  }
+
+  get defaultState() {
+    const queryParams = this.query;
+
+    return {
+      rows: [],
+      loading: true,
+      error: false,
+      pageLinks: null,
+      query: queryParams.query ?? '',
+      sortBy: queryParams.sortBy ?? this.props.defaultSort,
+      filters: Object.assign({}, queryParams),
+    } as State;
+  }
+
+  get query() {
+    return ((this.props.location ?? {}).query ?? {}) as {[k: string]: string};
+  }
 
   remountComponent() {
-    this.setState(this.getInitialState(), this.fetchData);
-  },
+    this.setState(this.defaultState, this.fetchData);
+  }
 
   refresh() {
-    this.setState(
-      {
-        loading: true,
-      },
-      this.fetchData()
-    );
-  },
+    this.setState({loading: true}, this.fetchData);
+  }
 
   fetchData() {
     // TODO(dcramer): this should explicitly allow filters/sortBy/cursor/perPage
-    const queryParams = $.extend(
+    const queryParams = Object.assign(
       {},
       this.props.defaultParams,
       {sortBy: this.state.sortBy},
-      (this.props.location || {}).query || {}
+      this.query
     );
 
     this.props.api.request(this.props.endpoint, {
@@ -236,7 +259,7 @@ const ResultGrid = createReactClass({
           loading: false,
           error: false,
           rows: data,
-          pageLinks: jqXHR.getResponseHeader('Link'),
+          pageLinks: jqXHR?.getResponseHeader('Link') ?? null,
         });
       },
       error: () => {
@@ -246,12 +269,12 @@ const ResultGrid = createReactClass({
         });
       },
     });
-  },
+  }
 
-  onSearch(e) {
-    const location = this.props.location || {};
+  onSearch(e: React.FormEvent<HTMLFormElement>) {
+    const location = this.props.location ?? {};
     const {query} = this.state;
-    const targetQueryParams = jQuery.extend({}, location.query || {}, {
+    const targetQueryParams = Object.assign({}, location.query ?? {}, {
       query,
       cursor: '',
     });
@@ -262,11 +285,11 @@ const ResultGrid = createReactClass({
       pathname: this.props.path,
       query: targetQueryParams,
     });
-  },
+  }
 
-  onQueryChange(evt) {
+  onQueryChange(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({query: evt.target.value});
-  },
+  }
 
   renderLoading() {
     return (
@@ -279,7 +302,7 @@ const ResultGrid = createReactClass({
         </td>
       </tr>
     );
-  },
+  }
 
   renderError() {
     return (
@@ -289,7 +312,7 @@ const ResultGrid = createReactClass({
         </td>
       </tr>
     );
-  },
+  }
 
   renderNoResults() {
     return (
@@ -297,13 +320,13 @@ const ResultGrid = createReactClass({
         <td colSpan={this.props.columns.length}>No results found.</td>
       </tr>
     );
-  },
+  }
 
   renderResults() {
     return this.state.rows.map(row => (
       <tr key={this.props.keyForRow(row)}>{this.props.columnsForRow(row)}</tr>
     ));
-  },
+  }
 
   render() {
     const {filters} = this.props;
@@ -368,8 +391,8 @@ const ResultGrid = createReactClass({
         )}
       </div>
     );
-  },
-});
+  }
+}
 
 export {ResultGrid};
 
