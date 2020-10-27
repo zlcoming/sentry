@@ -50,7 +50,7 @@ from sentry.snuba.subscriptions import (
 from sentry.snuba.tasks import build_snuba_filter
 from sentry.utils.compat import zip
 from sentry.utils.dates import to_timestamp
-from sentry.utils.snuba import bulk_raw_query, SnubaQueryParams, SnubaTSResult
+from sentry.utils.snuba import bulk_raw_query, is_measurement, SnubaQueryParams, SnubaTSResult
 from sentry.shared_integrations.exceptions import DuplicateDisplayNameError
 
 # We can return an incident as "windowed" which returns a range of points around the start of the incident
@@ -463,7 +463,12 @@ def get_incident_event_stats(incident, start=None, end=None, windowed_stats=Fals
     # they'll be included in the standard results anyway.
     start_query_params = None
     extra_buckets = []
-    if int(to_timestamp(incident.date_started)) % time_window:
+    retention = quotas.get_event_retention(organization=incident.organization) or 90
+    if (
+        incident.date_started
+        > datetime.utcnow().replace(tzinfo=timezone.utc) - timedelta(days=retention)
+        and int(to_timestamp(incident.date_started)) % time_window
+    ):
         start_query_params = build_extra_query_params(incident.date_started)
         snuba_params.append(start_query_params)
         extra_buckets.append(incident.date_started)
@@ -586,6 +591,7 @@ def create_alert_rule(
     excluded_projects=None,
     dataset=QueryDatasets.EVENTS,
     user=None,
+    event_types=None,
     **kwargs
 ):
     """
@@ -610,6 +616,7 @@ def create_alert_rule(
     :param excluded_projects: List of projects to exclude if we're using
     `include_all_projects`.
     :param dataset: The dataset that this query will be executed on
+    :param event_types: List of `EventType` that this alert will be related to
 
     :return: The created `AlertRule`
     """
@@ -625,6 +632,7 @@ def create_alert_rule(
             timedelta(minutes=time_window),
             timedelta(minutes=resolution),
             environment,
+            event_types=event_types,
         )
         alert_rule = AlertRule.objects.create(
             organization=organization,
@@ -710,6 +718,7 @@ def update_alert_rule(
     include_all_projects=None,
     excluded_projects=None,
     user=None,
+    event_types=None,
     **kwargs
 ):
     """
@@ -733,6 +742,7 @@ def update_alert_rule(
     from this organization
     :param excluded_projects: List of projects to exclude if we're using
     `include_all_projects`. Ignored otherwise.
+    :param event_types: List of `EventType` that this alert will be related to
     :return: The updated `AlertRule`
     """
     if (
@@ -763,6 +773,8 @@ def update_alert_rule(
         updated_fields["include_all_projects"] = include_all_projects
     if dataset is not None and dataset.value != alert_rule.snuba_query.dataset:
         updated_query_fields["dataset"] = dataset
+    if event_types is not None:
+        updated_query_fields["event_types"] = event_types
 
     with transaction.atomic():
         incidents = Incident.objects.filter(alert_rule=alert_rule).exists()
@@ -781,6 +793,7 @@ def update_alert_rule(
             updated_query_fields.setdefault(
                 "time_window", timedelta(seconds=snuba_query.time_window)
             )
+            updated_query_fields.setdefault("event_types", None)
             update_snuba_query(
                 alert_rule.snuba_query,
                 resolution=timedelta(minutes=DEFAULT_ALERT_RULE_RESOLUTION),
@@ -1329,16 +1342,20 @@ TRANSLATABLE_COLUMNS = {
 
 
 def get_column_from_aggregate(aggregate):
-    field = resolve_field(aggregate)
-    if field[1] is not None:
-        column = field[1][0][1]
-        return column
+    function = resolve_field(aggregate)
+    if function.aggregate is not None:
+        return function.aggregate[1]
     return None
 
 
 def check_aggregate_column_support(aggregate):
     column = get_column_from_aggregate(aggregate)
-    return column is None or column in SUPPORTED_COLUMNS or column in TRANSLATABLE_COLUMNS
+    return (
+        column is None
+        or is_measurement(column)
+        or column in SUPPORTED_COLUMNS
+        or column in TRANSLATABLE_COLUMNS
+    )
 
 
 def translate_aggregate_field(aggregate, reverse=False):
