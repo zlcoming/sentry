@@ -22,6 +22,7 @@ import ResolveActions from 'app/components/actions/resolve';
 import SelectedGroupStore from 'app/stores/selectedGroupStore';
 import ToolbarHeader from 'app/components/toolbarHeader';
 import Tooltip from 'app/components/tooltip';
+import {callIfFunction} from 'app/utils/callIfFunction';
 import withApi from 'app/utils/withApi';
 import QuestionTooltip from 'app/components/questionTooltip';
 
@@ -176,6 +177,12 @@ class IssueListActions extends React.Component<Props, State> {
     selectedIds: new Set(),
   };
 
+  componentWillUnmount() {
+    callIfFunction(this.listener);
+  }
+
+  listener = SelectedGroupStore.listen(() => this.handleSelectedGroupChange(), undefined);
+
   actionSelectedGroups(callback: (itemIds: string[] | undefined) => void) {
     let selectedIds: string[] | undefined;
 
@@ -195,8 +202,6 @@ class IssueListActions extends React.Component<Props, State> {
     SelectedGroupStore.deselectAll();
     this.setState({allInQuerySelected: false});
   }
-
-  listener = SelectedGroupStore.listen(() => this.handleSelectedGroupChange(), undefined);
 
   // Handler for when `SelectedGroupStore` changes
   handleSelectedGroupChange() {
