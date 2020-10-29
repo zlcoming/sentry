@@ -236,11 +236,12 @@ def get_release_health_data_overview(
             "release",
             "project_id",
             "duration_quantiles",
-            "users",
+            "duration_avg",
             "sessions",
             "sessions_errored",
             "sessions_crashed",
             "sessions_abnormal",
+            "users",
             "users_crashed",
         ],
         groupby=["release", "project_id"],
@@ -251,7 +252,11 @@ def get_release_health_data_overview(
     )["data"]:
         rp = {
             "duration_p50": _convert_duration(x["duration_quantiles"][0]),
-            "duration_p90": _convert_duration(x["duration_quantiles"][1]),
+            "duration_p75": _convert_duration(x["duration_quantiles"][1]),
+            "duration_p90": _convert_duration(x["duration_quantiles"][2]),
+            "duration_p95": _convert_duration(x["duration_quantiles"][3]),
+            "duration_p99": _convert_duration(x["duration_quantiles"][4]),
+            "duration_avg": _convert_duration(x["duration_avg"]),
             "crash_free_users": (
                 100 - x["users_crashed"] / float(x["users"]) * 100 if x["users"] else None
             ),
