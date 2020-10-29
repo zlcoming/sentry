@@ -78,7 +78,7 @@ class DebugMeta extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    this.unsubscribeFromStore = DebugMetaStore.listen(this.onStoreChange);
+    this.unsubscribeFromStore = DebugMetaStore.listen(this.onStoreChange, undefined);
     cache.clearAll();
     this.filterImages();
   }
@@ -174,11 +174,11 @@ class DebugMeta extends React.PureComponent<Props, State> {
 
     return (
       // Prefix match for identifiers
-      (image.code_id.toLowerCase() || '').indexOf(searchTerm) === 0 ||
-      (image.debug_id.toLowerCase() || '').indexOf(searchTerm) === 0 ||
+      (image.code_id?.toLowerCase() || '').indexOf(searchTerm) === 0 ||
+      (image.debug_id?.toLowerCase() || '').indexOf(searchTerm) === 0 ||
       // Any match for file paths
-      (image.code_file.toLowerCase() || '').indexOf(searchTerm) >= 0 ||
-      (image.debug_file.toLowerCase() || '').indexOf(searchTerm) >= 0
+      (image.code_file?.toLowerCase() || '').indexOf(searchTerm) >= 0 ||
+      (image.debug_file?.toLowerCase() || '').indexOf(searchTerm) >= 0
     );
   }
 
@@ -443,6 +443,7 @@ const StyledList = styled(List)<{overflowHidden: boolean; height: number}>`
   ${p => p.overflowHidden && 'overflow: hidden !important;'}
   height: auto !important;
   max-height: ${p => p.height}px;
+  outline: none;
 `;
 
 const Label = styled('label')`
@@ -468,8 +469,7 @@ const StyledEventDataSection = styled(EventDataSection)`
 const DebugImagesPanel = styled(Panel)`
   margin-bottom: ${space(1)};
   max-height: ${PANEL_MAX_HEIGHT}px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 const ToolbarWrapper = styled('div')`
@@ -494,11 +494,5 @@ const SearchInputWrapper = styled('div')`
 const StyledSearchBar = styled(SearchBar)`
   .search-input {
     height: 30px;
-  }
-  .search-clear-form {
-    top: 5px !important;
-  }
-  .search-input-icon {
-    top: 8px;
   }
 `;
