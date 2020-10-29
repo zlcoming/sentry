@@ -19,6 +19,7 @@ import Alert from 'app/components/alert';
 import Feature from 'app/components/acl/feature';
 import FeatureBadge from 'app/components/featureBadge';
 import EventView from 'app/utils/discover/eventView';
+import {generateAggregateFields} from 'app/utils/discover/fields';
 import space from 'app/styles/space';
 import Button from 'app/components/button';
 import ButtonBar from 'app/components/buttonBar';
@@ -41,7 +42,11 @@ import Charts from './charts/index';
 import Onboarding from './onboarding';
 import {addRoutePerformanceContext, getTransactionSearchQuery} from './utils';
 import TrendsContent from './trends/content';
-import {modifyTrendsViewDefaultPeriod, DEFAULT_TRENDS_STATS_PERIOD} from './trends/utils';
+import {
+  modifyTrendsViewDefaultPeriod,
+  DEFAULT_TRENDS_STATS_PERIOD,
+  DEFAULT_MAX_DURATION,
+} from './trends/utils';
 
 export enum FilterViews {
   ALL_TRANSACTIONS = 'ALL_TRANSACTIONS',
@@ -224,10 +229,10 @@ class PerformanceLanding extends React.Component<Props, State> {
     if (viewKey === FilterViews.TRENDS) {
       const modifiedConditions = new QueryResults([]);
 
-      if (conditions.hasTag('count()')) {
-        modifiedConditions.setTagValues('count()', conditions.getTagValues('count()'));
+      if (conditions.hasTag('epm()')) {
+        modifiedConditions.setTagValues('epm()', conditions.getTagValues('epm()'));
       } else {
-        modifiedConditions.setTagValues('count()', ['>1000']);
+        modifiedConditions.setTagValues('epm()', ['>0.01']);
       }
       if (conditions.hasTag('transaction.duration')) {
         modifiedConditions.setTagValues(
@@ -235,7 +240,10 @@ class PerformanceLanding extends React.Component<Props, State> {
           conditions.getTagValues('transaction.duration')
         );
       } else {
-        modifiedConditions.setTagValues('transaction.duration', ['>0']);
+        modifiedConditions.setTagValues('transaction.duration', [
+          '>0',
+          `<${DEFAULT_MAX_DURATION}`,
+        ]);
       }
       newQuery.query = stringifyQueryObject(modifiedConditions);
     }
@@ -244,7 +252,7 @@ class PerformanceLanding extends React.Component<Props, State> {
 
     if (isNavigatingAwayFromTrends) {
       // This stops errors from occurring when navigating to other views since we are appending aggregates to the trends view
-      conditions.removeTag('count()');
+      conditions.removeTag('epm()');
       conditions.removeTag('transaction.duration');
 
       newQuery.query = stringifyQueryObject(conditions);
@@ -372,7 +380,7 @@ class PerformanceLanding extends React.Component<Props, State> {
                     organization={organization}
                     projectIds={eventView.project}
                     query={filterString}
-                    fields={eventView.fields}
+                    fields={generateAggregateFields(organization, eventView.fields)}
                     onSearch={this.handleSearch}
                   />
                   <Charts

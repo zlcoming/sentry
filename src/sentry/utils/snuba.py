@@ -804,7 +804,7 @@ def resolve_column(dataset):
     def _resolve_column(col):
         if col is None:
             return col
-        if isinstance(col, float):
+        if isinstance(col, six.integer_types) or isinstance(col, float):
             return col
         if isinstance(col, six.string_types) and (
             col.startswith("tags[") or QUOTED_LITERAL_RE.match(col)
@@ -862,7 +862,12 @@ def resolve_condition(cond, column_resolver):
                     else:
                         func_args[i] = column_resolver(arg)
                 else:
-                    func_args[i] = u"'{}'".format(arg) if isinstance(arg, six.string_types) else arg
+                    if isinstance(arg, six.string_types):
+                        func_args[i] = u"'{}'".format(arg)
+                    elif isinstance(arg, datetime):
+                        func_args[i] = u"'{}'".format(arg.isoformat())
+                    else:
+                        func_args[i] = arg
 
             cond[index + 1] = func_args
             return cond
@@ -1094,6 +1099,9 @@ def get_json_type(snuba_type):
     Convert Snuba/Clickhouse type to JSON type
     Default is string
     """
+    if snuba_type is None:
+        return "string"
+
     # Ignore Nullable part
     nullable_match = re.search(r"^Nullable\((.+)\)$", snuba_type)
 
@@ -1313,4 +1321,6 @@ def is_duration_measurement(key):
         "measurements.fcp",
         "measurements.lcp",
         "measurements.fid",
+        "measurements.ttfb",
+        "measurements.ttfb.requesttime",
     ]
