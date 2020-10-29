@@ -1,18 +1,15 @@
-import isNil from 'lodash/isNil';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {t} from 'app/locale';
 import EventDataSection from 'app/components/events/eventDataSection';
-import SentryTypes from 'app/sentryTypes';
 import {isStacktraceNewestFirst} from 'app/components/events/interfaces/stacktrace';
-import CrashContent from 'app/components/events/interfaces/crashContent';
-import Pills from 'app/components/pills';
-import Pill from 'app/components/pill';
 import {defined} from 'app/utils';
 import CrashTitle from 'app/components/events/interfaces/crashHeader/crashTitle';
 import CrashActions from 'app/components/events/interfaces/crashHeader/crashActions';
+import {StacktraceType, STACK_VIEW, STACK_TYPE} from 'app/types/stacktrace';
+import {Event, Project} from 'app/types';
 
+import Thread from './thread';
 import ThreadSelector from './threadSelector';
 import getThreadStacktrace from './threadSelector/getThreadStacktrace';
 import getThreadException from './threadSelector/getThreadException';
@@ -32,96 +29,26 @@ function findBestThread(threads) {
   );
 }
 
-class Thread extends React.Component {
-  static propTypes = {
-    event: SentryTypes.Event.isRequired,
-    projectId: PropTypes.string.isRequired,
-    data: PropTypes.object.isRequired,
-    stackView: PropTypes.string,
-    stackType: PropTypes.string,
-    newestFirst: PropTypes.bool,
-    exception: PropTypes.object,
-    stacktrace: PropTypes.object,
-  };
+const defaultProps = {
+  hideGuide: false,
+};
 
-  renderMissingStacktrace = () => (
-    <div className="traceback missing-traceback">
-      <ul>
-        <li className="frame missing-frame">
-          <div className="title">
-            <span className="informal">
-              {this.props.data.crashed
-                ? t('Thread Errored')
-                : t('No or unknown stacktrace')}
-            </span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  );
+type Props = {
+  event: Event;
+  projectId: Project['id'];
+  type: string;
+  data: Record<string, any>;
+} & typeof defaultProps;
 
-  hasMissingStacktrace = () => {
-    const {exception, stacktrace} = this.props;
-    return !(exception || stacktrace);
-  };
+type State = {
+  activeThread: any;
+  newestFirst: boolean;
+  stackType: STACK_TYPE;
+  stackView?: STACK_VIEW;
+};
 
-  render() {
-    const {
-      data,
-      event,
-      projectId,
-      stackView,
-      stackType,
-      newestFirst,
-      exception,
-      stacktrace,
-    } = this.props;
-
-    const renderPills = !isNil(data.id) || !!data.name;
-
-    return (
-      <div className="thread">
-        {renderPills && (
-          <Pills>
-            <Pill name={t('id')} value={data.id} />
-            <Pill name={t('name')} value={data.name} />
-            <Pill name={t('was active')} value={data.current} />
-            <Pill name={t('errored')} className={data.crashed ? 'false' : 'true'}>
-              {data.crashed ? t('yes') : t('no')}
-            </Pill>
-          </Pills>
-        )}
-
-        {this.hasMissingStacktrace() ? (
-          this.renderMissingStacktrace()
-        ) : (
-          <CrashContent
-            event={event}
-            stackType={stackType}
-            stackView={stackView}
-            newestFirst={newestFirst}
-            projectId={projectId}
-            exception={exception}
-            stacktrace={stacktrace}
-          />
-        )}
-      </div>
-    );
-  }
-}
-
-class ThreadsInterface extends React.Component {
-  static propTypes = {
-    event: SentryTypes.Event.isRequired,
-    projectId: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    data: PropTypes.object.isRequired,
-    hideGuide: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    hideGuide: false,
-  };
+class ThreadsInterface extends React.Component<Props, State> {
+  static defaultProps = defaultProps;
 
   constructor(props) {
     super(props);
